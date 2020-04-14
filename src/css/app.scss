@@ -1,0 +1,27 @@
+@import "variables";
+
+.app {
+  padding-top: $safe-top;
+  padding-bottom: $safe-bottom;
+  color: var(--text-color);
+  background: var(--background);
+
+  &.-safe {
+    padding: $safe-top $safe-right $safe-bottom $safe-left;
+  }
+
+  &.-statusbar {
+
+    &:before {
+      position: fixed;
+      z-index: 99999;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: $safe-top;
+      background: var(--statusbar-color, black);
+      content: '';
+    }
+
+  }
+}
