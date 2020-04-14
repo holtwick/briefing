@@ -1,0 +1,241 @@
+@import "variables";
+
+body {
+  background: #272727;
+  color: whitesmoke;
+}
+
+.app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tools {
+  /*background: black;*/
+  padding: 1rem;
+  text-align: center;
+}
+
+.tool {
+  color: #f8f8f8;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  background: #272727;
+  border-radius: 2rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+
+  @include mediaMobile {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+
+  &.-off {
+    color: #919191;
+  }
+
+  &:hover {
+    color: white;
+    background: #676767;
+  }
+
+  &:active,
+  &:focus {
+    color: #cccccc;
+    background: black;
+  }
+}
+
+.tool-close {
+  background: #9d0000;
+
+  &:hover {
+    background: #f60000;
+  }
+
+  &:active,
+  &:focus {
+    color: white;
+    background: #f60000;
+  }
+}
+
+.videos {
+  padding: 0.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .item {
+    display: flex;
+    padding: 0.25rem;
+    position: relative;
+    flex: auto;
+    overflow: hidden;
+  }
+
+  .video {
+    background: #444444;
+    border-radius: 0.25rem;
+    object-fit: cover;
+    max-height: 100%;
+
+    display: block;
+    margin: 0;
+
+    // Safari Hack
+    position: absolute;
+    top: calc(50%);
+    left: calc(50%);
+    width: calc(100% - 0.5rem) !important;
+    height: calc(100% - 0.5rem) !important;
+    transform: translateY(-50%) translateX(-50%);
+    // max-height: calc(50vh - 3rem) !important;
+
+    &.-mirrored {
+      transform: translateY(-50%) translateX(-50%) scaleX(-1);
+    }
+  }
+
+  .video-placeholder {
+    min-height: 6rem;
+    background: #333333;
+    color: white;
+
+    i {
+      font-size: 4rem;
+      color: white;
+      animation: blink 1000ms infinite;
+    }
+  }
+
+}
+
+@media (orientation: landscape) {
+  .videos {
+    flex-direction: row !important;
+
+    // https://stackoverflow.com/a/12198561/140927
+    .item:first-child:nth-last-child(1) {
+      min-height: 100%;
+      width: 100%;
+    }
+
+    .item:first-child:nth-last-child(2),
+    .item:first-child:nth-last-child(2) ~ .item {
+      min-height: 100%;
+      width: 50%;
+    }
+
+    .item:first-child:nth-last-child(3),
+    .item:first-child:nth-last-child(3) ~ .item {
+      min-height: 100%;
+      width: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(4),
+    .item:first-child:nth-last-child(4) ~ .item {
+      min-height: 50%;
+      width: 50%;
+    }
+
+    .item:first-child:nth-last-child(5),
+    .item:first-child:nth-last-child(5) ~ .item {
+      min-height: 50%;
+      width: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(6),
+    .item:first-child:nth-last-child(6) ~ .item {
+      min-height: 50%;
+      width: 33.3333%;
+    }
+
+  }
+}
+
+@media (orientation: portrait) {
+  .videos {
+    flex-direction: column !important;
+
+    .item:first-child:nth-last-child(1) {
+      width: 100%;
+      height: 100%;
+    }
+
+    .item:first-child:nth-last-child(2),
+    .item:first-child:nth-last-child(2) ~ .item {
+      width: 100%;
+      height: 50%;
+    }
+
+    .item:first-child:nth-last-child(3),
+    .item:first-child:nth-last-child(3) ~ .item {
+      width: 100%;
+      height: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(4),
+    .item:first-child:nth-last-child(4) ~ .item {
+      width: 50%;
+      height: 50%;
+    }
+
+    .item:first-child:nth-last-child(5),
+    .item:first-child:nth-last-child(5) ~ .item {
+      width: 50%;
+      height: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(6),
+    .item:first-child:nth-last-child(6) ~ .item {
+      width: 50%;
+      height: 33.3333%;
+    }
+
+  }
+}
+
+.transform {
+  display: none;
+
+  &.debugTransform {
+    display: block;
+
+    #transformVideo {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 200px;
+      z-index: 99999;
+    }
+
+    #transformOutput {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 200px;
+      width: 200px;
+      height: 200px;
+      z-index: 99999;
+    }
+  }
+}
+
+.bandwidth {
+  display: block;
+  position: absolute;
+  top: 1rem;
+  color: red;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background: white;
+  font-weight: bold;
+  left: 1rem;
+  //width: 200px;
+  //height: 200px;
+  z-index: 99999;
+}

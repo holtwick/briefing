@@ -1,0 +1,24 @@
+{
+  "name": "Briefing",
+  "short_name": "Briefing",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/ng/",
+  "scope": "/ng/",
+  "display": "standalone",
+  "background_color": "#333333",
+  "theme_color": "#5EA5FF",
+  "author": "Dirk Holtwick",
+  "description": "End-to-end encrypted group video chat",
+  "homepage_url": "https://brie.fi/ng"
+}
