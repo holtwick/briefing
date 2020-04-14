@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+
+  <title>Briefing</title>
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-config" content="/browserconfig.xml" />
+  <meta name="msapplication-TileColor" content="#5EA5FF">
+  <meta name="theme-color" content="#5EA5FF">
+
+  <style>
+  html, body, * {
+    /* touch-action: none; */
+  }
+
+  @font-face {
+    font-family: 'Framework7 Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Framework7Icons-Regular.eot");
+    src: url("/fonts/Framework7Icons-Regular.woff2") format("woff2"),
+    url("/fonts/Framework7Icons-Regular.woff") format("woff"),
+    url("/fonts/Framework7Icons-Regular.ttf") format("truetype");
+  }
+
+  .f7, [data-f7-icon]:before {
+    font-family: 'Framework7 Icons';
+    font-weight: normal;
+    font-style: normal;
+    /* font-size: 28px; */
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-feature-settings: "liga";
+    -moz-font-feature-settings: "liga=1";
+    -moz-font-feature-settings: "liga";
+    font-feature-settings: "liga";
+    text-align: center;
+    color: transparent;
+  }
+
+  [data-f7-icon]:before {
+    content: attr(data-f7-icon);
+    color: inherit;
+  }
+
+  html.f7-loaded .f7 {
+    color: inherit;
+  }
+
+  </style>
+  <script>
+  if (document && document.fonts) {
+    setTimeout(function () {
+      document.fonts.load('16px "Framework7 Icons"').then(() => {
+        document.documentElement.classList.add('f7-loaded')
+      })
+    }, 0)
+  } else {
+    document.documentElement.classList.add('f7-loaded')
+  }
+  </script>
+  <script>
+  // https://stackoverflow.com/a/38573198/140927
+
+  // document.addEventListener('touchmove', function (event) {
+  //   if (event.scale !== 1) {
+  //     event.preventDefault()
+  //   }
+  // }, false)
+  //
+  // var lastTouchEnd = 0
+  // document.addEventListener('touchend', function (event) {
+  //   var now = (new Date()).getTime()
+  //   if (now - lastTouchEnd <= 300) {
+  //     event.preventDefault()
+  //   }
+  //   lastTouchEnd = now
+  // }, false)
+
+  </script>
+</head>
+<body>
+<noscript>
+  <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
+</html>
