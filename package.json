@@ -1,7 +1,17 @@
 {
   "name": "briefing",
-  "version": "0.2.0",
+  "version": "1.0.1",
   "private": true,
+  "author": {
+    "name": "Dirk Holtwick",
+    "email": "dirk.holtwick@gmail.com",
+    "url": "https://holtwick.de"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
