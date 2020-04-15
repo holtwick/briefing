@@ -89,13 +89,6 @@ export class WebRTCPeer extends Emitter {
       this.emit('stream', stream)
     })
 
-    // this.peer.on('track', (track, stream) => {
-    //   log('new track', track, stream)
-    //   // this.track = track
-    //   // this.stream.addTrack(track)
-    //   this.emit('track', { track, stream })
-    // })
-
   }
 
   setStream(stream) {
@@ -114,7 +107,11 @@ export class WebRTCPeer extends Emitter {
 
   // We got a signal from the remote peer and will use it now to establish the connection
   signal(data) {
-    this.peer.signal(data)
+    if (this.peer && !this.peer.destroyed) {
+      this.peer.signal(data)
+    } else {
+      log('Tried to set signal on destroyed peer', this.peer, data)
+    }
   }
 
   postMessage(data) {  // Channel compat

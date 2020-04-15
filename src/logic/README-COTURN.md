@@ -4,9 +4,8 @@ Follow these steps: https://community.hetzner.com/tutorials/install-turn-stun-se
 
 Additionally:
 
-1. Uncomment `TURNSERVER_ENABLED=1` in `/etc/default/coturn`
-2. Create a user via `turnadmin -a -u brie -r stun.brie.fi -p fi`
-3. Set `/etc/turnserver.conf` to the following:
+1. Create a user via `turnadmin -a -u brie -r stun.brie.fi -p fi`
+2. Set `/etc/turnserver.conf` to the following:
 
 ```ini
 listening-port=3478
