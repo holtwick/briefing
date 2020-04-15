@@ -70,6 +70,42 @@ export async function setupWebRTC(state) {
 
   if (!WebRTC.isSupported()) return null
 
+  let config = {
+    iceTransportPolicy: 'all',
+    reconnectTimer: 3000,
+    iceServers: [{
+      urls: 'stun:stun.brie.fi:5349',
+    }],
+
+    // iceServers: [{
+    //   urls: 'stun:stun.l.google.com:19302',
+    // }, {
+    //   urls: 'turn:numb.viagenie.ca',
+    //   username: 'dirk.holtwick@gmail.com',
+    //   credential: 'ssg94JnM/;Pu',
+    // }],
+    //   // iceServers: [{
+    //   //   urls: 'stun:vs.holtwick.de',
+    //   // }, {
+    //   //   urls: 'turn:vs.holtwick.de', // 3478
+    //   // }],
+    //   // iceServers: [{
+    //   //   urls: 'stun:numb.viagenie.ca',
+    //   //   username: 'dirk.holtwick@gmail.com',
+    //   //   credential: 'ssg94JnM/;Pu',
+    //   // }, {
+    //   //   urls: 'turn:numb.viagenie.ca',
+    //   //   username: 'dirk.holtwick@gmail.com',
+    //   //   credential: 'ssg94JnM/;Pu',
+    //   // }],
+  }
+
+  if (localStorage.stun) {
+    config.iceServers = [{
+      urls: localStorage.stun,
+    }]
+  }
+
   const webrtc = new WebRTC({
     room: state.room,
     peerSettings: {
@@ -88,35 +124,7 @@ export async function setupWebRTC(state) {
         }
         return newSDP
       },
-      config: {
-        iceTransportPolicy: 'all',
-        reconnectTimer: 3000,
-        iceServers: [{
-          urls: 'stun:stunxx.brie.fi',
-        }],
-
-        // iceServers: [{
-        //   urls: 'stun:stun.l.google.com:19302',
-        // }, {
-        //   urls: 'turn:numb.viagenie.ca',
-        //   username: 'dirk.holtwick@gmail.com',
-        //   credential: 'ssg94JnM/;Pu',
-        // }],
-        //   // iceServers: [{
-        //   //   urls: 'stun:vs.holtwick.de',
-        //   // }, {
-        //   //   urls: 'turn:vs.holtwick.de', // 3478
-        //   // }],
-        //   // iceServers: [{
-        //   //   urls: 'stun:numb.viagenie.ca',
-        //   //   username: 'dirk.holtwick@gmail.com',
-        //   //   credential: 'ssg94JnM/;Pu',
-        //   // }, {
-        //   //   urls: 'turn:numb.viagenie.ca',
-        //   //   username: 'dirk.holtwick@gmail.com',
-        //   //   credential: 'ssg94JnM/;Pu',
-        //   // }],
-      },
+      config,
     },
   })
 

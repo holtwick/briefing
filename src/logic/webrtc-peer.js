@@ -2,6 +2,7 @@
 
 import SimplePeer from 'simple-peer'
 import { assert } from '../lib/assert'
+import { cloneObject } from '../lib/base'
 import { Emitter } from '../lib/emitter'
 
 const log = require('debug')('app:webrtc-peer')
@@ -31,7 +32,7 @@ export class WebRTCPeer extends Emitter {
     this.active = false
     this.stream = null
 
-    let opts = {
+    let opts = cloneObject({
       ...opt,
       // Allow the peer to receive video, even if it's not sending stream:
       // https://github.com/feross/simple-peer/issues/95
@@ -39,7 +40,7 @@ export class WebRTCPeer extends Emitter {
         offerToReceiveAudio: true,
         offerToReceiveVideo: true,
       },
-    }
+    })
 
     log('SimplePeer opts:', opts)
 
