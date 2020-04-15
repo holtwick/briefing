@@ -24,7 +24,7 @@ Only a free project does not require the user to create an account and unveil pa
 
 - Briefing web site (provides the web app)
 - Briefing signaling server (coordinates peers in rooms)
-- Briefing STUN server (helps traversing fire walls)
+- Briefing STUN/TURN server (helps traversing fire walls)
 
 *Feature X is missing! Found bug Y!*
 
