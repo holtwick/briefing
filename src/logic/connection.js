@@ -91,6 +91,10 @@ export async function setupWebRTC(state) {
       config: {
         iceTransportPolicy: 'all',
         reconnectTimer: 3000,
+        iceServers: [{
+          urls: 'stun:stunxx.brie.fi',
+        }],
+
         // iceServers: [{
         //   urls: 'stun:stun.l.google.com:19302',
         // }, {

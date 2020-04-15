@@ -31,10 +31,7 @@ export class WebRTCPeer extends Emitter {
     this.active = false
     this.stream = null
 
-    // this.stream = new MediaStream() // not supported by Safari
-
-    // https://github.com/feross/simple-peer/blob/master/README.md
-    this.peer = new SimplePeer({
+    let opts = {
       ...opt,
       // Allow the peer to receive video, even if it's not sending stream:
       // https://github.com/feross/simple-peer/issues/95
@@ -42,7 +39,12 @@ export class WebRTCPeer extends Emitter {
         offerToReceiveAudio: true,
         offerToReceiveVideo: true,
       },
-    })
+    }
+
+    log('SimplePeer opts:', opts)
+
+    // https://github.com/feross/simple-peer/blob/master/README.md
+    this.peer = new SimplePeer(opts)
 
     this.peer.on('close', _ => this.close())
 
