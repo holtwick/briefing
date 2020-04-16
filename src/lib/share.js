@@ -5,8 +5,8 @@ export function createLinkForRoom(room) {
 }
 
 export async function shareLink(url, {
-  title = 'Student\'s link',
-  text = 'Dear student, please open the link in your browser to follow our class',
+  title = 'Briefing URL',
+  text = 'Please open the link in your browser to join the video conference',
 } = {}) {
   if (navigator.share) {
     try {
@@ -24,7 +24,7 @@ export async function shareLink(url, {
     try {
       // https://electronjs.org/docs/api/clipboard
       await window.electron.clipboard.writeText(url)
-      alert('The URL has been copied to your clipboard. Please share it with your students.')
+      alert('The URL has been copied to your clipboard.')
       return true
     } catch (err) {
       console.error('Exception:', err)
@@ -32,7 +32,7 @@ export async function shareLink(url, {
   }
   try {
     await clipboardCopy(url)
-    alert('The URL has been copied to your clipboard. Please share it with your students.')
+    alert('The URL has been copied to your clipboard.')
     return true
   } catch (err) {
     console.error('Exception:', err)
