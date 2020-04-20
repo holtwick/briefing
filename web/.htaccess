@@ -1,0 +1,48 @@
+# (C)opyright Dirk Holtwick, 2017-02-03 <dirk.holtwick@gmail.com>
+
+# # HSTS https://www.cyon.ch/support/a/wie-aktiviere-ich-http-strict-transport-security-hsts-fur-meine-website
+# Header set Strict-Transport-Security "max-age=3600" env=HTTPS
+
+# Header set X-Frame-Options SAMEORIGIN
+# Header set X-XSS-Protection "1; mode=block"
+# Header set X-Content-Type-Options nosniff
+
+# Header set Referrer-Policy same-origin
+
+RewriteEngine on
+
+DirectoryIndex index.html
+# ErrorDocument 404 index.html
+
+# Avoid iframe embed
+Header set X-FRAME-OPTIONS: SAMEORIGIN
+
+# Enforce https and remove www.
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} .*
+RewriteCond %{SERVER_NAME} ^(www\.)?(.+)$ [NC]
+RewriteRule ^(.*)$ https://brie.fi/$1?referrer=%{HTTP_REFERER} [L,QSA,R=301]
+
+RewriteCond %{HTTPS} off
+RewriteCond %{SERVER_NAME} ^(www\.)?(.+)$ [NC]
+RewriteRule ^(.*)$ https://brie.fi/$1?referrer=%2 [L,R=301]
+
+# Force Hostname
+RewriteCond "%{HTTP_HOST}" "!^brie\.fi" [NC]
+RewriteCond "%{HTTP_HOST}" "!^$"
+RewriteRule "^/?(.*)" "https://brie.fi/$1?referrer=%{SERVER_NAME}" [L,R,NE]
+
+##if
+#RewriteCond %{HTTP:Accept-Language} ^de [NC]
+##then
+#RewriteRule ^$ /de/ [PT,L]
+##else
+#RewriteRule ^$ /en/ [PT]
+
+# RewriteRule ^$ https://onepile.app/en/help/public-links [L,R=301]
+# RewriteRule ^class/(.+)/?$ /class.php?room=$1 [PT]
+
+RewriteRule ^$ /ng [L,R=301]
+RewriteRule ^ng/?$ /index.html [PT]
+RewriteRule ^ng/(.+?)$ /app/index.html [PT]
