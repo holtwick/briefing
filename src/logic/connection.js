@@ -1,5 +1,6 @@
 // https://webrtchacks.com/limit-webrtc-bandwidth-sdp/
 
+import { ICE_CONFIG } from '../config'
 import { messages } from '../lib/emitter'
 
 const log = require('debug')('app:connection')
@@ -70,17 +71,7 @@ export async function setupWebRTC(state) {
 
   if (!WebRTC.isSupported()) return null
 
-  let config = {
-    iceTransportPolicy: 'all',
-    reconnectTimer: 3000,
-    iceServers: [{
-      urls: 'stun:stun.brie.fi:5349',
-    }, {
-      urls: 'turn:stun.brie.fi:5349',
-      username: 'brie',
-      credential: 'fi',
-    }],
-  }
+  let config = ICE_CONFIG
 
   // if (localStorage.stun) {
   //   config.iceServers = [{
