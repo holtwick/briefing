@@ -13,3 +13,7 @@ export const ICE_CONFIG = {
     credential: 'fi',
   }],
 }
+
+export const DEBUG = process.env.NODE_ENV !== 'production'
+
+export const PWA = process.env.VUE_APP_TARGET === 'pwa'

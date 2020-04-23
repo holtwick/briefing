@@ -15,9 +15,11 @@
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
+    "serve:pwa": "cross-env VUE_APP_TARGET=pwa vue-cli-service serve",
     "build": "vue-cli-service build --skip-plugins pwa,workbox",
-    "demoServe": "HTTPS_OFF=1 npm start",
+    "build:pwa": "cross-env VUE_APP_TARGET=pwa vue-cli-service build",
     "demo": "ssh -R 80:localhost:8080 ssh.localhost.run",
+    "demo:serve": "cross-env HTTPS_OFF=1 npm start",
     "test": "jest"
   },
   "dependencies": {
@@ -37,6 +39,7 @@
     "@vue/cli-plugin-babel": "~4.3.1",
     "@vue/cli-plugin-pwa": "~4.3.1",
     "@vue/cli-service": "~4.3.1",
+    "cross-env": "^7.0.2",
     "jest": "^25.4.0",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
