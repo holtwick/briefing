@@ -1,9 +1,9 @@
 <template>
-  <app-welcome></app-welcome>
+  <app-welcome v-if="state.room != null"></app-welcome>
+  <app-main v-else></app-main>
 </template>
 
 <script>
-import AppMain from './components/app-main'
 import AppWelcome from './components/app-welcome'
 
 const log = require('debug')('app:pwa-app')
@@ -12,14 +12,14 @@ export default {
   name: 'App',
   components: {
     AppWelcome,
-    AppMain,
+    AppMain: () => import(/* webpackChunkName: 'main' */ './components/app-main'),
   },
   data() {
     return {}
   },
   mounted() {
     log('pwa')
-  }
+  },
 }
 </script>
 

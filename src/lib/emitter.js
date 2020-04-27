@@ -24,6 +24,11 @@ export class Emitter {
     let subscribers = this.subscribers[key] || []
     subscribers.push(fn)
     this.subscribers[key] = subscribers
+    return {
+      cleanup: () => {
+        this.off(key, fn)
+      }
+    }
   }
 
   off(key, fn) {
