@@ -19,6 +19,6 @@
   "background_color": "#333333",
   "theme_color": "#5EA5FF",
   "author": "Dirk Holtwick",
-  "description": "End-to-end encrypted group video chat",
+  "description": "Anonymous end-to-end encrypted group video chat",
   "homepage_url": "https://brie.fi/ng"
 }
