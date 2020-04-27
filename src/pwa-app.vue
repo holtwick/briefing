@@ -1,11 +1,12 @@
 <template>
-  <!--  <app-main class="app"/>-->
   <app-welcome></app-welcome>
 </template>
 
 <script>
 import AppMain from './components/app-main'
 import AppWelcome from './components/app-welcome'
+
+const log = require('debug')('app:pwa-app')
 
 export default {
   name: 'App',
@@ -16,6 +17,9 @@ export default {
   data() {
     return {}
   },
+  mounted() {
+    log('pwa')
+  }
 }
 </script>
 
