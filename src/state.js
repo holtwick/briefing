@@ -11,6 +11,7 @@ export const isPWA = process.env.VUE_APP_TARGET === 'pwa'
 // ROOM
 
 let room = isPWA ? null : (DEBUG ? 'development' : location.pathname.substr('/ng/'.length))
+log('Room =', room)
 
 // STATE
 

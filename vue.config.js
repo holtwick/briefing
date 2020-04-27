@@ -28,16 +28,12 @@ if (isPWA) {
         skipWaiting: true,
       },
     }
-
-    // Path on GitHub Pages
-    config.publicPath = `/pwa`
   }
 }
 
 if (isProduction) {
 
-  // Path on GitHub Pages
-  config.publicPath = `/app`
+  config.publicPath = isPWA ? '/ngs' : '/app'
 
 } else {
 
