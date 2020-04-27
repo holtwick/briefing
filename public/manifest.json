@@ -1,6 +1,6 @@
 {
-  "name": "Brie.fi/ng",
-  "short_name": "Brie.fi/ng",
+  "name": "Briefings",
+  "short_name": "Briefings",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/ngs/",
+  "start_url": "https://brie.fi/ngs/",
   "scope": "/ngs/",
   "display": "standalone",
   "background_color": "#333333",
