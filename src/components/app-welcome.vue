@@ -2,7 +2,9 @@
   <div class="page1">
     <div class="logo">
       <form id="form" @submit.prevent="doEnterRoom">
-        <a @click.prevent="doEnterRoom" href="#" id="link" class="link">Brie<span class="dot">.</span>fi<span class="slash">/</span>ng<span class="slash">/</span></a><wbr><input type="text" id="room" name="room" ref="input" enterkeyhint="go" spellcheck="false" v-model="room" :placeholder="defaultName">
+        <a @click.prevent="doEnterRoom" href="#" id="link" class="link">Brie<span class="dot">.</span>fi<span class="slash">/</span>ng<span class="slash">/</span></a>
+        <wbr>
+        <input type="text" id="room" name="room" ref="input" enterkeyhint="go" spellcheck="false" v-model="room" :placeholder="defaultName">
       </form>
       <div class="button-container">
         <a @click.prevent="doEnterRoom" href="#" class="button" id="button">Start Video Chat</a>
@@ -206,6 +208,8 @@ input::placeholder {
 
 <script>
 
+import { DEBUG } from '../state'
+
 function generateName() {
 
   function capFirst(string) {
@@ -234,7 +238,11 @@ export default {
   },
   methods: {
     doEnterRoom() {
-      this.state.room = this.room || this.defaultName
+      if (DEBUG) {
+        this.state.room = 'development'
+      } else {
+        this.state.room = this.room || this.defaultName
+      }
     },
     updateInput() {
       const input = this.$refs.input

@@ -1,16 +1,16 @@
+import { DEBUG, PWA } from './config'
 import { messages } from './lib/emitter'
 import { setupWebRTC } from './logic/connection'
 import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getUserMedia } from './logic/stream'
 
 const log = require('debug')('app:state')
 
-export const DEBUG = location.port.toString() === '8080' || !location.pathname.startsWith('/ng/')
-
-export const isPWA = process.env.VUE_APP_TARGET === 'pwa'
+// export const DEBUG = location.port.toString() === '8080' || !location.pathname.startsWith('/ng/')
+// export const isPWA = process.env.VUE_APP_TARGET === 'pwa'
 
 // ROOM
 
-let room = isPWA ? null : (DEBUG ? 'development' : location.pathname.substr('/ng/'.length))
+let room = PWA ? null : (DEBUG ? 'development' : location.pathname.substr('/ng/'.length))
 log('Room =', room)
 
 // STATE

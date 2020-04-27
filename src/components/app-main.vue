@@ -16,6 +16,7 @@
     <div class="-fit stack videos">
 
       <app-video
+        v-if="state.stream"
         :stream="state.stream"
         muted
         :mirrored="state.deviceVideo !== 'desktop'"
@@ -52,9 +53,10 @@
 </template>
 
 <script>
+import { PWA } from '../config'
 import { messages } from '../lib/emitter'
 import { createLinkForRoom, shareLink } from '../lib/share'
-import { isPWA, setup } from '../state'
+import { setup } from '../state'
 import SeaButton from '../ui/sea-button'
 import SeaLink from '../ui/sea-link'
 import SeaModal from '../ui/sea-modal'
@@ -93,10 +95,10 @@ export default {
     },
     doQuit() {
       if (confirm('Really quit this session?')) {
-        if (isPWA) {
+        if (PWA) {
           this.state.room = null
         } else {
-          location.assign(isPWA ? '/ngs/' : '/ng/') // todo
+          location.assign('/ng/')
         }
       }
     },
