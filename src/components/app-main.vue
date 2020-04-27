@@ -54,7 +54,7 @@
 <script>
 import { messages } from '../lib/emitter'
 import { createLinkForRoom, shareLink } from '../lib/share'
-import { setup } from '../state'
+import { isPWA, setup } from '../state'
 import SeaButton from '../ui/sea-button'
 import SeaLink from '../ui/sea-link'
 import SeaModal from '../ui/sea-modal'
@@ -93,7 +93,11 @@ export default {
     },
     doQuit() {
       if (confirm('Really quit this session?')) {
-        location.assign('/ng/')
+        if (isPWA) {
+          this.state.room = null
+        } else {
+          location.assign(isPWA ? '/ngs/' : '/ng/') // todo
+        }
       }
     },
   },
