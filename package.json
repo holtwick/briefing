@@ -1,6 +1,6 @@
 {
   "name": "briefing",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
@@ -15,20 +15,22 @@
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
+    "serve:pwa": "cross-env VUE_APP_TARGET=pwa vue-cli-service serve",
     "build": "vue-cli-service build --skip-plugins pwa,workbox",
-    "demoServe": "HTTPS_OFF=1 npm start",
+    "build:pwa": "cross-env VUE_APP_TARGET=pwa vue-cli-service build",
     "demo": "ssh -R 80:localhost:8080 ssh.localhost.run",
+    "demo:serve": "cross-env HTTPS_OFF=1 npm start",
     "test": "jest"
   },
   "dependencies": {
     "@tensorflow-models/body-pix": "^2.0.5",
-    "@tensorflow/tfjs-converter": "^1.7.2",
-    "@tensorflow/tfjs-core": "^1.7.2",
+    "@tensorflow/tfjs-converter": "^1.7.3",
+    "@tensorflow/tfjs-core": "^1.7.3",
     "clipboard-copy": "^3.1.0",
     "core-js": "^3.6.5",
     "debug": "^4.1.1",
     "register-service-worker": "^1.7.1",
-    "simple-peer": "^9.6.2",
+    "simple-peer": "^9.7.0",
     "socket.io-client": "^2.3.0",
     "uuid": "^7.0.3",
     "vue": "^2.6.11"
@@ -37,8 +39,9 @@
     "@vue/cli-plugin-babel": "~4.3.1",
     "@vue/cli-plugin-pwa": "~4.3.1",
     "@vue/cli-service": "~4.3.1",
+    "cross-env": "^7.0.2",
     "jest": "^25.4.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.0",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11",
     "wrtc": "^0.4.4"

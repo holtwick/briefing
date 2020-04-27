@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="text">
     <div class="form-group">
       <sea-switch v-model="state.bandwidth">{{ l.settings.bandwidth }}</sea-switch>
     </div>

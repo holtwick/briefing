@@ -1,5 +1,7 @@
-// See https://github.com/holtwick/peer2school-server
+// See https://github.com/holtwick/briefing-signal
 export const SIGNAL_SERVER_URL = 'wss://sig03.brie.fi'
+
+// export const SIGNAL_SERVER_URL = 'ws://localhost:4444'
 
 // See https://github.com/feross/simple-peer#peer--new-peeropts
 export const ICE_CONFIG = {
@@ -13,3 +15,7 @@ export const ICE_CONFIG = {
     credential: 'fi',
   }],
 }
+
+export const DEBUG = process.env.NODE_ENV !== 'production'
+
+export const PWA = process.env.VUE_APP_TARGET === 'pwa'

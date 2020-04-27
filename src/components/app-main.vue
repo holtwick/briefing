@@ -1,5 +1,5 @@
 <template>
-  <div class="-fit vstack">
+  <div class="app -fit vstack">
 
     <!--    <div class="-fit stack videos" v-if="false">-->
     <!--      <div class="peer item">-->
@@ -16,6 +16,7 @@
     <div class="-fit stack videos">
 
       <app-video
+        v-if="state.stream"
         :stream="state.stream"
         muted
         :mirrored="state.deviceVideo !== 'desktop'"
@@ -40,7 +41,7 @@
       <sea-link @action="share=true" symbol="square_arrow_up" class="tool"></sea-link>
     </div>
 
-    <sea-modal :active.sync="share" close :title="l.share.title" class="text">
+    <sea-modal :active.sync="share" close :title="l.share.title">
       <app-share></app-share>
     </sea-modal>
 
@@ -52,8 +53,10 @@
 </template>
 
 <script>
+import { PWA } from '../config'
 import { messages } from '../lib/emitter'
 import { createLinkForRoom, shareLink } from '../lib/share'
+import { setup } from '../state'
 import SeaButton from '../ui/sea-button'
 import SeaLink from '../ui/sea-link'
 import SeaModal from '../ui/sea-modal'
@@ -75,6 +78,7 @@ export default {
     return {
       settings: false,
       share: false,
+      conn: null,
     }
   },
   methods: {
@@ -91,11 +95,19 @@ export default {
     },
     doQuit() {
       if (confirm('Really quit this session?')) {
-        location.assign('/ng/')
+        if (PWA) {
+          this.state.room = null
+        } else {
+          location.assign('/ng/')
+        }
       }
     },
   },
   async mounted() {
+    this.conn = await setup()
+  },
+  beforeDestroy() {
+    this.conn?.cleanup()
   },
 }
 </script>

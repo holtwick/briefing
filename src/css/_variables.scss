@@ -52,7 +52,7 @@ $tint-light: white;
     @return mix($tint-light, $color, 90%); // 90
   }
 }
- 
+
 // Gray colors
 
 $gray-color: lighten($dark-color, 55%) !default;
@@ -78,8 +78,8 @@ $error-color: #e85600 !default;
 $code-color: #d73e48 !default;
 $highlight-color: #ffe9b3 !default;
 
-$body-bg: $bg-color-light !default;
-$body-font-color: lighten($dark-color, 5%) !default;
+$body-bg: #272727 !default;
+$body-font-color: #eee !default;
 
 $link-color: $primary-color !default;
 $link-color-dark: darken($link-color, 10%) !default;
