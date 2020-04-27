@@ -1,5 +1,5 @@
 <template>
-  <div class="-fit vstack">
+  <div class="app -fit vstack">
 
     <!--    <div class="-fit stack videos" v-if="false">-->
     <!--      <div class="peer item">-->
@@ -41,7 +41,7 @@
       <sea-link @action="share=true" symbol="square_arrow_up" class="tool"></sea-link>
     </div>
 
-    <sea-modal :active.sync="share" close :title="l.share.title" class="text">
+    <sea-modal :active.sync="share" close :title="l.share.title">
       <app-share></app-share>
     </sea-modal>
 

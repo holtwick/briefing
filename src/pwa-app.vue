@@ -1,5 +1,5 @@
 <template>
-  <app-welcome v-if="state.room == null"></app-welcome>
+  <app-welcome class="app" v-if="state.room == null"></app-welcome>
   <app-main v-else></app-main>
 </template>
 

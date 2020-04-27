@@ -1,5 +1,5 @@
 <template>
-  <div class="share-container -scrollable">
+  <div class="share-container -scrollable text">
     <p>
       {{ l.share.link_info }}
     </p>
