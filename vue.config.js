@@ -1,7 +1,8 @@
 // Copyright (c) 2018. Dirk Holtwick <holtwick.de>
 
 const isProduction = process.env.NODE_ENV === 'production'
-const isPWA = process.env.VUE_APP_TARGET === 'pwa'
+const isElectron = process.env.VUE_APP_TARGET === 'electron'
+const isPWA = isElectron || process.env.VUE_APP_TARGET === 'pwa'
 
 let config = {
   productionSourceMap: false,
@@ -33,9 +34,17 @@ if (isPWA) {
 
 if (isProduction) {
 
-  config.publicPath = isPWA ? '/ngs' : '/app'
+  if (isElectron) {
+    config.publicPath = '/'
+  }
+  else if (isPWA) {
+    config.publicPath = '/ngs'
+  }
+  else {
+    config.publicPath = '/app'
+  }
 
-} else {
+} else if (!isElectron) {
 
   config.devServer = {
 
@@ -50,6 +59,50 @@ if (isProduction) {
     },
   }
 
+}
+
+if (isElectron) {
+
+  config.pluginOptions = {
+    electronBuilder: {
+      builderOptions: {
+        appId: 'de.holtwick.electron.Briefings',
+        productName: 'Briefings',
+        copyright: '(C)opyright Dirk Holtwick, 2020 <https://holtwick.de>',
+        // 'directories': {
+        //   'app': './build',
+        // },
+        fileAssociations: [
+          {
+            ext: ['briefing'],
+            isPackage: false
+          }
+        ],
+        win: {
+          target: [{
+            target: 'appx',
+            arch: [
+              'ia32',
+              'x64'
+            ]
+          }]
+        },
+        nsis: {
+          perMachine: true,
+          artifactName: 'Briefings-win-${version}-${arch}.${ext}',
+          deleteAppDataOnUninstall: true
+        },
+        appx: {
+          applicationId: 'Briefings',
+          displayName: 'Briefings',
+          identityName: '41510Holtwick.Brie.fing',
+          publisher: 'CN=977BD49F-EBE0-4D24-80EB-AE5A2D4A07E8',
+          publisherDisplayName: 'Holtwick',
+          backgroundColor: 'transparent'
+        }
+      }
+    }
+  }
 }
 
 console.info('config = ' + JSON.stringify(config, null, 2))
