@@ -7,21 +7,21 @@
     "email": "dirk.holtwick@gmail.com",
     "url": "https://holtwick.de"
   },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/holtwick/briefing.git"
-  },
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
-    "serve:pwa": "cross-env VUE_APP_TARGET=pwa vue-cli-service serve",
     "build": "vue-cli-service build --skip-plugins pwa,workbox",
-    "build:pwa": "cross-env VUE_APP_TARGET=pwa vue-cli-service build",
     "demo": "ssh -R 80:localhost:8080 ssh.localhost.run",
     "demo:serve": "cross-env HTTPS_OFF=1 npm start",
+    "electron:build": "cross-env VUE_APP_TARGET=electron vue-cli-service electron:build --skip-plugins pwa,workbox",
+    "electron:serve": "cross-env VUE_APP_TARGET=electron vue-cli-service electron:serve --skip-plugins pwa,workbox",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps",
+    "pwa:build": "cross-env VUE_APP_TARGET=pwa vue-cli-service build",
+    "pwa:serve": "cross-env VUE_APP_TARGET=pwa vue-cli-service serve",
     "test": "jest"
   },
+  "main": "background.js",
   "dependencies": {
     "@tensorflow-models/body-pix": "^2.0.5",
     "@tensorflow/tfjs-converter": "^1.7.4",
@@ -40,10 +40,17 @@
     "@vue/cli-plugin-pwa": "~4.3.1",
     "@vue/cli-service": "~4.3.1",
     "cross-env": "^7.0.2",
+    "electron": "^8.2.4",
     "jest": "^25.5.1",
     "node-sass": "^4.14.0",
     "sass-loader": "^8.0.2",
+    "vue-cli-plugin-electron-builder": "~1.4.6",
     "vue-template-compiler": "^2.6.11",
     "wrtc": "^0.4.4"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
   }
 }
