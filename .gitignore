@@ -1,0 +1,13 @@
+.DS_*
+*.log
+.idea
+logs
+bower_components
+node_modules
+dist
+npm-debug.log
+yarn-error.log
+video
+
+#Electron-builder output
+/dist_electron
