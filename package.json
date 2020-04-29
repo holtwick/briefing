@@ -1,5 +1,6 @@
 {
   "name": "briefing",
+  "description": "Start a secure anonymous video chat",
   "version": "1.1.0",
   "private": true,
   "author": {
@@ -13,7 +14,7 @@
     "build": "vue-cli-service build --skip-plugins pwa,workbox",
     "demo": "ssh -R 80:localhost:8080 ssh.localhost.run",
     "demo:serve": "cross-env HTTPS_OFF=1 npm start",
-    "electron:build": "cross-env VUE_APP_TARGET=electron vue-cli-service electron:build --skip-plugins pwa,workbox",
+    "electron:build:windows:appx": "cross-env VUE_APP_TARGET=electron vue-cli-service electron:build --windows appx",
     "electron:serve": "cross-env VUE_APP_TARGET=electron vue-cli-service electron:serve --skip-plugins pwa,workbox",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
