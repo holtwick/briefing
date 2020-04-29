@@ -1,0 +1,40 @@
+{
+  "name": "Briefings",
+  "short_name": "Briefings",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "https://brie.fi/ngs/",
+  "scope": "/ngs/",
+  "display": "standalone",
+  "background_color": "#333333",
+  "theme_color": "#333333",
+  "author": "Dirk Holtwick",
+  "description": "Secure anonymous video chat",
+  "homepage_url": "https://brie.fi/ngs/",
+  "url": "https://brie.fi/ngs/",
+  "lang": "EN",
+  "screenshots": [
+    {
+      "src": "https://brie.fi/sample.jpg",
+      "type": "image/png",
+      "size": "1478x1988",
+      "description": "Screenshot Briefing App"
+    }
+  ],
+  "features": [
+    "Secure anonymous video chat",
+    "End-to-end encrypted",
+    "Blur background"
+  ],
+  "orientation": "any"
+}

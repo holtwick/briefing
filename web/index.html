@@ -15,18 +15,18 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="/ngs/manifest.json">
   <meta name="msapplication-config" content="/browserconfig.xml"/>
   <meta name="msapplication-TileColor" content="#5EA5FF">
   <meta name="theme-color" content="#5EA5FF">
 
   <link rel="canonical" href="https://brie.fi/ng">
-  <meta name="keywords" content="video,chat,group,conferencing,secure,privacy,webrtc,vue,browser,webapp,app,communication,free,opensource">
-  <meta property="og:description" name="description" content="Briefing - Start your secure video group chat">
+  <meta name="keywords" content="video,chat,group,conferencing,secure,privacy,webrtc,vue,browser,webapp,app,communication,free,opensource,e2ee,p2p">
+  <meta property="og:description" name="description" content="Briefing - Start a secure anonymous video chat">
   <meta property="og:url" content="https://brie.fi/ng">
-  <meta property="og:title" content="Briefing - Secure Video Conferencing">
+  <meta property="og:title" content="Briefing - Start a secure anonymous video chat">
   <meta property="og:image" content="https://brie.fi/og-image.png">
-  <meta property="og:image:alt" content="Briefing - Secure Video Conferencing">
+  <meta property="og:image:alt" content="Briefing - Start a secure anonymous video chat">
   <meta name="twitter:creator" content="@holtwick">
   <meta name="twitter:card" content="summary">
   <meta property="og:type" content="website">
@@ -227,14 +227,14 @@
 <div class="page1">
   <div class="logo">
     <form id="form">
-      <a href="#" id="link" class="link">Brie<span class="dot">.</span>fi<span class="slash">/</span>ng<span class="slash">/</span></a><wbr><input id="room" name="room" value="" enterkeyhint="go" spellcheck="false">
+      <a href="#" id="link" class="link">Brie<span class="dot">.</span>fi<span class="slash">/</span>ng<span class="slash">/</span></a><wbr><input type="text" id="room" name="room" value="" enterkeyhint="go" spellcheck="false">
     </form>
     <div class="button-container">
       <a href="#" class="button" id="button">Start Video Chat</a>
     </div>
   </div>
   <div class="footer links">
-    <p>End-to-end encrypted group video chat.  <a href="#help" onclick="document.getElementById('help').scrollIntoView({behavior: 'smooth'}); return false;">Help</a></p>
+    <p>Anonymous end-to-end encrypted group video chat.  <a href="#help" onclick="document.getElementById('help').scrollIntoView({behavior: 'smooth'}); return false;">Help</a></p>
     <p>Created by <a href="https://holtwick.de?ref=briefing">holtwick.de</a>
       <a title="Twitter" href="https://twitter.com/holtwick" class="icon">
         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Twitter</title>

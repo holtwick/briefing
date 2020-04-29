@@ -73,12 +73,6 @@ export async function setupWebRTC(state) {
 
   let config = ICE_CONFIG
 
-  // if (localStorage.stun) {
-  //   config.iceServers = [{
-  //     urls: localStorage.stun,
-  //   }]
-  // }
-
   const webrtc = new WebRTC({
     room: state.room,
     peerSettings: {
@@ -112,13 +106,13 @@ export async function setupWebRTC(state) {
     }
   })
 
-  messages.on('setLocalStream', stream => {
+ let onSetLocalStream = messages.on('setLocalStream', stream => {
     webrtc.forEachPeer(peer => {
       peer.setStream(stream)
     })
   })
 
-  messages.on('negotiateBandwidth', stream => {
+  let onNegotiateBandwidth =  messages.on('negotiateBandwidth', stream => {
     webrtc.forEachPeer(peer => {
       peer.peer.negotiate()
     })
@@ -163,5 +157,12 @@ export async function setupWebRTC(state) {
   //   }, 1000)
   // }
 
-  return webrtc
+  return {
+    webrtc,
+    cleanup() {
+      webrtc.cleanup()
+      onSetLocalStream.cleanup()
+      onNegotiateBandwidth.cleanup()
+    }
+  }
 }

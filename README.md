@@ -36,4 +36,4 @@ Frankly this is not required, because your browser can handle it all. You can of
 
 ---
 
-For signal server code see [peer2school-server](https://github.com/holtwick/peer2school-server)
+For signal server code see [briefing-signal](https://github.com/holtwick/briefing-signal)

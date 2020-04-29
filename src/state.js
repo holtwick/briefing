@@ -1,14 +1,17 @@
+import { DEBUG, PWA } from './config'
 import { messages } from './lib/emitter'
 import { setupWebRTC } from './logic/connection'
 import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getUserMedia } from './logic/stream'
 
 const log = require('debug')('app:state')
 
-export const DEBUG = location.port.toString() === '8080' || !location.pathname.startsWith('/ng/')
+// export const DEBUG = location.port.toString() === '8080' || !location.pathname.startsWith('/ng/')
+// export const isPWA = process.env.VUE_APP_TARGET === 'pwa'
 
 // ROOM
 
-let room = DEBUG ? 'development' : location.pathname.substr('/ng/'.length)
+let room = PWA ? null : (DEBUG ? 'development' : location.pathname.substr('/ng/'.length))
+log('Room =', room)
 
 // STATE
 
@@ -128,10 +131,13 @@ async function switchVideo() {
   }
 }
 
-async function setup() {
+export async function setup() {
+  let rtc
   try {
 
-    if (!await setupWebRTC(state)) {
+    rtc = await setupWebRTC(state)
+
+    if (!rtc) {
       alert('Your browser does not support the required WebRTC technologies.\n\nPlease reconnect using an up to date web browser.\n\nThanks for your understanding.')
       location.assign('/ng/')
       return
@@ -150,6 +156,11 @@ async function setup() {
   } catch (err) {
     console.error('Exception:', err)
   }
+
+  return {
+    cleanup() {
+      rtc?.cleanup()
+    },
+  }
 }
 
-setup().then()
