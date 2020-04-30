@@ -77,10 +77,10 @@ if (isElectron) {
         win: {
           target: [{
             target: 'appx',
-            arch: [
-              'ia32',
-              'x64',
-            ],
+            // arch: [
+            //   'ia32',
+            //   'x64',
+            // ],
           }],
         },
         nsis: {
