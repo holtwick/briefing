@@ -70,10 +70,14 @@ if (isElectron) {
         directories: {
           buildResources: 'resources',
         },
-        fileAssociations: [{
-          ext: ['briefing'],
-          isPackage: false,
-        }],
+        // fileAssociations: [{
+        //   ext: ['briefing', 'briefings'],
+        //   isPackage: false,
+        // }],
+        // protocols: [{
+        //   name: 'briefing',
+        //   schemes: ['briefing', 'briefings'],
+        // }],
         win: {
           target: [{
             target: 'appx',
