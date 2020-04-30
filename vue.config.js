@@ -67,9 +67,8 @@ if (isElectron) {
         appId: 'de.holtwick.electron.Briefings',
         productName: 'Briefings',
         copyright: '(C)opyright Dirk Holtwick, 2020 <https://holtwick.de>',
-        'directories': {
-          'output': 'release',
-          'buildResources': 'resources',
+        directories: {
+          buildResources: 'resources',
         },
         fileAssociations: [{
           ext: ['briefing'],
@@ -96,6 +95,7 @@ if (isElectron) {
           publisher: 'CN=977BD49F-EBE0-4D24-80EB-AE5A2D4A07E8',
           publisherDisplayName: 'Holtwick',
           backgroundColor: 'transparent',
+          artifactName: 'Briefings-win-store-${version}-${arch}.${ext}',
         },
       },
     },
