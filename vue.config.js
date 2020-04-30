@@ -36,11 +36,9 @@ if (isProduction) {
 
   if (isElectron) {
     config.publicPath = '/'
-  }
-  else if (isPWA) {
+  } else if (isPWA) {
     config.publicPath = '/ngs'
-  }
-  else {
+  } else {
     config.publicPath = '/app'
   }
 
@@ -69,39 +67,38 @@ if (isElectron) {
         appId: 'de.holtwick.electron.Briefings',
         productName: 'Briefings',
         copyright: '(C)opyright Dirk Holtwick, 2020 <https://holtwick.de>',
-        // 'directories': {
-        //   'app': './build',
-        // },
-        fileAssociations: [
-          {
-            ext: ['briefing'],
-            isPackage: false
-          }
-        ],
+        'directories': {
+          'output': 'release',
+          'buildResources': 'resources',
+        },
+        fileAssociations: [{
+          ext: ['briefing'],
+          isPackage: false,
+        }],
         win: {
           target: [{
             target: 'appx',
             arch: [
               'ia32',
-              'x64'
-            ]
-          }]
+              'x64',
+            ],
+          }],
         },
         nsis: {
           perMachine: true,
           artifactName: 'Briefings-win-${version}-${arch}.${ext}',
-          deleteAppDataOnUninstall: true
+          deleteAppDataOnUninstall: true,
         },
         appx: {
-          applicationId: 'Briefings',
           displayName: 'Briefings',
+          applicationId: 'Briefings',
           identityName: '41510Holtwick.Brie.fing',
           publisher: 'CN=977BD49F-EBE0-4D24-80EB-AE5A2D4A07E8',
           publisherDisplayName: 'Holtwick',
-          backgroundColor: 'transparent'
-        }
-      }
-    }
+          backgroundColor: 'transparent',
+        },
+      },
+    },
   }
 }
 
