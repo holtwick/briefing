@@ -52,10 +52,19 @@ app.on('activate', () => {
   }
 })
 
+// app.on('open-url', function (event, url) {
+//   event.preventDefault()
+//   let parts = url.split('/')
+//   let room = parts[parts.length - 1]
+// })
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', async () => {
+  // app.setAsDefaultProtocolClient('briefing')
+  // app.setAsDefaultProtocolClient('briefings')
+
   if (isDevelopment && !process.env.IS_TEST) {
     // Install Vue Devtools
     // Devtools extensions are broken in Electron 6.0.0 and greater
