@@ -27,13 +27,15 @@ function createWindow() {
   } else {
     createProtocol('app')
     // Load the index.html when not in development
-    win.loadURL('app://./index.html')
+    win.loadURL('https://brie.fi/ngs/?platform=electron')
+    // win.loadURL('app://./index.html')
   }
 
   win.on('closed', () => {
     win = null
   })
 }
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
