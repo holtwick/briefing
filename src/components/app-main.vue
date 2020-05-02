@@ -1,5 +1,5 @@
 <template>
-  <div class="app -fit vstack">
+  <div class="app -fit vstack" :data-mode="state.maximized ? 'maximized': 'default'">
 
     <!--    <div class="-fit stack videos" v-if="false">-->
     <!--      <div class="peer item">-->
@@ -21,11 +21,13 @@
         muted
         :mirrored="state.deviceVideo !== 'desktop'"
         title="Local"
+        id="self"
       />
 
       <app-video
         v-for="peer in state.status"
         :key="peer.remote"
+        :id="peer.remote"
         :stream="peer.peer.stream"
       />
 

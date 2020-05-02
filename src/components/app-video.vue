@@ -1,5 +1,5 @@
 <template>
-  <div class="peer item">
+  <div class="peer item" @click="handleClick" :class="{ '-maximized': state.maximized === id }">
     <video
       class="video"
       ref="video"
@@ -63,6 +63,9 @@ export default {
       type: Boolean,
       default: false,
     },
+    id: {
+      type: String,
+    },
   },
   data() {
     return {}
@@ -75,6 +78,13 @@ export default {
         await connectStreamToVideoElement(stream, this.$refs.video)
         // stream.onaddtrack = async () => await connectStreamToVideoElement(stream, this.$refs.video)
         // stream.onremovetrack = async () => await connectStreamToVideoElement(stream, this.$refs.video)
+      }
+    },
+    handleClick() {
+      if (this.state.maximized === this.id) {
+        this.state.maximized = ''
+      } else {
+        this.state.maximized = this.id
       }
     },
   },
