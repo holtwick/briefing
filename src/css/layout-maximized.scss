@@ -1,8 +1,9 @@
 .videos {
   position: relative;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: flex-end;
+  padding: 1rem;
 
   .peer {
     z-index: 2;
@@ -21,23 +22,21 @@
       width: 6rem;
       flex-grow: 0;
       flex-shrink: 0;
-      margin-bottom: 0.5rem;
-      margin-right: 0.5rem;
+      margin: 0;
 
       .video {
         border: 1px solid black;
       }
     }
 
-
   }
 
 }
 
 @media (orientation: landscape) {
-
-}
-
-@media (orientation: portrait) {
-
+  .videos {
+    flex-direction: column;
+    //align-items: flex-end;
+    //justify-content: flex-end;
+  }
 }
