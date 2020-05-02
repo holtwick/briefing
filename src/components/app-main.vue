@@ -21,11 +21,13 @@
         muted
         :mirrored="state.deviceVideo !== 'desktop'"
         title="Local"
+        id="self"
       />
 
       <app-video
         v-for="peer in state.status"
         :key="peer.remote"
+        :id="peer.remote"
         :stream="peer.peer.stream"
       />
 

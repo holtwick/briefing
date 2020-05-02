@@ -11,12 +11,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.tools {
-  /*background: black;*/
-  padding: 1rem;
-  text-align: center;
-}
-
 .icon {
   padding: 0;
   margin: 0;
@@ -32,6 +26,17 @@ body {
     stroke: currentColor;
     stroke-width: 1.5;
   }
+}
+
+.-maximized {
+  border: 2px solid red !important;
+}
+
+.tools {
+  /*background: black;*/
+  padding: 1rem;
+  padding-top: 0.5rem;
+  text-align: center;
 }
 
 .tool {
