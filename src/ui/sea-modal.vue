@@ -9,7 +9,9 @@
           <div class="sea-modal-title -fit">
             <slot name="title">{{ title }}</slot>
           </div>
-          <sea-link v-if="close" xtooltip="Close" @click="doCancel" class="-fix" symbol="xmark"/>
+          <sea-link v-if="close" xtooltip="Close" @click="doCancel" class="-fix icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </sea-link>
         </div>
       </header>
       <section class="sea-modal-body modal-body -fit -scrollable">

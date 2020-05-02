@@ -18,6 +18,14 @@ html, body {
   height: 100%;
 }
 
+.-relative {
+  position: relative;
+}
+
+.-absolute {
+  position: absolute;
+}
+
 // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 .stack, .hstack, .vstack {
   display: flex;
