@@ -1,5 +1,5 @@
 <template>
-  <div class="peer item">
+  <div class="peer item" @click="handleClick" :class="{ '-maximized': state.maximized === id }">
     <video
       class="video"
       ref="video"
@@ -7,10 +7,11 @@
       playsinline
       :muted="muted"
       v-if="stream"
-      :class="{'-mirrored': mirrored}"
+      :data-fit="state.fill ? 'cover' : 'contain'"
     />
     <div v-else class="video video-placeholder -content-placeholder">
       <i data-f7-icon="rectangle_stack_person_crop"></i>
+      Waiting...
     </div>
   </div>
 </template>
@@ -63,6 +64,9 @@ export default {
       type: Boolean,
       default: false,
     },
+    id: {
+      type: String,
+    },
   },
   data() {
     return {}
@@ -75,6 +79,13 @@ export default {
         await connectStreamToVideoElement(stream, this.$refs.video)
         // stream.onaddtrack = async () => await connectStreamToVideoElement(stream, this.$refs.video)
         // stream.onremovetrack = async () => await connectStreamToVideoElement(stream, this.$refs.video)
+      }
+    },
+    handleClick() {
+      if (this.state.maximized === this.id) {
+        this.state.maximized = ''
+      } else {
+        this.state.maximized = this.id
       }
     },
   },

@@ -6,6 +6,9 @@
     <div class="form-group">
       <sea-switch v-model="state.blur">{{ l.settings.blur }}</sea-switch>
     </div>
+    <div class="form-group">
+      <sea-switch v-model="state.fill">{{ l.settings.fill }}</sea-switch>
+    </div>
     <div class="form-group" v-if="video.length">
       <label class="form-label"><b>{{ l.settings.video }}</b></label>
       <label class="form-radio" v-for="d in video">
@@ -62,16 +65,20 @@ export default {
   },
 
   watch: {
-    'state.deviceVideo'() {
+    async 'state.deviceVideo'() {
+      await this.$nextTick()
       messages.emit('switchVideo')
     },
-    'state.deviceAudio'() {
+    async 'state.deviceAudio'() {
+      await this.$nextTick()
       messages.emit('switchVideo')
     },
-    'state.blur'() {
+    async 'state.blur'() {
+      await this.$nextTick()
       messages.emit('switchVideo')
     },
-    'state.bandwidth'() {
+    async 'state.bandwidth'() {
+      await this.$nextTick()
       messages.emit('negotiateBandwidth')
     },
   },

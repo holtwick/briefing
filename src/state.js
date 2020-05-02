@@ -33,6 +33,7 @@ export let state = {
 
   blur: false,
   bandwidth: false,
+  fill: true,
 
   muteVideo: false,
   muteAudio: false,
@@ -41,6 +42,13 @@ export let state = {
   deviceAudio: null,
 
   devices: [],
+
+  svg: {
+    stroke: '1.5',
+  },
+
+  maximized: '',
+
 }
 
 messages.on('updateStream', updateStream)

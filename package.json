@@ -1,7 +1,7 @@
 {
   "name": "briefing",
   "description": "Start a secure anonymous video chat",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
@@ -44,9 +44,9 @@
     "@vue/cli-plugin-pwa": "~4.3.1",
     "@vue/cli-service": "~4.3.1",
     "cross-env": "^7.0.2",
-    "electron": "^8.2.4",
+    "electron": "^8.2.5",
     "electron-icon-builder": "^1.0.2",
-    "jest": "^25.5.2",
+    "jest": "^25.5.4",
     "node-sass": "^4.14.0",
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-electron-builder": "~1.4.6",

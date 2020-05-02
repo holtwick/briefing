@@ -1,19 +1,7 @@
 <template>
-  <div class="app -fit vstack">
+  <div class="app -fit vstack" :data-mode="state.maximized ? 'maximized': 'default'">
 
-    <!--    <div class="-fit stack videos" v-if="false">-->
-    <!--      <div class="peer item">-->
-    <!--        <img src="../assets/faces/gabriel-silverio-u3WmDyKGsrY-unsplash.jpg" class="video">-->
-    <!--      </div>-->
-    <!--      <div class="peer item">-->
-    <!--        <img src="../assets/faces/roberto-delgado-webb-Anuz2z-rPXA-unsplash.jpg" class="video">-->
-    <!--      </div>-->
-    <!--      <div class="peer item">-->
-    <!--        <img src="../assets/faces/harishan-kobalasingam-MU7sdKlY1uo-unsplash.jpg" class="video">-->
-    <!--      </div>-->
-    <!--    </div>-->
-
-    <div class="-fit stack videos">
+    <div class="-fit stack videos -relative">
 
       <app-video
         v-if="state.stream"
@@ -21,24 +9,79 @@
         muted
         :mirrored="state.deviceVideo !== 'desktop'"
         title="Local"
+        id="self"
       />
 
       <app-video
         v-for="peer in state.status"
         :key="peer.remote"
+        :id="peer.remote"
         :stream="peer.peer.stream"
       />
+
+      <div class="message-container" v-if="!hasPeers">
+        <div class="message" v-html="l.share.message">
+        </div>
+      </div>
 
     </div>
 
     <div class="tools hstack">
-      <sea-link @action="settings=true" symbol="gear_alt_fill" class="tool"></sea-link>
+      <sea-link @action="settings=true" class="tool">
+        <!--        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>-->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="21" x2="4" y2="14"></line>
+          <line x1="4" y1="10" x2="4" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12" y2="3"></line>
+          <line x1="20" y1="21" x2="20" y2="16"></line>
+          <line x1="20" y1="12" x2="20" y2="3"></line>
+          <line x1="1" y1="14" x2="7" y2="14"></line>
+          <line x1="9" y1="8" x2="15" y2="8"></line>
+          <line x1="17" y1="16" x2="23" y2="16"></line>
+        </svg>
+      </sea-link>
       <div class="-fit">
-        <sea-link symbol="videocam_fill" class="tool" :class="{'-off': state.muteVideo}" @action="doVideo"></sea-link>
-        <sea-link symbol="xmark" class="tool tool-close" @action="doQuit"></sea-link>
-        <sea-link symbol="mic_fill" class="tool" :class="{'-off': state.muteAudio}" @action="doAudio"></sea-link>
+        <sea-link class="tool" :class="{'-off': state.muteVideo}" @action="doVideo">
+          <svg v-if="state.muteVideo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"></path>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+          </svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+          </svg>
+        </sea-link>
+        <sea-link class="tool tool-close" @action="doQuit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <!--          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path><line x1="23" y1="1" x2="1" y2="23"></line></svg>-->
+        </sea-link>
+        <sea-link class="tool" :class="{'-off': state.muteAudio}" @action="doAudio">
+          <svg v-if="state.muteAudio" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+            <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path>
+            <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </sea-link>
       </div>
-      <sea-link @action="share=true" symbol="square_arrow_up" class="tool"></sea-link>
+      <sea-link @action="share=true" class="tool">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+          <polyline points="16 6 12 2 8 6"></polyline>
+          <line x1="12" y1="2" x2="12" y2="15"></line>
+        </svg>
+      </sea-link>
     </div>
 
     <sea-modal :active.sync="share" close :title="l.share.title">
@@ -80,6 +123,11 @@ export default {
       share: false,
       conn: null,
     }
+  },
+  computed: {
+    hasPeers() {
+      return Object.keys(this.state.status).length > 0
+    },
   },
   methods: {
     doShare() {
