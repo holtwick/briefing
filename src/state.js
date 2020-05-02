@@ -41,6 +41,11 @@ export let state = {
   deviceAudio: null,
 
   devices: [],
+
+  svg: {
+    stroke: '1.5',
+  },
+
 }
 
 messages.on('updateStream', updateStream)
