@@ -1,6 +1,7 @@
 .videos {
   position: relative;
   display: flex;
+  flex-wrap: nowrap;
   align-items: flex-end;
   justify-content: flex-end;
   padding: 1rem;
