@@ -46,7 +46,7 @@ export let state = {
     stroke: '1.5',
   },
 
-  maximized: null
+  maximized: ''
 
 }
 

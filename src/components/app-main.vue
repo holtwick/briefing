@@ -1,5 +1,5 @@
 <template>
-  <div class="app -fit vstack">
+  <div class="app -fit vstack" :data-mode="state.maximized ? 'maximized': 'default'">
 
     <!--    <div class="-fit stack videos" v-if="false">-->
     <!--      <div class="peer item">-->

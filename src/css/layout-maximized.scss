@@ -1,0 +1,43 @@
+.videos {
+  position: relative;
+  display: flex;
+  align-items: end;
+  justify-content: flex-end;
+
+  .peer {
+    z-index: 2;
+
+    &.-maximized {
+      position: absolute;
+      top: 0.25rem;
+      left: 0.25rem;
+      bottom: 0;
+      right: 0.25rem;
+      z-index: 1;
+    }
+
+    &:not(.-maximized) {
+      height: 6rem;
+      width: 6rem;
+      flex-grow: 0;
+      flex-shrink: 0;
+      margin-bottom: 0.5rem;
+      margin-right: 0.5rem;
+
+      .video {
+        border: 1px solid black;
+      }
+    }
+
+
+  }
+
+}
+
+@media (orientation: landscape) {
+
+}
+
+@media (orientation: portrait) {
+
+}

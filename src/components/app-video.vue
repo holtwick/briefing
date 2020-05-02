@@ -82,7 +82,7 @@ export default {
     },
     handleClick() {
       if (this.state.maximized === this.id) {
-        this.state.maximized = null
+        this.state.maximized = ''
       } else {
         this.state.maximized = this.id
       }
