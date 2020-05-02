@@ -65,16 +65,20 @@ export default {
   },
 
   watch: {
-    'state.deviceVideo'() {
+    async 'state.deviceVideo'() {
+      await this.$nextTick()
       messages.emit('switchVideo')
     },
-    'state.deviceAudio'() {
+    async 'state.deviceAudio'() {
+      await this.$nextTick()
       messages.emit('switchVideo')
     },
-    'state.blur'() {
+    async 'state.blur'() {
+      await this.$nextTick()
       messages.emit('switchVideo')
     },
-    'state.bandwidth'() {
+    async 'state.bandwidth'() {
+      await this.$nextTick()
       messages.emit('negotiateBandwidth')
     },
   },
