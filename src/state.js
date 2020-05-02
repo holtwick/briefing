@@ -33,7 +33,7 @@ export let state = {
 
   blur: false,
   bandwidth: false,
-  fill: false,
+  fill: true,
 
   muteVideo: false,
   muteAudio: false,
