@@ -6,6 +6,9 @@
     <div class="form-group">
       <sea-switch v-model="state.blur">{{ l.settings.blur }}</sea-switch>
     </div>
+    <div class="form-group">
+      <sea-switch v-model="state.fill">{{ l.settings.fill }}</sea-switch>
+    </div>
     <div class="form-group" v-if="video.length">
       <label class="form-label"><b>{{ l.settings.video }}</b></label>
       <label class="form-radio" v-for="d in video">

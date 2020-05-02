@@ -33,6 +33,7 @@ export let state = {
 
   blur: false,
   bandwidth: false,
+  fill: false,
 
   muteVideo: false,
   muteAudio: false,
@@ -46,7 +47,7 @@ export let state = {
     stroke: '1.5',
   },
 
-  maximized: ''
+  maximized: '',
 
 }
 

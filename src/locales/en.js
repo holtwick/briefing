@@ -12,6 +12,7 @@ export default {
     audio: 'Audio Source',
     desktop: 'Share screen or window',
     blur: 'Blur background',
-    bandwidth: 'Apply bandwidth optimizations'
+    bandwidth: 'Apply bandwidth optimizations',
+    fill: 'Scale up video'
   }
 }

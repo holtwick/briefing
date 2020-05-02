@@ -13,5 +13,6 @@ export default {
     desktop: 'Bildschirm oder Fenster teilen',
     blur: 'Hintergrund verschwommen',
     bandwidth: 'Bandbreitenoptimierungen',
+    fill: 'Video ausfüllend'
   },
 }
