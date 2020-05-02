@@ -1,18 +1,6 @@
 <template>
   <div class="app -fit vstack" :data-mode="state.maximized ? 'maximized': 'default'">
 
-    <!--    <div class="-fit stack videos" v-if="false">-->
-    <!--      <div class="peer item">-->
-    <!--        <img src="../assets/faces/gabriel-silverio-u3WmDyKGsrY-unsplash.jpg" class="video">-->
-    <!--      </div>-->
-    <!--      <div class="peer item">-->
-    <!--        <img src="../assets/faces/roberto-delgado-webb-Anuz2z-rPXA-unsplash.jpg" class="video">-->
-    <!--      </div>-->
-    <!--      <div class="peer item">-->
-    <!--        <img src="../assets/faces/harishan-kobalasingam-MU7sdKlY1uo-unsplash.jpg" class="video">-->
-    <!--      </div>-->
-    <!--    </div>-->
-
     <div class="-fit stack videos -relative">
 
       <app-video

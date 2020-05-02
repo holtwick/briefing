@@ -7,7 +7,7 @@
       playsinline
       :muted="muted"
       v-if="stream"
-      :class="{'-mirrored': mirrored}"
+      :data-fit="state.fill ? 'cover' : 'contain'"
     />
     <div v-else class="video video-placeholder -content-placeholder">
       <i data-f7-icon="rectangle_stack_person_crop"></i>
