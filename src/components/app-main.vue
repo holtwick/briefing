@@ -24,13 +24,12 @@
       />
 
       <app-video
-        v-if="state.status"
         v-for="peer in state.status"
         :key="peer.remote"
         :stream="peer.peer.stream"
       />
 
-      <div class="message-container">
+      <div class="message-container" v-if="!hasPeers">
         <div class="message">
           Invite by sending the link via pressing on the
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -141,6 +140,11 @@ export default {
       share: false,
       conn: null,
     }
+  },
+  computed: {
+    hasPeers() {
+      return Object.keys(this.state.status).length > 0
+    },
   },
   methods: {
     doShare() {
