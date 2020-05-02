@@ -1,3 +1,5 @@
+@import "variables";
+
 .videos {
   position: relative;
   display: flex;
@@ -26,7 +28,8 @@
       margin: 0;
 
       .video {
-        border: 1px solid black;
+        border: 0.5px solid #272727;
+        background: #272727;
       }
     }
 

@@ -114,7 +114,6 @@ body {
   .video {
     background: #444444;
     border-radius: 0.25rem;
-    object-fit: cover;
     max-height: 100%;
 
     display: block;
@@ -128,6 +127,14 @@ body {
     height: calc(100% - 0.5rem) !important;
     transform: translateY(-50%) translateX(-50%);
     // max-height: calc(50vh - 3rem) !important;
+
+    &[data-fit="cover"] {
+      object-fit: cover;
+    }
+
+    &[data-fit="contain"] {
+      object-fit: contain;
+    }
 
     &.-mirrored {
       transform: translateY(-50%) translateX(-50%) scaleX(-1);
@@ -145,6 +152,10 @@ body {
       animation: blink 1000ms infinite;
     }
   }
+
+}
+
+.video-fill {
 
 }
 
@@ -202,6 +213,7 @@ body {
 .message-container {
   display: flex;
   position: absolute;
+  z-index: 9;
   left: 1rem;
   bottom: 1rem;
   right: 1rem;
