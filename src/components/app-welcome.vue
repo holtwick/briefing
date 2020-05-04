@@ -10,7 +10,8 @@
     </div>
     <div class="footer links">
       <p>Anonymous end-to-end encrypted group video chat.
-      <p>Created by <a href="https://holtwick.de?ref=briefing" target="_blank" rel="noopener">holtwick.de</a>
+      <p>Created by <a href="https://holtwick.de?ref=briefing" target="_blank" rel="noopener">holtwick.de</a></p>
+      <p>
         <a title="Twitter" href="https://twitter.com/holtwick" class="brand-icon" target="_blank" rel="noopener">
           <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -40,7 +41,7 @@
             <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
           </svg>
         </a>
-        <!-- a title="Progressive Web App" href="https://github.com/holtwick/briefing/issues" class="brand-icon" target="_blank" rel="noopener">
+        <a title="Install Progressive Web App" href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Developer_guide/Installing" class="brand-icon" target="_blank" rel="noopener">
           <svg role="img" viewBox="0 0 1952.00 734.93">
             <g>
               <path fill-opacity="1" stroke-width="0.2" stroke-linejoin="round"
@@ -51,7 +52,7 @@
                     d="M 186.476,482.643L 307.479,482.643C 344.133,482.643 376.772,478.552 405.396,470.37L 436.689,373.962L 524.148,104.516C 517.484,93.9535 509.876,83.9667 501.324,74.5569C 456.419,24.852 390.719,0.000406265 304.222,0.000406265L -3.8147e-006,0.000406265L -3.8147e-006,734.933L 186.476,734.933L 186.476,482.643 Z M 346.642,169.079C 364.182,186.732 372.951,210.355 372.951,239.95C 372.951,269.772 365.238,293.424 349.813,310.906C 332.903,330.331 301.766,340.043 256.404,340.043L 186.476,340.043L 186.476,142.598L 256.918,142.598C 299.195,142.598 329.103,151.425 346.642,169.079 Z "/>
             </g>
           </svg>
-        </a -->
+        </a>
       </p>
     </div>
   </div>

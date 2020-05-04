@@ -36,5 +36,6 @@
     "End-to-end encrypted",
     "Blur background"
   ],
-  "orientation": "any"
+  "orientation": "any",
+  "prefer_related_applications": false
 }
