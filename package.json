@@ -9,7 +9,7 @@
     "url": "https://holtwick.de"
   },
   "scripts": {
-    "start": "npm run serve",
+    "start": "npm run pwa:serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --skip-plugins pwa,workbox",
     "demo": "ssh -R 80:localhost:8080 ssh.localhost.run",

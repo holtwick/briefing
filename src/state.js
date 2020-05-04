@@ -10,6 +10,7 @@ const log = require('debug')('app:state')
 
 // ROOM
 
+location.pathname.replace(/\/ngs?\//gi)
 let room = PWA ? null : (DEBUG ? 'development' : location.pathname.substr('/ng/'.length))
 log('Room =', room)
 
