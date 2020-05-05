@@ -1,6 +1,6 @@
 {
-  "name": "Briefings",
-  "short_name": "Briefings",
+  "name": "Briefing",
+  "short_name": "Briefing",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -13,15 +13,15 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://brie.fi/ngs/",
-  "scope": "/ngs/",
+  "start_url": "https://brie.fi/ng/",
+  "scope": "/ng/",
   "display": "standalone",
   "background_color": "#333333",
   "theme_color": "#333333",
   "author": "Dirk Holtwick",
   "description": "Secure anonymous video chat",
-  "homepage_url": "https://brie.fi/ngs/",
-  "url": "https://brie.fi/ngs/",
+  "homepage_url": "https://brie.fi/ng/",
+  "url": "https://brie.fi/ng/",
   "lang": "EN",
   "screenshots": [
     {
