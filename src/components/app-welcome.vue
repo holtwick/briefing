@@ -12,8 +12,7 @@
     </div>
     <div class="footer links">
       <p>Anonymous end-to-end encrypted group video chat.
-      <p>Created by <a href="https://holtwick.de?ref=briefing" target="_blank" rel="noopener" @click="openExternalLink">holtwick.de</a></p>
-      <p>
+        Created by <a href="https://holtwick.de?ref=briefing" target="_blank" rel="noopener" @click="openExternalLink">holtwick.de</a>
         <a title="Twitter" href="https://twitter.com/holtwick" class="brand-icon" target="_blank" rel="noopener" @click="openExternalLink">
           <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -256,11 +255,12 @@ export default {
   },
   methods: {
     doEnterRoom() {
-      if (DEBUG) {
-        this.state.room = 'development'
-      } else {
-        this.state.room = this.room || this.defaultName
-      }
+      this.state.room = this.room || this.defaultName
+      window.history.pushState(
+        {},
+        this.state.room,
+        '/ng/' + this.state.room,
+      )
     },
     updateInput() {
       const input = this.$refs.input
@@ -269,8 +269,6 @@ export default {
       input.style.width = '1px'
       input.style.width = (value ? input.scrollWidth : this.initialWidth) + 'px'
       this.url = '/ng/' + (value || this.defaultName)
-      // link.href = url
-      // button.href = url
     },
   },
   watch: {
