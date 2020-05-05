@@ -34,6 +34,7 @@
     "core-js": "^3.6.5",
     "custom-electron-titlebar": "^3.2.2-hotfix62",
     "debug": "^4.1.1",
+    "electron-window-state": "^5.0.3",
     "register-service-worker": "^1.7.1",
     "simple-peer": "^9.7.0",
     "socket.io-client": "^2.3.0",
