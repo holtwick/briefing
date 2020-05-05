@@ -6,6 +6,15 @@ import en from './locales/en'
 import { state } from './state'
 import './lib/registerServiceWorker'
 
+var userAgent = navigator.userAgent.toLowerCase();
+if (userAgent.indexOf(' electron/') > -1) {
+  const customTitlebar = require('custom-electron-titlebar');
+  console.info("Runs Electron")
+ 
+  new customTitlebar.Titlebar({
+      backgroundColor: customTitlebar.Color.fromHex('#272727')
+  });
+}
 Vue.config.productionTip = false
 
 Vue.mixin({
