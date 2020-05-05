@@ -2,7 +2,9 @@
   <div class="page1">
     <div class="logo">
       <form id="form" @submit.prevent="doEnterRoom">
-        <a @click.prevent="doEnterRoom" :href="url" id="link" class="link">Brie<span class="dot">.</span>fi<span class="slash">/</span>ng<span class="slash">/</span></a><wbr><input type="text" id="room" name="room" ref="input" enterkeyhint="go" spellcheck="false" v-model="room" :placeholder="defaultName">
+        <a @click.prevent="doEnterRoom" :href="url" id="link" class="link">Brie<span class="dot">.</span>fi<span class="slash">/</span>ng<span class="slash">/</span></a>
+        <wbr>
+        <input type="text" id="room" name="room" ref="input" enterkeyhint="go" spellcheck="false" v-model="room" :placeholder="defaultName">
       </form>
       <div class="button-container">
         <a @click.prevent="doEnterRoom" :href="url" class="button" id="button">Start Video Chat</a>
@@ -243,7 +245,7 @@ function generateName() {
 export default {
   name: 'app-welcome',
   data() {
-    let defaultName = generateName()
+    let defaultName = DEBUG ? 'development' : generateName()
     return {
       defaultName,
       room: defaultName,
