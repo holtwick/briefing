@@ -1,4 +1,3 @@
-import { DEBUG, PWA } from './config'
 import { messages } from './lib/emitter'
 import { setupWebRTC } from './logic/connection'
 import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getUserMedia } from './logic/stream'
@@ -10,9 +9,9 @@ const log = require('debug')('app:state')
 
 // ROOM
 
-location.pathname.replace(/\/ngs?\//gi)
-let room = PWA ? null : (DEBUG ? 'development' : location.pathname.substr('/ng/'.length))
-log('Room =', room)
+let m = /^\/ngs?\/(.*?)$/gi.exec(location.pathname)
+let room = m && m[1] || null
+// console.log('Room =', room)
 
 // STATE
 
