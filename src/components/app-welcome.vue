@@ -279,7 +279,7 @@ export default {
         if (this.currentChar < this.defaultName.length) {
           this.charAnimation()
         }
-      }, Math.random() * 250)
+      }, 100)
     },
   },
   watch: {

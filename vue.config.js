@@ -98,7 +98,6 @@ if (isElectron) {
           identityName: '41510Holtwick.Brie.fing',
           publisher: 'CN=977BD49F-EBE0-4D24-80EB-AE5A2D4A07E8',
           publisherDisplayName: 'Holtwick',
-          backgroundColor: 'transparent',
           artifactName: 'Briefings-win-store-${version}-${arch}.${ext}',
           backgroundColor: "#272727"
         },
