@@ -24,7 +24,7 @@ export async function shareLink(url, {
     try {
       // https://electronjs.org/docs/api/clipboard
       await window.electron.clipboard.writeText(url)
-      alert('The URL has been copied to your clipboard.')
+      // alert('The URL has been copied to your clipboard.')
       return true
     } catch (err) {
       console.error('Exception:', err)
@@ -32,7 +32,7 @@ export async function shareLink(url, {
   }
   try {
     await clipboardCopy(url)
-    alert('The URL has been copied to your clipboard.')
+    // alert('The URL has been copied to your clipboard.')
     return true
   } catch (err) {
     console.error('Exception:', err)
