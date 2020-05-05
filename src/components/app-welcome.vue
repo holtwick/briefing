@@ -250,6 +250,7 @@ export default {
       room: defaultName,
       url: '',
       initialWidth: -1,
+      currentChar: 0,
       observer: null,
     }
   },
@@ -270,6 +271,16 @@ export default {
       input.style.width = (value ? input.scrollWidth : this.initialWidth) + 'px'
       this.url = '/ng/' + (value || this.defaultName)
     },
+    charAnimation() {
+      setTimeout(() => {
+        this.currentChar++
+        this.$refs.input.value = this.defaultName.substr(0, this.currentChar)
+        this.updateInput()
+        if (this.currentChar < this.defaultName.length) {
+          this.charAnimation()
+        }
+      }, Math.random() * 250)
+    },
   },
   watch: {
     room() {
@@ -285,6 +296,8 @@ export default {
 
     this.observer = new ResizeObserver(this.updateInput)
     this.observer.observe(document.body)
+
+    this.charAnimation()
 
     if (!(/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent))) {
       input.focus()
