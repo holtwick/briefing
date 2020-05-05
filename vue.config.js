@@ -100,6 +100,7 @@ if (isElectron) {
           publisherDisplayName: 'Holtwick',
           backgroundColor: 'transparent',
           artifactName: 'Briefings-win-store-${version}-${arch}.${ext}',
+          backgroundColor: "#272727"
         },
       },
     },

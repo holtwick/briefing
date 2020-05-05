@@ -5,6 +5,8 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
+const windowStateKeeper = require('electron-window-state')
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -13,12 +15,30 @@ let win
 protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: true, standard: true } }])
 
 function createWindow() {
+
+  // https://github.com/mawie81/electron-window-state
+  let mainWindowState = windowStateKeeper({
+    defaultWidth: 800,
+    defaultHeight: 600,
+  })
+
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800, height: 600, webPreferences: {
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    width: mainWindowState.width,
+    height: mainWindowState.height,
+    minWidth: 800,
+    minHeight: 600,
+    frame: false,
+    backgroundColor: '#272727',
+    title: 'Briefings',
+    webPreferences: {
       nodeIntegration: true,
     },
   })
+
+  mainWindowState.manage(win)
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
@@ -27,7 +47,7 @@ function createWindow() {
   } else {
     createProtocol('app')
     // Load the index.html when not in development
-    win.loadURL('https://brie.fi/ngs/?platform=electron')
+    win.loadURL('https://brie.fi/ng/?platform=electron')
     // win.loadURL('app://./index.html')
   }
 
