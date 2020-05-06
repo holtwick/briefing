@@ -37,7 +37,7 @@ if (isProduction) {
   if (isElectron) {
     config.publicPath = '/'
   } else if (isPWA) {
-    config.publicPath = '/ng'
+    config.publicPath = '/pwa'
   } else {
     config.publicPath = '/app'
   }

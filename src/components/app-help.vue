@@ -45,30 +45,29 @@
   font-family: "IBM Plex Serif", Georgia, serif;
   line-height: 1.5rem;
   padding-bottom: 4rem;
-}
 
-.text {
-  max-width: 40rem !important;;
-  margin-left: auto !important;;
-  margin-right: auto !important;;
-  text-align: left !important;;
-  padding: 1rem !important;;
-  padding-top: 4rem !important;
-}
+  .text {
+    max-width: 40rem !important;;
+    margin-left: auto !important;;
+    margin-right: auto !important;;
+    text-align: left !important;;
+    padding: 1rem !important;;
+    padding-top: 4rem !important;
+  }
 
-.text a {
-  color: #0088c0 !important;;
-  text-decoration: none;
-}
+  .text a {
+    color: #0088c0 !important;;
+    text-decoration: none;
+  }
 
-.text a:hover {
-  color: #00b5ff !important;;
-}
+  .text a:hover {
+    color: #00b5ff !important;;
+  }
 
-.text a:active {
-  color: #99e2ff !important;;
+  .text a:active {
+    color: #99e2ff !important;;
+  }
 }
-
 </style>
 
 <script>

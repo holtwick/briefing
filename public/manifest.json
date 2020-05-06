@@ -14,10 +14,10 @@
     }
   ],
   "start_url": "https://brie.fi/ng/",
-  "scope": "/ng/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#333333",
-  "theme_color": "#333333",
+  "background_color": "#272727",
+  "theme_color": "#272727",
   "author": "Dirk Holtwick",
   "description": "Secure anonymous video chat",
   "homepage_url": "https://brie.fi/ng/",
