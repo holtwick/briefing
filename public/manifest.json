@@ -13,19 +13,19 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://brie.fi/ng/",
+  "start_url": "/pwa/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#272727",
   "theme_color": "#272727",
   "author": "Dirk Holtwick",
   "description": "Secure anonymous video chat",
-  "homepage_url": "https://brie.fi/ng/",
-  "url": "https://brie.fi/ng/",
+  "homepage_url": "https://stage.brie.fi/ng/",
+  "url": "https://stage.brie.fi/ng/",
   "lang": "EN",
   "screenshots": [
     {
-      "src": "https://brie.fi/sample.jpg",
+      "src": "https://stage.brie.fi/sample.jpg",
       "type": "image/png",
       "size": "1478x1988",
       "description": "Screenshot Briefing App"
