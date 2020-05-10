@@ -1,34 +1,26 @@
 /* eslint-disable no-console */
 
 import { register } from 'register-service-worker'
-import {setDefaultHandler} from 'workbox-routing';
-
-setDefaultHandler(({url, event, params}) => {
-  // ...
-});
 
 if (process.env.NODE_ENV === 'production') {
   register(`${process.env.BASE_URL}service-worker.js`, {
     ready() {
-      console.log(
-        'App is being served from cache by a service worker.\n' +
-        'For more details, visit https://goo.gl/AFskqB',
-      )
+      console.log('PWA: App is being served from cache by a service worker.\nFor more details, visit https://goo.gl/AFskqB')
     },
     registered() {
-      console.log('Service worker has been registered.')
+      console.log('PWA: Service worker has been registered.')
     },
     cached() {
-      console.log('Content has been cached for offline use.')
+      console.log('PWA: Content has been cached for offline use.')
     },
     updatefound() {
-      console.log('New content is downloading.')
+      console.log('PWA: New content is downloading.')
     },
     updated() {
-      console.log('New content is available; please refresh.')
+      console.log('PWA: New content is available; please refresh.')
     },
     offline() {
-      console.log('No internet connection found. App is running in offline mode.')
+      console.log('PWA: No internet connection found. App is running in offline mode.')
     },
     error(error) {
       console.error('Error during service worker registration:', error)

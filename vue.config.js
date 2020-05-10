@@ -27,13 +27,13 @@ if (isPWA) {
       msTileColor: '#272727',
       appleMobileWebAppCapable: 'yes',
       appleMobileWebAppStatusBarStyle: 'black',
-      // workboxPluginMode: 'InjectManifest',
+      workboxPluginMode: 'InjectManifest',
       workboxOptions: {
-        navigateFallback: '/pwa/index.html',
-        // swSrc: 'dev/sw.js',
+        // navigateFallback: '/pwa/index.html',
+        swSrc: 'src/service-worker.js',
         importWorkboxFrom: 'local',
         exclude: [/\.htaccess/],
-        skipWaiting: true,
+        // skipWaiting: true,
       },
     }
   }
