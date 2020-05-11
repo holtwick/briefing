@@ -1,0 +1,25 @@
+# (C)opyright Dirk Holtwick, 2020-05-11 <dirk.holtwick@gmail.com>
+
+# # HSTS https://www.cyon.ch/support/a/wie-aktiviere-ich-http-strict-transport-security-hsts-fur-meine-website
+# Header set Strict-Transport-Security "max-age=3600" env=HTTPS
+# Header set X-Frame-Options SAMEORIGIN
+# Header set X-XSS-Protection "1; mode=block"
+# Header set X-Content-Type-Options nosniff
+# Header set Referrer-Policy same-origin
+
+RewriteEngine on
+
+DirectoryIndex index.html
+# ErrorDocument 404 index.html
+
+# Avoid iframe embed
+Header set X-FRAME-OPTIONS: SAMEORIGIN
+
+# Force https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+
+# Sexy URL brie.fi/ng is
+RewriteRule ^$ /ng/ [L,R=301]
+RewriteRule ^ngs?/?$ /index.html [PT]
+RewriteRule ^ngs?/(.+?)$ /index.html [PT]

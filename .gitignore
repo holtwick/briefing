@@ -11,3 +11,4 @@ video
 
 #Electron-builder output
 /dist_electron
+fix.sh

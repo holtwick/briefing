@@ -36,7 +36,7 @@
     "debug": "^4.1.1",
     "electron-window-state": "^5.0.3",
     "register-service-worker": "^1.7.1",
-    "simple-peer": "^9.7.0",
+    "simple-peer": "^9.7.1",
     "socket.io-client": "^2.3.0",
     "uuid": "^8.0.0",
     "vue": "^2.6.11"
@@ -48,7 +48,7 @@
     "cross-env": "^7.0.2",
     "electron": "^8.2.5",
     "electron-icon-builder": "^1.0.2",
-    "jest": "^25.5.4",
+    "jest": "^26.0.1",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-electron-builder": "~1.4.6",
