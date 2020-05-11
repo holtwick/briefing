@@ -12,7 +12,7 @@ let config = {
     // https://stackoverflow.com/a/35426611/140927
     externals: [
       (function () {
-        var IGNORES = [
+        const IGNORES = [
           'electron',
         ]
         return function (context, request, callback) {

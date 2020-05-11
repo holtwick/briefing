@@ -10,8 +10,7 @@
   },
   "scripts": {
     "start": "npm run pwa:serve",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --skip-plugins pwa,workbox",
+    "build": "npm run pwa:build",
     "demo": "ssh -R 80:localhost:8080 ssh.localhost.run",
     "demo:serve": "cross-env HTTPS_OFF=1 npm start",
     "electron:build:windows": "cross-env VUE_APP_TARGET=electron vue-cli-service electron:build --windows appx",
