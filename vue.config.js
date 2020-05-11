@@ -6,6 +6,9 @@ const isPWA = isElectron || process.env.VUE_APP_TARGET === 'pwa'
 
 let config = {
   productionSourceMap: false,
+  configureWebpack: {
+    target: 'electron-renderer',
+  },
 }
 
 if (isPWA) {

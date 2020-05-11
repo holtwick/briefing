@@ -25,6 +25,11 @@
     "pwa:serve": "cross-env VUE_APP_TARGET=pwa vue-cli-service serve",
     "test": "jest"
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "electron >= 8"
+  ],
   "main": "background.js",
   "dependencies": {
     "@tensorflow-models/body-pix": "^2.0.5",
