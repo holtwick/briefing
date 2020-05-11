@@ -40,11 +40,12 @@ if (isPWA) {
 }
 
 if (isProduction) {
+  config.publicPath = '/'
 
   if (isElectron) {
-    config.publicPath = '/'
+    // config.publicPath = '/'
   } else if (isPWA) {
-    config.publicPath = '/pwa'
+    // config.publicPath = '/pwa'
   } else {
     config.publicPath = '/app'
   }
