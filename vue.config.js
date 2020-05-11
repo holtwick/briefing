@@ -6,6 +6,24 @@ const isPWA = isElectron || process.env.VUE_APP_TARGET === 'pwa'
 
 let config = {
   productionSourceMap: false,
+  configureWebpack: {
+    // target: 'electron-renderer',
+
+    // https://stackoverflow.com/a/35426611/140927
+    externals: [
+      (function () {
+        const IGNORES = [
+          'electron',
+        ]
+        return function (context, request, callback) {
+          if (IGNORES.indexOf(request) >= 0) {
+            return callback(null, 'require(\'' + request + '\')')
+          }
+          return callback()
+        }
+      })(),
+    ],
+  },
 }
 
 if (isPWA) {
@@ -23,21 +41,29 @@ if (isPWA) {
   if (isProduction) {
     // Don't load workbox stuff from third party site
     config.pwa = {
+      themeColor: '#272727',
+      msTileColor: '#272727',
+      appleMobileWebAppCapable: 'yes',
+      appleMobileWebAppStatusBarStyle: 'black',
+      workboxPluginMode: 'InjectManifest',
       workboxOptions: {
+        // navigateFallback: '/pwa/index.html',
+        swSrc: 'src/service-worker.js',
         importWorkboxFrom: 'local',
         exclude: [/\.htaccess/],
-        skipWaiting: true,
+        // skipWaiting: true,
       },
     }
   }
 }
 
 if (isProduction) {
+  config.publicPath = '/'
 
   if (isElectron) {
-    config.publicPath = '/'
+    // config.publicPath = '/'
   } else if (isPWA) {
-    config.publicPath = '/ngs'
+    // config.publicPath = '/pwa'
   } else {
     config.publicPath = '/app'
   }
@@ -98,8 +124,8 @@ if (isElectron) {
           identityName: '41510Holtwick.Brie.fing',
           publisher: 'CN=977BD49F-EBE0-4D24-80EB-AE5A2D4A07E8',
           publisherDisplayName: 'Holtwick',
-          backgroundColor: 'transparent',
           artifactName: 'Briefings-win-store-${version}-${arch}.${ext}',
+          backgroundColor: '#272727',
         },
       },
     },

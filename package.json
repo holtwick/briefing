@@ -1,7 +1,7 @@
 {
   "name": "briefing",
   "description": "Start a secure anonymous video chat",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
@@ -9,9 +9,8 @@
     "url": "https://holtwick.de"
   },
   "scripts": {
-    "start": "npm run serve",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --skip-plugins pwa,workbox",
+    "start": "npm run pwa:serve",
+    "build": "npm run pwa:build",
     "demo": "ssh -R 80:localhost:8080 ssh.localhost.run",
     "demo:serve": "cross-env HTTPS_OFF=1 npm start",
     "electron:build:windows": "cross-env VUE_APP_TARGET=electron vue-cli-service electron:build --windows appx",
@@ -25,6 +24,11 @@
     "pwa:serve": "cross-env VUE_APP_TARGET=pwa vue-cli-service serve",
     "test": "jest"
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "electron >= 8"
+  ],
   "main": "background.js",
   "dependencies": {
     "@tensorflow-models/body-pix": "^2.0.5",
@@ -32,9 +36,11 @@
     "@tensorflow/tfjs-core": "^1.7.4",
     "clipboard-copy": "^3.1.0",
     "core-js": "^3.6.5",
+    "custom-electron-titlebar": "^3.2.2-hotfix62",
     "debug": "^4.1.1",
+    "electron-window-state": "^5.0.3",
     "register-service-worker": "^1.7.1",
-    "simple-peer": "^9.7.0",
+    "simple-peer": "^9.7.1",
     "socket.io-client": "^2.3.0",
     "uuid": "^8.0.0",
     "vue": "^2.6.11"
@@ -46,8 +52,8 @@
     "cross-env": "^7.0.2",
     "electron": "^8.2.5",
     "electron-icon-builder": "^1.0.2",
-    "jest": "^25.5.4",
-    "node-sass": "^4.14.0",
+    "jest": "^26.0.1",
+    "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-electron-builder": "~1.4.6",
     "vue-template-compiler": "^2.6.11",
