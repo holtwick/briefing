@@ -8,17 +8,9 @@ import { state } from './state'
 
 // Electron specific
 if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1) {
-  console.info('Runs Electron')
-  document.title = 'Briefings'
-
-  // https://www.npmjs.com/package/custom-electron-titlebar
-  import('custom-electron-titlebar').then(customTitlebar => {
-    new customTitlebar.Titlebar({
-      backgroundColor: customTitlebar.Color.fromHex('#272727'),
-    })
-  })
-
-  import('electron').then(electron => window.electron = electron)
+  console.log('Identified Electron')
+  import('./pwa-electron').then()
+  console.log('Handled Electron')
 }
 
 Vue.config.productionTip = false

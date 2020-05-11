@@ -6,6 +6,24 @@ const isPWA = isElectron || process.env.VUE_APP_TARGET === 'pwa'
 
 let config = {
   productionSourceMap: false,
+  configureWebpack: {
+    // target: 'electron-renderer',
+
+    // https://stackoverflow.com/a/35426611/140927
+    externals: [
+      (function () {
+        var IGNORES = [
+          'electron',
+        ]
+        return function (context, request, callback) {
+          if (IGNORES.indexOf(request) >= 0) {
+            return callback(null, 'require(\'' + request + '\')')
+          }
+          return callback()
+        }
+      })(),
+    ],
+  },
 }
 
 if (isPWA) {
