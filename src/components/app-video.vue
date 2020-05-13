@@ -2,6 +2,7 @@
   <div class="peer item" @click="handleClick" :class="{ '-maximized': state.maximized === id }">
     <video
       class="video"
+      :class="{'-mirrored': mirrored}"
       ref="video"
       autoplay
       playsinline
@@ -30,14 +31,15 @@ async function connectStreamToVideoElement(stream, video) {
     video.onloadedmetadata = function (e) {
       video.play()
     }
-    // setInterval(async () => {
-    //   try {
-    //     let result = await video.play()
-    //     log('play ok', result)
-    //   } catch (err) {
-    //     log('play error', err)
-    //   }
-    // }, 1000)
+    setInterval(async () => {
+
+      try {
+        let result = await video.play()
+        log('play ok', result)
+      } catch (err) {
+        log('play error', err)
+      }
+    }, 1000)
   }
 }
 
