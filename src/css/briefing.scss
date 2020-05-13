@@ -145,11 +145,24 @@ body {
     min-height: 6rem;
     background: #333333;
     color: white;
+    display: flex;
 
-    i {
-      font-size: 4rem;
+    svg {
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+      stroke: currentColor;
+      stroke-width: 1;
+      text-align: center;
+      width: 4rem !important;
+      height: 4rem;
       color: white;
       animation: blink 1000ms infinite;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
     }
   }
 

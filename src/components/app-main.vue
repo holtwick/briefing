@@ -7,7 +7,7 @@
         v-if="state.stream"
         :stream="state.stream"
         muted
-        :mirrored="state.deviceVideo !== 'desktop'"
+        :mirrored="true"
         title="Local"
         id="self"
       />
@@ -96,7 +96,6 @@
 </template>
 
 <script>
-import { PWA } from '../config'
 import { messages } from '../lib/emitter'
 import { createLinkForRoom, shareLink } from '../lib/share'
 import { setup } from '../state'
@@ -143,11 +142,7 @@ export default {
     },
     doQuit() {
       if (confirm('Really quit this session?')) {
-        if (PWA) {
-          this.state.room = null
-        } else {
-          location.assign('/ng/')
-        }
+        location.assign('/ng/')
       }
     },
   },

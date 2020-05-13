@@ -19,4 +19,4 @@ export const ICE_CONFIG = {
 export const DEBUG = process.env.NODE_ENV !== 'production'
 
 export const ELECTRON = process.env.VUE_APP_TARGET === 'electron'
-export const PWA = ELECTRON || process.env.VUE_APP_TARGET === 'pwa'
+// export const PWA = ELECTRON || process.env.VUE_APP_TARGET === 'pwa'
