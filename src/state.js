@@ -13,6 +13,14 @@ let m = /^\/ngs?\/(.*?)$/gi.exec(location.pathname)
 let room = m && m[1] || null
 // console.log('Room =', room)
 
+if (location.pathname === '/') {
+  window.history.pushState(
+    {},
+    'brie.fi/ng',
+    '/ng',
+  )
+}
+
 // STATE
 
 export let state = {
