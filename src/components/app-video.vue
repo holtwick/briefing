@@ -9,10 +9,20 @@
       :muted="muted"
       v-if="stream"
       :data-fit="state.fill ? 'cover' : 'contain'"
+      @loadedmetadata="doPlay"
     />
     <div v-else class="video video-placeholder -content-placeholder">
-      <i data-f7-icon="rectangle_stack_person_crop"></i>
-      Waiting...
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+      </svg>
+      <label>Waiting for connection</label>
+    </div>
+    <div v-if="state.muteVideo && id === 'self'" class="video video-placeholder -content-placeholder">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video-off">
+        <path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"></path>
+        <line x1="1" y1="1" x2="23" y2="23"></line>
+      </svg>
+      <label>You turned the video off</label>
     </div>
   </div>
 </template>
@@ -31,15 +41,14 @@ async function connectStreamToVideoElement(stream, video) {
     video.onloadedmetadata = function (e) {
       video.play()
     }
-    setInterval(async () => {
-
-      try {
-        let result = await video.play()
-        log('play ok', result)
-      } catch (err) {
-        log('play error', err)
-      }
-    }, 1000)
+    // setInterval(async () => {
+    //   try {
+    //     let result = await video.play()
+    //     log('play ok', result)
+    //   } catch (err) {
+    //     log('play error', err)
+    //   }
+    // }, 1000)
   }
 }
 
@@ -88,6 +97,14 @@ export default {
         this.state.maximized = ''
       } else {
         this.state.maximized = this.id
+      }
+    },
+    doPlay() {
+      log('force play')
+      try {
+        this.$refs.video.play()
+      } catch (err) {
+        log('play error', err)
       }
     },
   },
