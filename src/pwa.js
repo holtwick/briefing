@@ -7,7 +7,7 @@ import App from './pwa-app.vue'
 import { state } from './state'
 
 // Electron specific
-if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1) {
+if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && window.beaker == null) {
   console.log('Identified Electron')
   import('./pwa-electron').then()
   console.log('Handled Electron')
