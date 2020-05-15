@@ -2,7 +2,7 @@
 
 > Secure video chat via pure WebRTC
 
-<img src="web/sample.jpg" height="400">
+<img src="public/sample.jpg" height="400">
 
 **Welcome to Briefing. Yet another secure video chat.** 
 
