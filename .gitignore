@@ -1,4 +1,5 @@
 .DS_*
+.DS_Store
 *.log
 .idea
 logs
