@@ -1,0 +1,63 @@
+{
+  "name": "briefing-electron",
+  "description": "Start a secure anonymous video chat",
+  "version": "1.6.0",
+  "private": true,
+  "author": {
+    "name": "Dirk Holtwick",
+    "email": "dirk.holtwick@gmail.com",
+    "url": "https://holtwick.de"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
+  "scripts": {
+    "start": "electron -i .",
+    "pack": "electron-builder --dir --windows appx",
+    "dist": "electron-builder --windows appx",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "de.holtwick.electron.Briefings",
+    "productName": "Briefings",
+    "copyright": "(C)opyright Dirk Holtwick, 2020 <https://holtwick.de>",
+    "directories": {
+      "buildResources": "resources"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "appx"
+        }
+      ]
+    },
+    "nsis": {
+      "perMachine": true,
+      "artifactName": "Briefings-win-${version}-${arch}.${ext}",
+      "deleteAppDataOnUninstall": true
+    },
+    "appx": {
+      "displayName": "Briefings",
+      "applicationId": "Briefings",
+      "identityName": "41510Holtwick.Brie.fing",
+      "publisher": "CN=977BD49F-EBE0-4D24-80EB-AE5A2D4A07E8",
+      "publisherDisplayName": "Holtwick",
+      "artifactName": "Briefings-win-store-${version}-${arch}.${ext}",
+      "backgroundColor": "#272727"
+    }
+  },
+  "main": "./src/background.js",
+  "dependencies": {
+    "electron-window-state": "^5.0.3",
+    "debug": "^4.1.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "electron": "^8.2.5",
+    "electron-builder": "^22.6.0",
+    "electron-icon-builder": "^1.0.2",
+    "jest": "^26.0.1"
+  }
+}

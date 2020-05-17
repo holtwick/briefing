@@ -2,7 +2,7 @@
 
 > Secure video chat via pure WebRTC
 
-<img src="public/sample.jpg" height="400">
+<img src="app/public/sample.jpg" height="400">
 
 **Welcome to Briefing. Yet another secure video chat.** 
 
@@ -32,8 +32,5 @@ Please visit the [GitHub project](https://github.com/holtwick/briefing/issues) t
 
 *How about native apps?*
 
-Frankly this is not required, because your browser can handle it all. You can of course put Briefing on your home screen e.g. in iOS Safari tap on the "Share" icon and choose "Add to Home Screen". You can do the same in browsers like Google Chrome
+Frankly this is not required, because your browser can handle it all. You can of course put Briefing on your home screen e.g. in iOS Safari tap on the "Share" icon and choose "Add to Home Screen". You can do the same in browsers like Google Chrome.
 
----
-
-For signal server code see [briefing-signal](https://github.com/holtwick/briefing-signal)

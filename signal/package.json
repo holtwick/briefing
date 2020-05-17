@@ -1,0 +1,44 @@
+{
+  "name": "briefing-signal",
+  "version": "1.1.0",
+  "description": "WebRTC Signaling Server for Brie.fi/ng",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "pm2 start server.js",
+    "stop": "pm2 stop server",
+    "debug": "DEBUG=signal:* nodemon --inspect ./server.js",
+    "serve": "node ./server.js",
+    "test": "jest --detectOpenHandles *.spec.js"
+  },
+  "author": {
+    "name": "Dirk Holtwick",
+    "email": "dirk.holtwick@gmail.com",
+    "url": "https://holtwick.de"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/holtwick/briefing-signal#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holtwick/briefing-signal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/holtwick/briefing-signal/issues"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "cross-fetch": "^3.0.4",
+    "jest": "^25.4.0",
+    "nodemon": "^2.0.3",
+    "socket.io-client": "^2.3.0"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}

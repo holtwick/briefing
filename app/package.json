@@ -1,27 +1,24 @@
 {
   "name": "briefing",
   "description": "Start a secure anonymous video chat",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
     "email": "dirk.holtwick@gmail.com",
     "url": "https://holtwick.de"
   },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
   "scripts": {
-    "start": "npm run pwa:serve",
-    "build": "npm run pwa:build",
+    "start": "npm run serve",
+    "serve": "cross-env VUE_APP_TARGET=pwa vue-cli-service serve",
+    "build": "cross-env VUE_APP_TARGET=pwa vue-cli-service build",
     "demo": "ssh -R 80:localhost:8080 ssh.localhost.run",
     "demo:serve": "cross-env HTTPS_OFF=1 npm start",
-    "electron:build:windows": "cross-env VUE_APP_TARGET=electron vue-cli-service electron:build --windows appx",
-    "electron:build:macos": "cross-env VUE_APP_TARGET=electron vue-cli-service electron:build -m",
-    "electron:build:linux": "cross-env VUE_APP_TARGET=electron vue-cli-service electron:build -l ",
-    "electron:serve": "cross-env VUE_APP_TARGET=electron vue-cli-service electron:serve --skip-plugins pwa,workbox",
-    "electron:generate-icons": "electron-icon-builder --input=./icon.png --output=build --flatten",
-    "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps",
-    "pwa:build": "cross-env VUE_APP_TARGET=pwa vue-cli-service build",
-    "pwa:serve": "cross-env VUE_APP_TARGET=pwa vue-cli-service serve",
     "test": "jest"
   },
   "browserslist": [
@@ -38,7 +35,6 @@
     "core-js": "^3.6.5",
     "custom-electron-titlebar": "^3.2.2-hotfix62",
     "debug": "^4.1.1",
-    "electron-window-state": "^5.0.3",
     "register-service-worker": "^1.7.1",
     "simple-peer": "^9.7.1",
     "socket.io-client": "^2.3.0",
@@ -50,18 +46,10 @@
     "@vue/cli-plugin-pwa": "~4.3.1",
     "@vue/cli-service": "~4.3.1",
     "cross-env": "^7.0.2",
-    "electron": "^8.2.5",
-    "electron-icon-builder": "^1.0.2",
     "jest": "^26.0.1",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
-    "vue-cli-plugin-electron-builder": "~1.4.6",
     "vue-template-compiler": "^2.6.11",
     "wrtc": "^0.4.4"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/holtwick/briefing.git"
   }
 }

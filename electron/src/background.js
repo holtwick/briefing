@@ -1,11 +1,10 @@
 'use strict'
 
-import { app, BrowserWindow, protocol } from 'electron'
-import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-
-const isDevelopment = process.env.NODE_ENV !== 'production'
-
+const { app, BrowserWindow, protocol } = require('electron')
 const windowStateKeeper = require('electron-window-state')
+
+const URL = 'https://brie.fi/ng/?platform=electron'
+const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -40,16 +39,12 @@ function createWindow() {
 
   mainWindowState.manage(win)
 
-  if (process.env.WEBPACK_DEV_SERVER_URL) {
-    // Load the url of the dev server if in development mode
-    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-    if (!process.env.IS_TEST) win.webContents.openDevTools()
-  } else {
-    createProtocol('app')
-    // Load the index.html when not in development
-    win.loadURL('https://brie.fi/ng/?platform=electron')
-    // win.loadURL('app://./index.html')
-  }
+  // if (isDevelopment) {
+  //   win.loadURL('https://localhost:8080')
+  //   if (!process.env.IS_TEST) win.webContents.openDevTools()
+  // } else {
+  win.loadURL(URL)
+  // }
 
   win.on('closed', () => {
     win = null
