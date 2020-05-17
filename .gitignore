@@ -10,4 +10,4 @@ yarn-error.log
 video
 dist_electron
 fix.sh
-
+/internal
