@@ -1,6 +1,6 @@
 {
   "name": "briefing-signal",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "WebRTC Signaling Server for Brie.fi/ng",
   "private": true,
   "main": "server.js",
