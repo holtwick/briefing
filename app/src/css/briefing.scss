@@ -261,3 +261,16 @@ body {
     }
   }
 }
+
+.settings-group {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background: #f0f0f0;
+  margin-bottom: 0.5rem;
+
+  .settings-info {
+    margin-top: 0.5rem;
+    line-height: 1.2rem;
+    font-size: 0.9rem;
+  }
+}
