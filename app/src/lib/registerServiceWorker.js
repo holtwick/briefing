@@ -1,11 +1,10 @@
-/* eslint-disable no-console */
-
 import { register } from 'register-service-worker'
 
 if (process.env.NODE_ENV === 'production') {
   register(`${process.env.BASE_URL}service-worker.js`, {
-    ready() {
-      console.log('PWA: App is being served from cache by a service worker.\nFor more details, visit https://goo.gl/AFskqB')
+    ready(swr) {
+      // For more details, visit https://goo.gl/AFskqB
+      console.log('PWA: App is being served from cache by a service worker.')
     },
     registered() {
       console.log('PWA: Service worker has been registered.')

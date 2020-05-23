@@ -64,7 +64,7 @@ export class WebRTC extends Emitter {
     })
 
     // Receive all other currently available peers
-    this.io.on('joined', ({ room, peers }) => {
+    this.io.on('joined', ({ room, peers, vapidPublicKey }) => {
       const local = this.io.id
       log('me', local, room, 'peers', peers)
 
