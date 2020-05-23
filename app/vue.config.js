@@ -56,9 +56,8 @@ let config = {
     // Some API (like WebRTC getUserMedia) is only allowed in secure context
     https: (process.env.HTTPS_OFF || '').toString() !== '1',
 
-    // See https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/ for how to create SSL certificates for localhost
-    // cert: 'cert.pem',
-    // key: 'key.pem',
+    cert: process.env.SSL_CERT_PATH,
+    key: process.env.SSL_KEY_PATH,
 
     // Allow debugging from multiple devices in the local network
     disableHostCheck: true,
@@ -67,6 +66,13 @@ let config = {
       'Access-Control-Allow-Credentials': 'true',
     },
   },
+}
+
+
+if (!isProduction && config.devServer.https && (!process.env.SSL_KEY_PATH || !process.env.SSL_CERT_PATH)) {
+  console.error('Please provide SSL_KEY_PATH and SSL_CERT_PATH.')
+  console.error('See https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/ for how to create SSL certificates for localhost')
+  process.exit(0)
 }
 
 // console.info('config = ' + JSON.stringify(config, null, 2))
