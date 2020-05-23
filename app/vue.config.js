@@ -50,21 +50,23 @@ let config = {
       msTileImage: 'mstile-150x150.png',
     },
   },
-}
 
-if (!isProduction) {
-  config.devServer = {
-
-    // Allow debugging from multiple devices in the local network
-    disableHostCheck: true,
+  devServer: {
 
     // Some API (like WebRTC getUserMedia) is only allowed in secure context
     https: (process.env.HTTPS_OFF || '').toString() !== '1',
+
+    // See https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/ for how to create SSL certificates for localhost
+    // cert: 'cert.pem',
+    // key: 'key.pem',
+
+    // Allow debugging from multiple devices in the local network
+    disableHostCheck: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
     },
-  }
+  },
 }
 
 // console.info('config = ' + JSON.stringify(config, null, 2))
