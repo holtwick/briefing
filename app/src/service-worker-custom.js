@@ -19,27 +19,46 @@ workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL('/i
 
 self.addEventListener('notificationclick', event => {
   console.log('notificationclick', event)
-  event.waitUntil(
-    self.clients.matchAll().then(clientList => {
-      const room = ''
-      if (clientList.length > 0) {
-        clientList[0].postMessage({
-          join: room,
-        })
-        return clientList[0].focus()
-      }
-      return self.clients.openWindow('/ng/' + room)
-    }),
-  )
+  let room
+  try {
+    room = event.notification.data.room
+  } catch (err) {
+    console.error('Exception:', err)
+  }
+  console.log('Enter room', room)
+  if (room) {
+    event.waitUntil(
+      self.clients.matchAll().then(clientList => {
+        // if (clientList.length > 0) {
+        //   clientList[0].postMessage({
+        //     join: room,
+        //   })
+        //   return clientList[0].focus()
+        // }
+        return self.clients.openWindow('/ng/' + room)
+      }),
+    )
+  }
 })
 
 // Register event listener for the 'push' event.
 self.addEventListener('push', function (event) {
   console.log('push', event)
+  let message = event.data.json()
   event.waitUntil(
-    self.registration.showNotification('ServiceWorker Cookbook', {
-      body: 'Alea iacta est',
-      icon: '/icon-512x512.png\'\n'
+    self.registration.showNotification('Brie.fi/ng', {
+      body: message.count + ' users in room "' + message.room + '" now',
+      icon: '/android-chrome-512x512.png',
+      data: {
+        room: message.room,
+      },
+      // Sound taken from https://notificationsounds.com/message-tones/pristine-609
+      sound: '/pristine.mp3',
+
+      // actions: [{
+      //   title: 'Enter',
+      //   action: 'enter',
+      // }],
     }),
   )
 })
