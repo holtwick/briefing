@@ -54,23 +54,7 @@ self.addEventListener('push', function (event) {
       },
       // Sound taken from https://notificationsounds.com/message-tones/pristine-609
       sound: '/pristine.mp3',
-
-      // actions: [{
-      //   title: 'Enter',
-      //   action: 'enter',
-      // }],
     }),
   )
 })
-
-// self.addEventListener('push', event => {
-//   console.log('push', event)
-//   event.waitUntil(self.registration.showNotification('Briefing', {
-//     body: `Somebody entered`,
-//     actions: [{
-//       title: 'Join call',
-//       action: 'join',
-//     }],
-//   }))
-// })
 

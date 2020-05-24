@@ -121,11 +121,8 @@ export async function setupWebRTC(state) {
 
   let onSubscribePush = messages.on('subscribePush', async on => {
     let add = state.subscription
-    log('subscribePush', on)
     let registration = await navigator.serviceWorker.getRegistration()
-    log('registration', registration)
     let subscription = await registration.pushManager.getSubscription()
-    log('subscription', subscription)
     const vapidPublicKey = state.vapidPublicKey
     if (!subscription && vapidPublicKey) {
       const applicationServerKey = urlBase64ToUint8Array(vapidPublicKey)
@@ -134,7 +131,6 @@ export async function setupWebRTC(state) {
         applicationServerKey,
       })
     }
-    log('subscription', subscription)
     webrtc.io.emit('registerPush', {
       add,
       room: state.room,

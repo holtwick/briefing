@@ -24,7 +24,7 @@
     </div>
     <div class="form-group settings-group">
       <sea-switch v-model="state.subscribe">Subscribe to this room</sea-switch>
-      <div class="settings-info">By subscribing you will receive a notification when somebody else enters this room. You can then join the conversation with one click. Notifications will only be shown if the browser is running.</div>
+      <div class="settings-info">Experimental: By subscribing you will receive a notification when somebody else enters this room. You can then join the conversation with one click. Notifications will only be shown if the browser is running.</div>
     </div>
     <div class="form-group settings-group">
       <sea-switch v-model="state.bandwidth">{{ l.settings.bandwidth }}</sea-switch>
