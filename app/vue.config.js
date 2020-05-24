@@ -42,6 +42,7 @@ let config = {
       swSrc: 'src/service-worker-custom.js',
       importWorkboxFrom: 'local',
       exclude: [/\.htaccess/],
+      // navigateFallback: '/pwa/index.html',
       // importScripts: ['./src/service-worker-custom.js'],
       // skipWaiting: true,
       // clientsClaim: true,

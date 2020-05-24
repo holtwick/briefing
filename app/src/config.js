@@ -1,7 +1,7 @@
 // See https://github.com/holtwick/briefing-signal
-// export const SIGNAL_SERVER_URL = 'wss://sig03.brie.fi'
+export const SIGNAL_SERVER_URL = 'wss://sig03.brie.fi'
 
-export const SIGNAL_SERVER_URL = 'ws://localhost:4444'
+// export const SIGNAL_SERVER_URL = 'ws://localhost:4444'
 
 // See https://github.com/feross/simple-peer#peer--new-peeropts
 export const ICE_CONFIG = {
