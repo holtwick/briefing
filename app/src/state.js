@@ -57,6 +57,9 @@ export let state = {
 
   maximized: '',
 
+  // For notifications
+  vapidPublicKey: null
+
 }
 
 messages.on('updateStream', updateStream)
