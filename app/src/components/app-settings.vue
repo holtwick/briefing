@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="form-group settings-group">
-      <sea-switch v-model="state.blur">Subscribe to this room</sea-switch>
+      <sea-switch v-model="state.subscribe">Subscribe to this room</sea-switch>
       <div class="settings-info">By subscribing you will receive a notification when somebody else enters this room. You can then join the conversation with one click.</div>
     </div>
     <div class="form-group settings-group">
@@ -85,6 +85,10 @@ export default {
     async 'state.bandwidth'() {
       await this.$nextTick()
       messages.emit('negotiateBandwidth')
+    },
+    async 'state.subscribe'() {
+      await this.$nextTick()
+      messages.emit('subscribePush')
     },
   },
 }

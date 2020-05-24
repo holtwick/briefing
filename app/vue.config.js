@@ -38,9 +38,13 @@ let config = {
     appleMobileWebAppStatusBarStyle: 'black',
     workboxPluginMode: 'InjectManifest',
     workboxOptions: {
-      swSrc: 'src/service-worker.js',
+      // swDest: 'service-worker-custom.js',
+      swSrc: 'src/service-worker-custom.js',
       importWorkboxFrom: 'local',
       exclude: [/\.htaccess/],
+      // importScripts: ['./src/service-worker-custom.js'],
+      // skipWaiting: true,
+      // clientsClaim: true,
     },
     iconPaths: {
       favicon32: 'favicon-32x32.png',
@@ -51,10 +55,11 @@ let config = {
     },
   },
 
+
   devServer: {
 
-    // Some API (like WebRTC getUserMedia) is only allowed in secure context
-    https: (process.env.HTTPS_OFF || '').toString() !== '1',
+    // Some API (like WebRTC getUserMedia) is only allowed in secure context or localhost
+    https: false,
 
     cert: process.env.SSL_CERT_PATH,
     key: process.env.SSL_KEY_PATH,

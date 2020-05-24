@@ -1,6 +1,7 @@
 // https://webrtchacks.com/limit-webrtc-bandwidth-sdp/
 
 import { ICE_CONFIG } from '../config'
+import { urlBase64ToUint8Array } from '../lib/base64'
 import { messages } from '../lib/emitter'
 
 const log = require('debug')('app:connection')
@@ -106,15 +107,38 @@ export async function setupWebRTC(state) {
     }
   })
 
- let onSetLocalStream = messages.on('setLocalStream', stream => {
+  let onSetLocalStream = messages.on('setLocalStream', stream => {
     webrtc.forEachPeer(peer => {
       peer.setStream(stream)
     })
   })
 
-  let onNegotiateBandwidth =  messages.on('negotiateBandwidth', stream => {
+  let onNegotiateBandwidth = messages.on('negotiateBandwidth', stream => {
     webrtc.forEachPeer(peer => {
       peer.peer.negotiate()
+    })
+  })
+
+  let onSubscribePush = messages.on('subscribePush', async on => {
+    let add = state.subscription
+    log('subscribePush', on)
+    let registration = await navigator.serviceWorker.getRegistration()
+    log('registration', registration)
+    let subscription = await registration.pushManager.getSubscription()
+    log('subscription', subscription)
+    const vapidPublicKey = state.vapidPublicKey
+    if (!subscription && vapidPublicKey) {
+      const applicationServerKey = urlBase64ToUint8Array(vapidPublicKey)
+      subscription = registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey,
+      })
+    }
+    log('subscription', subscription)
+    webrtc.io.emit('registerPush', {
+      add,
+      room: state.room,
+      subscription,
     })
   })
 
@@ -163,6 +187,7 @@ export async function setupWebRTC(state) {
       webrtc.cleanup()
       onSetLocalStream.cleanup()
       onNegotiateBandwidth.cleanup()
-    }
+      onSubscribePush.cleanup()
+    },
   }
 }

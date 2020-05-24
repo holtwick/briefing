@@ -4,6 +4,7 @@ import io from 'socket.io-client'
 import { SIGNAL_SERVER_URL } from '../config'
 import { assert } from '../lib/assert'
 import { Emitter } from '../lib/emitter'
+import { state } from '../state'
 import { WebRTCPeer } from './webrtc-peer'
 
 const log = require('debug')('app:webrtc')
@@ -66,6 +67,9 @@ export class WebRTC extends Emitter {
     // Receive all other currently available peers
     this.io.on('joined', ({ room, peers, vapidPublicKey }) => {
       const local = this.io.id
+
+      state.vapidPublicKey = vapidPublicKey
+
       log('me', local, room, 'peers', peers)
 
       // We will try to establish a separate connection to all of them

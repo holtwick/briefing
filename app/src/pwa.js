@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import locale from './lib/locale'
-import './lib/registerServiceWorker'
+import './logic/registerServiceWorker'
 import de from './locales/de'
 import en from './locales/en'
 import App from './pwa-app.vue'
