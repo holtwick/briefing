@@ -28,9 +28,10 @@
   ],
   "dependencies": {
     "@sentry/browser": "^5.16.1",
+    "@sentry/integrations": "^5.16.1",
     "@tensorflow-models/body-pix": "^2.0.5",
-    "@tensorflow/tfjs-converter": "^2.0.0",
-    "@tensorflow/tfjs-core": "^2.0.0",
+    "@tensorflow/tfjs-converter": "^1.7.4",
+    "@tensorflow/tfjs-core": "^1.7.4",
     "clipboard-copy": "^3.1.0",
     "core-js": "^3.6.5",
     "custom-electron-titlebar": "^3.2.2-hotfix62",

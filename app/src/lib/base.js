@@ -1,3 +1,5 @@
+import { trackEvent, trackException, trackSilentException } from './bugs'
+
 export function cloneObject(obj) {
   try {
     if (typeof obj === 'object') {
@@ -5,6 +7,7 @@ export function cloneObject(obj) {
     }
     return obj
   } catch (err) {
+    trackSilentException(err)
     log('cloneObject error:', err)
   }
   return null

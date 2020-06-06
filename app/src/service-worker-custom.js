@@ -1,5 +1,7 @@
 // --- END GENERATED CODE, START CUSTOM CODE
 
+import { trackException } from './lib/bugs'
+
 workbox.setConfig({ debug: true })
 
 // Cache stuff
@@ -23,7 +25,7 @@ self.addEventListener('notificationclick', event => {
   try {
     room = event.notification.data.room
   } catch (err) {
-    console.error('Exception:', err)
+    trackException(err)
   }
   console.log('Enter room', room)
   if (room) {

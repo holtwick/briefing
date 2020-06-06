@@ -4,6 +4,7 @@ import SimplePeer from 'simple-peer'
 import { assert } from '../lib/assert'
 import { cloneObject } from '../lib/base'
 import { Emitter } from '../lib/emitter'
+import { trackException } from '../lib/bugs'
 
 const log = require('debug')('app:webrtc-peer')
 
@@ -96,7 +97,7 @@ export class WebRTCPeer extends Emitter {
       try {
         this.peer.streams.forEach(s => this.peer.removeStream(s))
       } catch (err) {
-        console.error('Exception setStream remove:', err)
+        trackException(err)
       }
       if (stream) {
         assert(stream, 'Expected a stream')

@@ -1,4 +1,5 @@
 import clipboardCopy from 'clipboard-copy'
+import { trackException } from './bugs'
 
 export function createLinkForRoom(room) {
   return `https://brie.fi/ng/${room}`
@@ -17,7 +18,7 @@ export async function shareLink(url, {
       })
       return true
     } catch (err) {
-      console.error('Exception:', err)
+      trackException(err)
     }
   }
   if (window.electron) {
@@ -27,7 +28,7 @@ export async function shareLink(url, {
       // alert('The URL has been copied to your clipboard.')
       return true
     } catch (err) {
-      console.error('Exception:', err)
+      trackException(err)
     }
   }
   try {
@@ -35,7 +36,7 @@ export async function shareLink(url, {
     // alert('The URL has been copied to your clipboard.')
     return true
   } catch (err) {
-    console.error('Exception:', err)
+    trackException(err)
   }
   alert(`Cannot copy ${url}. Please do by hand.`)
 }

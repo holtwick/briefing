@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { trackException, trackSilentException } from '../lib/bugs'
+
 const log = require('debug')('app:app-peer')
 
 async function connectStreamToVideoElement(stream, video) {
@@ -104,7 +106,7 @@ export default {
       try {
         this.$refs.video.play()
       } catch (err) {
-        log('play error', err)
+        trackSilentException(err)
       }
     },
   },
