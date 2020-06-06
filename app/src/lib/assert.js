@@ -2,6 +2,8 @@
 
 // const log = require('debug')('assert')
 
+import { trackSilentException } from './bugs'
+
 export function assert(cond, ...args) {
   if (!cond) {
     if (typeof console !== undefined) {
@@ -18,6 +20,7 @@ export function assert(cond, ...args) {
       }
     } catch (err) {
       console.warn('assert err', err)
+      trackSilentException(err)
       // console.error('Exception:', err)
     }
   }

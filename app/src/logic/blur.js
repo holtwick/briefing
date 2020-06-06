@@ -3,6 +3,7 @@
 // https://www.tensorflow.org/js/models
 
 import { assert } from '../lib/assert'
+import { trackException } from '../lib/bugs'
 
 const bodyPix = require('@tensorflow-models/body-pix')
 
@@ -104,7 +105,7 @@ export async function startBlurTransform(stream) {
       return captureStream
     }
   } catch (err) {
-    console.error('Exception:', err)
+    trackException(err)
   }
 
   return stream

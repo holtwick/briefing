@@ -1,3 +1,5 @@
+import { trackSilentException } from './bugs'
+
 const log = require('debug')('app:emitter')
 
 export class Emitter {
@@ -13,10 +15,12 @@ export class Emitter {
           fn(info)
         } catch (err) {
           console.warn('emit warning:', err)
+          trackSilentException(err)
         }
       }
     } catch (err) {
       console.error('emit exception', err)
+      trackSilentException(err)
     }
   }
 

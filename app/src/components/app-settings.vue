@@ -18,23 +18,23 @@
     </div>
     <div class="form-group settings-group">
       <sea-switch v-model="state.fill">{{ l.settings.fill }}</sea-switch>
-      <div class="settings-info">Briefing tries to use up the available screen space as much as possible by scaling up the video in a way that makes it fit in its visual frame. When turned off you will see the whole video instead but with
-        borders around it.
-      </div>
-    </div>
-    <div class="form-group settings-group">
-      <sea-switch v-model="state.subscribe">Subscribe to this room</sea-switch>
-      <div class="settings-info">Experimental: By subscribing you will receive a notification when somebody else enters this room. You can then join the conversation with one click. Notifications will only be shown if the browser is running.</div>
+      <div class="settings-info">{{ l.settings.fill_info }}</div>
     </div>
     <div class="form-group settings-group">
       <sea-switch v-model="state.bandwidth">{{ l.settings.bandwidth }}</sea-switch>
-      <div class="settings-info">Experimental: With this setting Briefing tries to reduce bandwith by thinning video and audio data.</div>
+      <div class="settings-info">{{ l.settings.bandwidth_info }}</div>
     </div>
     <div class="form-group settings-group">
       <sea-switch v-model="state.blur">{{ l.settings.blur }}</sea-switch>
-      <div class="settings-info">Experimental: A smart artifical intelligence algorithm is able to indetify the shapes of persons and will blur out the remaining background. This adds some visual privacy to your call. But attention, this is
-        a very power consuming feature and will very likely not work on mobile devices!
-      </div>
+      <div class="settings-info">{{ l.settings.blur_info }}</div>
+    </div>
+    <div class="form-group settings-group" v-if="enableSubscribe">
+      <sea-switch v-model="state.subscribe">{{ l.settings.subscribe }}</sea-switch>
+      <div class="settings-info">{{ l.settings.subscribe_info }}</div>
+    </div>
+    <div class="form-group settings-group">
+      <sea-switch v-model="sentry">{{ l.settings.sentry}}</sea-switch>
+      <div class="settings-info" v-html="l.settings.sentry_info"></div>
     </div>
   </div>
 </template>
@@ -49,9 +49,24 @@ export default {
     SeaSwitch,
   },
   data() {
-    return {}
+    return {
+      enableSubscribe: false,
+    }
   },
   computed: {
+    sentry: {
+      set(v) {
+        localStorage.allowSentry = v ? '1' : '0'
+        if (v) {
+          if (confirm(this.l.settings.sentry_confirm)) {
+            location.reload()
+          }
+        }
+      },
+      get() {
+        return localStorage.allowSentry !== '0'
+      },
+    },
     video() {
       return [
         {

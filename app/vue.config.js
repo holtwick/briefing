@@ -4,7 +4,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 let config = {
   publicPath: '/',
-  productionSourceMap: false,
+  productionSourceMap: true,
   configureWebpack: {
 
     // https://stackoverflow.com/a/35426611/140927

@@ -8,7 +8,6 @@
         v-bind="$attrs"
         v-on="$listeners"
         type="switch"
-        @input="$emit('input', $event)"
       />
       <i></i>
       <span class="sea-switch-label" v-if="slotted">

@@ -11,7 +11,7 @@
         more i.e. you have to trust the SFU provider. Briefing instead sends data from peer to peer directly (&quot;Mesh&quot;) and is therefore end-to-end encrypted by default by WebRTC implementations.</p>
       <p><strong>FAQ- Some answers to some questions</strong></p>
       <p><em>Why starting another video conf tool?</em></p>
-      <p>During the Corona pandemic I tried to create a peer-to-peer solution for home schooling called <a href='https://peer.school/?referrer=peer.school'>peer.school</a>. Although the project has been retired for various reasons, I
+      <p>During the Corona pandemic I tried to create a peer-to-peer solution for home schooling called <a href='https://peer.school/?ref=peer.school'>peer.school</a>. Although the project has been retired for various reasons, I
         learned
         so much about WebRTC and video/audio communication, that I did want to reuse this knowledge in this project. </p>
       <p><em>Why is it free and Open Source?</em></p>
@@ -32,7 +32,12 @@
       <p><em>How about native apps?</em></p>
       <p>Frankly this is not required, because your browser can handle it all. You can of course put Briefing on your home screen e.g. in iOS Safari tap on the &quot;Share&quot; icon and choose &quot;Add to Home Screen&quot;. You can do the
         same in browsers like Google Chrome</p>
-
+      <p>---</p>
+      <p>
+        (C)opyright 2020 by <a href="https://holtwick.de?ref=briefing">Dirk Holtwick</a> |
+        <a href="https://holtwick.de/privacy?ref=briefing">Privacy Policy</a> |
+        <a href="https://holtwick.de/imprint?ref=briefing">Imprint</a>
+      </p>
     </div>
   </div>
 </template>

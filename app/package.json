@@ -27,6 +27,8 @@
     "electron >= 8"
   ],
   "dependencies": {
+    "@sentry/browser": "^5.16.1",
+    "@sentry/integrations": "^5.16.1",
     "@tensorflow-models/body-pix": "^2.0.5",
     "@tensorflow/tfjs-converter": "^1.7.4",
     "@tensorflow/tfjs-core": "^1.7.4",
@@ -41,9 +43,9 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.3.1",
-    "@vue/cli-plugin-pwa": "~4.3.1",
-    "@vue/cli-service": "~4.3.1",
+    "@vue/cli-plugin-babel": "~4.4.1",
+    "@vue/cli-plugin-pwa": "~4.4.1",
+    "@vue/cli-service": "~4.4.1",
     "jest": "^26.0.1",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
