@@ -9,8 +9,12 @@ import { state } from './state'
 // Electron specific
 if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && window.beaker == null) {
   console.log('Identified Electron')
-  import('./pwa-electron').then()
+  import(/* webpackChunkName: 'pwa-electron' */ './pwa-electron').then()
   console.log('Handled Electron')
+}
+
+if (localStorage.allowSentry) {
+  import(/* webpackChunkName: 'sentry' */ '@sentry/browser').then(Sentry => Sentry.init({ dsn: 'https://e02a89182ca14a048aa21d7088c7f90a@o120938.ingest.sentry.io/266271' }))
 }
 
 Vue.config.productionTip = false
