@@ -4,7 +4,12 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 let config = {
   publicPath: '/',
-  productionSourceMap: false,
+
+  productionSourceMap: true,
+  css: {
+    sourceMap: true,
+  },
+
   configureWebpack: {
 
     // https://stackoverflow.com/a/35426611/140927
@@ -40,7 +45,14 @@ let config = {
     workboxOptions: {
       swSrc: 'src/service-worker.js',
       importWorkboxFrom: 'local',
-      exclude: [/\.htaccess/],
+      exclude: [
+        /\.htaccess/,
+        /.*\.css\.map/,
+      ],
+      // navigateFallback: '/pwa/index.html',
+      // importScripts: ['./src/service-worker-custom.js'],
+      // skipWaiting: true,
+      // clientsClaim: true,
     },
     iconPaths: {
       favicon32: 'favicon-32x32.png',
@@ -50,21 +62,30 @@ let config = {
       msTileImage: 'mstile-150x150.png',
     },
   },
-}
 
-if (!isProduction) {
-  config.devServer = {
+
+  devServer: {
+
+    // Some API (like WebRTC getUserMedia) is only allowed in secure context or localhost
+    https: false,
+
+    cert: process.env.SSL_CERT_PATH,
+    key: process.env.SSL_KEY_PATH,
 
     // Allow debugging from multiple devices in the local network
     disableHostCheck: true,
-
-    // Some API (like WebRTC getUserMedia) is only allowed in secure context
-    https: (process.env.HTTPS_OFF || '').toString() !== '1',
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
     },
-  }
+  },
+}
+
+
+if (!isProduction && config.devServer.https && (!process.env.SSL_KEY_PATH || !process.env.SSL_CERT_PATH)) {
+  console.error('Please provide SSL_KEY_PATH and SSL_CERT_PATH.')
+  console.error('See https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/ for how to create SSL certificates for localhost')
+  process.exit(0)
 }
 
 // console.info('config = ' + JSON.stringify(config, null, 2))

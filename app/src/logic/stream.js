@@ -1,8 +1,10 @@
+import { trackException, trackSilentException } from '../lib/bugs'
+
 export async function getDevices() {
   try {
     return navigator.mediaDevices.enumerateDevices()
   } catch (err) {
-    console.warn('enumerateDevices err', err)
+    trackSilentException(err)
   }
   return []
 }
@@ -43,7 +45,7 @@ export async function getUserMedia(constraints = {
     // Only available for HTTPS! See https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#Security
     return navigator.mediaDevices.getUserMedia(constraints)
   } catch (err) {
-    console.warn('getUserMedia err', err)
+    trackException(err)
   }
 }
 

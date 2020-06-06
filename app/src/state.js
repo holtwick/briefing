@@ -1,6 +1,7 @@
 import { messages } from './lib/emitter'
 import { setupWebRTC } from './logic/connection'
 import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getUserMedia } from './logic/stream'
+import { trackException } from './lib/bugs'
 
 const log = require('debug')('app:state')
 
@@ -56,6 +57,9 @@ export let state = {
   },
 
   maximized: '',
+
+  // For notifications
+  vapidPublicKey: null
 
 }
 
@@ -170,7 +174,7 @@ export async function setup() {
     messages.emit('setLocalStream', state.stream)
 
   } catch (err) {
-    console.error('Exception:', err)
+    trackException(err)
   }
 
   return {

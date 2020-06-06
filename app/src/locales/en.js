@@ -1,4 +1,10 @@
 export default {
+  welcome: {
+    start: 'Start Video Chat',
+    abstract: 'Anonymous end-to-end encrypted group video chat',
+    help: 'Learn More',
+    created: 'Created by'
+  },
   share: {
     title: 'Share',
     link_info: 'Please send this link to all participants:',
@@ -19,7 +25,15 @@ export default {
     audio: 'Audio Source',
     desktop: 'Share screen or window',
     blur: 'Blur background',
+    blur_info: 'Experimental: A smart artifical intelligence algorithm is able to indetify the shapes of persons and will blur out the remaining background. This adds some visual privacy to your call. But attention, this is a very power consuming feature and will very likely not work on mobile devices! ',
     bandwidth: 'Apply bandwidth optimizations',
+    bandwidth_info: 'Experimental: With this setting Briefing tries to reduce bandwith by thinning video and audio data.',
     fill: 'Scale up video',
+    fill_info: 'Briefing tries to use up the available screen space as much as possible by scaling up the video in a way that makes it fit in its visual frame. When turned off you will see the whole video instead but with borders around it.',
+    subscribe: 'Subscribe to this room',
+    subscribe_info: 'Experimental: By subscribing you will receive a notification when somebody else enters this room. You can then join the conversation with one click. Notifications will only be shown if the browser is running.',
+    sentry: 'Allow bug tracking',
+    sentry_info: `When encounting a programming error or other relevant information that is useful improving the app, we will send debug data to a service called <a href="https://sentry.io">sentry.io</a>.`,
+    sentry_confirm: 'Thanks for allowing bug tracking. Please confirm to reload the page now.',
   },
 }

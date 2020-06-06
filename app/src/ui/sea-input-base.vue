@@ -121,7 +121,7 @@ export default {
         return this.newValue
       },
       set(value) {
-        // log('set value', value)
+        log('set value', value)
         this.newValue = value
         this.$emit('input', value)
         // !this.isValid && this.checkHtml5Validity()

@@ -24,6 +24,7 @@
 <script>
 // import Popover from './sea-popover'
 import SeaSymbol from './sea-symbol'
+import { trackException } from '../lib/bugs'
 
 const log = require('debug')('ui:button')
 
@@ -100,7 +101,7 @@ export default {
           await ev.waitUntil
         }
       } catch (err) {
-        console.error('Exception:', err)
+        trackException(err)
       }
       this.disabled = false
       log('click done', ev.waitUntil)
