@@ -5,6 +5,11 @@ const isProduction = process.env.NODE_ENV === 'production'
 let config = {
   publicPath: '/',
   productionSourceMap: true,
+
+  css: {
+    sourceMap: true,
+  },
+
   configureWebpack: {
 
     // https://stackoverflow.com/a/35426611/140927
@@ -38,10 +43,12 @@ let config = {
     appleMobileWebAppStatusBarStyle: 'black',
     workboxPluginMode: 'InjectManifest',
     workboxOptions: {
-      // swDest: 'service-worker-custom.js',
-      swSrc: 'src/service-worker-custom.js',
+      swSrc: 'src/service-worker.js',
       importWorkboxFrom: 'local',
-      exclude: [/\.htaccess/],
+      exclude: [
+        /\.htaccess/,
+        /.*\.css\.map/,
+      ],
       // navigateFallback: '/pwa/index.html',
       // importScripts: ['./src/service-worker-custom.js'],
       // skipWaiting: true,
