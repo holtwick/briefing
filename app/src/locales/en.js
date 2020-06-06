@@ -1,4 +1,10 @@
 export default {
+  welcome: {
+    start: 'Start Video Chat',
+    abstract: 'Anonymous end-to-end encrypted group video chat',
+    help: 'Learn More',
+    created: 'Created by'
+  },
   share: {
     title: 'Share',
     link_info: 'Please send this link to all participants:',
@@ -27,6 +33,7 @@ export default {
     subscribe: 'Subscribe to this room',
     subscribe_info: 'Experimental: By subscribing you will receive a notification when somebody else enters this room. You can then join the conversation with one click. Notifications will only be shown if the browser is running.',
     sentry: 'Allow bug tracking',
-    sentry_info: `When encounting a programming error or other relevant information that is useful improving the app, we will send debug data to a service called <a href="https://sentry.io">sentry.io</a>.`
+    sentry_info: `When encounting a programming error or other relevant information that is useful improving the app, we will send debug data to a service called <a href="https://sentry.io">sentry.io</a>.`,
+    sentry_confirm: 'Thanks for allowing bug tracking. Please confirm to reload the page now.',
   },
 }

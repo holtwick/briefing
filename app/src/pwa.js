@@ -13,7 +13,7 @@ if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && window.beake
   console.log('Handled Electron')
 }
 
-if (localStorage.allowSentry === '1') {
+if (localStorage.allowSentry !== '0') {
   console.log('Sentry bug tracking is allowed')
   import(/* webpackChunkName: 'sentry' */ './sentry').then(({setupSentry}) => {
     setupSentry({

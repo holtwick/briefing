@@ -50,22 +50,21 @@ export default {
   },
   data() {
     return {
-      enableSubscribe: false
+      enableSubscribe: false,
     }
   },
   computed: {
     sentry: {
       set(v) {
-        console.log('set', v)
-        localStorage.allowSentry = v ? '1' : ''
+        localStorage.allowSentry = v ? '1' : '0'
         if (v) {
-          if (confirm('Thanks for allowing bug tracking. Please confirm to reload the page now.')) {
+          if (confirm(this.l.settings.sentry_confirm)) {
             location.reload()
           }
         }
       },
       get() {
-        return +(localStorage.allowSentry)
+        return localStorage.allowSentry !== '0'
       },
     },
     video() {

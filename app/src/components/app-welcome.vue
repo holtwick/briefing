@@ -8,16 +8,16 @@
           <input type="text" id="room" name="room" ref="input" enterkeyhint="go" spellcheck="false" v-model="room" :placeholder="defaultName">
         </form>
         <div class="button-container">
-          <a @click.prevent="doEnterRoom" :href="url" class="button" id="button">Start Video Chat</a>
+          <a @click.prevent="doEnterRoom" :href="url" class="button" id="button">{{ l.welcome.start }}</a>
         </div>
       </div>
       <div class="footer links">
         <p>
-          Anonymous end-to-end encrypted group video chat.
-          <a href="#help" onclick="document.getElementById('help').scrollIntoView({behavior: 'smooth'}); return false;">Learn more!</a>
+          {{ l.welcome.abstract }}
+          <a href="#help" onclick="document.getElementById('help').scrollIntoView({behavior: 'smooth'}); return false;">{{ l.settings.help }}</a>
         </p>
         <p>
-          Created by <a href="https://holtwick.de?ref=briefing" target="_blank" rel="noopener" @click="openExternalLink">holtwick.de</a>
+          {{ l.welcome.created}} <a href="https://holtwick.de?ref=briefing" target="_blank" rel="noopener" @click="openExternalLink">holtwick.de</a>
           <a title="Follow @holtwick on Twitter" href="https://twitter.com/holtwick" class="brand-icon" target="_blank" rel="noopener" @click="openExternalLink">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
