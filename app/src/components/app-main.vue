@@ -19,6 +19,12 @@
         :stream="peer.peer.stream"
       />
 
+      <div class="message-container">
+        <div class="message">
+          To use Briefing you have to give access to your camera and audio. <a href="#">Try again</a>
+        </div>
+      </div>
+
       <div class="message-container" v-if="!hasPeers">
         <div class="message" v-html="l.share.message">
         </div>

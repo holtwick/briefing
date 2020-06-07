@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { trackException, trackSilentException } from '../lib/bugs'
+import { trackSilentException } from '../lib/bugs'
 
 const log = require('debug')('app:app-peer')
 
@@ -88,10 +88,12 @@ export default {
     async doConnectStream(stream) {
       log('doConnectStream', this.title, stream)
       if (stream) {
-        await this.$nextTick()
-        await connectStreamToVideoElement(stream, this.$refs.video)
-        // stream.onaddtrack = async () => await connectStreamToVideoElement(stream, this.$refs.video)
-        // stream.onremovetrack = async () => await connectStreamToVideoElement(stream, this.$refs.video)
+        try {
+          await this.$nextTick()
+          await connectStreamToVideoElement(stream, this.$refs.video)
+        } catch (err) {
+          trackSilentException(err)
+        }
       }
     },
     handleClick() {
@@ -101,9 +103,10 @@ export default {
         this.state.maximized = this.id
       }
     },
-    doPlay() {
-      log('force play')
+    async doPlay() {
       try {
+        log('force play')
+        await this.$nextTick()
         this.$refs.video.play()
       } catch (err) {
         trackSilentException(err)
