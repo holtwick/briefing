@@ -59,15 +59,19 @@ export let state = {
   maximized: '',
 
   // For notifications
-  vapidPublicKey: null
+  vapidPublicKey: null,
 
 }
 
 messages.on('updateStream', updateStream)
 
 function updateStream() {
-  state.stream.getAudioTracks().forEach(t => t.enabled = !state.muteAudio)
-  state.stream.getVideoTracks().forEach(t => t.enabled = !state.muteVideo)
+  try {
+    state?.stream?.getVideoTracks().forEach(t => t.enabled = !state?.muteVideo)
+    state?.stream?.getAudioTracks().forEach(t => t.enabled = !state?.muteAudio)
+  } catch (err) {
+    trackException(err)
+  }
 }
 
 messages.on('switchVideo', switchVideo)
