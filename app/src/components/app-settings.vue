@@ -73,11 +73,11 @@ export default {
           deviceId: 'desktop',
           label: this.l.settings.desktop,
         },
-        ...this.state.devices.filter(d => d.kind.toLowerCase() === 'videoinput' && d.deviceId !== 'default'),
+        ...this.state.devices.filter(d => d.kind === 'videoinput' && d.deviceId !== 'default'),
       ]
     },
     audio() {
-      return this.state.devices.filter(d => d.kind.toLowerCase() === 'audioinput' && d.deviceId !== 'default')
+      return this.state.devices.filter(d => d.kind === 'audioinput' && d.deviceId !== 'default')
     },
     // audioOut() {
     //   return this.state.devices.filter(d => d.kind.toLowerCase() === 'audiooutput' && d.deviceId !== 'default')
