@@ -41,6 +41,8 @@ async function connectStreamToVideoElement(stream, video) {
       video.src = window.URL.createObjectURL(stream) // for older browsers
     }
     video.onloadedmetadata = function (e) {
+      // Keep in mind https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
+      // But if the user allows to access camera it should be fine
       video.play()
     }
     // setInterval(async () => {
@@ -118,7 +120,9 @@ export default {
     //   await this.$nextTick()
     //   await this.doConnectStream(this.stream)
     // })
-    await this.doConnectStream(this.stream)
+    if (this.stream) {
+      await this.doConnectStream(this.stream)
+    }
   },
   watch: {
     stream(value) {

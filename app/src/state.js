@@ -1,7 +1,7 @@
 import { messages } from './lib/emitter'
 import { setupWebRTC } from './logic/connection'
 import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getUserMedia } from './logic/stream'
-import { trackException } from './lib/bugs'
+import { trackException, trackSilentException } from './lib/bugs'
 
 const log = require('debug')('app:state')
 
@@ -139,7 +139,13 @@ async function switchVideo() {
       }
       stream = await blurLib.startBlurTransform(stream)
       Array.from(stream.getAudioTracks()).forEach(t => stream.removeTrack(t))
-      audioTracks.forEach(t => stream.addTrack(t))
+      audioTracks.forEach(t => {
+        try {
+          stream.addTrack(t)
+        } catch (err) {
+          trackSilentException(err)
+        }
+      })
     } else if (blurLib) {
       log('stop blur')
       blurLib.stopBlurTransform()
