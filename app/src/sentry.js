@@ -1,17 +1,16 @@
 import * as Sentry from '@sentry/browser'
 import { Vue as VueIntegration } from '@sentry/integrations'
 import { assert } from './lib/assert'
+import { RELEASE } from './config'
 
 window.sentry = Sentry
 
 export function setupSentry({ dsn, Vue } = {}) {
   assert(dsn)
   assert(Vue)
-  const release = process.env.VUE_APP_NAME + '@' + process.env.VUE_APP_VERSION
-  console.info(release)
   Sentry.init({
     dsn,
-    release,
+    release: RELEASE,
     integrations: [
       new VueIntegration({ Vue, attachProps: true }),
     ],

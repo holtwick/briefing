@@ -285,3 +285,13 @@ body {
     font-size: 0.9rem;
   }
 }
+
+.release-info,
+.release-info a {
+  color: #666666;
+  margin-top: $px-16;
+  margin-bottom: $px-32;
+  text-align: right;
+  text-decoration: none;
+  font-size: 0.8rem;
+}

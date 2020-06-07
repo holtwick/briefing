@@ -36,12 +36,16 @@
       <sea-switch v-model="sentry">{{ l.settings.sentry}}</sea-switch>
       <div class="settings-info" v-html="l.settings.sentry_info"></div>
     </div>
+    <div class="release-info">
+      <a href="https://github.com/holtwick/briefing" target="_blank" rel="noopener" title="Open Github source code repository">{{ release }}</a>
+    </div>
   </div>
 </template>
 
 <script>
 import { messages } from '../lib/emitter'
 import SeaSwitch from '../ui/sea-switch'
+import { RELEASE } from '../config'
 
 export default {
   name: 'app-settings',
@@ -54,6 +58,7 @@ export default {
     }
   },
   computed: {
+    release: _ => RELEASE,
     sentry: {
       set(v) {
         localStorage.allowSentry = v ? '1' : '0'
