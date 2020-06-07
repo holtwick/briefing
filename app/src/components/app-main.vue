@@ -23,6 +23,13 @@
         <div class="message">{{ state.error }} <u @click="doReload">Reload page</u></div>
       </div>
 
+      <div class="message-container" v-else-if="state.upgrade">
+        <div class="message">
+          A new version of this web app has been downloaded.
+          <u @click="doReload">Reload page</u>
+        </div>
+      </div>
+
       <div class="message-container" v-else-if="!hasPeers">
         <div class="message" v-html="l.share.message"></div>
       </div>

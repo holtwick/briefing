@@ -62,8 +62,11 @@ export let state = {
   vapidPublicKey: null,
 
   error: null,
+  upgrade: false,
 
 }
+
+messages.on('upgrade', _ => state.upgrade = true)
 
 messages.on('updateStream', updateStream)
 
