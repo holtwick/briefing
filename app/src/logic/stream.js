@@ -1,5 +1,7 @@
 import { trackException, trackSilentException } from '../lib/bugs'
 
+const log = require('debug')('app:stream')
+
 export async function getDevices() {
   try {
     return navigator.mediaDevices.enumerateDevices()
@@ -43,9 +45,57 @@ export async function getUserMedia(constraints = {
   try {
     // Solution via https://stackoverflow.com/a/47958949/140927
     // Only available for HTTPS! See https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#Security
-    return navigator.mediaDevices.getUserMedia(constraints)
+    if (!navigator?.mediaDevices?.getUserMedia) {
+      return { error: 'Accessing the media devices is not available.' }
+    }
+    log('getUserMedia constraints', constraints)
+    let stream = await navigator.mediaDevices.getUserMedia(constraints)
+    return { stream }
   } catch (err) {
+    if (err?.name === 'NotAllowedError') {
+      return { error: 'You denied access to your camera and microphone. Please check your setup.' }
+    } else if (err?.name === 'NotFoundError') {
+      return { error: 'No camera or microphone has been found!' }
+    }
     trackException(err)
+    return { error: err?.message || err?.name || err.toString() }
   }
+}
+
+export async function getDisplayMedia(constraints = {
+  video: {
+    cursor: 'always',
+  },
+}) {
+  try {
+    if (!navigator?.mediaDevices?.getDisplayMedia) {
+      return { error: 'Accessing the desktop is not available.' }
+    }
+    // Solution via https://stackoverflow.com/a/47958949/140927
+    // Only available for HTTPS! See https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#Security
+    log('getDisplayMedia constraints', constraints)
+    let stream = await navigator.mediaDevices.getDisplayMedia(constraints)
+    return { stream }
+  } catch (err) {
+    if (err?.name === 'NotAllowedError') {
+      return { error: 'You denied access to your camera and microphone. Please check your setup.' }
+    } else if (err?.name === 'NotFoundError') {
+      return { error: 'No camera or microphone has been found!' }
+    }
+    trackException(err)
+    return { error: err?.message || err?.name || err.toString() }
+  }
+}
+
+export function setAudioTracks(stream, audioTracks) {
+  Array.from(stream.getAudioTracks()).forEach(t => stream.removeTrack(t))
+  audioTracks.forEach(t => {
+    try {
+      stream.addTrack(t)
+    } catch (err) {
+      trackSilentException(err)
+    }
+  })
+  return stream
 }
 

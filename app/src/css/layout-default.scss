@@ -27,15 +27,35 @@
     }
 
     .item:first-child:nth-last-child(5),
-    .item:first-child:nth-last-child(5) ~ .item {
-      min-height: 50%;
-      width: 33.3333%;
-    }
-
+    .item:first-child:nth-last-child(5) ~ .item,
     .item:first-child:nth-last-child(6),
     .item:first-child:nth-last-child(6) ~ .item {
       min-height: 50%;
       width: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(7),
+    .item:first-child:nth-last-child(7) ~ .item,
+    .item:first-child:nth-last-child(8),
+    .item:first-child:nth-last-child(8) ~ .item {
+      min-height: 50%;
+      width: 25%;
+    }
+
+    .item:first-child:nth-last-child(9),
+    .item:first-child:nth-last-child(9) ~ .item {
+      min-height: 33.3333%;
+      width: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(10),
+    .item:first-child:nth-last-child(10) ~ .item,
+    .item:first-child:nth-last-child(11),
+    .item:first-child:nth-last-child(11) ~ .item,
+    .item:first-child:nth-last-child(12),
+    .item:first-child:nth-last-child(12) ~ .item {
+      min-height: 33.3333%;
+      width: 25%;
     }
 
   }
@@ -69,15 +89,35 @@
     }
 
     .item:first-child:nth-last-child(5),
-    .item:first-child:nth-last-child(5) ~ .item {
-      width: 50%;
-      height: 33.3333%;
-    }
-
+    .item:first-child:nth-last-child(5) ~ .item,
     .item:first-child:nth-last-child(6),
     .item:first-child:nth-last-child(6) ~ .item {
       width: 50%;
       height: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(7),
+    .item:first-child:nth-last-child(7) ~ .item,
+    .item:first-child:nth-last-child(8),
+    .item:first-child:nth-last-child(8) ~ .item {
+      width: 50%;
+      height: 25%;
+    }
+
+    .item:first-child:nth-last-child(9),
+    .item:first-child:nth-last-child(9) ~ .item {
+      width: 33.3333%;
+      height: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(10),
+    .item:first-child:nth-last-child(10) ~ .item,
+    .item:first-child:nth-last-child(11),
+    .item:first-child:nth-last-child(11) ~ .item,
+    .item:first-child:nth-last-child(12),
+    .item:first-child:nth-last-child(12) ~ .item {
+      width: 33.3333%;
+      height: 25%;
     }
 
   }

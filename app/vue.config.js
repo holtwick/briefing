@@ -1,6 +1,13 @@
 // Copyright (c) 2018. Dirk Holtwick <holtwick.de>
 
-const isProduction = process.env.NODE_ENV === 'production'
+let env = process.env
+
+const isProduction = env.NODE_ENV === 'production'
+
+env.VUE_APP_NAME = env.npm_package_name
+env.VUE_APP_VERSION = env.npm_package_version
+env.VUE_APP_AUTHOR_NAME = env.npm_package_author_name
+env.VUE_APP_AUTHOR_EMAIL = env.npm_package_author_email
 
 let config = {
   publicPath: '/',

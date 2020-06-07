@@ -36,12 +36,16 @@
       <sea-switch v-model="sentry">{{ l.settings.sentry}}</sea-switch>
       <div class="settings-info" v-html="l.settings.sentry_info"></div>
     </div>
+    <div class="release-info">
+      <a href="https://github.com/holtwick/briefing" target="_blank" rel="noopener" title="Open Github source code repository">{{ release }}</a>
+    </div>
   </div>
 </template>
 
 <script>
 import { messages } from '../lib/emitter'
 import SeaSwitch from '../ui/sea-switch'
+import { RELEASE } from '../config'
 
 export default {
   name: 'app-settings',
@@ -54,6 +58,7 @@ export default {
     }
   },
   computed: {
+    release: _ => RELEASE,
     sentry: {
       set(v) {
         localStorage.allowSentry = v ? '1' : '0'
@@ -73,11 +78,11 @@ export default {
           deviceId: 'desktop',
           label: this.l.settings.desktop,
         },
-        ...this.state.devices.filter(d => d.kind.toLowerCase() === 'videoinput' && d.deviceId !== 'default'),
+        ...this.state.devices.filter(d => d.kind === 'videoinput' && d.deviceId !== 'default'),
       ]
     },
     audio() {
-      return this.state.devices.filter(d => d.kind.toLowerCase() === 'audioinput' && d.deviceId !== 'default')
+      return this.state.devices.filter(d => d.kind === 'audioinput' && d.deviceId !== 'default')
     },
     // audioOut() {
     //   return this.state.devices.filter(d => d.kind.toLowerCase() === 'audiooutput' && d.deviceId !== 'default')
@@ -87,15 +92,15 @@ export default {
   watch: {
     async 'state.deviceVideo'() {
       await this.$nextTick()
-      messages.emit('switchVideo')
+      messages.emit('switchMedia')
     },
     async 'state.deviceAudio'() {
       await this.$nextTick()
-      messages.emit('switchVideo')
+      messages.emit('switchMedia')
     },
     async 'state.blur'() {
       await this.$nextTick()
-      messages.emit('switchVideo')
+      messages.emit('switchMedia')
     },
     async 'state.bandwidth'() {
       await this.$nextTick()

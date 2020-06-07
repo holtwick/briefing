@@ -288,11 +288,14 @@ export default {
     },
     charAnimation() {
       setTimeout(() => {
-        this.currentChar++
-        this.$refs.input.value = this.defaultName.substr(0, this.currentChar)
-        this.updateInput()
-        if (this.currentChar < this.defaultName.length) {
-          this.charAnimation()
+        let input = this.$refs.input
+        if (input) {
+          this.currentChar++
+          this.$refs.input.value = this.defaultName.substr(0, this.currentChar)
+          this.updateInput()
+          if (this.currentChar < this.defaultName.length) {
+            this.charAnimation()
+          }
         }
       }, 100)
     },
@@ -306,16 +309,18 @@ export default {
     await this.$nextTick()
 
     const input = this.$refs.input
-    input.style.width = input.scrollWidth + 'px'
-    this.updateInput()
+    if (input) {
+      input.style.width = input.scrollWidth + 'px'
+      this.updateInput()
 
-    this.observer = new ResizeObserver(this.updateInput)
-    this.observer.observe(document.body)
+      this.observer = new ResizeObserver(this.updateInput)
+      this.observer.observe(document.body)
 
-    this.charAnimation()
+      this.charAnimation()
 
-    if (!(/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent))) {
-      input.focus()
+      if (!(/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent))) {
+        input.focus()
+      }
     }
   },
 
