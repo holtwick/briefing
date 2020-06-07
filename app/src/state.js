@@ -194,10 +194,6 @@ export async function setup() {
     updateStream()
     messages.emit('setLocalStream', state.stream)
 
-    state.stream = stream
-    updateStream()
-    messages.emit('setLocalStream', state.stream)
-
   } catch (err) {
     trackException(err)
   }
