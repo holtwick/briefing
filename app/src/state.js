@@ -1,7 +1,7 @@
 import { messages } from './lib/emitter'
 import { setupWebRTC } from './logic/connection'
-import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getDisplayMedia, getUserMedia } from './logic/stream'
-import { trackException, trackSilentException } from './lib/bugs'
+import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getDisplayMedia, getUserMedia, setAudioTracks } from './logic/stream'
+import { trackException } from './lib/bugs'
 
 const log = require('debug')('app:state')
 
@@ -78,11 +78,11 @@ function updateStream() {
   }
 }
 
-messages.on('switchVideo', switchVideo)
+messages.on('switchMedia', switchMedia)
 
 let blurLib
 
-async function switchVideo() {
+async function switchMedia() {
   let audio = {
     ...defaultAudioConstraints,
   }
@@ -104,53 +104,60 @@ async function switchVideo() {
     video,
   }
 
-  let stream, media
+  let stream, desktopStream, media
   const showsDesktop = state.deviceVideo === 'desktop'
 
   if (showsDesktop) {
-    media = await getDisplayMedia(video)
-  } else {
-    media = await getUserMedia(constraints)
+    let { stream } = await getDisplayMedia(video)
+    if (stream) {
+      desktopStream = stream
+      delete constraints.video
+    }
   }
+
+  media = await getUserMedia(constraints)
   state.error = media.error
   stream = media.stream
 
   log('Stream', stream, constraints)
   if (stream) {
     let success = true
-    let videoTracks = stream.getVideoTracks()
-    if (state.deviceVideo && videoTracks?.length <= 0) {
-      state.deviceVideo = null
-      success = false
-    }
+
     let audioTracks = stream.getAudioTracks()
     if (state.deviceAudio && audioTracks?.length <= 0) {
       state.deviceAudio = null
       success = false
     }
 
+    if (desktopStream) {
+      setAudioTracks(desktopStream, audioTracks)
+      stream = desktopStream
+    }
+
+    let videoTracks = stream.getVideoTracks()
+    if (state.deviceVideo && videoTracks?.length <= 0) {
+      state.deviceVideo = null
+      success = false
+    }
+
+    // Reset to defaults
     if (!success) {
-      return await switchVideo()
+      await switchMedia()
     }
 
     log('blur what?', state.blur, blurLib)
-    if (state.blur && !showsDesktop) {
-      if (!blurLib) {
-        blurLib = await import(/* webpackChunkName: 'blur' */ './logic/blur')
-      }
+    if (state.blur && !desktopStream) {
+      blurLib = await import(/* webpackChunkName: 'blur' */ './logic/blur')
       stream = await blurLib.startBlurTransform(stream)
-      Array.from(stream.getAudioTracks()).forEach(t => stream.removeTrack(t))
-      audioTracks.forEach(t => {
-        try {
-          stream.addTrack(t)
-        } catch (err) {
-          trackSilentException(err)
-        }
-      })
-    } else if (blurLib) {
-      log('stop blur')
-      blurLib.stopBlurTransform()
+      setAudioTracks(stream, audioTracks)
+    } else {
+      if (blurLib) {
+        log('stop blur')
+        blurLib.stopBlurTransform()
+      }
+      blurLib = null
     }
+
   } else {
     console.error('Media error', media.error)
   }

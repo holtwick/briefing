@@ -87,15 +87,15 @@ export default {
   watch: {
     async 'state.deviceVideo'() {
       await this.$nextTick()
-      messages.emit('switchVideo')
+      messages.emit('switchMedia')
     },
     async 'state.deviceAudio'() {
       await this.$nextTick()
-      messages.emit('switchVideo')
+      messages.emit('switchMedia')
     },
     async 'state.blur'() {
       await this.$nextTick()
-      messages.emit('switchVideo')
+      messages.emit('switchMedia')
     },
     async 'state.bandwidth'() {
       await this.$nextTick()

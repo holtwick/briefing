@@ -1,5 +1,7 @@
 import { trackException, trackSilentException } from '../lib/bugs'
 
+const log = require('debug')('app:stream')
+
 export async function getDevices() {
   try {
     return navigator.mediaDevices.enumerateDevices()
@@ -46,6 +48,7 @@ export async function getUserMedia(constraints = {
     if (!navigator?.mediaDevices?.getUserMedia) {
       return { error: 'Accessing the media devices is not available.' }
     }
+    log('getUserMedia constraints', constraints)
     let stream = await navigator.mediaDevices.getUserMedia(constraints)
     return { stream }
   } catch (err) {
@@ -70,6 +73,7 @@ export async function getDisplayMedia(constraints = {
     }
     // Solution via https://stackoverflow.com/a/47958949/140927
     // Only available for HTTPS! See https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#Security
+    log('getDisplayMedia constraints', constraints)
     let stream = await navigator.mediaDevices.getDisplayMedia(constraints)
     return { stream }
   } catch (err) {
@@ -82,3 +86,16 @@ export async function getDisplayMedia(constraints = {
     return { error: err?.message || err?.name || err.toString() }
   }
 }
+
+export function setAudioTracks(stream, audioTracks) {
+  Array.from(stream.getAudioTracks()).forEach(t => stream.removeTrack(t))
+  audioTracks.forEach(t => {
+    try {
+      stream.addTrack(t)
+    } catch (err) {
+      trackSilentException(err)
+    }
+  })
+  return stream
+}
+
