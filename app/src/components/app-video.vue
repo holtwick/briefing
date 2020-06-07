@@ -109,7 +109,7 @@ export default {
       try {
         log('force play')
         await this.$nextTick()
-        this.$refs.video.play()
+        this.$refs?.video?.play()
       } catch (err) {
         trackSilentException(err)
       }

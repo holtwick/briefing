@@ -19,15 +19,12 @@
         :stream="peer.peer.stream"
       />
 
-      <div class="message-container">
-        <div class="message">
-          To use Briefing you have to give access to your camera and audio. <a href="#">Try again</a>
-        </div>
+      <div class="message-container -error" v-if="state.error">
+        <div class="message">{{ state.error }} <u @click="doReload">Reload page</u></div>
       </div>
 
-      <div class="message-container" v-if="!hasPeers">
-        <div class="message" v-html="l.share.message">
-        </div>
+      <div class="message-container" v-else-if="!hasPeers">
+        <div class="message" v-html="l.share.message"></div>
       </div>
 
     </div>
@@ -151,6 +148,9 @@ export default {
         location.assign('/ng/')
       }
     },
+    doReload() {
+      location.reload()
+    }
   },
   async mounted() {
     this.conn = await setup()

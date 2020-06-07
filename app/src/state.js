@@ -1,6 +1,6 @@
 import { messages } from './lib/emitter'
 import { setupWebRTC } from './logic/connection'
-import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getUserMedia } from './logic/stream'
+import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getDisplayMedia, getUserMedia } from './logic/stream'
 import { trackException, trackSilentException } from './lib/bugs'
 
 const log = require('debug')('app:state')
@@ -61,14 +61,18 @@ export let state = {
   // For notifications
   vapidPublicKey: null,
 
+  error: null,
+
 }
 
 messages.on('updateStream', updateStream)
 
 function updateStream() {
   try {
-    state?.stream?.getVideoTracks().forEach(t => t.enabled = !state?.muteVideo)
-    state?.stream?.getAudioTracks().forEach(t => t.enabled = !state?.muteAudio)
+    if (state.stream) {
+      state.stream?.getVideoTracks().forEach(t => t.enabled = !state?.muteVideo)
+      state.stream?.getAudioTracks().forEach(t => t.enabled = !state?.muteAudio)
+    }
   } catch (err) {
     trackException(err)
   }
@@ -100,20 +104,17 @@ async function switchVideo() {
     video,
   }
 
-  let stream
+  let stream, media
   const showsDesktop = state.deviceVideo === 'desktop'
 
   if (showsDesktop) {
-    log('desktop')
-    video = {
-      video: {
-        cursor: 'always',
-      },
-    }
-    stream = await navigator.mediaDevices.getDisplayMedia(video)
+    media = await getDisplayMedia(video)
   } else {
-    stream = await navigator.mediaDevices.getUserMedia(constraints)
+    media = await getUserMedia(constraints)
   }
+  this.state.error = media.error
+  stream = media.stream
+
   log('Stream', stream, constraints)
   if (stream) {
     let success = true
@@ -150,15 +151,13 @@ async function switchVideo() {
       log('stop blur')
       blurLib.stopBlurTransform()
     }
-
-    state.stream = stream
-    updateStream()
-
-    messages.emit('setLocalStream', state.stream)
-
   } else {
-    log('Stream not found')
+    console.error('Media error', media.error)
   }
+
+  state.stream = stream
+  updateStream()
+  messages.emit('setLocalStream', state.stream)
 }
 
 export async function setup() {
@@ -173,14 +172,30 @@ export async function setup() {
       return
     }
 
-    let stream = await getUserMedia()
+    let { stream, error } = await getUserMedia()
+    state.error = error
+    if (stream) {
 
-    // Safari getDevices only works immediately after getUserMedia (bug)
-    state.devices = await getDevices()
+      // Safari getDevices only works immediately after getUserMedia (bug)
+      state.devices = (await getDevices() || []).map(d => {
+        log('found device', d)
+        return {
+          kind: d?.kind?.toLowerCase() || '?',
+          deviceId: d?.deviceId,
+          label: d.label || 'Unknown name',
+        }
+      })
+
+    } else {
+      console.error('Media error', error)
+    }
 
     state.stream = stream
     updateStream()
+    messages.emit('setLocalStream', state.stream)
 
+    state.stream = stream
+    updateStream()
     messages.emit('setLocalStream', state.stream)
 
   } catch (err) {
