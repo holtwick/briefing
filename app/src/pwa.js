@@ -15,10 +15,10 @@ if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && window.beake
 
 if (localStorage.allowSentry !== '0') {
   console.log('Sentry bug tracking is allowed')
-  import(/* webpackChunkName: 'sentry' */ './sentry').then(({setupSentry}) => {
+  import(/* webpackChunkName: 'sentry' */ './sentry').then(({ setupSentry }) => {
     setupSentry({
       dsn: 'https://5e7bc1b62da1458b8117dc68d6242746@o120938.ingest.sentry.io/5266804',
-      Vue
+      Vue,
     })
     console.log('Did init Sentry bug tracking')
   })
