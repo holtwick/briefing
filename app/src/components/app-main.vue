@@ -7,7 +7,7 @@
         v-if="state.stream"
         :stream="state.stream"
         muted
-        :mirrored="true"
+        :mirrored="state.deviceVideo !== 'desktop'"
         title="Local"
         id="self"
       />

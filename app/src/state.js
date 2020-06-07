@@ -112,7 +112,7 @@ async function switchVideo() {
   } else {
     media = await getUserMedia(constraints)
   }
-  this.state.error = media.error
+  state.error = media.error
   stream = media.stream
 
   log('Stream', stream, constraints)
