@@ -1,5 +1,9 @@
 # Setup `coturn` server
 
+> This is only required if you want to set up your own COTURN server.
+> Briefing already is connected to an instance of such a server, which is located in Germany at [Hetzner](https://www.hetzner.com/).
+> Alternatively you can also use free STUN servers from Google or others.  
+
 Follow these steps: https://community.hetzner.com/tutorials/install-turn-stun-server-on-debian-ubuntu-with-coturn
 
 Additionally:

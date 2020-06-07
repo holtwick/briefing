@@ -7,7 +7,7 @@
         v-if="state.stream"
         :stream="state.stream"
         muted
-        :mirrored="true"
+        :mirrored="state.deviceVideo !== 'desktop'"
         title="Local"
         id="self"
       />
@@ -19,9 +19,19 @@
         :stream="peer.peer.stream"
       />
 
-      <div class="message-container" v-if="!hasPeers">
-        <div class="message" v-html="l.share.message">
+      <div class="message-container -error" v-if="state.error">
+        <div class="message">{{ state.error }} <u @click="doReload">Reload page</u></div>
+      </div>
+
+      <div class="message-container" v-else-if="state.upgrade">
+        <div class="message">
+          A new version of this web app has been downloaded.
+          <u @click="doReload">Reload page</u>
         </div>
+      </div>
+
+      <div class="message-container" v-else-if="!hasPeers">
+        <div class="message" v-html="l.share.message"></div>
       </div>
 
     </div>
@@ -145,6 +155,9 @@ export default {
         location.assign('/ng/')
       }
     },
+    doReload() {
+      location.reload()
+    }
   },
   async mounted() {
     this.conn = await setup()

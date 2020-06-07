@@ -1,6 +1,6 @@
 import { messages } from './lib/emitter'
 import { setupWebRTC } from './logic/connection'
-import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getUserMedia } from './logic/stream'
+import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getDisplayMedia, getUserMedia, setAudioTracks } from './logic/stream'
 import { trackException } from './lib/bugs'
 
 const log = require('debug')('app:state')
@@ -59,22 +59,33 @@ export let state = {
   maximized: '',
 
   // For notifications
-  vapidPublicKey: null
+  vapidPublicKey: null,
+
+  error: null,
+  upgrade: false,
 
 }
+
+messages.on('upgrade', _ => state.upgrade = true)
 
 messages.on('updateStream', updateStream)
 
 function updateStream() {
-  state.stream.getAudioTracks().forEach(t => t.enabled = !state.muteAudio)
-  state.stream.getVideoTracks().forEach(t => t.enabled = !state.muteVideo)
+  try {
+    if (state.stream) {
+      state.stream?.getVideoTracks().forEach(t => t.enabled = !state?.muteVideo)
+      state.stream?.getAudioTracks().forEach(t => t.enabled = !state?.muteAudio)
+    }
+  } catch (err) {
+    trackException(err)
+  }
 }
 
-messages.on('switchVideo', switchVideo)
+messages.on('switchMedia', switchMedia)
 
 let blurLib
 
-async function switchVideo() {
+async function switchMedia() {
   let audio = {
     ...defaultAudioConstraints,
   }
@@ -96,59 +107,67 @@ async function switchVideo() {
     video,
   }
 
-  let stream
+  let stream, desktopStream, media
   const showsDesktop = state.deviceVideo === 'desktop'
 
   if (showsDesktop) {
-    log('desktop')
-    video = {
-      video: {
-        cursor: 'always',
-      },
+    let { stream } = await getDisplayMedia(video)
+    if (stream) {
+      desktopStream = stream
+      delete constraints.video
     }
-    stream = await navigator.mediaDevices.getDisplayMedia(video)
-  } else {
-    stream = await navigator.mediaDevices.getUserMedia(constraints)
   }
+
+  media = await getUserMedia(constraints)
+  state.error = media.error
+  stream = media.stream
+
   log('Stream', stream, constraints)
   if (stream) {
     let success = true
-    let videoTracks = stream.getVideoTracks()
-    if (state.deviceVideo && videoTracks?.length <= 0) {
-      state.deviceVideo = null
-      success = false
-    }
+
     let audioTracks = stream.getAudioTracks()
     if (state.deviceAudio && audioTracks?.length <= 0) {
       state.deviceAudio = null
       success = false
     }
 
+    if (desktopStream) {
+      setAudioTracks(desktopStream, audioTracks)
+      stream = desktopStream
+    }
+
+    let videoTracks = stream.getVideoTracks()
+    if (state.deviceVideo && videoTracks?.length <= 0) {
+      state.deviceVideo = null
+      success = false
+    }
+
+    // Reset to defaults
     if (!success) {
-      return await switchVideo()
+      await switchMedia()
     }
 
     log('blur what?', state.blur, blurLib)
-    if (state.blur && !showsDesktop) {
-      if (!blurLib) {
-        blurLib = await import(/* webpackChunkName: 'blur' */ './logic/blur')
-      }
+    if (state.blur && !desktopStream) {
+      blurLib = await import(/* webpackChunkName: 'blur' */ './logic/blur')
       stream = await blurLib.startBlurTransform(stream)
-      Array.from(stream.getAudioTracks()).forEach(t => stream.removeTrack(t))
-      audioTracks.forEach(t => stream.addTrack(t))
-    } else if (blurLib) {
-      log('stop blur')
-      blurLib.stopBlurTransform()
+      setAudioTracks(stream, audioTracks)
+    } else {
+      if (blurLib) {
+        log('stop blur')
+        blurLib.stopBlurTransform()
+      }
+      blurLib = null
     }
 
-    state.stream = stream
-    updateStream()
-
-    messages.emit('setLocalStream', state.stream)
-
   } else {
-    log('Stream not found')
+    console.error('Media error', media.error)
   }
+
+  state.stream = stream
+  updateStream()
+  messages.emit('setLocalStream', state.stream)
 }
 
 export async function setup() {
@@ -163,14 +182,26 @@ export async function setup() {
       return
     }
 
-    let stream = await getUserMedia()
+    let { stream, error } = await getUserMedia()
+    state.error = error
+    if (stream) {
 
-    // Safari getDevices only works immediately after getUserMedia (bug)
-    state.devices = await getDevices()
+      // Safari getDevices only works immediately after getUserMedia (bug)
+      state.devices = (await getDevices() || []).map(d => {
+        log('found device', d)
+        return {
+          kind: d?.kind?.toLowerCase() || '?',
+          deviceId: d?.deviceId,
+          label: d.label || 'Unknown name',
+        }
+      })
+
+    } else {
+      console.error('Media error', error)
+    }
 
     state.stream = stream
     updateStream()
-
     messages.emit('setLocalStream', state.stream)
 
   } catch (err) {

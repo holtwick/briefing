@@ -259,7 +259,18 @@ body {
       stroke-width: 1.5;
       stroke: black;
     }
+
+    u {
+      cursor: pointer;
+    }
   }
+
+  &.-error .message {
+    color: white;
+    font-weight: bold;
+    background-color: rgba(191, 0, 0, 0.85);
+  }
+
 }
 
 .settings-group {
@@ -273,4 +284,14 @@ body {
     line-height: 1.2rem;
     font-size: 0.9rem;
   }
+}
+
+.release-info,
+.release-info a {
+  color: #666666;
+  margin-top: $px-16;
+  margin-bottom: $px-32;
+  text-align: right;
+  text-decoration: none;
+  font-size: 0.8rem;
 }

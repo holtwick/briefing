@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { trackException, trackSilentException } from '../lib/bugs'
+import { trackSilentException } from '../lib/bugs'
 
 const log = require('debug')('app:app-peer')
 
@@ -41,6 +41,8 @@ async function connectStreamToVideoElement(stream, video) {
       video.src = window.URL.createObjectURL(stream) // for older browsers
     }
     video.onloadedmetadata = function (e) {
+      // Keep in mind https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
+      // But if the user allows to access camera it should be fine
       video.play()
     }
     // setInterval(async () => {
@@ -88,10 +90,12 @@ export default {
     async doConnectStream(stream) {
       log('doConnectStream', this.title, stream)
       if (stream) {
-        await this.$nextTick()
-        await connectStreamToVideoElement(stream, this.$refs.video)
-        // stream.onaddtrack = async () => await connectStreamToVideoElement(stream, this.$refs.video)
-        // stream.onremovetrack = async () => await connectStreamToVideoElement(stream, this.$refs.video)
+        try {
+          await this.$nextTick()
+          await connectStreamToVideoElement(stream, this.$refs.video)
+        } catch (err) {
+          trackSilentException(err)
+        }
       }
     },
     handleClick() {
@@ -101,10 +105,11 @@ export default {
         this.state.maximized = this.id
       }
     },
-    doPlay() {
-      log('force play')
+    async doPlay() {
       try {
-        this.$refs.video.play()
+        log('force play')
+        await this.$nextTick()
+        this.$refs?.video?.play()
       } catch (err) {
         trackSilentException(err)
       }
@@ -115,7 +120,9 @@ export default {
     //   await this.$nextTick()
     //   await this.doConnectStream(this.stream)
     // })
-    await this.doConnectStream(this.stream)
+    if (this.stream) {
+      await this.doConnectStream(this.stream)
+    }
   },
   watch: {
     stream(value) {
