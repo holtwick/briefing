@@ -19,7 +19,16 @@
         :stream="peer.peer.stream"
       />
 
-      <div class="message-container -error" v-if="state.error">
+      <div class="message-container -error" v-if="state.requestBugTracking">
+        <div class="message">
+          An error occurred.
+          Please help us fixing it by allowing to send the details to us.
+          This option is also available in the settings. Thanks!
+          <u @click="doAllow(true)">Allow</u> | <u @click="doAllow(false)">Deny</u>
+        </div>
+      </div>
+
+      <div class="message-container -error" v-else-if="state.error">
         <div class="message">{{ state.error }} <u @click="doReload">Reload page</u></div>
       </div>
 
@@ -113,6 +122,7 @@ import SeaButton from '../ui/sea-button'
 import SeaLink from '../ui/sea-link'
 import SeaModal from '../ui/sea-modal'
 import AppVideo from './app-video'
+import { setAllowedBugTracking } from '../bugs'
 
 const log = require('debug')('app:app-sidebar')
 
@@ -157,7 +167,13 @@ export default {
     },
     doReload() {
       location.reload()
-    }
+    },
+    doAllow(allow) {
+      if (allow) {
+        setAllowedBugTracking(allow)
+      }
+      this.state.requestBugTracking = false
+    },
   },
   async mounted() {
     this.conn = await setup()

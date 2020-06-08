@@ -24,7 +24,7 @@
 <script>
 // import Popover from './sea-popover'
 import SeaSymbol from './sea-symbol'
-import { trackException } from '../lib/bugs'
+import { trackException } from '../bugs'
 
 const log = require('debug')('ui:button')
 

@@ -1,7 +1,7 @@
 import { messages } from './lib/emitter'
 import { setupWebRTC } from './logic/connection'
 import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getDisplayMedia, getUserMedia, setAudioTracks } from './logic/stream'
-import { trackException } from './lib/bugs'
+import { trackException, trackSilentException } from './bugs'
 
 const log = require('debug')('app:state')
 
@@ -14,12 +14,16 @@ let m = /^\/ngs?\/(.*?)$/gi.exec(location.pathname)
 let room = m && m[1] || null
 // console.log('Room =', room)
 
-if (location.pathname === '/') {
-  window.history.pushState(
-    {},
-    'brie.fi/ng',
-    '/ng',
-  )
+try {
+  if (location.pathname === '/') {
+    window.history.pushState(
+      null, // { room: '' },
+      null, // 'brie.fi/ng',
+      '/ng',
+    )
+  }
+} catch (err) {
+  trackSilentException(err)
 }
 
 // STATE
@@ -63,9 +67,11 @@ export let state = {
 
   error: null,
   upgrade: false,
+  requestBugTracking: false,
 
 }
 
+messages.on('requestBugTracking', _ => state.requestBugTracking = true)
 messages.on('upgrade', _ => state.upgrade = true)
 
 messages.on('updateStream', updateStream)
@@ -134,6 +140,7 @@ async function switchMedia() {
 
     if (desktopStream) {
       setAudioTracks(desktopStream, audioTracks)
+
       stream = desktopStream
     }
 
@@ -162,7 +169,7 @@ async function switchMedia() {
     }
 
   } else {
-    console.error('Media error', media.error)
+    console.error('Media error:', media.error)
   }
 
   state.stream = stream

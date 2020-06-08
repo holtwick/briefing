@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { trackSilentException } from '../lib/bugs'
+import { trackSilentException } from '../bugs'
 
 const log = require('debug')('app:app-peer')
 

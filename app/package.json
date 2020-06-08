@@ -1,7 +1,7 @@
 {
   "name": "briefing",
   "description": "Start a secure anonymous video chat",
-  "version": "1.7.6",
+  "version": "1.8.0",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
@@ -27,8 +27,8 @@
     "electron >= 8"
   ],
   "dependencies": {
-    "@sentry/browser": "^5.16.1",
-    "@sentry/integrations": "^5.16.1",
+    "@sentry/browser": "^5.17.0",
+    "@sentry/integrations": "^5.17.0",
     "@tensorflow-models/body-pix": "^2.0.5",
     "@tensorflow/tfjs-converter": "^1.7.4",
     "@tensorflow/tfjs-core": "^1.7.4",

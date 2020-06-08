@@ -1,4 +1,4 @@
-import { trackException, trackSilentException } from '../lib/bugs'
+import { trackException, trackSilentException } from '../bugs'
 
 const log = require('debug')('app:stream')
 
@@ -52,9 +52,10 @@ export async function getUserMedia(constraints = {
     let stream = await navigator.mediaDevices.getUserMedia(constraints)
     return { stream }
   } catch (err) {
-    if (err?.name === 'NotAllowedError') {
+    const name = err?.name || err?.toString()
+    if (name === 'NotAllowedError') {
       return { error: 'You denied access to your camera and microphone. Please check your setup.' }
-    } else if (err?.name === 'NotFoundError') {
+    } else if (name === 'NotFoundError') {
       return { error: 'No camera or microphone has been found!' }
     }
     trackException(err)
@@ -77,9 +78,10 @@ export async function getDisplayMedia(constraints = {
     let stream = await navigator.mediaDevices.getDisplayMedia(constraints)
     return { stream }
   } catch (err) {
-    if (err?.name === 'NotAllowedError') {
+    const name = err?.name || err?.toString()
+    if (name === 'NotAllowedError') {
       return { error: 'You denied access to your camera and microphone. Please check your setup.' }
-    } else if (err?.name === 'NotFoundError') {
+    } else if (name === 'NotFoundError') {
       return { error: 'No camera or microphone has been found!' }
     }
     trackException(err)

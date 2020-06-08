@@ -1,4 +1,4 @@
-import { trackSilentException } from './bugs'
+import { trackSilentException } from '../bugs'
 
 const log = require('debug')('app:emitter')
 
