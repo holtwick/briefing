@@ -67,9 +67,11 @@ export let state = {
 
   error: null,
   upgrade: false,
+  requestBugTracking: false,
 
 }
 
+messages.on('requestBugTracking', _ => state.requestBugTracking = true)
 messages.on('upgrade', _ => state.upgrade = true)
 
 messages.on('updateStream', updateStream)

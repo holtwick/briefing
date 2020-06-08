@@ -28,11 +28,15 @@ export function isAllowedBugTracking() {
 }
 
 export function setAllowedBugTracking(allowed = true, reloadMessage = 'Reload to activate changes') {
+  log('setAllowedBugTracking', allowed)
   if (allowed) {
     localStorage.allowSentry = '1'
     setupBugTracker(_ => {
-      for (let e of collectedErrors) {
-        trackException(e)
+      log('setupBugTracker', collectedErrors)
+      let err
+      while (err = collectedErrors.pop()) {
+        log('send error', err)
+        trackException(err)
       }
     })
   } else {
@@ -51,6 +55,7 @@ export function trackException(e, silent = false) {
     log('sentry exception', e)
     window.sentry.captureException(e)
   } else {
+    collectedErrors.push(e)
     messages.emit('requestBugTracking')
   }
 }
