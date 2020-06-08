@@ -1,5 +1,5 @@
 <template>
-  <div class="peer item" @click="handleClick" :class="{ '-maximized': state.maximized === id }">
+  <div class="peer item" :class="{ '-maximized': state.maximized === id }" @click="handleClick">
     <video
       class="video"
       :class="{'-mirrored': mirrored}"
@@ -9,7 +9,6 @@
       :muted="muted"
       v-if="stream"
       :data-fit="state.fill ? 'cover' : 'contain'"
-      @loadedmetadata="doPlay"
     />
     <div v-else class="video video-placeholder -content-placeholder">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap">
@@ -24,6 +23,13 @@
       </svg>
       <label>You turned the video off</label>
     </div>
+    <div v-if="stream && showPlayButton" class="video video-placeholder -content-placeholder -overlay">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+      </svg>
+      <label>Click to start video</label>
+    </div>
   </div>
 </template>
 
@@ -32,33 +38,8 @@ import { trackSilentException } from '../bugs'
 
 const log = require('debug')('app:app-peer')
 
-async function connectStreamToVideoElement(stream, video) {
-  log('connectStreamToVideoElement', stream, video)
-  if (stream) {
-    if ('srcObject' in video) {
-      video.srcObject = stream
-    } else {
-      video.src = window.URL.createObjectURL(stream) // for older browsers
-    }
-    video.onloadedmetadata = function (e) {
-      // Keep in mind https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
-      // But if the user allows to access camera it should be fine
-      video.play()
-    }
-    // setInterval(async () => {
-    //   try {
-    //     let result = await video.play()
-    //     log('play ok', result)
-    //   } catch (err) {
-    //     log('play error', err)
-    //   }
-    // }, 1000)
-  }
-}
-
 export default {
   name: 'app-video',
-
   props: {
     stream: {
       type: MediaStream | Object,
@@ -84,22 +65,56 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      showPlayButton: false,
+    }
   },
   methods: {
+    playVideo(video) {
+      let startPlayPromise = video.play()
+      log('play', startPlayPromise)
+      if (startPlayPromise !== undefined) {
+        startPlayPromise.then(() => {
+          // Start whatever you need to do only after playback
+          // has begun.
+        }).catch(error => {
+          if (error.name === 'NotAllowedError') {
+            this.showPlayButton = true
+          }
+          trackSilentException(error)
+        })
+      }
+    },
     async doConnectStream(stream) {
       log('doConnectStream', this.title, stream)
       if (stream) {
         try {
           await this.$nextTick()
-          await connectStreamToVideoElement(stream, this.$refs.video)
+
+          let video = this.$refs.video
+          log('connectStreamToVideoElement', stream, video)
+          if (stream) {
+            if ('srcObject' in video) {
+              video.srcObject = stream
+            } else {
+              video.src = window.URL.createObjectURL(stream) // for older browsers
+            }
+
+            // Keep in mind https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
+            // But if the user allows to access camera it should be fine
+            // https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide
+            video.onloadedmetadata = e => this.playVideo(video)
+            video.onloadeddata = e => this.playVideo(video)
+          }
         } catch (err) {
           trackSilentException(err)
         }
       }
     },
     handleClick() {
-      if (this.state.maximized === this.id) {
+      if (this.showPlayButton) {
+        this.doPlay()
+      } else if (this.state.maximized === this.id) {
         this.state.maximized = ''
       } else {
         this.state.maximized = this.id
@@ -107,9 +122,9 @@ export default {
     },
     async doPlay() {
       try {
-        log('force play')
-        await this.$nextTick()
+        log('force play manually')
         this.$refs?.video?.play()
+        this.showPlayButton = false
       } catch (err) {
         trackSilentException(err)
       }
