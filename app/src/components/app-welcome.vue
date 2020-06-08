@@ -286,8 +286,8 @@ export default {
       this.state.room = room
       try {
         window.history.pushState(
-          { room },
-          room,
+          null, // { room },
+          null, // room,
           '/ng/' + room,
         )
       } catch (err) {

@@ -17,8 +17,8 @@ let room = m && m[1] || null
 try {
   if (location.pathname === '/') {
     window.history.pushState(
-      { room: '' },
-      'brie.fi/ng',
+      null, // { room: '' },
+      null, // 'brie.fi/ng',
       '/ng',
     )
   }
