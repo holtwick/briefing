@@ -249,7 +249,7 @@
 
 import { DEBUG } from '../config'
 import AppHelp from './app-help'
-import { trackSilentException } from '../lib/bugs'
+import { trackSilentException } from '../bugs'
 
 function generateName() {
 

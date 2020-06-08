@@ -1,7 +1,7 @@
 import { messages } from './lib/emitter'
 import { setupWebRTC } from './logic/connection'
 import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getDisplayMedia, getUserMedia, setAudioTracks } from './logic/stream'
-import { trackException, trackSilentException } from './lib/bugs'
+import { trackException, trackSilentException } from './bugs'
 
 const log = require('debug')('app:state')
 

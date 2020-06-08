@@ -46,6 +46,7 @@
 import { messages } from '../lib/emitter'
 import SeaSwitch from '../ui/sea-switch'
 import { RELEASE } from '../config'
+import { isAllowedBugTracking, setAllowedBugTracking } from '../bugs'
 
 export default {
   name: 'app-settings',
@@ -61,15 +62,10 @@ export default {
     release: _ => RELEASE,
     sentry: {
       set(v) {
-        localStorage.allowSentry = v ? '1' : '0'
-        if (v) {
-          if (confirm(this.l.settings.sentry_confirm)) {
-            location.reload()
-          }
-        }
+        setAllowedBugTracking(v, this.l.settings.sentry_confirm)
       },
       get() {
-        return localStorage.allowSentry !== '0'
+        return isAllowedBugTracking()
       },
     },
     video() {

@@ -1,4 +1,4 @@
-import { trackException, trackSilentException } from '../lib/bugs'
+import { trackException, trackSilentException } from '../bugs'
 
 const log = require('debug')('app:stream')
 

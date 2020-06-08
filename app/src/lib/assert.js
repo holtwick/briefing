@@ -2,7 +2,7 @@
 
 // const log = require('debug')('assert')
 
-import { trackSilentException } from './bugs'
+import { trackSilentException } from '../bugs'
 
 export function assert(cond, ...args) {
   if (!cond) {
