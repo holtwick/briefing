@@ -80,8 +80,9 @@ export default {
         }).catch(error => {
           if (error.name === 'NotAllowedError') {
             this.showPlayButton = true
+          } else {
+            trackSilentException(error)
           }
-          trackSilentException(error)
         })
       }
     },
