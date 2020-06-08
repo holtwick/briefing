@@ -1,4 +1,4 @@
-import { trackEvent, trackException, trackSilentException } from './bugs'
+import { trackSilentException } from '../bugs'
 
 export function cloneObject(obj) {
   try {

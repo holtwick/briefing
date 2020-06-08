@@ -4,7 +4,7 @@ import SimplePeer from 'simple-peer'
 import { assert } from '../lib/assert'
 import { cloneObject } from '../lib/base'
 import { Emitter } from '../lib/emitter'
-import { trackException } from '../lib/bugs'
+import { trackException } from '../bugs'
 
 const log = require('debug')('app:webrtc-peer')
 

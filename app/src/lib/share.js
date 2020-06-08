@@ -1,5 +1,5 @@
 import clipboardCopy from 'clipboard-copy'
-import { trackException } from './bugs'
+import { trackException } from '../bugs'
 
 export function createLinkForRoom(room) {
   return `https://brie.fi/ng/${room}`

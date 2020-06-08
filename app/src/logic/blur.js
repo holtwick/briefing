@@ -3,7 +3,7 @@
 // https://www.tensorflow.org/js/models
 
 import { assert } from '../lib/assert'
-import { trackException } from '../lib/bugs'
+import { trackException } from '../bugs'
 
 const bodyPix = require('@tensorflow-models/body-pix')
 

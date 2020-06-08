@@ -20,7 +20,7 @@
       <sea-switch v-model="state.fill">{{ l.settings.fill }}</sea-switch>
       <div class="settings-info">{{ l.settings.fill_info }}</div>
     </div>
-    <div class="form-group settings-group">
+    <div class="form-group settings-group" v-if="false">
       <sea-switch v-model="state.bandwidth">{{ l.settings.bandwidth }}</sea-switch>
       <div class="settings-info">{{ l.settings.bandwidth_info }}</div>
     </div>
@@ -46,6 +46,7 @@
 import { messages } from '../lib/emitter'
 import SeaSwitch from '../ui/sea-switch'
 import { RELEASE } from '../config'
+import { isAllowedBugTracking, setAllowedBugTracking } from '../bugs'
 
 export default {
   name: 'app-settings',
@@ -61,15 +62,10 @@ export default {
     release: _ => RELEASE,
     sentry: {
       set(v) {
-        localStorage.allowSentry = v ? '1' : '0'
-        if (v) {
-          if (confirm(this.l.settings.sentry_confirm)) {
-            location.reload()
-          }
-        }
+        setAllowedBugTracking(v, this.l.settings.sentry_confirm)
       },
       get() {
-        return localStorage.allowSentry !== '0'
+        return isAllowedBugTracking()
       },
     },
     video() {
