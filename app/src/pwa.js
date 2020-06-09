@@ -7,15 +7,15 @@ import App from './pwa-app.vue'
 import { state } from './state'
 import { setupBugTracker } from './bugs'
 
+// This will be done privacy conform, see bugs/README-BUGTRACKER.md
+setupBugTracker()
+
 // Electron specific i.e. Windows App will become a nicer modern window title and some other small features
 if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && window.beaker == null) {
   console.log('Identified Electron')
   import(/* webpackChunkName: 'pwa-electron' */ './pwa-electron').then()
   console.log('Handled Electron')
 }
-
-// This will be done privacy conform, see bugs/README-BUGTRACKER.md
-setupBugTracker()
 
 Vue.config.productionTip = false
 
