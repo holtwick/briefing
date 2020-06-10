@@ -1,6 +1,6 @@
 // Copyright (c) 2020 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { v4 } from 'uuid'
+// import { v4 } from 'uuid'
 
 // https://www.crockford.com/base32.html
 // https://github.com/LinusU/base32-encode/blob/master/index.js
@@ -33,7 +33,10 @@ export function base32Encode(buffer) {
 
 export function UUID() {
   let array = []
-  v4(null, array)
+  for (let i = 0; i < 10; i++) {
+    array.push(Math.floor(Math.random() * 0xff))
+  }
+  // v4(null, array)
   return base32Encode(Buffer.from(array))
 }
 

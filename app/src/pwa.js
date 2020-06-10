@@ -13,7 +13,7 @@ setupBugTracker()
 // Electron specific i.e. Windows App will become a nicer modern window title and some other small features
 if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && window.beaker == null) {
   console.log('Identified Electron')
-  import(/* webpackChunkName: 'pwa-electron' */ './pwa-electron').then()
+  import('./pwa-electron').then()
   console.log('Handled Electron')
 }
 

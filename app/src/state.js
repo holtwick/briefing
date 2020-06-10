@@ -157,7 +157,7 @@ async function switchMedia() {
 
     log('blur what?', state.blur, blurLib)
     if (state.blur && !desktopStream) {
-      blurLib = await import(/* webpackChunkName: 'blur' */ './logic/blur')
+      blurLib = await import('./logic/blur')
       stream = await blurLib.startBlurTransform(stream)
       setAudioTracks(stream, audioTracks)
     } else {

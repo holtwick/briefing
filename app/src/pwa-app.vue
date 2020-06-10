@@ -12,7 +12,7 @@ export default {
   name: 'App',
   components: {
     AppWelcome,
-    AppMain: () => import(/* webpackChunkName: 'main' */ './components/app-main'),
+    AppMain: () => import('./components/app-main.vue'),
   },
   data() {
     return {}

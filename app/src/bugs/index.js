@@ -8,7 +8,7 @@ const log = require('debug')('app:bugs')
 export function setupBugTracker(done) {
   if (PRODUCTION && isAllowedBugTracking()) {
     console.log('Sentry bug tracking is allowed')
-    import(/* webpackChunkName: 'sentry' */ './lazy-sentry').then(({ setupSentry }) => {
+    import('./lazy-sentry').then(({ setupSentry }) => {
       setupSentry({
         dsn: 'https://5e7bc1b62da1458b8117dc68d6242746@o120938.ingest.sentry.io/5266804',
         Vue,

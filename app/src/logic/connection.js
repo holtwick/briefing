@@ -68,7 +68,7 @@ function removeBandwidthRestriction(sdp) {
 }
 
 export async function setupWebRTC(state) {
-  let { WebRTC } = await import(/* webpackChunkName: 'webrtc' */ './webrtc')
+  let { WebRTC } = await import('./webrtc')
 
   if (!WebRTC.isSupported()) return null
 

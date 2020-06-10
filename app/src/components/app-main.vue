@@ -129,8 +129,8 @@ const log = require('debug')('app:app-sidebar')
 export default {
   name: 'app-main',
   components: {
-    AppSettings: () => import(/* webpackChunkName: 'settings' */ './app-settings'),
-    AppShare: () => import(/* webpackChunkName: 'share' */ './app-share'),
+    AppSettings: () => import('./app-settings'),
+    AppShare: () => import('./app-share'),
     SeaLink,
     SeaModal,
     SeaButton,

@@ -1,0 +1,40 @@
+{
+  "name": "briefing",
+  "description": "Start a secure anonymous video chat",
+  "version": "1.8.1",
+  "private": true,
+  "author": {
+    "name": "Dirk Holtwick",
+    "email": "dirk.holtwick@gmail.com",
+    "url": "https://holtwick.de"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@sentry/browser": "^5.17.0",
+    "@sentry/integrations": "^5.17.0",
+    "@tensorflow-models/body-pix": "^2.0.5",
+    "@tensorflow/tfjs-converter": "^1.7.4",
+    "@tensorflow/tfjs-core": "^1.7.4",
+    "clipboard-copy": "^3.1.0",
+    "core-js": "^3.6.5",
+    "custom-electron-titlebar": "^3.2.2-hotfix62",
+    "debug": "^4.1.1",
+    "register-service-worker": "^1.7.1",
+    "simple-peer": "^9.7.2",
+    "socket.io-client": "^2.3.0",
+    "vue": "^3.0.0-beta.10"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0-beta.10",
+    "sass": "^1.26.8",
+    "vite": "^0.15.0"
+  }
+}
