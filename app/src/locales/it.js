@@ -3,7 +3,7 @@ export default {
     start: 'Avvia Video Chat',
     abstract: 'Video chat di gruppo crittografata end-to-end anonima',
     help: 'Per saperne di più',
-    created: 'Creato da'
+    created: 'Creato da',
   },
   share: {
     title: 'Condivi',
@@ -25,11 +25,11 @@ export default {
     audio: 'Sorgente audio',
     desktop: 'Condividi schermo o finestra',
     blur: 'Sfocatura dello sfondo',
-    blur_info: 'Sperimentale: un algoritmo di intelligenza artificiale è in grado di individuare le forme delle persone e sfocare lo sfondo rimanente. Questo aggiunge un po 'di privacy visiva alla tua chiamata. Ma attenzione, questa è una funzione che consuma molto energia e molto probabilmente non funzionerà su dispositivi mobili! ',
+    blur_info: 'Sperimentale: un algoritmo di intelligenza artificiale è in grado di individuare le forme delle persone e sfocare lo sfondo rimanente. Questo aggiunge un po di privacy visiva alla tua chiamata. Ma attenzione, questa è una funzione che consuma molto energia e molto probabilmente non funzionerà su dispositivi mobili! ',
     bandwidth: 'Applica ottimizzazioni della larghezza di banda',
     bandwidth_info: 'Sperimentale: con questa impostazione, il briefing cerca di ridurre la larghezza di banda assottigliando i dati video e audio.',
     fill: 'Scala video',
-    fill_info: 'Il briefing cerca di sfruttare il più possibile lo spazio disponibile sullo schermo ridimensionando il video in modo da adattarlo alla sua cornice visiva. Quando è spento, vedrai invece l'intero video ma con bordi attorno.',
+    fill_info: 'Il briefing cerca di sfruttare il più possibile lo spazio disponibile sullo schermo ridimensionando il video in modo da adattarlo alla sua cornice visiva. Quando è spento, vedrai invece l\'intero video ma con bordi attorno.',
     subscribe: 'Iscriviti a questa stanza',
     subscribe_info: 'Sperimentale: iscrivendoti riceverai una notifica quando qualcun altro entra in questa stanza. È quindi possibile partecipare alla conversazione con un clic. Le notifiche verranno visualizzate solo se il browser è in esecuzione.',
     sentry: 'Consenti rilevamento bug',
