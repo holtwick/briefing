@@ -106,7 +106,9 @@ export function setAudioTracks(stream, audioTracks) {
     try {
       stream.addTrack(t)
     } catch (err) {
-      trackSilentException(err)
+      if (err?.message !== 'Track has already been added to that stream.') {
+        trackSilentException(err)
+      }
     }
   })
   return stream

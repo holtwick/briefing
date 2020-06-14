@@ -117,7 +117,7 @@ async function switchMedia() {
   const showsDesktop = state.deviceVideo === 'desktop'
 
   if (showsDesktop) {
-    let { stream } = await getDisplayMedia(video)
+    let { stream } = await getDisplayMedia()
     if (stream) {
       desktopStream = stream
       delete constraints.video
