@@ -3,6 +3,7 @@ import locale from './lib/locale'
 import './logic/registerServiceWorker'
 import de from './locales/de'
 import en from './locales/en'
+import it from './locales/it'
 import App from './pwa-app.vue'
 import { state } from './state'
 import { setupBugTracker } from './bugs'
@@ -49,7 +50,7 @@ Vue.mixin({
 })
 
 Vue.use(locale, {
-  locales: { en, de },
+  locales: { en, de, it },
 })
 
 new Vue({
