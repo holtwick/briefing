@@ -33,6 +33,20 @@ export let defaultAudioConstraints = {
   autoGainControl: true,
 }
 
+function _getUserMedia(constraints) {
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    return navigator.mediaDevices.getUserMedia(constraints)
+  }
+  const _getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia
+  return new Promise((resolve, reject) => {
+    if (!_getUserMedia) {
+      reject(new Error('Video and audio cannot be accessed. Please try again with another browser or check your browser\'s settings.'))
+    } else {
+      _getUserMedia.call(navigator, constraints, resolve, reject)
+    }
+  })
+}
+
 export async function getUserMedia(constraints = {
   audio: {
     ...defaultAudioConstraints,
@@ -45,11 +59,8 @@ export async function getUserMedia(constraints = {
   try {
     // Solution via https://stackoverflow.com/a/47958949/140927
     // Only available for HTTPS! See https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#Security
-    if (!navigator?.mediaDevices?.getUserMedia) {
-      return { error: 'Accessing the media devices is not available.' }
-    }
     log('getUserMedia constraints', constraints)
-    let stream = await navigator.mediaDevices.getUserMedia(constraints)
+    let stream = await _getUserMedia(constraints)
     return { stream }
   } catch (err) {
     const name = err?.name || err?.toString()

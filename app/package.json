@@ -1,7 +1,7 @@
 {
   "name": "briefing",
   "description": "Start a secure anonymous video chat",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
@@ -17,6 +17,7 @@
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "serve:https": "HTTPS=1 vue-cli-service serve",
     "serve:sw": "npm run build && serve -s dist",
     "demo": "ssh -R 80:localhost:8080 ssh.localhost.run",
     "test": "jest"

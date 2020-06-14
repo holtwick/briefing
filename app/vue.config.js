@@ -75,10 +75,10 @@ let config = {
   devServer: {
 
     // Some API (like WebRTC getUserMedia) is only allowed in secure context or localhost
-    https: false,
+    https: env.HTTPS === '1',
 
-    cert: process.env.SSL_CERT_PATH,
-    key: process.env.SSL_KEY_PATH,
+    cert: env.SSL_CERT_PATH,
+    key: env.SSL_KEY_PATH,
 
     // Allow debugging from multiple devices in the local network
     disableHostCheck: true,
