@@ -1,19 +1,24 @@
+import { mergeDeep } from './base'
+
+export function prepareLocaleStrings(
+  {
+    lang,
+    locales = { en: {} },
+    defaultLang = 'en',
+  } = {}) {
+  lang = lang || navigator.language
+  return mergeDeep(mergeDeep({}, locales[defaultLang]), locales[lang] || {})
+}
+
 export default {
-  install(Vue, { lang, locales = { en: {} } } = {}) {
-
-    lang = lang || navigator.language
-    if (locales[lang] == null) {
-      lang = 'en'
-    }
-
+  install(Vue, opt) {
     Vue.mixin({
       data() {
         return {
-          l: locales[lang],
+          l: prepareLocaleStrings(opt),
         }
       },
     })
-
   },
 }
 

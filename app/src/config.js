@@ -22,6 +22,6 @@ export const ICE_CONFIG = {
 export const DEBUG = process.env.NODE_ENV !== 'production'
 export const PRODUCTION = !DEBUG
 
-export const RELEASE = process.env.VUE_APP_NAME + '@' + process.env.VUE_APP_VERSION
+export const RELEASE = process.env.VUE_APP_RELEASE
 
 console.log('Configuration')

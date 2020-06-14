@@ -3,9 +3,13 @@ import locale from './lib/locale'
 import './logic/registerServiceWorker'
 import de from './locales/de'
 import en from './locales/en'
+import it from './locales/it'
 import App from './pwa-app.vue'
 import { state } from './state'
 import { setupBugTracker } from './bugs'
+
+// This will be done privacy conform, see bugs/README-BUGTRACKER.md
+setupBugTracker()
 
 // Electron specific i.e. Windows App will become a nicer modern window title and some other small features
 if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && window.beaker == null) {
@@ -13,9 +17,6 @@ if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && window.beake
   import(/* webpackChunkName: 'pwa-electron' */ './pwa-electron').then()
   console.log('Handled Electron')
 }
-
-// This will be done privacy conform, see bugs/README-BUGTRACKER.md
-setupBugTracker()
 
 Vue.config.productionTip = false
 
@@ -49,7 +50,7 @@ Vue.mixin({
 })
 
 Vue.use(locale, {
-  locales: { en, de },
+  locales: { en, de, it },
 })
 
 new Vue({
