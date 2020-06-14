@@ -1,7 +1,6 @@
 // Copyright (c) 2020 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
 import SimplePeer from 'simple-peer'
-import { assert } from '../lib/assert'
 import { cloneObject } from '../lib/base'
 import { Emitter } from '../lib/emitter'
 import { trackException } from '../bugs'
@@ -95,13 +94,22 @@ export class WebRTCPeer extends Emitter {
   setStream(stream) {
     if (!this.peer.streams.includes(stream)) {
       try {
-        this.peer.streams.forEach(s => this.peer.removeStream(s))
+        this.peer.streams.forEach(s => {
+          try {
+            this.peer.removeStream(s)
+          } catch (err) {
+            trackException(err)
+          }
+        })
       } catch (err) {
         trackException(err)
       }
       if (stream) {
-        assert(stream, 'Expected a stream')
-        this.peer.addStream(stream)
+        try {
+          this.peer.addStream(stream)
+        } catch (err) {
+          trackException(err)
+        }
       }
     }
   }
