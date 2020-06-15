@@ -14,7 +14,7 @@
       <div class="footer links">
         <p>
           {{ l.welcome.abstract }}
-          <a href="#help" onclick="document.getElementById('help').scrollIntoView({behavior: 'smooth'}); return false;">{{ l.settings.help }}</a>
+          <a href="#help" onclick="document.getElementById('help').scrollIntoView({behavior: 'smooth'}); return false;">{{ l.welcome.help }}</a>
         </p>
         <p>
           {{ l.welcome.created}} <a href="https://holtwick.de?ref=briefing" target="_blank" rel="noopener" @click="openExternalLink">holtwick.de</a>
