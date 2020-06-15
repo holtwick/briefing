@@ -23,5 +23,3 @@ export const DEBUG = process.env.NODE_ENV !== 'production'
 export const PRODUCTION = !DEBUG
 
 export const RELEASE = process.env.VUE_APP_RELEASE
-
-console.log('Configuration')

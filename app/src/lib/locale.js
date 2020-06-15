@@ -1,4 +1,5 @@
 import { mergeDeep } from './base'
+import { DEBUG } from '../config'
 
 export function prepareLocaleStrings(
   {
@@ -7,6 +8,9 @@ export function prepareLocaleStrings(
     defaultLang = 'en',
   } = {}) {
   lang = lang || navigator.language
+  if (DEBUG && localStorage.lang) {
+    lang = localStorage.lang
+  }
   return mergeDeep(mergeDeep({}, locales[defaultLang]), locales[lang] || {})
 }
 
