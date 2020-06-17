@@ -58,9 +58,12 @@
         Image background
       </label>
       <div v-if="state.backgroundMode === 'image'" class="settings-info">
-        This is a random image made by {{ state.backgroundAuthor }} and distirbuted via <a :href="state.backgroundURL" target="_blank" rel="noopener nofollow">Unsplash.com</a>.
         You can upload your own background by dragging an image file on this window.
         <img v-if="state.backgroundImageURL" :src="state.backgroundImageURL" alt="">
+        <div v-if="state.backgroundAuthor">
+          This is a random image made by {{ state.backgroundAuthor }} and distirbuted via <a :href="state.backgroundURL" target="_blank" rel="noopener nofollow">Unsplash.com</a>.
+          <a href="#" @click.prevent="doUnSplashImage">Get another random image.</a>
+        </div>
       </div>
     </div>
     <div class="release-info">
@@ -110,12 +113,9 @@ export default {
     audio() {
       return this.state.devices.filter(d => d.kind === 'audioinput' && d.deviceId !== 'default')
     },
-    // audioOut() {
-    //   return this.state.devices.filter(d => d.kind.toLowerCase() === 'audiooutput' && d.deviceId !== 'default')
-    // },
   },
-  async mounted() {
-    if (!this.state.backgroundImageURL) {
+  methods: {
+    async doUnSplashImage() {
       const UNSPLASH_API = process.env.VUE_APP_UNSPLASH_API
       if (UNSPLASH_API) {
         // Request (GET https://api.unsplash.com/photos/random?client_id=y7oYdXFfoT8OrOjUVrMpsiyFr5UkBy8mQOQgkIpx3z4&content_filter=high&query=background)
@@ -127,16 +127,16 @@ export default {
           // log('Unsplash', info?.urls?.regular)
           let url = info?.urls?.regular
           this.state.backgroundImageURL = url
-          setBackgroundImage(url)
-          // resp = await fetch()
-          // if (resp) {
-          //   let blob = await response.blob()
-          //   this.state.backgroundImageURL = URL.createObjectURL(blob)
-          // }
+          await setBackgroundImage(url)
         }
       }
-    }
+    },
   },
+  // async mounted() {
+  //   if (!this.state.backgroundImageURL) {
+  //     await this.doUnSplashImage()
+  //   }
+  // },
   watch: {
     async 'state.deviceVideo'() {
       await this.$nextTick()
@@ -148,6 +148,12 @@ export default {
     },
     async 'state.backgroundMode'(value, prevValue) {
       await this.$nextTick()
+
+      if (value === 'image') {
+        if (!this.state.backgroundImageURL) {
+          await this.doUnSplashImage()
+        }
+      }
 
       // If just the background mode changes, don't restart the whole thing
       if ((value && !prevValue) || (prevValue && !value)) {

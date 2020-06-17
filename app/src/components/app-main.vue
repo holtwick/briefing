@@ -224,11 +224,13 @@ export default {
           this.state.backgroundImageURL = url
           this.state.backgroundAuthor = ''
           this.state.backgroundURL = ''
-          this.state.backgroundMode = 'image'
 
           // If just the background mode changes, don't restart the whole thing
           // if ((value && !prevValue) || (prevValue && !value)) {
-          messages.emit('switchMedia')
+          if (this.state.backgroundImageURL !== 'image') {
+            this.state.backgroundMode = 'image'
+            messages.emit('switchMedia')
+          }
           // }
         }
       }

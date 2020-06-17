@@ -34,16 +34,16 @@ export async function setBackgroundImage(url) {
   }
 }
 
-// this.state.backgroundImageURL
-
 async function startTransformer(videoEl, outputEl) {
-  const net = await bodyPix.load({
-    // https://github.com/tensorflow/tfjs-models/tree/master/body-pix#config-params-in-bodypixload
-    architecture: 'MobileNetV1',
-    outputStride: 16,
-    multiplier: 0.75,
-    quantBytes: 2,
-  })
+  const net = await bodyPix.load(
+    // {
+    //   // https://github.com/tensorflow/tfjs-models/tree/master/body-pix#config-params-in-bodypixload
+    //   architecture: 'MobileNetV1',
+    //   outputStride: 16,
+    //   multiplier: 0.75,
+    //   quantBytes: 2,
+    // },
+  )
   const backgroundBlurAmount = 3
   const edgeBlurAmount = 3
   const flipHorizontal = false
@@ -51,10 +51,9 @@ async function startTransformer(videoEl, outputEl) {
   async function step() {
     const segmentation = await net.segmentPerson(videoEl, {
       // https://github.com/tensorflow/tfjs-models/tree/master/body-pix#params-in-segmentperson
-      internalResolution: 'medium',
-      maxDetections: 5, // persons
+      // internalResolution: 'full',
+      // maxDetections: 5, // persons
     })
-
     if (state.backgroundMode === 'image') {
       const width = videoEl.width
       const height = videoEl.height
