@@ -1,7 +1,7 @@
 {
   "name": "briefing",
   "description": "Start a secure anonymous video chat",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
