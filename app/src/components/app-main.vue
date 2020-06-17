@@ -51,7 +51,7 @@
           </div>
         </div>
 
-        <div class="message-container" v-else-if="!hasPeers">
+        <div class="message-container" v-else-if="!hasPeers && mode !== 'share'">
           <div class="message" v-html="l.share.message"></div>
         </div>
 
@@ -161,7 +161,7 @@ export default {
   },
   data() {
     return {
-      mode: 'settings',
+      mode: '',
       settings: false,
       share: false,
       conn: null,
@@ -204,6 +204,9 @@ export default {
   },
   async mounted() {
     this.conn = await setup()
+    if (!this.hasPeers) {
+      this.mode = 'share'
+    }
   },
   beforeDestroy() {
     this.conn?.cleanup()
