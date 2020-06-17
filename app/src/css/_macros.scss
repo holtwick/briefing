@@ -202,6 +202,12 @@ $desktop-width: 1024px;
   }
 }
 
+@mixin notMediaMobile {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
 @mixin mediaTablet {
   @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
     @content;

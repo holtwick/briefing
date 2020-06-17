@@ -1,7 +1,7 @@
 <!-- Copyright (c) 2020 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
 
 <template>
-  <div class="sea-modal " :class="{active}" id="modal-id" tabindex="-1" v-trap-focus aria-modal="true" :role="role">
+  <div class="sea-modal sea-panel" :class="{active}" id="modal-id" tabindex="-1" v-trap-focus aria-modal="true" :role="role">
     <a @click="doCancel" class="sea-modal-overlay" aria-label="Close"></a>
     <div class="sea-modal-container vstack">
       <header class="sea-modal-header modal-header -fix" v-if="title || close">

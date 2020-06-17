@@ -44,7 +44,7 @@ export let state = {
 
   status: {},
 
-  blur: false,
+  blur: true, //false,
   bandwidth: false,
   fill: true,
 
@@ -210,6 +210,10 @@ export async function setup() {
     state.stream = stream
     updateStream()
     messages.emit('setLocalStream', state.stream)
+
+    if (state.blur) {
+      setTimeout(switchMedia, 250)
+    }
 
   } catch (err) {
     trackException(err)
