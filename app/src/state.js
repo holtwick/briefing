@@ -44,9 +44,10 @@ export let state = {
 
   status: {},
 
-  blur: true, //false,
+  blur: false,
   bandwidth: false,
   fill: true,
+  bgURL: null,
 
   muteVideo: false,
   muteAudio: false,
@@ -68,7 +69,6 @@ export let state = {
   error: null,
   upgrade: false,
   requestBugTracking: false,
-
 }
 
 messages.on('requestBugTracking', _ => state.requestBugTracking = true)

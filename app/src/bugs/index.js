@@ -1,16 +1,16 @@
 import Vue from 'vue'
-import { PRODUCTION } from '../config'
+import { PRODUCTION, SENTRY_DSN } from '../config'
 import { messages } from '../lib/emitter'
 
 const log = require('debug')('app:bugs')
 
 // Lazy loading of bug tracker
 export function setupBugTracker(done) {
-  if (PRODUCTION && isAllowedBugTracking()) {
+  if (PRODUCTION && SENTRY_DSN && isAllowedBugTracking()) {
     console.log('Sentry bug tracking is allowed')
     import(/* webpackChunkName: 'sentry' */ './lazy-sentry').then(({ setupSentry }) => {
       setupSentry({
-        dsn: 'https://5e7bc1b62da1458b8117dc68d6242746@o120938.ingest.sentry.io/5266804',
+        dsn: SENTRY_DSN,
         Vue,
       })
       console.log('Did init Sentry bug tracking')

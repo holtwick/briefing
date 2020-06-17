@@ -39,6 +39,7 @@
     <div class="release-info">
       <a href="https://github.com/holtwick/briefing" target="_blank" rel="noopener" title="Open Github source code repository">{{ release }}</a>
     </div>
+    <img v-if="state.bgURL" :src="state.bgURL" alt="">
   </div>
 </template>
 
@@ -47,6 +48,8 @@ import { messages } from '../lib/emitter'
 import SeaSwitch from '../ui/sea-switch'
 import { RELEASE } from '../config'
 import { isAllowedBugTracking, setAllowedBugTracking } from '../bugs'
+
+const log = require('debug')('app:app-settings')
 
 export default {
   name: 'app-settings',
@@ -84,7 +87,20 @@ export default {
     //   return this.state.devices.filter(d => d.kind.toLowerCase() === 'audiooutput' && d.deviceId !== 'default')
     // },
   },
-
+  async mounted() {
+    if (!this.state.bgURL) {
+      const UNSPLASH_API = process.env.VUE_APP_UNSPLASH_API
+      if (UNSPLASH_API) {
+        // Request (GET https://api.unsplash.com/photos/random?client_id=y7oYdXFfoT8OrOjUVrMpsiyFr5UkBy8mQOQgkIpx3z4&content_filter=high&query=background)
+        let resp = await fetch(`https://api.unsplash.com/photos/random?client_id=${UNSPLASH_API}&content_filter=high&query=background`)
+        if (resp) {
+          let info = await resp.json()
+          log('Unsplash', info?.urls?.regular)
+          this.state.bgURL = info?.urls?.regular
+        }
+      }
+    }
+  },
   watch: {
     async 'state.deviceVideo'() {
       await this.$nextTick()
