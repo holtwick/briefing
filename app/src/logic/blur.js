@@ -23,6 +23,13 @@ async function startTransformer(videoEl, outputEl) {
   const backgroundBlurAmount = 3
   const edgeBlurAmount = 3
   const flipHorizontal = false
+  let image = null
+
+  let img = new Image()
+  img.src = '/bg.jpg'
+  img.onload = function () {
+    image = this
+  }
 
   async function step() {
     const segmentation = await net.segmentPerson(videoEl, {
@@ -42,20 +49,32 @@ async function startTransformer(videoEl, outputEl) {
 
       // console.log('ctx', outputEl)
 
-      // Background
-      outputEl.width = videoEl.width
-      outputEl.height = videoEl.height
-      let ctx = outputEl.getContext('2d')
-      ctx.fillStyle = 'red'
-      ctx.rect(0, 0, outputEl.width, outputEl.height)
-      ctx.fill()
+      const width = videoEl.width, height = videoEl.height
 
-      let bgData = ctx.getImageData(0, 0, videoEl.width, videoEl.height)
+      // Make video and canvas the same size
+      if (outputEl.width !== width || outputEl.height !== height) {
+        outputEl.width = width
+        outputEl.height = height
+      }
+
+      // Background
+      let ctx = outputEl.getContext('2d')
+
+      if (image) {
+        ctx.drawImage(image, 0, 0, width, height)
+      }
+
+      // ctx.fillStyle = 'red'
+      // ctx.rect(0, 0, outputEl.width, outputEl.height)
+      // ctx.fill()
+
+
+      let bgData = ctx.getImageData(0, 0, width, height)
       let bgPixel = bgData.data
 
       // Foreground
-      ctx.drawImage(videoEl, 0, 0, outputEl.width, outputEl.height)
-      let imageData = ctx.getImageData(0, 0, videoEl.width, videoEl.height)
+      ctx.drawImage(videoEl, 0, 0, width, height)
+      let imageData = ctx.getImageData(0, 0, width, height)
       let pixel = imageData.data
       for (let p = 0; p < pixel.length; p += 4) {
         if (segmentation.data[p / 4] === 0) {
