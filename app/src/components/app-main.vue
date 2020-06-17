@@ -2,10 +2,14 @@
 
   <div class="app hstack">
 
-    <div class="panel -left panel-settings" v-show="mode === 'settings'">
-      <h1>{{l.settings.title}}</h1>
+    <sea-modal
+      xclass="panel -left panel-settings"
+      :active="mode === 'settings'"
+      :title="l.settings.title"
+      @close="mode = ''"
+    >
       <app-settings></app-settings>
-    </div>
+    </sea-modal>
 
     <div class="-fit vstack" :data-mode="state.maximized ? 'maximized': 'default'">
 
@@ -112,10 +116,14 @@
       </div>
     </div>
 
-    <div class="panel -right panel-share" v-show="mode === 'share'">
-      <h1>{{l.share.title}}</h1>
+    <sea-modal
+      xclass="panel -left panel-share"
+      :active="mode === 'share'"
+      :title="l.share.title"
+      @close="mode = ''"
+    >
       <app-share></app-share>
-    </div>
+    </sea-modal>
 
     <!--    <sea-modal :active.sync="share" close :title="l.share.title">-->
     <!--      <app-share></app-share>-->
@@ -153,7 +161,7 @@ export default {
   },
   data() {
     return {
-      mode: null,
+      mode: 'settings',
       settings: false,
       share: false,
       conn: null,
