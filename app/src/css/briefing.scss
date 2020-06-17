@@ -285,9 +285,14 @@ body {
   margin-bottom: 0.5rem;
 
   .settings-info {
-    margin-top: 0.5rem;
+    margin-top: 0.5rem !important;
     line-height: 1.2rem;
     font-size: 0.9rem;
+
+    img {
+      display: block;
+      margin-top: 0.5rem !important;
+    }
   }
 }
 

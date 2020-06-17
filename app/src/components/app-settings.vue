@@ -24,7 +24,7 @@
       <sea-switch v-model="state.bandwidth">{{ l.settings.bandwidth }}</sea-switch>
       <div class="settings-info">{{ l.settings.bandwidth_info }}</div>
     </div>
-    <div class="form-group settings-group">
+    <div class="form-group settings-group" v-if="false">
       <sea-switch v-model="state.blur">{{ l.settings.blur }}</sea-switch>
       <div class="settings-info">{{ l.settings.blur_info }}</div>
     </div>
@@ -36,10 +36,39 @@
       <sea-switch v-model="sentry">{{ l.settings.sentry}}</sea-switch>
       <div class="settings-info" v-html="l.settings.sentry_info"></div>
     </div>
+    <div class="form-group settings-group" v-if="false">
+      <sea-switch v-model="sentry">Persist Settings</sea-switch>
+      <!--      <div class="settings-info" v-html="l.settings.sentry_info"></div>-->
+    </div>
+    <div class="form-group settings-group">
+      <label class="form-labelx"><b>Background</b></label>
+      <label class="form-radio">
+        <input type="radio" value="" v-model="state.backgroundMode">
+        <i class="form-icon"></i>
+        Original background
+      </label>
+      <label class="form-radio">
+        <input type="radio" value="blur" v-model="state.backgroundMode">
+        <i class="form-icon"></i>
+        Blurred background
+      </label>
+      <label class="form-radio">
+        <input type="radio" value="image" v-model="state.backgroundMode">
+        <i class="form-icon"></i>
+        Image background
+      </label>
+      <div v-if="state.backgroundMode === 'image'" class="settings-info">
+        You can upload your own background by dragging an image file on this window.
+        <img v-if="state.backgroundImageURL" :src="state.backgroundImageURL" alt="">
+        <div v-if="state.backgroundAuthor">
+          This is a random image made by {{ state.backgroundAuthor }} and distirbuted via <a :href="state.backgroundURL" target="_blank" rel="noopener nofollow">Unsplash.com</a>.
+          <a href="#" @click.prevent="doUnSplashImage">Get another random image.</a>
+        </div>
+      </div>
+    </div>
     <div class="release-info">
       <a href="https://github.com/holtwick/briefing" target="_blank" rel="noopener" title="Open Github source code repository">{{ release }}</a>
     </div>
-    <img v-if="state.bgURL" :src="state.bgURL" alt="">
   </div>
 </template>
 
@@ -48,6 +77,7 @@ import { messages } from '../lib/emitter'
 import SeaSwitch from '../ui/sea-switch'
 import { RELEASE } from '../config'
 import { isAllowedBugTracking, setAllowedBugTracking } from '../bugs'
+import { setBackgroundImage } from '../logic/background'
 
 const log = require('debug')('app:app-settings')
 
@@ -83,24 +113,30 @@ export default {
     audio() {
       return this.state.devices.filter(d => d.kind === 'audioinput' && d.deviceId !== 'default')
     },
-    // audioOut() {
-    //   return this.state.devices.filter(d => d.kind.toLowerCase() === 'audiooutput' && d.deviceId !== 'default')
-    // },
   },
-  async mounted() {
-    if (!this.state.bgURL) {
+  methods: {
+    async doUnSplashImage() {
       const UNSPLASH_API = process.env.VUE_APP_UNSPLASH_API
       if (UNSPLASH_API) {
         // Request (GET https://api.unsplash.com/photos/random?client_id=y7oYdXFfoT8OrOjUVrMpsiyFr5UkBy8mQOQgkIpx3z4&content_filter=high&query=background)
         let resp = await fetch(`https://api.unsplash.com/photos/random?client_id=${UNSPLASH_API}&content_filter=high&query=background`)
         if (resp) {
           let info = await resp.json()
-          log('Unsplash', info?.urls?.regular)
-          this.state.bgURL = info?.urls?.regular
+          this.state.backgroundAuthor = info?.user?.name || 'Unknown'
+          this.state.backgroundURL = info?.links?.html || 'https://unsplash.com/'
+          // log('Unsplash', info?.urls?.regular)
+          let url = info?.urls?.regular
+          this.state.backgroundImageURL = url
+          await setBackgroundImage(url)
         }
       }
-    }
+    },
   },
+  // async mounted() {
+  //   if (!this.state.backgroundImageURL) {
+  //     await this.doUnSplashImage()
+  //   }
+  // },
   watch: {
     async 'state.deviceVideo'() {
       await this.$nextTick()
@@ -110,9 +146,19 @@ export default {
       await this.$nextTick()
       messages.emit('switchMedia')
     },
-    async 'state.blur'() {
+    async 'state.backgroundMode'(value, prevValue) {
       await this.$nextTick()
-      messages.emit('switchMedia')
+
+      if (value === 'image') {
+        if (!this.state.backgroundImageURL) {
+          await this.doUnSplashImage()
+        }
+      }
+
+      // If just the background mode changes, don't restart the whole thing
+      if ((value && !prevValue) || (prevValue && !value)) {
+        messages.emit('switchMedia')
+      }
     },
     async 'state.bandwidth'() {
       await this.$nextTick()

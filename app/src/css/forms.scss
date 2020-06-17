@@ -232,7 +232,8 @@ textarea.form-input-autoresize {
 .form-radio {
   display: block;
   line-height: $line-height;
-  margin: ($control-size - $control-size-sm) / 2 0;
+  margin: 0; //' ($control-size - $control-size-sm) / 2 0;
+  margin-top: $px-4;
   min-height: $control-size-sm;
   padding: (($control-size-sm - $line-height) / 2) $control-padding-x (($control-size-sm - $line-height) / 2) ($control-icon-size + $control-padding-x);
   position: relative;
