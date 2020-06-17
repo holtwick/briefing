@@ -13,21 +13,71 @@ let animationFrameRequest
 let videoEl, outputEl, captureStream
 
 async function startTransformer(videoEl, outputEl) {
-  const net = await bodyPix.load()
+  const net = await bodyPix.load({
+    // https://github.com/tensorflow/tfjs-models/tree/master/body-pix#config-params-in-bodypixload
+    architecture: 'MobileNetV1',
+    outputStride: 16,
+    multiplier: 0.75,
+    quantBytes: 2,
+  })
   const backgroundBlurAmount = 3
   const edgeBlurAmount = 3
   const flipHorizontal = false
 
   async function step() {
-    const segmentation = await net.segmentPerson(videoEl)
-    bodyPix.drawBokehEffect(
-      outputEl,
-      videoEl,
-      segmentation,
-      backgroundBlurAmount,
-      edgeBlurAmount,
-      flipHorizontal,
-    )
+    const segmentation = await net.segmentPerson(videoEl, {
+      // https://github.com/tensorflow/tfjs-models/tree/master/body-pix#params-in-segmentperson
+      internalResolution: 'medium',
+      maxDetections: 5, // persons
+    })
+
+    if (true) {
+      // Convert the segmentation into a mask to darken the background.
+      // const foregroundColor = { r: 0, g: 0, b: 0, a: 0 }
+      // const backgroundColor = { r: 0, g: 0, b: 0, a: 255 }
+      // const backgroundDarkeningMask = bodyPix.toMask(
+      //   segmentation,
+      //   foregroundColor,
+      //   backgroundColor)
+
+      // console.log('ctx', outputEl)
+
+      // Background
+      outputEl.width = videoEl.width
+      outputEl.height = videoEl.height
+      let ctx = outputEl.getContext('2d')
+      ctx.fillStyle = 'red'
+      ctx.rect(0, 0, outputEl.width, outputEl.height)
+      ctx.fill()
+
+      let bgData = ctx.getImageData(0, 0, videoEl.width, videoEl.height)
+      let bgPixel = bgData.data
+
+      // Foreground
+      ctx.drawImage(videoEl, 0, 0, outputEl.width, outputEl.height)
+      let imageData = ctx.getImageData(0, 0, videoEl.width, videoEl.height)
+      let pixel = imageData.data
+      for (let p = 0; p < pixel.length; p += 4) {
+        if (segmentation.data[p / 4] === 0) {
+          pixel[p] = bgPixel[p]
+          pixel[p + 1] = bgPixel[p + 1]
+          pixel[p + 2] = bgPixel[p + 2]
+          pixel[p + 3] = bgPixel[p + 3]
+          // pixel[p + 3] = 0
+        }
+      }
+      ctx.imageSmoothingEnabled = true
+      ctx.putImageData(imageData, 0, 0)
+    } else {
+      bodyPix.drawBokehEffect(
+        outputEl,
+        videoEl,
+        segmentation,
+        backgroundBlurAmount,
+        edgeBlurAmount,
+        flipHorizontal,
+      )
+    }
     animationFrameRequest = requestAnimationFrame(step)
   }
 
