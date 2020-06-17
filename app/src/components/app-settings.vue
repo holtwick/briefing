@@ -24,7 +24,7 @@
       <sea-switch v-model="state.bandwidth">{{ l.settings.bandwidth }}</sea-switch>
       <div class="settings-info">{{ l.settings.bandwidth_info }}</div>
     </div>
-    <div class="form-group settings-group">
+    <div class="form-group settings-group" v-if="false">
       <sea-switch v-model="state.blur">{{ l.settings.blur }}</sea-switch>
       <div class="settings-info">{{ l.settings.blur_info }}</div>
     </div>
@@ -36,10 +36,37 @@
       <sea-switch v-model="sentry">{{ l.settings.sentry}}</sea-switch>
       <div class="settings-info" v-html="l.settings.sentry_info"></div>
     </div>
+    <div class="form-group settings-group" v-if="false">
+      <sea-switch v-model="sentry">Persist Settings</sea-switch>
+      <!--      <div class="settings-info" v-html="l.settings.sentry_info"></div>-->
+    </div>
+    <div class="form-group settings-group">
+      <label class="form-labelx"><b>Background</b></label>
+      <label class="form-radio">
+        <input type="radio" value="" v-model="state.backgroundMode">
+        <i class="form-icon"></i>
+        Original background
+      </label>
+      <label class="form-radio">
+        <input type="radio" value="blur" v-model="state.backgroundMode">
+        <i class="form-icon"></i>
+        Blurred background
+      </label>
+      <label class="form-radio">
+        <input type="radio" value="image" v-model="state.backgroundMode">
+        <i class="form-icon"></i>
+        Image background
+      </label>
+      <div v-if="state.backgroundMode === 'image'" class="settings-info">
+        This is a random image provided by <a href="">Unsplash</a>.
+        You can upload your own background by dragging an image file on this window.
+        <img v-if="state.bgURL" :src="state.bgURL" alt="">
+        <a href="#">Load a random image</a>
+      </div>
+    </div>
     <div class="release-info">
       <a href="https://github.com/holtwick/briefing" target="_blank" rel="noopener" title="Open Github source code repository">{{ release }}</a>
     </div>
-    <img v-if="state.bgURL" :src="state.bgURL" alt="">
   </div>
 </template>
 
@@ -95,6 +122,8 @@ export default {
         let resp = await fetch(`https://api.unsplash.com/photos/random?client_id=${UNSPLASH_API}&content_filter=high&query=background`)
         if (resp) {
           let info = await resp.json()
+          let author = info?.user?.name || 'Unknown'
+          let homepage = info?.links?.html || 'https://unsplash.com/'
           log('Unsplash', info?.urls?.regular)
           this.state.bgURL = info?.urls?.regular
         }

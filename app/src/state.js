@@ -47,6 +47,8 @@ export let state = {
   blur: false,
   bandwidth: false,
   fill: true,
+
+  backgroundMode: '',
   bgURL: null,
 
   muteVideo: false,
