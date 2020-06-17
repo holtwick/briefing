@@ -1,6 +1,6 @@
 <template>
 
-  <div class="app hstack">
+  <div class="app hstack" @dragover="onDragOver" @dragend="onDragEnd" @dragexit="onDragEnd" @dragleave="onDragEnd" @drop="onDrop">
 
     <sea-modal
       xclass="panel -left panel-settings"
@@ -146,6 +146,7 @@ import SeaLink from '../ui/sea-link'
 import SeaModal from '../ui/sea-modal'
 import AppVideo from './app-video'
 import { setAllowedBugTracking } from '../bugs'
+import { setBackgroundImage } from '../logic/background'
 
 const log = require('debug')('app:app-sidebar')
 
@@ -165,6 +166,7 @@ export default {
       settings: false,
       share: false,
       conn: null,
+      dragOver: false,
     }
   },
   computed: {
@@ -200,6 +202,36 @@ export default {
     },
     doTogglePanel(mode = 'settings') {
       this.mode = !mode || this.mode === mode ? '' : mode
+    },
+    onDragOver(ev) {
+      ev.preventDefault()
+      ev.dataTransfer.dropEffect = 'copy'
+      this.dragOver = true
+    },
+    onDragEnd(ev) {
+      this.dragOver = false
+      ev.preventDefault()
+    },
+    onDrop(ev) {
+      this.dragOver = false
+      ev.preventDefault()
+      let dataProvider = ev.dataTransfer || ev.clipboardData
+      if (dataProvider) {
+        const files = dataProvider?.files || []
+        if (files.length) {
+          let url = URL.createObjectURL(files[0])
+          setBackgroundImage(url)
+          this.state.backgroundImageURL = url
+          this.state.backgroundAuthor = ''
+          this.state.backgroundURL = ''
+          this.state.backgroundMode = 'image'
+
+          // If just the background mode changes, don't restart the whole thing
+          // if ((value && !prevValue) || (prevValue && !value)) {
+          messages.emit('switchMedia')
+          // }
+        }
+      }
     },
   },
   async mounted() {

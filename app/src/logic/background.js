@@ -59,8 +59,6 @@ async function startTransformer(videoEl, outputEl) {
       const width = videoEl.width
       const height = videoEl.height
 
-      log('Size', width, height)
-
       if (width <= 0 || height <= 0) {
         return
       }
@@ -75,9 +73,7 @@ async function startTransformer(videoEl, outputEl) {
       let bgPixel
       let ctx = outputEl.getContext('2d')
       if (image) {
-        log('image', image)
         ctx.drawImage(image, 0, 0, width, height)
-
         // todo: keep if width and height did not change
         bgPixel = ctx.getImageData(0, 0, width, height)?.data
       }
