@@ -58,10 +58,9 @@
         Image background
       </label>
       <div v-if="state.backgroundMode === 'image'" class="settings-info">
-        This is a random image provided by <a href="">Unsplash</a>.
+        This is a random image made by {{ state.backgroundAuthor }} and distirbuted via <a :href="state.backgroundURL" target="_blank" rel="noopener nofollow">Unsplash.com</a>.
         You can upload your own background by dragging an image file on this window.
         <img v-if="state.backgroundImageURL" :src="state.backgroundImageURL" alt="">
-        <a href="#">Load a random image</a>
       </div>
     </div>
     <div class="release-info">
@@ -116,7 +115,7 @@ export default {
     // },
   },
   async mounted() {
-    if (!this.state.bgURL) {
+    if (!this.state.backgroundImageURL) {
       const UNSPLASH_API = process.env.VUE_APP_UNSPLASH_API
       if (UNSPLASH_API) {
         // Request (GET https://api.unsplash.com/photos/random?client_id=y7oYdXFfoT8OrOjUVrMpsiyFr5UkBy8mQOQgkIpx3z4&content_filter=high&query=background)
