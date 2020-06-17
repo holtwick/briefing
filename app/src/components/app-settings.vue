@@ -60,7 +60,7 @@
       <div v-if="state.backgroundMode === 'image'" class="settings-info">
         This is a random image provided by <a href="">Unsplash</a>.
         You can upload your own background by dragging an image file on this window.
-        <img v-if="state.bgURL" :src="state.bgURL" alt="">
+        <img v-if="state.backgroundImageURL" :src="state.backgroundImageURL" alt="">
         <a href="#">Load a random image</a>
       </div>
     </div>
@@ -75,7 +75,7 @@ import { messages } from '../lib/emitter'
 import SeaSwitch from '../ui/sea-switch'
 import { RELEASE } from '../config'
 import { isAllowedBugTracking, setAllowedBugTracking } from '../bugs'
-import { state } from '../state'
+import { setBackgroundImage } from '../logic/background'
 
 const log = require('debug')('app:app-settings')
 
@@ -123,10 +123,17 @@ export default {
         let resp = await fetch(`https://api.unsplash.com/photos/random?client_id=${UNSPLASH_API}&content_filter=high&query=background`)
         if (resp) {
           let info = await resp.json()
-          let author = info?.user?.name || 'Unknown'
-          let homepage = info?.links?.html || 'https://unsplash.com/'
-          log('Unsplash', info?.urls?.regular)
-          this.state.bgURL = info?.urls?.regular
+          this.state.backgroundAuthor = info?.user?.name || 'Unknown'
+          this.state.backgroundURL = info?.links?.html || 'https://unsplash.com/'
+          // log('Unsplash', info?.urls?.regular)
+          let url = info?.urls?.regular
+          this.state.backgroundImageURL = url
+          setBackgroundImage(url)
+          // resp = await fetch()
+          // if (resp) {
+          //   let blob = await response.blob()
+          //   this.state.backgroundImageURL = URL.createObjectURL(blob)
+          // }
         }
       }
     }

@@ -49,7 +49,7 @@ export let state = {
   fill: true,
 
   backgroundMode: '',
-  backgroundDataURL: null,
+  backgroundImageURL: null,
   backgroundAuthor: '',
   backgroundURL: '',
 

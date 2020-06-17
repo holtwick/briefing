@@ -13,6 +13,21 @@ const log = require('debug')('app:blur')
 let animationFrameRequest
 let videoEl, outputEl, captureStream
 
+let image
+
+export function setBackgroundImage(url) {
+  image = null
+  if (url) {
+    let img = new Image()
+    img.src = url
+    img.onload = function () {
+      image = this
+    }
+  }
+}
+
+// this.state.backgroundImageURL
+
 async function startTransformer(videoEl, outputEl) {
   const net = await bodyPix.load({
     // https://github.com/tensorflow/tfjs-models/tree/master/body-pix#config-params-in-bodypixload
@@ -24,13 +39,6 @@ async function startTransformer(videoEl, outputEl) {
   const backgroundBlurAmount = 3
   const edgeBlurAmount = 3
   const flipHorizontal = false
-  let image = null
-
-  let img = new Image()
-  img.src = '/bg.jpg'
-  img.onload = function () {
-    image = this
-  }
 
   async function step() {
     const segmentation = await net.segmentPerson(videoEl, {
