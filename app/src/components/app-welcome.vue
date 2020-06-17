@@ -270,7 +270,7 @@ export default {
   name: 'app-welcome',
   components: { AppHelp },
   data() {
-    let defaultName = DEBUG ? 'development' : generateName()
+    let defaultName = DEBUG ? (process.env.VUE_APP_DEBUG_DEFAULT_ROOM || 'development') : generateName()
     return {
       defaultName,
       room: defaultName,
