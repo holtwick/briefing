@@ -2,6 +2,7 @@ import { messages } from './lib/emitter'
 import { setupWebRTC } from './logic/connection'
 import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getDisplayMedia, getUserMedia, setAudioTracks } from './logic/stream'
 import { trackException, trackSilentException } from './bugs'
+import { PRODUCTION } from './config'
 
 const log = require('debug')('app:state')
 
@@ -44,12 +45,13 @@ export let state = {
 
   status: {},
 
-  blur: false,
   bandwidth: false,
   fill: true,
 
   backgroundMode: '',
-  bgURL: null,
+  backgroundDataURL: null,
+  backgroundAuthor: '',
+  backgroundURL: '',
 
   muteVideo: false,
   muteAudio: false,
@@ -157,9 +159,8 @@ async function switchMedia() {
       await switchMedia()
     }
 
-    log('blur what?', state.blur, blurLib)
-    if (state.blur && !desktopStream) {
-      blurLib = await import(/* webpackChunkName: 'blur' */ './logic/blur')
+    if (state.backgroundMode && !desktopStream) {
+      blurLib = await import(/* webpackChunkName: 'blur' */ './logic/background')
       stream = await blurLib.startBlurTransform(stream)
       setAudioTracks(stream, audioTracks)
     } else {
@@ -213,7 +214,7 @@ export async function setup() {
     updateStream()
     messages.emit('setLocalStream', state.stream)
 
-    if (state.blur) {
+    if (!PRODUCTION && state.backgroundMode) {
       setTimeout(switchMedia, 250)
     }
 

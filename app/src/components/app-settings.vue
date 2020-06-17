@@ -75,6 +75,7 @@ import { messages } from '../lib/emitter'
 import SeaSwitch from '../ui/sea-switch'
 import { RELEASE } from '../config'
 import { isAllowedBugTracking, setAllowedBugTracking } from '../bugs'
+import { state } from '../state'
 
 const log = require('debug')('app:app-settings')
 
@@ -139,9 +140,13 @@ export default {
       await this.$nextTick()
       messages.emit('switchMedia')
     },
-    async 'state.blur'() {
+    async 'state.backgroundMode'(value, prevValue) {
       await this.$nextTick()
-      messages.emit('switchMedia')
+
+      // If just the background mode changes, don't restart the whole thing
+      if ((value && !prevValue) || (prevValue && !value)) {
+        messages.emit('switchMedia')
+      }
     },
     async 'state.bandwidth'() {
       await this.$nextTick()

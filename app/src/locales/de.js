@@ -7,7 +7,7 @@ export default {
   },
   share: {
     title: 'Einladen',
-    link_info: 'Gib diesen Link an alle Teilnehmer weiter:',
+    link_info: 'Gib diesen Link weiter an jeden der an dieser Sitzung teilnehmen soll:',
     button_copy: 'Kopieren',
     qr_info: 'Oder scanne diesen QR-Code mit einer Kamera:',
     feedback: 'Feedback bitte an <a href="mailto:support@holtwick.de?subject=Briefing">support@holtwick.de</a>',

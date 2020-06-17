@@ -4,6 +4,7 @@
 
 import { assert } from '../lib/assert'
 import { trackException } from '../bugs'
+import { state } from '../state'
 
 const bodyPix = require('@tensorflow-models/body-pix')
 
@@ -38,7 +39,7 @@ async function startTransformer(videoEl, outputEl) {
       maxDetections: 5, // persons
     })
 
-    if (true) {
+    if (state.backgroundMode === 'image') {
       // Convert the segmentation into a mask to darken the background.
       // const foregroundColor = { r: 0, g: 0, b: 0, a: 0 }
       // const backgroundColor = { r: 0, g: 0, b: 0, a: 255 }
@@ -64,19 +65,16 @@ async function startTransformer(videoEl, outputEl) {
         ctx.drawImage(image, 0, 0, width, height)
       }
 
-      // ctx.fillStyle = 'red'
-      // ctx.rect(0, 0, outputEl.width, outputEl.height)
-      // ctx.fill()
-
-
+      // todo: keep if width and height did not change
       let bgData = ctx.getImageData(0, 0, width, height)
-      let bgPixel = bgData.data
+      let bgPixel = bgData?.data
 
       // Foreground
       ctx.drawImage(videoEl, 0, 0, width, height)
       let imageData = ctx.getImageData(0, 0, width, height)
       let pixel = imageData.data
       for (let p = 0; p < pixel.length; p += 4) {
+        // take the pixel either from the video or the background, simple yet effective ;)
         if (segmentation.data[p / 4] === 0) {
           pixel[p] = bgPixel[p]
           pixel[p + 1] = bgPixel[p + 1]
