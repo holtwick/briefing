@@ -66,6 +66,7 @@ body {
     color: #919191;
   }
 
+  &.-active,
   &:hover {
     color: white;
     background: #676767;
@@ -299,3 +300,19 @@ body {
   text-decoration: none;
   font-size: 0.8rem;
 }
+
+.panel {
+  width: clamp(25rem, 25%, 50%);
+  padding: 2rem;
+  max-width: 50%;
+  color: black;
+  background: white;
+
+  h1 {
+    font-size: $font-size-lg;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+}
+
