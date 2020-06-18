@@ -102,13 +102,16 @@ export default {
       },
     },
     video() {
-      return [
-        {
+      let videoDevices = this.state.devices.filter(d => d.kind === 'videoinput' && d.deviceId !== 'default')
+      if (navigator?.mediaDevices?.getDisplayMedia) {
+        return [{
           deviceId: 'desktop',
           label: this.l.settings.desktop,
         },
-        ...this.state.devices.filter(d => d.kind === 'videoinput' && d.deviceId !== 'default'),
-      ]
+          ...videoDevices,
+        ]
+      }
+      return videoDevices
     },
     audio() {
       return this.state.devices.filter(d => d.kind === 'audioinput' && d.deviceId !== 'default')
