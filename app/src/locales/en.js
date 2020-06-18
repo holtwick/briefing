@@ -6,8 +6,8 @@ export default {
     created: 'Created by'
   },
   share: {
-    title: 'Share',
-    link_info: 'Please send this link to all participants:',
+    title: 'Invite',
+    link_info: 'Please share this link with everyone you want to invite to this session:',
     button_copy: 'Copy',
     qr_info: 'You can also scan this QR Code with a mobile device camera:',
     feedback: 'For feedback write to <a href="mailto:support@holtwick.de?subject=Briefing">support@holtwick.de</a>',

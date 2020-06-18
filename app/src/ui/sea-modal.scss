@@ -112,3 +112,37 @@ $modalSepColor: var(--separator-color, $gray-color-light);
     margin: 1rem;
   }
 }
+
+@include notMediaMobile {
+
+  .sea-panel.sea-modal {
+    position: static;
+    padding: 0;
+    margin: 0;
+    color: black;
+    background: white;
+    width: clamp(25rem, 25%, 50%);
+
+    .sea-modal-container {
+      position: static;
+      max-height: inherit;
+      min-width: inherit;
+      max-width: 100%;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      box-shadow: none;
+      background: $bg-color-light;
+      border: none;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .sea-modal-overlay {
+      display: none;
+    }
+  }
+
+}
