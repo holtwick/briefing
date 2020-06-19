@@ -18,12 +18,14 @@
     </div>
     <div v-if="fingerprint" class="video video-placeholder -content-placeholder -overlay -info">
       <label title="Verification code" class="-short">
-        {{ fingerprintFull.substr(fingerprintFull.length - 4, 4) }}
+        {{ fingerprint.substr(fingerprint.length - 4, 4) }}
       </label>
       <label title="Verification code" class="-long">
-        If the person you see here confirms to see the same number, you are securely connected:
+        Click to change zoomed video.
+        <br><br>
+        If the person you see here confirms to see the same ID, you are securely connected:
         <br>
-        {{ fingerprintFull }}
+        {{ fingerprint }}
       </label>
     </div>
     <div v-if="state.muteVideo && id === 'self'" class="video video-placeholder -content-placeholder">
@@ -71,9 +73,6 @@ export default {
       default: false,
     },
     fingerprint: {
-      type: String,
-    },
-    fingerprintFull: {
       type: String,
     },
     id: {

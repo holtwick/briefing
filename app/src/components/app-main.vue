@@ -30,7 +30,6 @@
           :id="peer.remote"
           :stream="peer && peer.peer && peer.peer.stream"
           :fingerprint="peer && peer.peer && peer.peer.fingerprint"
-          :fingerprintFull="peer && peer.peer && peer.peer.fingerprintFull"
         />
 
         <div class="message-container -error" v-if="state.requestBugTracking">

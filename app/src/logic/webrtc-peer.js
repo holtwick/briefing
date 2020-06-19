@@ -26,7 +26,7 @@ export class WebRTCPeer extends Emitter {
     this.room = opt.room || ''
     this.id = 'webrtc-peer' + ctr++
     this.fingerprint = ''
-    this.fingerprintFull = ''
+
     log('peer', this.id)
     this.setupPeer(opt)
   }
@@ -73,20 +73,14 @@ export class WebRTCPeer extends Emitter {
     })
 
     this.peer.on('signalingStateChange', async _ => {
-      // setInterval(() => {
       const fpl = getFingerprintString(this.peer?._pc?.currentLocalDescription?.sdp) || ''
       const fpr = getFingerprintString(this.peer?._pc?.currentRemoteDescription?.sdp) || ''
       if (fpl && fpr) {
         const digest = await sha256Messages(this.room, fpl, fpr)
-        this.fingerprint = splitByNChars(base32Encode(digest, 9))
-        this.fingerprintFull = splitByNChars(base32Encode(digest), 4)
+        this.fingerprint = splitByNChars(base32Encode(digest), 4)
       } else {
         this.fingerprint = ''
-        this.fingerprintFull = ''
       }
-      // console.log('PEER Local', this.fingerprintLocal)
-      // console.log('PEER Remote', this.fingerprintRemote)
-      // }, 1000)
     })
 
     // We received data from the peer

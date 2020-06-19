@@ -171,17 +171,18 @@ body {
         left: $px-8;
         font-size: 1em;
         background: rgba(255, 255, 255, 0.9);
+        padding: $px-16;
       }
 
       .-short {
-        display: flex;
+        display: block;
         font-family: $mono-font-family;
         font-weight: bold;
       }
 
       &:hover {
         .-long {
-          display: flex;
+          display: block;
         }
 
         .-short {
