@@ -4,7 +4,7 @@ import SimplePeer from 'simple-peer'
 import { cloneObject } from '../lib/base'
 import { Emitter } from '../lib/emitter'
 import { trackException } from '../bugs'
-import { getFingerprint } from './fingerprint'
+import { getCompactChecksum, getFingerprint } from './fingerprint'
 
 const log = require('debug')('app:webrtc-peer')
 
@@ -23,9 +23,7 @@ export class WebRTCPeer extends Emitter {
     this.local = local
     this.initiator = opt.initiator
     this.id = 'webrtc-peer' + ctr++
-
-    this.fingerprintRemote = null
-    this.fingerprintLocal = null
+    this.fingerprint = '????'
 
     log('peer', this.id)
     this.setupPeer(opt)
@@ -71,13 +69,14 @@ export class WebRTCPeer extends Emitter {
       // log(`${this.id} | signal`, this.initiator)
       this.emit('signal', data)
     })
-    
+
     this.peer.on('signalingStateChange', _ => {
       // setInterval(() => {
-      this.fingerprintLocal = getFingerprint(this.peer?._pc?.currentLocalDescription?.sdp)
-      this.fingerprintRemote = getFingerprint(this.peer?._pc?.currentRemoteDescription?.sdp)
-      console.log('PEER Local', this.fingerprintLocal)
-      console.log('PEER Remote', this.fingerprintRemote)
+      const fpl = getFingerprint(this.peer?._pc?.currentLocalDescription?.sdp)
+      const fpr = getFingerprint(this.peer?._pc?.currentRemoteDescription?.sdp)
+      this.fingerprint = getCompactChecksum(fpl, fpr)
+      // console.log('PEER Local', this.fingerprintLocal)
+      // console.log('PEER Remote', this.fingerprintRemote)
       // }, 1000)
     })
 

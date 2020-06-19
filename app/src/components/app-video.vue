@@ -30,6 +30,9 @@
       </svg>
       <label>Click to start video</label>
     </div>
+    <div v-if="fingerprint" class="video video-placeholder -content-placeholder -overlay">
+      <label>{{ fingerprint.toUpperCase() }}</label>
+    </div>
   </div>
 </template>
 
@@ -59,6 +62,9 @@ export default {
     mirrored: {
       type: Boolean,
       default: false,
+    },
+    fingerprint: {
+      type: String,
     },
     id: {
       type: String,
