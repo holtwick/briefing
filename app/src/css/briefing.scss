@@ -152,6 +152,21 @@ body {
       background: rgba(51, 51, 51, 0.2);
     }
 
+    &.-info {
+      label {
+        position: absolute;
+        bottom: $px-8;
+        right: $px-8;
+        border-radius: $px-4;
+        padding: $px-4 $px-8;
+        font-family: $mono-font-family;
+        font-size: 0.8rem;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.5);
+        color: #333333;
+      }
+    }
+
     svg {
       display: inline-block;
       padding: 0;

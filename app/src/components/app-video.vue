@@ -30,7 +30,7 @@
       </svg>
       <label>Click to start video</label>
     </div>
-    <div v-if="fingerprint" class="video video-placeholder -content-placeholder -overlay">
+    <div v-if="fingerprint" class="video video-placeholder -content-placeholder -overlay -info">
       <label>{{ fingerprint.toUpperCase() }}</label>
     </div>
   </div>
