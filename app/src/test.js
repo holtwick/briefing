@@ -1,5 +1,5 @@
 import { assert_equal } from './lib/assert'
-import { digestMessage, digestMessages, getFingerprintString } from './logic/fingerprint'
+import { digestMessage, digestMessages, getFingerprintString, splitByNChars } from './logic/fingerprint'
 
 console.log('test')
 
@@ -12,7 +12,9 @@ const sample = 'v=0\r\no=- 307404001895177377 3 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0
 async function test() {
   const fp = getFingerprintString(sample)
   assert_equal(fp, 'a=fingerprint:sha-256 6C:5D:F3:0F:72:12:76:01:D3:ED:32:9D:EE:61:84:1E:D6:9C:C3:17:38:BD:A4:91:FC:43:FC:87:03:A0:CB:AC')
-  assert_equal(await digestMessage(fp), 'MT2AATY5')
+  assert_equal(await digestMessage(fp), 'MT2AATY56')
+
+  assert_equal(splitByNChars('MT2AATY56'), 'MT2-AAT-Y56')
 
   let r1 = await digestMessages('abc', fp)
   let r2 = await digestMessages(fp, 'abc')

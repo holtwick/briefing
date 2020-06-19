@@ -15,7 +15,7 @@ const BASE32_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
 
 // https://www.crockford.com/base32.html
 // https://github.com/LinusU/base32-encode/blob/master/index.js
-export function base32Encode(buffer) {
+export function base32Encode(buffer, outputLength) {
   let length = buffer.byteLength
   let view = new Uint8Array(buffer)
 
@@ -30,6 +30,12 @@ export function base32Encode(buffer) {
     while (bits >= 5) {
       output += BASE32_ALPHABET[(value >>> (bits - 5)) & 31]
       bits -= 5
+
+      if (outputLength >= 0) {
+        if (output.length >= outputLength) {
+          return output
+        }
+      }
     }
   }
 
@@ -40,15 +46,24 @@ export function base32Encode(buffer) {
   return output
 }
 
-export async function digestMessage(message, chars = 8) {
+export function splitByNChars(value, splitN = 3, join = '-') {
+  let strings = []
+  while (value?.length) {
+    strings.push(value.substr(0, splitN))
+    value = value.substr(splitN)
+  }
+  return strings.join(join)
+}
+
+export async function digestMessage(message) {
   const msgUint8 = new TextEncoder().encode(message)
   const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8)
-  let extraction = hashBuffer.slice(0, (chars / 8) * 6 - 1)
-  return base32Encode(extraction)
+  return base32Encode(hashBuffer, 9)
 }
 
 export async function digestMessages(...messages) {
-  messages = messages.map(m => m.toLowerCase().trim())
+  console.log('messages', messages)
+  messages = messages.map(m => m.toString().toLowerCase().trim())
   messages.sort()
   return digestMessage(messages.join('\n'))
 }
@@ -73,7 +88,7 @@ export function getFingerprint(sdp) {
 export function getFingerprintString(sdp) {
   if (sdp) {
     let m = /^a=fingerprint.*$/gm.exec(sdp)
-    if (m.length) {
+    if (m && m.length) {
       return m[0]
     }
   }
