@@ -1,7 +1,7 @@
 export default {
   welcome: {
     start: 'Sitzung starten...',
-    abstract: 'Anonymer Ende zu Ende verschlüsselter Video-Chat für Gruppen',
+    abstract: 'Sicherer direkter Video-Chat für Gruppen',
     help: 'Mehr Informationen',
     created: 'Erstellt von'
   },

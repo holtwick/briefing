@@ -1,7 +1,7 @@
 export default {
   welcome: {
     start: 'Start Video Chat',
-    abstract: 'Anonymous end-to-end encrypted group video chat',
+    abstract: 'Secure direct group video chat',
     help: 'Learn More',
     created: 'Created by'
   },

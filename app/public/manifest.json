@@ -19,7 +19,7 @@
   "background_color": "#272727",
   "theme_color": "#272727",
   "author": "Dirk Holtwick",
-  "description": "Secure anonymous video chat",
+  "description": "Secure direct video chat",
   "homepage_url": "https://brie.fi/",
   "url": "https://brie.fi/",
   "lang": "EN",
@@ -32,8 +32,8 @@
     }
   ],
   "features": [
-    "Secure anonymous video chat",
-    "End-to-end encrypted",
+    "Direct secure group video chat",
+    "Verify integrity",
     "Blur background"
   ],
   "orientation": "any",

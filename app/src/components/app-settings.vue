@@ -59,10 +59,18 @@
       </label>
       <div v-if="state.backgroundMode === 'image'" class="settings-info">
         You can upload your own background by dragging an image file on this window.
-        <img v-if="state.backgroundImageURL" :src="state.backgroundImageURL" alt="">
-        <div v-if="state.backgroundAuthor">
-          This is a random image made by {{ state.backgroundAuthor }} and distirbuted via <a :href="state.backgroundURL" target="_blank" rel="noopener nofollow">Unsplash.com</a>.
-          <a href="#" @click.prevent="doUnSplashImage">Get another random image.</a>
+        <div v-if="!state.backgroundAuthor">
+          <img v-if="state.backgroundImageURL" :src="state.backgroundImageURL" alt="Your custom image" title="Your custom image">
+        </div>
+        <div v-else>
+          <img v-if="state.backgroundImageURL" :src="state.backgroundImageURL" :alt="`Image by ${state.backgroundAuthor}`" :title="`Image by ${state.backgroundAuthor}`">
+          Photo by
+          <a :href="`${state.backgroundURL}?utm_source=briefing&utm_medium=referral`">{{ state.backgroundAuthor }}</a>
+          on
+          <a href="https://unsplash.com/?utm_source=briefing&utm_medium=referral" target="_blank" rel="noopener nofollow">Unsplash</a>.
+          <br>
+          <br>
+          <a href="#" @click.prevent="doUnSplashImage">Click to get another random image.</a>
         </div>
       </div>
     </div>
@@ -102,13 +110,16 @@ export default {
       },
     },
     video() {
-      return [
-        {
+      let videoDevices = this.state.devices.filter(d => d.kind === 'videoinput' && d.deviceId !== 'default')
+      if (navigator?.mediaDevices?.getDisplayMedia) {
+        return [{
           deviceId: 'desktop',
           label: this.l.settings.desktop,
         },
-        ...this.state.devices.filter(d => d.kind === 'videoinput' && d.deviceId !== 'default'),
-      ]
+          ...videoDevices,
+        ]
+      }
+      return videoDevices
     },
     audio() {
       return this.state.devices.filter(d => d.kind === 'audioinput' && d.deviceId !== 'default')

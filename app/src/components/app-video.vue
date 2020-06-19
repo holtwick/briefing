@@ -16,6 +16,18 @@
       </svg>
       <label>Waiting for connection</label>
     </div>
+    <div v-if="fingerprint" class="video video-placeholder -content-placeholder -overlay -info">
+      <label title="Verification code" class="-short">
+        {{ fingerprint.substr(fingerprint.length - 4, 4) }}
+      </label>
+      <label title="Verification code" class="-long">
+        Click to change zoomed video.
+        <br><br>
+        If the person you see here confirms to see the same ID, you are securely connected:
+        <br>
+        {{ fingerprint }}
+      </label>
+    </div>
     <div v-if="state.muteVideo && id === 'self'" class="video video-placeholder -content-placeholder">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video-off">
         <path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"></path>
@@ -59,6 +71,9 @@ export default {
     mirrored: {
       type: Boolean,
       default: false,
+    },
+    fingerprint: {
+      type: String,
     },
     id: {
       type: String,

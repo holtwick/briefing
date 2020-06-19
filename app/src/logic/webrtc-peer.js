@@ -4,6 +4,8 @@ import SimplePeer from 'simple-peer'
 import { cloneObject } from '../lib/base'
 import { Emitter } from '../lib/emitter'
 import { trackException } from '../bugs'
+import { getFingerprintString, sha256Messages, splitByNChars } from './fingerprint'
+import { base32Encode } from '../lib/uuid'
 
 const log = require('debug')('app:webrtc-peer')
 
@@ -21,7 +23,9 @@ export class WebRTCPeer extends Emitter {
     this.remote = remote
     this.local = local
     this.initiator = opt.initiator
+    this.room = opt.room || ''
     this.id = 'webrtc-peer' + ctr++
+    this.fingerprint = ''
 
     log('peer', this.id)
     this.setupPeer(opt)
@@ -66,6 +70,17 @@ export class WebRTCPeer extends Emitter {
     this.peer.on('signal', data => {
       // log(`${this.id} | signal`, this.initiator)
       this.emit('signal', data)
+    })
+
+    this.peer.on('signalingStateChange', async _ => {
+      const fpl = getFingerprintString(this.peer?._pc?.currentLocalDescription?.sdp) || ''
+      const fpr = getFingerprintString(this.peer?._pc?.currentRemoteDescription?.sdp) || ''
+      if (fpl && fpr) {
+        const digest = await sha256Messages(this.room, fpl, fpr)
+        this.fingerprint = splitByNChars(base32Encode(digest), 4)
+      } else {
+        this.fingerprint = ''
+      }
     })
 
     // We received data from the peer
@@ -117,6 +132,10 @@ export class WebRTCPeer extends Emitter {
   // We got a signal from the remote peer and will use it now to establish the connection
   signal(data) {
     if (this.peer && !this.peer.destroyed) {
+      // To prove that manipulated fingerprints will result in refusing connection
+      // if (data?.sdp) {
+      //   data.sdp = data.sdp.replace(/(fingerprint:.*?):(\w\w):/, '$1:00:')
+      // }
       this.peer.signal(data)
     } else {
       log('Tried to set signal on destroyed peer', this.peer, data)

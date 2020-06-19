@@ -12,28 +12,28 @@ export async function getDevices() {
 }
 
 export let bandwidthVideoConstraints = {
-  video: {
-    width: { ideal: 320 },
-    height: { ideal: 240 },
-  },
-  width: { ideal: 320 },
-  height: { ideal: 240 },
+  // video: {
+  //   width: { ideal: 320 },
+  //   height: { ideal: 240 },
+  // },
+  // width: { ideal: 320 },
+  // height: { ideal: 240 },
 }
 
 export let defaultVideoConstraints = {
-  frameRate: {
-    min: 1,
-    ideal: 15,
-  },
+  // frameRate: {
+  //   min: 1,
+  //   ideal: 15,
+  // },
 }
 
 export let defaultAudioConstraints = {
-  echoCancellation: true,
-  noiseSuppression: true,
-  autoGainControl: true,
+  // echoCancellation: true,
+  // noiseSuppression: true,
+  // autoGainControl: true,
 }
 
-function _getUserMedia(constraints) {
+function __getUserMedia(constraints) {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     return navigator.mediaDevices.getUserMedia(constraints)
   }
@@ -60,7 +60,7 @@ export async function getUserMedia(constraints = {
     // Solution via https://stackoverflow.com/a/47958949/140927
     // Only available for HTTPS! See https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#Security
     log('getUserMedia constraints', constraints)
-    let stream = await _getUserMedia(constraints)
+    let stream = await __getUserMedia(constraints)
     return { stream }
   } catch (err) {
     const name = err?.name || err?.toString()
@@ -70,9 +70,28 @@ export async function getUserMedia(constraints = {
       return { error: 'No camera or microphone has been found!' }
     }
     trackException(err)
-    return { error: err?.message || err?.name || err.toString() }
+    return {
+      error: err?.message || err?.name || err.toString(),
+    }
   }
 }
+
+// export async function getUserMedia(constraints = {
+//   audio: {
+//     ...defaultAudioConstraints,
+//   },
+//   video: {
+//     ...defaultVideoConstraints,
+//     facingMode: 'user',
+//   },
+// }) {
+//   let audioStream = await _getUserMedia({ audio: constraints.audio, video: false })
+//   let videoStream = await _getUserMedia({ video: constraints.video, audio: false })
+//   if (audioStream?.stream && videoStream?.stream) {
+//     videoStream.stream.addTrack(audioStream.stream.getAudioTracks()[0])
+//   }
+//   return videoStream || audioStream
+// }
 
 export async function getDisplayMedia(constraints = {
   video: {
