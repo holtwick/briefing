@@ -111,9 +111,9 @@ export class WebRTC extends Emitter {
 
   updateStatus() {
     let status = Object.values(this.peerConnections).map(peer => {
-      let { active, initiator, local, remote, error, stream } = peer
+      let { active, initiator, local, remote, error } = peer
       return {
-        active, initiator, local, remote, error, stream, peer,
+        active, initiator, local, remote, error, peer,
       }
     })
     this.emit('status', { status })

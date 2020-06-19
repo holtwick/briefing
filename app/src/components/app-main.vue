@@ -28,7 +28,7 @@
           v-for="peer in state.status"
           :key="peer.remote"
           :id="peer.remote"
-          :stream="peer.stream"
+          :stream="peer && peer.peer && peer.peer.stream"
         />
 
         <div class="message-container -error" v-if="state.requestBugTracking">
