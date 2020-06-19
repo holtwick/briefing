@@ -17,7 +17,14 @@
       <label>Waiting for connection</label>
     </div>
     <div v-if="fingerprint" class="video video-placeholder -content-placeholder -overlay -info">
-      <label title="Verification code">{{ fingerprint.toUpperCase() }}</label>
+      <label title="Verification code" class="-short">
+        {{ fingerprintFull.substr(fingerprintFull.length - 4, 4) }}
+      </label>
+      <label title="Verification code" class="-long">
+        If the person you see here confirms to see the same number, you are securely connected:
+        <br>
+        {{ fingerprintFull }}
+      </label>
     </div>
     <div v-if="state.muteVideo && id === 'self'" class="video video-placeholder -content-placeholder">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video-off">
@@ -64,6 +71,9 @@ export default {
       default: false,
     },
     fingerprint: {
+      type: String,
+    },
+    fingerprintFull: {
       type: String,
     },
     id: {

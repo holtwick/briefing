@@ -153,17 +153,40 @@ body {
     }
 
     &.-info {
+
       label {
         position: absolute;
         bottom: $px-8;
         right: $px-8;
         border-radius: $px-4;
         padding: $px-4 $px-8;
-        font-family: $mono-font-family;
-        font-size: 0.8rem;
-        font-weight: bold;
         background: rgba(255, 255, 255, 0.5);
         color: #333333;
+        font-size: 0.8rem;
+      }
+
+      .-long {
+        display: none;
+        text-align: left;
+        left: $px-8;
+        font-size: 1em;
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .-short {
+        display: flex;
+        font-family: $mono-font-family;
+        font-weight: bold;
+      }
+
+      &:hover {
+        .-long {
+          display: flex;
+        }
+
+        .-short {
+          display: none;
+        }
       }
     }
 

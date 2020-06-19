@@ -68,6 +68,16 @@ export async function digestMessages(...messages) {
   return digestMessage(messages.join('\n'))
 }
 
+export async function sha256Messages(...messages) {
+  console.log('messages', messages)
+  messages = messages.map(m => m.toString().toLowerCase().trim())
+  messages.sort()
+  const message = messages.join('\n')
+  const msgUint8 = new TextEncoder().encode(message)
+  return await crypto.subtle.digest('SHA-256', msgUint8)
+}
+
+
 function getFingerprintArray(fp) {
   if (!fp) return null
   return fp.split(':').map(v => parseInt(v.toLowerCase(), 16))

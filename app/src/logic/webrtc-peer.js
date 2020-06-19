@@ -4,7 +4,8 @@ import SimplePeer from 'simple-peer'
 import { cloneObject } from '../lib/base'
 import { Emitter } from '../lib/emitter'
 import { trackException } from '../bugs'
-import { digestMessages, getFingerprintString, splitByNChars } from './fingerprint'
+import { getFingerprintString, sha256Messages, splitByNChars } from './fingerprint'
+import { base32Encode } from '../lib/uuid'
 
 const log = require('debug')('app:webrtc-peer')
 
@@ -25,7 +26,7 @@ export class WebRTCPeer extends Emitter {
     this.room = opt.room || ''
     this.id = 'webrtc-peer' + ctr++
     this.fingerprint = ''
-
+    this.fingerprintFull = ''
     log('peer', this.id)
     this.setupPeer(opt)
   }
@@ -76,9 +77,12 @@ export class WebRTCPeer extends Emitter {
       const fpl = getFingerprintString(this.peer?._pc?.currentLocalDescription?.sdp) || ''
       const fpr = getFingerprintString(this.peer?._pc?.currentRemoteDescription?.sdp) || ''
       if (fpl && fpr) {
-        this.fingerprint = splitByNChars(await digestMessages(this.room, fpl, fpr))
+        const digest = await sha256Messages(this.room, fpl, fpr)
+        this.fingerprint = splitByNChars(base32Encode(digest, 9))
+        this.fingerprintFull = splitByNChars(base32Encode(digest), 4)
       } else {
         this.fingerprint = ''
+        this.fingerprintFull = ''
       }
       // console.log('PEER Local', this.fingerprintLocal)
       // console.log('PEER Remote', this.fingerprintRemote)
