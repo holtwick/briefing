@@ -1,6 +1,6 @@
 // Copyright (c) 2020 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-// const log = require('debug')('assert')
+const log = require('debug')('test:assert')
 
 import { trackSilentException } from '../bugs'
 
@@ -16,7 +16,7 @@ export function assert(cond, ...args) {
     }
     try {
       if (typeof expect !== undefined) {
-        expect(cond).toBeTruthy(cond)
+        expect(cond).toBeTruthy()
       }
     } catch (err) {
       console.warn('assert err', err)
@@ -25,4 +25,12 @@ export function assert(cond, ...args) {
     }
   }
   // log(`Assert: ${cond}`, ...args)
+}
+
+export function assert_equal(value, expected, ...args) {
+  if (value !== expected) {
+    assert(false, `Expected ${expected} got ${value}`, ...args)
+  } else {
+    log(`Passed equal check with value ${value}`, ...args)
+  }
 }

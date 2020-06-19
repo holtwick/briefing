@@ -1,4 +1,4 @@
-import { getCompactChecksum, getFingerprint } from './fingerprint'
+import { digestMessage, getCompactChecksum, getFingerprint } from './fingerprint'
 
 describe('Fingerprint', () => {
 

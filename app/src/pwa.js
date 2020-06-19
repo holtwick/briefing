@@ -56,3 +56,9 @@ Vue.use(locale, {
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+
+// Do some tests on the actual browser
+
+if (localStorage.test) {
+  import(/* webpackChunkName: 'test' */ './test').then()
+}

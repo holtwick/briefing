@@ -27,6 +27,7 @@ export class WebRTC extends Emitter {
     super()
     assert(room, 'room cannot be empty')
 
+    this.room = room
     this.peerSettings = peerSettings
 
     log('webrtc reaches out to', SIGNAL_SERVER_URL)
@@ -129,6 +130,7 @@ export class WebRTC extends Emitter {
       remote,
       initiator,
       wrtc,
+      room: this.room,
       ...this.peerSettings,
     })
 
