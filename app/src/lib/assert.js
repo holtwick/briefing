@@ -16,7 +16,7 @@ export function assert(cond, ...args) {
     }
     try {
       if (typeof expect !== undefined) {
-        expect(cond).toBeTruthy(cond)
+        expect(cond).toBeTruthy()
       }
     } catch (err) {
       console.warn('assert err', err)

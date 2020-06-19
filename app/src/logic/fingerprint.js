@@ -47,6 +47,12 @@ export async function digestMessage(message, chars = 8) {
   return base32Encode(extraction)
 }
 
+export async function digestMessages(...messages) {
+  messages = messages.map(m => m.toLowerCase().trim())
+  messages.sort()
+  return digestMessage(messages.join('\n'))
+}
+
 function getFingerprintArray(fp) {
   if (!fp) return null
   return fp.split(':').map(v => parseInt(v.toLowerCase(), 16))
@@ -73,3 +79,4 @@ export function getFingerprintString(sdp) {
   }
   return null
 }
+
