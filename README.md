@@ -34,3 +34,4 @@ Please visit the [GitHub project](https://github.com/holtwick/briefing/issues) t
 
 Frankly this is not required, because your browser can handle it all. You can of course put Briefing on your home screen e.g. in iOS Safari tap on the "Share" icon and choose "Add to Home Screen". You can do the same in browsers like Google Chrome.
 
+<iframe src="https://github.com/sponsors/holtwick/card" title="Sponsor holtwick" height="225" width="600" style="border: 0;"></iframe>
