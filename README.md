@@ -18,7 +18,7 @@ During the Corona pandemic I tried to create a peer-to-peer solution for home sc
 
 *Why is it free and Open Source?*
 
-Only a free project does not require the user to create an account and unveil payment information, that could be used to identify that person. This is why the project is free and will remain free, as long as no additional costs like maintaining TURN servers etc. will require some funding. If you want to support me and the project directly you can [via PayPal](https://www.paypal.me/apperdeck). If you are interested in sponsoring please contact me at briefing@holtwick.de.
+Only a free project does not require the user to create an account and unveil payment information, that could be used to identify that person. This is why the project is free and will remain free, as long as no additional costs like maintaining TURN servers etc. will require some funding. If you want to support me and the project directly you can [via Github](https://github.com/sponsors/holtwick) or [via PayPal](https://www.paypal.me/apperdeck). If you are interested in sponsoring please contact me at briefing@holtwick.de.
 
 *Which servers are actually involved in a call?*
 
@@ -34,4 +34,6 @@ Please visit the [GitHub project](https://github.com/holtwick/briefing/issues) t
 
 Frankly this is not required, because your browser can handle it all. You can of course put Briefing on your home screen e.g. in iOS Safari tap on the "Share" icon and choose "Add to Home Screen". You can do the same in browsers like Google Chrome.
 
-<iframe src="https://github.com/sponsors/holtwick/card" title="Sponsor holtwick" height="225" width="600" style="border: 0;"></iframe>
+---
+
+Fund this project by [sponsoring via GitHub](https://github.com/sponsors/holtwick). 
