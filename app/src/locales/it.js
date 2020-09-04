@@ -1,7 +1,7 @@
 export default {
   welcome: {
     start: 'Avvia Video Chat',
-    abstract: 'Video chat di gruppo secura e diretta',
+    abstract: 'Video chat di gruppo sicura e diretta',
     help: 'Per saperne di più',
     created: 'Creato da',
   },
@@ -27,7 +27,7 @@ export default {
     blur: 'Sfocatura dello sfondo',
     blur_info: 'Sperimentale: un algoritmo di intelligenza artificiale è in grado di individuare le forme delle persone e sfocare lo sfondo rimanente. Questo aggiunge un po di privacy visiva alla tua chiamata. Ma attenzione, questa è una funzione che consuma molto energia e molto probabilmente non funzionerà su dispositivi mobili! ',
     bandwidth: 'Applica ottimizzazioni della larghezza di banda',
-    bandwidth_info: 'Sperimentale: con questa impostazione, il briefing cerca di ridurre la larghezza di banda assottigliando i dati video e audio.',
+    bandwidth_info: 'Sperimentale: con questa impostazione,briefing cerca di ridurre la larghezza di banda assottigliando i dati video e audio.',
     fill: 'Scala video',
     fill_info: 'Il briefing cerca di sfruttare il più possibile lo spazio disponibile sullo schermo ridimensionando il video in modo da adattarlo alla sua cornice visiva. Quando è spento, vedrai invece l\'intero video ma con bordi attorno.',
     subscribe: 'Iscriviti a questa stanza',
