@@ -34,6 +34,18 @@ Please visit the [GitHub project](https://github.com/holtwick/briefing/issues) t
 
 Frankly this is not required, because your browser can handle it all. You can of course put Briefing on your home screen e.g. in iOS Safari tap on the "Share" icon and choose "Add to Home Screen". You can do the same in browsers like Google Chrome.
 
+**License**
+
+Briefing is free and can be modified and forked. But the conditions of the EUPL (European Union Public License 1.2) need to be respected, which are similar to ones of the GPL. In particular modifications need to be free as well and made available to the public.
+
+For commercial use please contact [license@holtwick.de](mailto:license@holtwick.de) for licensing alternatives.  
+
+Get a quick overview of the license at [Choose an open source license](https://choosealicense.com/licenses/eupl-1.2/). This license is available in the [languages of the European Community](https://eupl.eu/).
+
+*Author*
+
+My name is Dirk Holtwick. I'm an independent software developer located in Germany. Learn more at [hotlwick.de](https://holtwick.de/de/about).
+
 ---
 
 Fund this project by [sponsoring via GitHub](https://github.com/sponsors/holtwick). 
