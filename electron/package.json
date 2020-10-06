@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
-    "electron": "^9.1.1",
+    "electron": "^9.3.0",
     "electron-builder": "^22.8.0",
     "electron-icon-builder": "^1.0.2",
     "jest": "^26.1.0"
