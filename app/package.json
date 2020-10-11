@@ -1,7 +1,7 @@
 {
   "name": "briefing",
   "description": "Secure direct video chat",
-  "version": "1.12.1",
+  "version": "1.12.2",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
@@ -33,28 +33,28 @@
     "electron >= 8"
   ],
   "dependencies": {
-    "@sentry/browser": "^5.22.3",
-    "@sentry/integrations": "^5.22.3",
+    "@sentry/browser": "^5.25.0",
+    "@sentry/integrations": "^5.25.0",
     "@tensorflow-models/body-pix": "^2.0.5",
     "@tensorflow/tfjs-converter": "^1.7.4",
     "@tensorflow/tfjs-core": "^1.7.4",
     "clipboard-copy": "^3.1.0",
     "core-js": "^3.6.5",
     "custom-electron-titlebar": "^3.2.4",
-    "debug": "^4.1.1",
+    "debug": "^4.2.0",
     "register-service-worker": "^1.7.1",
     "simple-peer": "^9.7.2",
-    "socket.io-client": "^2.3.0",
-    "uuid": "^8.3.0",
+    "socket.io-client": "^2.3.1",
+    "uuid": "^8.3.1",
     "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.4",
-    "@vue/cli-plugin-pwa": "^4.5.4",
-    "@vue/cli-service": "^4.5.4",
-    "jest": "^26.4.2",
+    "@vue/cli-plugin-babel": "^4.5.7",
+    "@vue/cli-plugin-pwa": "^4.5.7",
+    "@vue/cli-service": "^4.5.7",
+    "jest": "^26.5.2",
     "node-sass": "^4.14.1",
-    "sass-loader": "^10.0.2",
+    "sass-loader": "^10.0.3",
     "vue-template-compiler": "^2.6.12",
     "wrtc": "^0.4.6"
   }
