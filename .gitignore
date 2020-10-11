@@ -14,3 +14,6 @@ fix.sh
 /internal
 android
 bg.jpg
+.env.local
+.htaccess
+.htaccess 2
