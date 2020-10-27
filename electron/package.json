@@ -8,7 +8,7 @@
     "email": "dirk.holtwick@gmail.com",
     "url": "https://holtwick.de"
   },
-  "license": "EUPL",
+  "license": "EUPL-1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/holtwick/briefing.git"
