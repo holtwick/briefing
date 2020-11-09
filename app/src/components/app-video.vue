@@ -16,17 +16,15 @@
       </svg>
       <label>Waiting for connection</label>
     </div>
-    <div v-if="fingerprint" class="video video-placeholder video-fingerprint -content-placeholder -overlay -info">
-      <label title="Verification code" class="-short">
-        {{ fingerprint.substr(fingerprint.length - 4, 4) }}
+    <div v-if="fingerprint" class="video video-placeholder video-fingerprint -content-placeholder -overlay -info" v-show="!state.maximized">
+      <label title="Verification code" class="-short" @click.stop.prevent="doToggleShow" v-show="!showCode">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        {{ fingerprint.substr(fingerprint.length - 4, 4) }}
       </label>
-      <label title="Verification code" class="-long">
-        Click to change zoomed video.
-        <br><br>
+      <label title="Verification code" class="-long" @click.stop.prevent="doToggleShow" v-show="showCode">
         If the person you see here confirms to see the same ID, you are securely connected:
         <br>
-        {{ fingerprint }}
+        <tt>{{ fingerprint }}</tt>
       </label>
     </div>
     <div v-if="state.muteVideo && id === 'self'" class="video video-placeholder -content-placeholder">
@@ -82,6 +80,7 @@ export default {
   },
   data() {
     return {
+      showCode: false,
       showPlayButton: false,
     }
   },
@@ -136,6 +135,9 @@ export default {
       } else {
         this.state.maximized = this.id
       }
+    },
+    doToggleShow(ev) {
+      this.showCode = !this.showCode
     },
     async doPlay() {
       try {
