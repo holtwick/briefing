@@ -9,34 +9,34 @@
       :muted="muted"
       v-if="stream"
       :data-fit="state.fill ? 'cover' : 'contain'"
+      autoPictureInPicture="true"
     />
     <div v-else class="video video-placeholder -content-placeholder">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="-icon-placeholder">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
       </svg>
       <label>Waiting for connection</label>
     </div>
-    <div v-if="fingerprint" class="video video-placeholder -content-placeholder -overlay -info">
-      <label title="Verification code" class="-short">
+    <div v-if="fingerprint" class="video video-placeholder video-fingerprint -content-placeholder -overlay -info" v-show="!state.maximized">
+      <label title="Verification code" class="-short" @click.stop.prevent="doToggleShow" v-show="!showCode">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
         {{ fingerprint.substr(fingerprint.length - 4, 4) }}
       </label>
-      <label title="Verification code" class="-long">
-        Click to change zoomed video.
-        <br><br>
+      <label title="Verification code" class="-long" @click.stop.prevent="doToggleShow" v-show="showCode">
         If the person you see here confirms to see the same ID, you are securely connected:
         <br>
-        {{ fingerprint }}
+        <tt>{{ fingerprint }}</tt>
       </label>
     </div>
     <div v-if="state.muteVideo && id === 'self'" class="video video-placeholder -content-placeholder">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video-off">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="-icon-placeholder">
         <path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"></path>
         <line x1="1" y1="1" x2="23" y2="23"></line>
       </svg>
       <label>You turned the video off</label>
     </div>
     <div v-if="stream && showPlayButton" class="video video-placeholder -content-placeholder -overlay">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="-icon-placeholder">
         <circle cx="12" cy="12" r="10"></circle>
         <polygon points="10 8 16 12 10 16 10 8"></polygon>
       </svg>
@@ -81,6 +81,7 @@ export default {
   },
   data() {
     return {
+      showCode: false,
       showPlayButton: false,
     }
   },
@@ -135,6 +136,9 @@ export default {
       } else {
         this.state.maximized = this.id
       }
+    },
+    doToggleShow(ev) {
+      this.showCode = !this.showCode
     },
     async doPlay() {
       try {

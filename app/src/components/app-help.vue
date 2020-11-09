@@ -13,13 +13,13 @@
       </p>
       <p><strong>FAQ- Some answers to some questions</strong></p>
       <p><em>Why starting another video conf tool?</em></p>
-      <p>During the Corona pandemic I tried to create a peer-to-peer solution for home schooling called <a href='https://peer.school/?ref=peer.school'>peer.school</a>. Although the project has been retired for various reasons, I
+      <p>During the Corona pandemic I tried to create a peer-to-peer solution for home schooling called <a href='/goto/peer-school'>peer.school</a>. Although the project has been retired for various reasons, I
         learned
         so much about WebRTC and video/audio communication, that I did want to reuse this knowledge in this project. </p>
       <p><em>Why is it free and Open Source?</em></p>
       <p>Only a free project does not require the user to create an account and unveil payment information, that could be used to identify that person. This is why the project is free and will remain free, as long as no additional costs
         like
-        maintaining TURN servers etc. will require some funding. If you want to support me and the project directly you can <a href='https://www.paypal.me/apperdeck'>via PayPal</a>. If you are interested in sponsoring please contact me at
+        maintaining TURN servers etc. will require some funding. If you want to support me and the project directly you can <a href='/goto/paypal'>via PayPal</a>. If you are interested in sponsoring please contact me at
         <a
           href='mailto:briefing@holtwick.de' target='_blank' class='url'>briefing@holtwick.de</a>.</p>
       <p><em>Which servers are actually involved in a call?</em></p>
@@ -29,16 +29,16 @@
         <li>Briefing STUN/TURN server (helps traversing fire walls)</li>
       </ul>
       <p><em>Feature X is missing! Found bug Y!</em></p>
-      <p>Please visit the <a href='https://github.com/holtwick/briefing/issues'>GitHub project</a> to see if your request is already on the list or place a <a href='https://github.com/holtwick/briefing/issues/new'>new issue</a>. Your
+      <p>Please visit the <a href='/goto/issues'>GitHub project</a> to see if your request is already on the list or place a <a href='/goto/bug'>new issue</a>. Your
         contribution is of course welcome as well.</p>
       <p><em>How about native apps?</em></p>
       <p>Frankly this is not required, because your browser can handle it all. You can of course put Briefing on your home screen e.g. in iOS Safari tap on the &quot;Share&quot; icon and choose &quot;Add to Home Screen&quot;. You can do the
         same in browsers like Google Chrome</p>
       <p>---</p>
       <p>
-        (C)opyright 2020 by <a href="https://holtwick.de?ref=briefing">Dirk Holtwick</a> |
-        <a href="https://holtwick.de/privacy?ref=briefing">Privacy Policy</a> |
-        <a href="https://holtwick.de/imprint?ref=briefing">Imprint</a>
+        (C)opyright 2020 by <a href="/goto/holtwick">Dirk Holtwick</a> |
+        <a href="/goto/privacy">Privacy Policy</a> |
+        <a href="/goto/imprint">Imprint</a>
       </p>
     </div>
   </div>

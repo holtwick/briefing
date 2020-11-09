@@ -13,7 +13,11 @@ workbox.core.clientsClaim()
 self.__precacheManifest = [].concat(self.__precacheManifest || [])
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
 
-workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL('/index.html'))
+workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL('/index.html'), {
+  whitelist: [
+    /^\/ng.*$/,
+  ],
+})
 
 // Custom code
 
