@@ -175,9 +175,22 @@ body {
       }
 
       .-short {
-        display: block;
+        display: flex;
+        align-items: center;
         font-family: $mono-font-family;
         font-weight: bold;
+        color: rgba(255, 255, 255, 0.75);
+
+        svg {
+          display: inline-block;
+          width: 0.8rem !important;
+          height: 0.8rem;
+          padding: 0;
+          margin: 0;
+          margin-left: 0.4rem;
+          stroke: rgba(255, 255, 255, 0.5);
+          stroke-width: 3px;
+        }
       }
 
       &:hover {
@@ -191,7 +204,7 @@ body {
       }
     }
 
-    svg {
+    svg.-icon-placeholder {
       display: inline-block;
       padding: 0;
       margin: 0;
@@ -208,6 +221,7 @@ body {
       display: block;
       margin-top: 1rem;
     }
+
   }
 
 }
