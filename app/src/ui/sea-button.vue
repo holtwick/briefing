@@ -2,13 +2,13 @@
 
 <template>
   <button
-    :class="classnames"
-    v-bind="$attrs"
-    :disabled="disabled"
-    :role="role"
-    @mousedown="doBeforeClick"
-    @click="doClick"
-    @contextmenu="doClick"
+      :class="classnames"
+      v-bind="$attrs"
+      :disabled="disabled"
+      :role="role"
+      @mousedown="doBeforeClick"
+      @click="doClick"
+      @contextmenu="doClick"
   >
     <sea-symbol v-if="symbol || symbolLeft" :name="symbol || symbolLeft" class="sea-button-symbol-left"/>
     {{ title }}
