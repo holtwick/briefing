@@ -114,7 +114,7 @@ export default {
       if (navigator?.mediaDevices?.getDisplayMedia) {
         return [{
           deviceId: 'desktop',
-          label: this.l.settings.desktop,
+          label: this.l.settings.desktop + '\xa0 🖥',
         },
           ...videoDevices,
         ]
