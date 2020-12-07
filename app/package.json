@@ -23,9 +23,12 @@
     "build": "vue-cli-service build",
     "serve:https": "HTTPS=1 vue-cli-service serve",
     "serve:sw": "npm run build && serve -s dist",
-    "demo": "ssh -R 80:localhost:8080 ssh.localhost.run",
     "test": "jest",
-    "ncu": "ncu -u -x /tensorflow/ && npm i"
+    "ncu": "ncu -u -x /tensorflow/ && npm i",
+    "x": "ssh -R 8080:localhost:8080 signal",
+    "x:localhost": "ssh -R 80:localhost:8080 ssh.localhost.run",
+    "x:lt": "lt --port 8080",
+    "x:ngrok": "ngrok http 8080"
   },
   "browserslist": [
     "> 1%",
