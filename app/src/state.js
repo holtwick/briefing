@@ -85,8 +85,8 @@ export let state = {
   screenshots,
 }
 
-messages.on("requestBugTracking", (_) => (state.requestBugTracking = true))
-messages.on("upgrade", (_) => (state.upgrade = true))
+messages.on("requestBugTracking", _ => (state.requestBugTracking = true))
+messages.on("upgrade", _ => (state.upgrade = true))
 
 messages.on("updateStream", updateStream)
 
@@ -95,10 +95,10 @@ function updateStream() {
     if (state.stream) {
       state.stream
         ?.getVideoTracks()
-        .forEach((t) => (t.enabled = !state?.muteVideo))
+        .forEach(t => (t.enabled = !state?.muteVideo))
       state.stream
         ?.getAudioTracks()
-        .forEach((t) => (t.enabled = !state?.muteAudio))
+        .forEach(t => (t.enabled = !state?.muteAudio))
     }
   } catch (err) {
     trackException(err)
@@ -213,7 +213,7 @@ export async function setup() {
     state.error = error
     if (stream) {
       // Safari getDevices only works immediately after getUserMedia (bug)
-      state.devices = ((await getDevices()) || []).map((d) => {
+      state.devices = ((await getDevices()) || []).map(d => {
         log("found device", d)
         return {
           kind: d?.kind?.toLowerCase() || "?",

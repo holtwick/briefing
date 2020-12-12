@@ -95,9 +95,7 @@
           />
           Photo by
           <a
-            :href="
-              `${state.backgroundURL}?utm_source=briefing&utm_medium=referral`
-            "
+            :href="`${state.backgroundURL}?utm_source=briefing&utm_medium=referral`"
             >{{ state.backgroundAuthor }}</a
           >
           on

@@ -1,13 +1,11 @@
-import { mergeDeep } from './base'
-import { DEBUG } from '../config'
+import { mergeDeep } from "./base"
+import { DEBUG } from "../config"
 
-export function prepareLocaleStrings(
-  {
-    lang,
-    locales = { en: {} },
-    defaultLang = 'en',
-  } = {}) {
-
+export function prepareLocaleStrings({
+  lang,
+  locales = { en: {} },
+  defaultLang = "en",
+} = {}) {
   lang = lang || navigator?.language?.slice(0, 2)
   if (DEBUG && localStorage.lang) {
     lang = localStorage.lang
@@ -27,4 +25,3 @@ export default {
     })
   },
 }
-

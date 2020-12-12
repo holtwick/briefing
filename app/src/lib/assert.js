@@ -1,8 +1,8 @@
 // Copyright (c) 2020 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-const log = require('debug')('test:assert')
+const log = require("debug")("test:assert")
 
-import { trackSilentException } from '../bugs'
+import { trackSilentException } from "../bugs"
 
 export function assert(cond, ...args) {
   if (!cond) {
@@ -19,7 +19,7 @@ export function assert(cond, ...args) {
         expect(cond).toBeTruthy()
       }
     } catch (err) {
-      console.warn('assert err', err)
+      console.warn("assert err", err)
       trackSilentException(err)
       // console.error('Exception:', err)
     }

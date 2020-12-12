@@ -1,21 +1,24 @@
-import Vue from 'vue'
-import locale from './lib/locale'
-import './logic/registerServiceWorker'
-import de from './locales/de'
-import en from './locales/en'
-import it from './locales/it'
-import App from './pwa-app.vue'
-import { state } from './state'
-import { setupBugTracker } from './bugs'
+import Vue from "vue"
+import locale from "./lib/locale"
+import "./logic/registerServiceWorker"
+import de from "./locales/de"
+import en from "./locales/en"
+import it from "./locales/it"
+import App from "./pwa-app.vue"
+import { state } from "./state"
+import { setupBugTracker } from "./bugs"
 
 // This will be done privacy conform, see bugs/README-BUGTRACKER.md
 setupBugTracker()
 
 // Electron specific i.e. Windows App will become a nicer modern window title and some other small features
-if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && window.beaker == null) {
-  console.log('Identified Electron')
-  import(/* webpackChunkName: 'pwa-electron' */ './pwa-electron').then()
-  console.log('Handled Electron')
+if (
+  navigator.userAgent.toLowerCase().indexOf(" electron/") > -1 &&
+  window.beaker == null
+) {
+  console.log("Identified Electron")
+  import(/* webpackChunkName: 'pwa-electron' */ "./pwa-electron").then()
+  console.log("Handled Electron")
 }
 
 Vue.config.productionTip = false
@@ -28,7 +31,7 @@ Vue.mixin({
     openExternalLink(event) {
       if (window.electron) {
         let href
-        if (typeof event === 'string') {
+        if (typeof event === "string") {
           href = event
         } else {
           let target = event?.target
@@ -37,7 +40,7 @@ Vue.mixin({
           }
           href = target?.href
         }
-        console.info('Open external link', event.target)
+        console.info("Open external link", event.target)
         if (href) {
           window.electron.shell.openExternal(href)
         }
@@ -55,11 +58,10 @@ Vue.use(locale, {
 
 new Vue({
   render: h => h(App),
-}).$mount('#app')
+}).$mount("#app")
 
 // Do some tests on the actual browser
 
 if (localStorage.test) {
-  import(/* webpackChunkName: 'test' */ './in-browser-test.js').then()
+  import(/* webpackChunkName: 'test' */ "./in-browser-test.js").then()
 }
-

@@ -1,20 +1,20 @@
-import { trackSilentException } from '../bugs'
+import { trackSilentException } from "../bugs"
 
 export function cloneObject(obj) {
   try {
-    if (typeof obj === 'object') {
+    if (typeof obj === "object") {
       return JSON.parse(JSON.stringify(obj))
     }
     return obj
   } catch (err) {
     trackSilentException(err)
-    log('cloneObject error:', err)
+    log("cloneObject error:", err)
   }
   return null
 }
 
 export function mergeDeep(target, source) {
-  const isObject = (obj) => obj && typeof obj === 'object'
+  const isObject = obj => obj && typeof obj === "object"
 
   if (!isObject(target) || !isObject(source)) {
     return source

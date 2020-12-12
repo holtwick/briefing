@@ -8,10 +8,10 @@ export function getCompactChecksum(...args) {
     const right = values[j + 1]
     checksum += left * 0xff + right
   }
-  return (checksum % 0xffff).toString(16).padStart(4, '0')
+  return (checksum % 0xffff).toString(16).padStart(4, "0")
 }
 
-const BASE32_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
+const BASE32_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
 
 // https://www.crockford.com/base32.html
 // https://github.com/LinusU/base32-encode/blob/master/index.js
@@ -21,7 +21,7 @@ export function base32Encode(buffer, outputLength) {
 
   let bits = 0
   let value = 0
-  let output = ''
+  let output = ""
 
   for (let i = 0; i < length; i++) {
     value = (value << 8) | view[i]
@@ -46,7 +46,7 @@ export function base32Encode(buffer, outputLength) {
   return output
 }
 
-export function splitByNChars(value, splitN = 3, join = '-') {
+export function splitByNChars(value, splitN = 3, join = "-") {
   let strings = []
   while (value?.length) {
     strings.push(value.substr(0, splitN))
@@ -57,30 +57,39 @@ export function splitByNChars(value, splitN = 3, join = '-') {
 
 export async function digestMessage(message) {
   const msgUint8 = new TextEncoder().encode(message)
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8)
+  const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8)
   return base32Encode(hashBuffer, 9)
 }
 
 export async function digestMessages(...messages) {
-  console.log('messages', messages)
-  messages = messages.map(m => m.toString().toLowerCase().trim())
+  console.log("messages", messages)
+  messages = messages.map(m =>
+    m
+      .toString()
+      .toLowerCase()
+      .trim()
+  )
   messages.sort()
-  return digestMessage(messages.join('\n'))
+  return digestMessage(messages.join("\n"))
 }
 
 export async function sha256Messages(...messages) {
-  console.log('messages', messages)
-  messages = messages.map(m => m.toString().toLowerCase().trim())
+  console.log("messages", messages)
+  messages = messages.map(m =>
+    m
+      .toString()
+      .toLowerCase()
+      .trim()
+  )
   messages.sort()
-  const message = messages.join('\n')
+  const message = messages.join("\n")
   const msgUint8 = new TextEncoder().encode(message)
-  return await crypto.subtle.digest('SHA-256', msgUint8)
+  return await crypto.subtle.digest("SHA-256", msgUint8)
 }
-
 
 function getFingerprintArray(fp) {
   if (!fp) return null
-  return fp.split(':').map(v => parseInt(v.toLowerCase(), 16))
+  return fp.split(":").map(v => parseInt(v.toLowerCase(), 16))
   // return Uint8Array.from(fp.split(':').map(v => parseInt(v.toLowerCase(), 16)))
 }
 
@@ -104,4 +113,3 @@ export function getFingerprintString(sdp) {
   }
   return null
 }
-

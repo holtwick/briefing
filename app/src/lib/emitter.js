@@ -1,9 +1,8 @@
-import { trackSilentException } from '../bugs'
+import { trackSilentException } from "../bugs"
 
-const log = require('debug')('app:emitter')
+const log = require("debug")("app:emitter")
 
 export class Emitter {
-
   subscribers = {}
 
   emit(key, info) {
@@ -14,12 +13,12 @@ export class Emitter {
         try {
           fn(info)
         } catch (err) {
-          console.warn('emit warning:', err)
+          console.warn("emit warning:", err)
           trackSilentException(err)
         }
       }
     } catch (err) {
-      console.error('emit exception', err)
+      console.error("emit exception", err)
       trackSilentException(err)
     }
   }
@@ -31,15 +30,14 @@ export class Emitter {
     return {
       cleanup: () => {
         this.off(key, fn)
-      }
+      },
     }
   }
 
   off(key, fn) {
-    log('off', key)
+    log("off", key)
     this.subscribers = (this.subscribers[key] || []).filter(f => fn && f !== fn)
   }
-
 }
 
 export const messages = new Emitter()
