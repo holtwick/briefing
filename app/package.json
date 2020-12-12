@@ -1,7 +1,7 @@
 {
   "name": "briefing",
   "description": "Secure direct video chat",
-  "version": "1.14.1",
+  "version": "1.15.0",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
@@ -50,7 +50,7 @@
     "debug": "^4.3.1",
     "register-service-worker": "^1.7.1",
     "simple-peer": "^9.9.3",
-    "socket.io-client": "^3.0.4",
+    "socket.io-client": "<3",
     "uuid": "^8.3.2",
     "vue": "^2.6.12"
   },
