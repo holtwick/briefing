@@ -4,21 +4,22 @@
 </template>
 
 <script>
-import AppWelcome from './components/app-welcome'
+import AppWelcome from "./components/app-welcome"
 
-const log = require('debug')('app:pwa-app')
+const log = require("debug")("app:pwa-app")
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     AppWelcome,
-    AppMain: () => import(/* webpackChunkName: 'main' */ './components/app-main'),
+    AppMain: () =>
+      import(/* webpackChunkName: 'main' */ "./components/app-main"),
   },
   data() {
     return {}
   },
   mounted() {
-    log('pwa')
+    log("pwa")
   },
 }
 </script>

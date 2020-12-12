@@ -13,7 +13,8 @@
 
 $buttonHeight: $px-40;
 
-.sea-link, .sea-button {
+.sea-link,
+.sea-button {
   &.-has-title {
     .sea-button-symbol-left {
       padding-right: $px-8;
@@ -45,7 +46,8 @@ $buttonHeight: $px-40;
     --button-background: var(--success-color);
   }
 
-  &.-error, &.-danger {
+  &.-error,
+  &.-danger {
     --button-background: var(--error-color);
   }
 
@@ -67,7 +69,7 @@ $buttonHeight: $px-40;
   padding: 0 $px-16;
   text-align: center;
   text-decoration: none;
-  transition: background .2s, border .2s, box-shadow .2s, color .2s;
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
@@ -94,10 +96,9 @@ $buttonHeight: $px-40;
   &:disabled,
   &.disabled {
     cursor: default;
-    opacity: .5;
+    opacity: 0.5;
     pointer-events: none;
   }
-
 }
 
 // Buttons

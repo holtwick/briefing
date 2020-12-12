@@ -1,7 +1,6 @@
 <!-- Copyright (c) 2020 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
 
 <template>
-
   <textarea
     v-if="type === 'textarea'"
     class="form-input"
@@ -14,7 +13,8 @@
     @keydown.enter=""
     @blur=""
     @change="$emit('action', computedValue)"
-    v-text="value"/>
+    v-text="value"
+  />
 
   <select
     v-else-if="type === 'select'"
@@ -26,7 +26,9 @@
     @input="onInput"
     @change="$emit('action', computedValue)"
   >
-    <option v-if="placeholder" value="" disabled hidden>{{ placeholder }}</option>
+    <option v-if="placeholder" value="" disabled hidden>{{
+      placeholder
+    }}</option>
     <option v-for="o in options" :value="o" :key="o">{{ o }}</option>
     <slot></slot>
   </select>
@@ -41,7 +43,7 @@
     role="switch"
     @input="onInputBool"
     @change="$emit('action', computedValue)"
-  >
+  />
 
   <input
     v-else-if="type === 'number'"
@@ -55,7 +57,7 @@
     @input="onInput"
     :placeholder="placeholder"
     @change="$emit('action', computedValue)"
-  >
+  />
 
   <input
     v-else
@@ -70,16 +72,14 @@
     @input="onInput"
     @keydown.enter.prevent=""
     @change="$emit('action', computedValue)"
-  >
-
+  />
 </template>
 
 <script>
-
-const log = require('debug')('app:fa-textarea')
+const log = require("debug")("app:fa-textarea")
 
 export default {
-  name: 'sea-input-base',
+  name: "sea-input-base",
   inheritAttrs: false,
   props: {
     label: {
@@ -88,7 +88,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: 'Text',
+      default: "Text",
     },
     value: {
       type: [String, Boolean, Number],
@@ -121,9 +121,9 @@ export default {
         return this.newValue
       },
       set(value) {
-        log('set value', value)
+        log("set value", value)
         this.newValue = value
-        this.$emit('input', value)
+        this.$emit("input", value)
         // !this.isValid && this.checkHtml5Validity()
       },
     },

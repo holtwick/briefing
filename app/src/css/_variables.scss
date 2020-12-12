@@ -7,10 +7,10 @@
 
 $rtl: false !default;
 
-$blueSecondary: rgba(43, 184, 255, 1.00);
-$blue: rgba(10, 124, 179, 1.00);
-$orange: rgba(255, 161, 43, 1.00);
-$orangeSecondary: rgba(255, 172, 69, 1.00);
+$blueSecondary: rgba(43, 184, 255, 1);
+$blue: rgba(10, 124, 179, 1);
+$orange: rgba(255, 161, 43, 1);
+$orangeSecondary: rgba(255, 172, 69, 1);
 
 $primary-color: $blue !default; // #5755d9 #FFBD33
 $alt-color: $orange;
@@ -107,7 +107,7 @@ $control-padding-x-lg: $px-16 !default;
 $control-padding-y: ($control-size - $line-height) / 2 - $border-width !default;
 $control-padding-y-sm: ($control-size-sm - $line-height) / 2 - $border-width !default;
 $control-padding-y-lg: ($control-size-lg - $line-height) / 2 - $border-width !default;
-$control-icon-size: .8rem !default;
+$control-icon-size: 0.8rem !default;
 
 // sea
 
@@ -119,12 +119,18 @@ $control-spacing: $px-24; //  $control-size / 5 * 3;
 // Fonts
 
 // Credit: https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
-$base-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto !default;
-$mono-font-family: "SF Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Courier, monospace !default;
+$base-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+  Roboto !default;
+$mono-font-family: "SF Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Courier,
+  monospace !default;
 $fallback-font-family: "Helvetica Neue", sans-serif !default;
-$cjk-zh-hans-font-family: $base-font-family, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", $fallback-font-family !default;
-$cjk-zh-hant-font-family: $base-font-family, "PingFang TC", "Hiragino Sans CNS", "Microsoft JhengHei", $fallback-font-family !default;
-$cjk-jp-font-family: $base-font-family, "Hiragino Sans", "Hiragino Kaku Gothic Pro", "Yu Gothic", YuGothic, Meiryo, $fallback-font-family !default;
+$cjk-zh-hans-font-family: $base-font-family, "PingFang SC", "Hiragino Sans GB",
+  "Microsoft YaHei", $fallback-font-family !default;
+$cjk-zh-hant-font-family: $base-font-family, "PingFang TC", "Hiragino Sans CNS",
+  "Microsoft JhengHei", $fallback-font-family !default;
+$cjk-jp-font-family: $base-font-family, "Hiragino Sans",
+  "Hiragino Kaku Gothic Pro", "Yu Gothic", YuGothic, Meiryo,
+  $fallback-font-family !default;
 $cjk-ko-font-family: $base-font-family, "Malgun Gothic", $fallback-font-family !default;
 $body-font-family: $base-font-family, $fallback-font-family !default;
 
@@ -138,4 +144,3 @@ $font-size-sm: px(14) !default;
 $font-size-lg: px(24) !default;
 
 $line-height: px(20) !default;
-

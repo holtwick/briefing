@@ -7,43 +7,17 @@
 //
 
 import UIKit
-import SafariServices
-
-//struct SafariView: UIViewControllerRepresentable {
-//
-//    let url: URL
-//
-//    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
-//        return SFSafariViewController(url: url)
-//    }
-//
-//    func updateUIViewController(_ uiViewController: SFSafariViewController,
-//                                context: UIViewControllerRepresentableContext<SafariView>) {
-//
-//    }
-//
-//}
+import WebKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var webView: WKWebView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let url = "https://brie.fi/ng/"
+        webView?.load(URLRequest(url: URL(string: url)!))
+    }
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let safari = SFSafariViewController(url: URL(string: "https://brie.fi/ng")!)
-        //        if let sview = safari.view {
-        //            sview.frame = view.bounds
-        //            sview.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        //            view.addSubview(sview)
-        self.present(safari, animated: true) {
-            
-        }
-        //        }
-    }
-    
 }
 

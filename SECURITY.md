@@ -2,7 +2,7 @@
 
 ## General Info
 
-See [wiki](https://github.com/holtwick/briefing/wiki/) in general and [Security Discussion](https://github.com/holtwick/briefing/wiki/Security-Discussion) in particular 
+See [wiki](https://github.com/holtwick/briefing/wiki/) in general and [Security Discussion](https://github.com/holtwick/briefing/wiki/Security-Discussion) in particular
 for details about security considerations.
 
 ## Reporting a Vulnerability

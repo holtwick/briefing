@@ -16,7 +16,7 @@ $switchKnobBlob: $switchKnobWidth - $switchKnobHeight;
 //.sea-switch-container { }
 
 .sea-switch {
-  --switch-bg: rgba(141, 141, 141, 1.00);
+  --switch-bg: rgba(141, 141, 141, 1);
   --switch-bg-active: var(--primary-color, #007ed9);
   --switch-knob-color: #ffffff;
 
@@ -36,7 +36,8 @@ $switchKnobBlob: $switchKnobWidth - $switchKnobHeight;
     --switch-bg-active: var(--success-color);
   }
 
-  &.-error, &.-danger {
+  &.-error,
+  &.-danger {
     --switch-bg-active: var(--error-color);
   }
 
@@ -57,10 +58,11 @@ $switchKnobBlob: $switchKnobWidth - $switchKnobHeight;
     line-height: $switchHeight;
   }
 
-  i { // Background
+  i {
+    // Background
     position: relative;
     display: inline-block;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
     width: $switchWidth;
     height: $switchHeight;
     background-color: var(--switch-bg);
@@ -68,7 +70,8 @@ $switchKnobBlob: $switchKnobWidth - $switchKnobHeight;
     vertical-align: text-bottom;
     transition: background-color 0.3s linear;
 
-    &::after { // Knob
+    &::after {
+      // Knob
       content: "";
       position: absolute;
       left: 0;
@@ -91,7 +94,11 @@ $switchKnobBlob: $switchKnobWidth - $switchKnobHeight;
   }
 
   &:active input:checked + i::after {
-    transform: translate3d($switchXSelected - $switchKnobHeight * 0.5, $switchBorder, 0);
+    transform: translate3d(
+      $switchXSelected - $switchKnobHeight * 0.5,
+      $switchBorder,
+      0
+    );
   }
 
   input {
@@ -111,4 +118,3 @@ $switchKnobBlob: $switchKnobWidth - $switchKnobHeight;
     margin-right: $px-16;
   }
 }
-
