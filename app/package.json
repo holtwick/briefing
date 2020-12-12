@@ -20,9 +20,11 @@
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve:ios": "VUE_APP_TARGET=ios vue-cli-service serve",
     "serve:https": "HTTPS=1 vue-cli-service serve",
     "serve:sw": "npm run build && serve -s dist",
+    "build": "vue-cli-service build",
+    "build:ios": "VUE_APP_TARGET=ios vue-cli-service build",
     "test": "jest",
     "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx,vue}'",
     "ncu": "ncu -u -x /tensorflow/ && npm i",

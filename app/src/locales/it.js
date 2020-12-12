@@ -1,6 +1,6 @@
 export default {
   welcome: {
-    start: "Avvi",
+    start: "Avvia chat",
     abstract: "Video chat di gruppo sicura e diretta",
     help: "Per saperne di più",
     created: "Creato da",
@@ -8,7 +8,7 @@ export default {
   share: {
     title: "Condivi",
     link_info: "Si prega di inviare questo link a tutti i partecipanti:",
-    button_copy: "Copia",
+    button_copy: "Condividi",
     qr_info:
       "Puoi anche scansionare questo codice QR con una fotocamera del dispositivo mobile:",
     feedback:

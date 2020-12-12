@@ -10,6 +10,7 @@ import {
 } from "./logic/stream"
 import { trackException, trackSilentException } from "./bugs"
 import { PRODUCTION } from "./config"
+import { env } from "@tensorflow/tfjs-core"
 
 const log = require("debug")("app:state")
 
@@ -83,10 +84,12 @@ export let state = {
   requestBugTracking: false,
 
   screenshots,
+
+  ios: process.env.VUE_APP_TARGET === "ios",
 }
 
-messages.on("requestBugTracking", _ => (state.requestBugTracking = true))
-messages.on("upgrade", _ => (state.upgrade = true))
+messages.on("requestBugTracking", (_) => (state.requestBugTracking = true))
+messages.on("upgrade", (_) => (state.upgrade = true))
 
 messages.on("updateStream", updateStream)
 
@@ -95,10 +98,10 @@ function updateStream() {
     if (state.stream) {
       state.stream
         ?.getVideoTracks()
-        .forEach(t => (t.enabled = !state?.muteVideo))
+        .forEach((t) => (t.enabled = !state?.muteVideo))
       state.stream
         ?.getAudioTracks()
-        .forEach(t => (t.enabled = !state?.muteAudio))
+        .forEach((t) => (t.enabled = !state?.muteAudio))
     }
   } catch (err) {
     trackException(err)
@@ -213,7 +216,7 @@ export async function setup() {
     state.error = error
     if (stream) {
       // Safari getDevices only works immediately after getUserMedia (bug)
-      state.devices = ((await getDevices()) || []).map(d => {
+      state.devices = ((await getDevices()) || []).map((d) => {
         log("found device", d)
         return {
           kind: d?.kind?.toLowerCase() || "?",
