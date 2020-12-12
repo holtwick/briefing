@@ -4,7 +4,7 @@
       <label class="form-labelx"
         ><b>{{ l.settings.video }}</b></label
       >
-      <label class="form-radio" v-for="d in video">
+      <label class="form-radio" v-for="d in video" :key="d.deviceId">
         <input
           type="radio"
           :id="d.deviceId"
@@ -19,7 +19,7 @@
       <label class="form-labelx"
         ><b>{{ l.settings.audio }}</b></label
       >
-      <label class="form-radio" v-for="d in audio">
+      <label class="form-radio" v-for="d in audio" :key="d.deviceId">
         <input
           type="radio"
           :id="d.deviceId"
@@ -58,7 +58,7 @@
       <sea-switch v-model="sentry">Persist Settings</sea-switch>
       <!--      <div class="settings-info" v-html="l.settings.sentry_info"></div>-->
     </div>
-    <div class="form-group settings-group">
+    <div class="form-group settings-group" v-if="!state.ios">
       <label class="form-labelx"><b>Background</b></label>
       <label class="form-radio">
         <input type="radio" value="" v-model="state.backgroundMode" />
