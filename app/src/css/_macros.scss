@@ -89,7 +89,7 @@
 
 // Shadow mixin
 @mixin shadow-variant($offset) {
-  box-shadow: 0 $offset ($offset + .05rem) * 2 rgba($dark-color, .3);
+  box-shadow: 0 $offset ($offset + 0.05rem) * 2 rgba($dark-color, 0.3);
 }
 
 @mixin hiddenButSelectable {
@@ -126,7 +126,7 @@
 @mixin label-base() {
   border-radius: $border-radius;
   line-height: 1.25;
-  padding: .1rem .2rem;
+  padding: 0.1rem 0.2rem;
 }
 
 @mixin label-variant($color: $light-color, $bg-color: $primary-color) {
@@ -150,23 +150,25 @@
 }
 
 // Mega awesome idea https://css-tricks.com/css-custom-properties-theming/
-@mixin backgroundVarLighter($name, $perc:0.25) {
+@mixin backgroundVarLighter($name, $perc: 0.25) {
   background: linear-gradient(
       to top,
       rgba(255, 255, 255, $perc),
       rgba(255, 255, 255, $perc)
-  ) var($name);
+    )
+    var($name);
 }
 
-@mixin backgroundVarDarker($name, $perc:0.25) {
+@mixin backgroundVarDarker($name, $perc: 0.25) {
   background: linear-gradient(
       to top,
       rgba(0, 0, 0, $perc),
       rgba(0, 0, 0, $perc)
-  ) var($name);
+    )
+    var($name);
 }
 
-@mixin backgroundVar($name, $perc:0) {
+@mixin backgroundVar($name, $perc: 0) {
   @if $perc < 0 {
     @include backgroundVarLighter($name, $perc * -1);
   } @else if $perc > 0 {

@@ -40,7 +40,8 @@ legend {
   }
 }
 
-.form-input, .form-select {
+.form-input,
+.form-select {
   --color: var(--input-text, var(--text-color));
   --background: var(--input-background, #{$bg-color-light});
   --border: var(--input-border, none);
@@ -64,10 +65,11 @@ legend {
   outline: none;
   padding: $control-padding-y $control-padding-x;
   // position: relative; // This corrupts overflow for embedded overflows
-  transition: background .2s, border .2s, box-shadow .2s, color .2s;
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
   width: 100%;
 
-  &.-focus, &:focus {
+  &.-focus,
+  &:focus {
     @include control-shadow();
     border-color: $primary-color;
   }
@@ -146,7 +148,8 @@ textarea.form-input-autoresize {
   vertical-align: middle;
   width: 100%;
 
-  &.-focus, &:focus {
+  &.-focus,
+  &:focus {
     @include control-shadow();
     border-color: $primary-color;
   }
@@ -164,13 +167,15 @@ textarea.form-input-autoresize {
   &.select-sm {
     font-size: $font-size-sm;
     height: $control-size-sm;
-    padding: $control-padding-y-sm ($control-icon-size + $control-padding-x-sm) $control-padding-y-sm $control-padding-x-sm;
+    padding: $control-padding-y-sm ($control-icon-size + $control-padding-x-sm)
+      $control-padding-y-sm $control-padding-x-sm;
   }
 
   &.select-lg {
     font-size: $font-size-lg;
     height: $control-size-lg;
-    padding: $control-padding-y-lg ($control-icon-size + $control-padding-x-lg) $control-padding-y-lg $control-padding-x-lg;
+    padding: $control-padding-y-lg ($control-icon-size + $control-padding-x-lg)
+      $control-padding-y-lg $control-padding-x-lg;
   }
 
   // Multiple select
@@ -185,7 +190,9 @@ textarea.form-input-autoresize {
   }
 
   &:not([multiple]):not([size]) {
-    background: var(--input-background) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right $px-16 center/$px-8 $px-16;
+    background: var(--input-background)
+      url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e")
+      no-repeat right $px-16 center/$px-8 $px-16;
     padding-right: $control-icon-size + $control-padding-x;
   }
 }
@@ -235,7 +242,9 @@ textarea.form-input-autoresize {
   margin: 0; //' ($control-size - $control-size-sm) / 2 0;
   margin-top: $px-4;
   min-height: $control-size-sm;
-  padding: (($control-size-sm - $line-height) / 2) $control-padding-x (($control-size-sm - $line-height) / 2) ($control-icon-size + $control-padding-x);
+  padding: (($control-size-sm - $line-height) / 2) $control-padding-x
+    (($control-size-sm - $line-height) / 2)
+    ($control-icon-size + $control-padding-x);
   position: relative;
 
   input {
@@ -262,7 +271,7 @@ textarea.form-input-autoresize {
     cursor: pointer;
     display: inline-block;
     position: absolute;
-    transition: background .2s, border .2s, box-shadow .2s, color .2s;
+    transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
   }
 
   // Input checkbox and radio sizes
@@ -412,7 +421,8 @@ textarea.form-input-autoresize {
       margin-left: -$border-width;
     }
 
-    &.-focus, &:focus {
+    &.-focus,
+    &:focus {
       z-index: $z-index-0 + 1;
     }
   }
@@ -434,7 +444,8 @@ textarea.form-input-autoresize {
     background: lighten($success-color, 53%);
     border-color: $success-color;
 
-    &.-focus, &:focus {
+    &.-focus,
+    &:focus {
       @include control-shadow($success-color);
     }
   }
@@ -444,7 +455,8 @@ textarea.form-input-autoresize {
     background: lighten($error-color, 53%);
     border-color: $error-color;
 
-    &.-focus, &:focus {
+    &.-focus,
+    &:focus {
       @include control-shadow($error-color);
     }
   }
@@ -491,7 +503,8 @@ textarea.form-input-autoresize {
       border-color: $error-color;
       box-shadow: none; // Fixes a Firefox render issue
 
-      &.-focus, &:focus {
+      &.-focus,
+      &:focus {
         @include control-shadow($error-color);
         background: lighten($error-color, 53%);
       }
@@ -510,7 +523,7 @@ textarea.form-input-autoresize {
   &.disabled {
     background-color: $bg-color-dark;
     cursor: not-allowed;
-    opacity: .5;
+    opacity: 0.5;
   }
 }
 
@@ -526,7 +539,7 @@ input {
     & + .form-icon {
       background: $bg-color-dark;
       cursor: not-allowed;
-      opacity: .5;
+      opacity: 0.5;
     }
   }
 }
@@ -592,5 +605,4 @@ input {
       cursor: default !important;
     }
   }
-
 }

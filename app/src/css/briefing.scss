@@ -60,6 +60,8 @@ body {
     width: 2rem;
     height: 2rem;
     font-size: 1rem;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   &.-off {
@@ -153,7 +155,6 @@ body {
     }
 
     &.-info {
-
       label {
         position: absolute;
         bottom: $px-8;
@@ -227,13 +228,10 @@ body {
       display: block;
       margin-top: 1rem;
     }
-
   }
-
 }
 
 .video-fill {
-
 }
 
 [data-mode="default"] {
@@ -334,7 +332,6 @@ body {
     font-weight: bold;
     background-color: rgba(191, 0, 0, 0.85);
   }
-
 }
 
 .settings-group {
@@ -380,3 +377,14 @@ body {
   }
 }
 
+// .footer {
+//   @include mediaMobile {
+//     font-size: smaller;
+//   }
+// }
+
+.start-button {
+  border-radius: 1rem !important;
+  font-size: Max(4vh, 2rem) !important;
+  font-weight: 600 !important;
+}

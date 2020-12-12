@@ -62,3 +62,4 @@ new Vue({
 if (localStorage.test) {
   import(/* webpackChunkName: 'test' */ './in-browser-test.js').then()
 }
+
