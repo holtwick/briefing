@@ -1,5 +1,4 @@
-.DS_*
-.DS_Store
+.DS_* 
 *.log
 .idea
 logs
@@ -10,14 +9,14 @@ npm-debug.log
 yarn-error.log
 video
 dist_electron
-fix.sh
+/app/*.sh
 /internal
 android
 bg.jpg
-.env.local
+*.local
 .htaccess
 .htaccess 2
-app/tmp
+tmp
 ios/Briefing/Briefing.xcodeproj/project.xcworkspace/xcuserdata/dirk.xcuserdatad/UserInterfaceState.xcuserstate
 ios/Briefing/Briefing.xcodeproj/xcuserdata/dirk.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
 ios/Briefing/Briefing.xcodeproj/xcuserdata/dirk.xcuserdatad/xcschemes/xcschememanagement.plist

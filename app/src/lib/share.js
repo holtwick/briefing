@@ -5,6 +5,9 @@ export function createLinkForRoom(room) {
   return `https://brie.fi/ng/${room}`
 }
 
+export const canShare = navigator.share != null
+export const canCopy = !canShare
+
 export async function shareLink(
   url,
   {
@@ -21,25 +24,27 @@ export async function shareLink(
       })
       return true
     } catch (err) {
-      trackException(err)
+      console.warn(err)
+      // trackException(err)
     }
-  }
-  if (window.electron) {
+  } else if (window.electron) {
     try {
       // https://electronjs.org/docs/api/clipboard
       await window.electron.clipboard.writeText(url)
       // alert('The URL has been copied to your clipboard.')
       return true
     } catch (err) {
-      trackException(err)
+      console.warn(err)
+      // trackException(err)
+    }
+  } else {
+    try {
+      await clipboardCopy(url)
+      // alert('The URL has been copied to your clipboard.')
+      return true
+    } catch (err) {
+      alert(`Cannot copy ${url}. Please do by hand.`)
+      // trackException(err)
     }
   }
-  try {
-    await clipboardCopy(url)
-    // alert('The URL has been copied to your clipboard.')
-    return true
-  } catch (err) {
-    trackException(err)
-  }
-  alert(`Cannot copy ${url}. Please do by hand.`)
 }

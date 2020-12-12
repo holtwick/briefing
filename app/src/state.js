@@ -10,6 +10,7 @@ import {
 } from "./logic/stream"
 import { trackException, trackSilentException } from "./bugs"
 import { PRODUCTION } from "./config"
+import { env } from "@tensorflow/tfjs-core"
 
 const log = require("debug")("app:state")
 
@@ -83,6 +84,8 @@ export let state = {
   requestBugTracking: false,
 
   screenshots,
+
+  ios: process.env.VUE_APP_TARGET === "ios",
 }
 
 messages.on("requestBugTracking", _ => (state.requestBugTracking = true))
