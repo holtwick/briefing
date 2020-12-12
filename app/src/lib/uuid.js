@@ -1,18 +1,18 @@
 // Copyright (c) 2020 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { v4 } from 'uuid'
+import { v4 } from "uuid"
 
 // https://www.crockford.com/base32.html
 // https://github.com/LinusU/base32-encode/blob/master/index.js
 export function base32Encode(buffer) {
-  const alphabet = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
+  const alphabet = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
   // const alphabet = '0123456789abcdefghjkmnpqrstvwxyz'
   let length = buffer.byteLength
   let view = new Uint8Array(buffer)
 
   let bits = 0
   let value = 0
-  let output = ''
+  let output = ""
 
   for (let i = 0; i < length; i++) {
     value = (value << 8) | view[i]

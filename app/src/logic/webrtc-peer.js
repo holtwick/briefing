@@ -1,18 +1,21 @@
 // Copyright (c) 2020 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import SimplePeer from 'simple-peer'
-import { cloneObject } from '../lib/base'
-import { Emitter } from '../lib/emitter'
-import { trackException } from '../bugs'
-import { getFingerprintString, sha256Messages, splitByNChars } from './fingerprint'
-import { base32Encode } from '../lib/uuid'
+import SimplePeer from "simple-peer"
+import { cloneObject } from "../lib/base"
+import { Emitter } from "../lib/emitter"
+import { trackException } from "../bugs"
+import {
+  getFingerprintString,
+  sha256Messages,
+  splitByNChars,
+} from "./fingerprint"
+import { base32Encode } from "../lib/uuid"
 
-const log = require('debug')('app:webrtc-peer')
+const log = require("debug")("app:webrtc-peer")
 
 let ctr = 1
 
 export class WebRTCPeer extends Emitter {
-
   static isSupported() {
     return SimplePeer.WEBRTC_SUPPORT
   }
@@ -23,11 +26,11 @@ export class WebRTCPeer extends Emitter {
     this.remote = remote
     this.local = local
     this.initiator = opt.initiator
-    this.room = opt.room || ''
-    this.id = 'webrtc-peer' + ctr++
-    this.fingerprint = ''
+    this.room = opt.room || ""
+    this.id = "webrtc-peer" + ctr++
+    this.fingerprint = ""
 
-    log('peer', this.id)
+    log("peer", this.id)
     this.setupPeer(opt)
   }
 
@@ -46,18 +49,18 @@ export class WebRTCPeer extends Emitter {
       },
     })
 
-    log('SimplePeer opts:', opts)
+    log("SimplePeer opts:", opts)
 
     // https://github.com/feross/simple-peer/blob/master/README.md
     this.peer = new SimplePeer(opts)
 
-    this.peer.on('close', _ => this.close())
+    this.peer.on("close", _ => this.close())
 
     // We receive a connection error
-    this.peer.on('error', err => {
+    this.peer.on("error", err => {
       log(`${this.id} | error`, err)
       this.error = err
-      this.emit('error', err)
+      this.emit("error", err)
       this.close()
       setTimeout(() => {
         this.setupPeer(opt) // ???
@@ -67,43 +70,45 @@ export class WebRTCPeer extends Emitter {
     // This means, we received network details (signal) we need to provide
     // the remote peer, so he can set up a connection to us. Usually we will
     // send this over a separate channel like the web socket signaling server
-    this.peer.on('signal', data => {
+    this.peer.on("signal", data => {
       // log(`${this.id} | signal`, this.initiator)
-      this.emit('signal', data)
+      this.emit("signal", data)
     })
 
-    this.peer.on('signalingStateChange', async _ => {
-      const fpl = getFingerprintString(this.peer?._pc?.currentLocalDescription?.sdp) || ''
-      const fpr = getFingerprintString(this.peer?._pc?.currentRemoteDescription?.sdp) || ''
+    this.peer.on("signalingStateChange", async _ => {
+      const fpl =
+        getFingerprintString(this.peer?._pc?.currentLocalDescription?.sdp) || ""
+      const fpr =
+        getFingerprintString(this.peer?._pc?.currentRemoteDescription?.sdp) ||
+        ""
       if (fpl && fpr) {
         const digest = await sha256Messages(this.room, fpl, fpr)
         this.fingerprint = splitByNChars(base32Encode(digest), 4)
       } else {
-        this.fingerprint = ''
+        this.fingerprint = ""
       }
     })
 
     // We received data from the peer
-    this.peer.on('data', data => {
+    this.peer.on("data", data => {
       log(`${this.id} | data`, data)
-      this.emit('data', data)
-      this.emit('message', { data }) // Channel compat
+      this.emit("data", data)
+      this.emit("message", { data }) // Channel compat
     })
 
     // Connection succeeded
-    this.peer.on('connect', event => {
+    this.peer.on("connect", event => {
       log(`${this.id} | connect`, event)
       this.active = true
       // p.send('whatever' + Math.random())
-      this.emit('connect', event)
+      this.emit("connect", event)
     })
 
-    this.peer.on('stream', stream => {
-      log('new stream', stream)
+    this.peer.on("stream", stream => {
+      log("new stream", stream)
       this.stream = stream
-      this.emit('stream', stream)
+      this.emit("stream", stream)
     })
-
   }
 
   setStream(stream) {
@@ -138,18 +143,18 @@ export class WebRTCPeer extends Emitter {
       // }
       this.peer.signal(data)
     } else {
-      log('Tried to set signal on destroyed peer', this.peer, data)
+      log("Tried to set signal on destroyed peer", this.peer, data)
     }
   }
 
-  postMessage(data) {  // Channel compat
+  postMessage(data) {
+    // Channel compat
     this.peer.send(data)
   }
 
   close() {
-    this.emit('close')
+    this.emit("close")
     this.active = false
     this.peer?.destroy()
   }
-
 }

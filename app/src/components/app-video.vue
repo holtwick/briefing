@@ -180,7 +180,7 @@ export default {
             // Start whatever you need to do only after playback
             // has begun.
           })
-          .catch((error) => {
+          .catch(error => {
             if (error.name === "NotAllowedError") {
               this.showPlayButton = true
             } else {
@@ -207,8 +207,8 @@ export default {
             // Keep in mind https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
             // But if the user allows to access camera it should be fine
             // https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide
-            video.onloadedmetadata = (e) => this.playVideo(video)
-            video.onloadeddata = (e) => this.playVideo(video)
+            video.onloadedmetadata = e => this.playVideo(video)
+            video.onloadeddata = e => this.playVideo(video)
           }
         } catch (err) {
           trackSilentException(err)

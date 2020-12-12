@@ -22,7 +22,7 @@ workbox.routing.registerNavigationRoute(
 
 // Custom code
 
-self.addEventListener("notificationclick", (event) => {
+self.addEventListener("notificationclick", event => {
   console.log("notificationclick", event)
   let room
   try {
@@ -33,7 +33,7 @@ self.addEventListener("notificationclick", (event) => {
   console.log("Enter room", room)
   if (room) {
     event.waitUntil(
-      self.clients.matchAll().then((clientList) => {
+      self.clients.matchAll().then(clientList => {
         // if (clientList.length > 0) {
         //   clientList[0].postMessage({
         //     join: room,

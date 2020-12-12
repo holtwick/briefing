@@ -1,14 +1,17 @@
-import clipboardCopy from 'clipboard-copy'
-import { trackException } from '../bugs'
+import clipboardCopy from "clipboard-copy"
+import { trackException } from "../bugs"
 
 export function createLinkForRoom(room) {
   return `https://brie.fi/ng/${room}`
 }
 
-export async function shareLink(url, {
-  title = 'Briefing URL',
-  text = 'Please open the link in your browser to join the video conference',
-} = {}) {
+export async function shareLink(
+  url,
+  {
+    title = "Briefing URL",
+    text = "Please open the link in your browser to join the video conference",
+  } = {}
+) {
   if (navigator.share) {
     try {
       await navigator.share({

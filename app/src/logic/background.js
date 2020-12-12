@@ -2,13 +2,13 @@
 // https://github.com/tensorflow/tfjs-models/blob/b72c10bdbdec6b04a13f780180ed904736fa52a5/body-pix/demos/index.js#L517
 // https://www.tensorflow.org/js/models
 
-import { assert } from '../lib/assert'
-import { state } from '../state'
-import { trackException } from '../bugs/index'
+import { assert } from "../lib/assert"
+import { state } from "../state"
+import { trackException } from "../bugs/index"
 
-const bodyPix = require('@tensorflow-models/body-pix')
+const bodyPix = require("@tensorflow-models/body-pix")
 
-const log = require('debug')('app:blur')
+const log = require("debug")("app:blur")
 
 let animationFrameRequest
 let videoEl, outputEl, captureStream
@@ -19,15 +19,15 @@ export async function setBackgroundImage(url) {
   image = null
   if (url) {
     let resp = await fetch(url)
-    log('img', resp)
+    log("img", resp)
     if (resp) {
       let blob = await resp.blob()
-      log('blob', blob)
+      log("blob", blob)
       let url = URL.createObjectURL(blob)
       let img = new Image()
-      img.onload = function () {
+      img.onload = function() {
         image = this
-        log('image', image)
+        log("image", image)
       }
       img.src = url
     }
@@ -35,7 +35,8 @@ export async function setBackgroundImage(url) {
 }
 
 async function startTransformer(videoEl, outputEl) {
-  const net = await bodyPix.load(
+  const net = await bodyPix
+    .load
     // {
     //   // https://github.com/tensorflow/tfjs-models/tree/master/body-pix#config-params-in-bodypixload
     //   architecture: 'MobileNetV1',
@@ -43,7 +44,7 @@ async function startTransformer(videoEl, outputEl) {
     //   multiplier: 0.75,
     //   quantBytes: 2,
     // },
-  )
+    ()
   const backgroundBlurAmount = 3
   const edgeBlurAmount = 3
   const flipHorizontal = false
@@ -54,7 +55,7 @@ async function startTransformer(videoEl, outputEl) {
       // internalResolution: 'full',
       // maxDetections: 5, // persons
     })
-    if (state.backgroundMode === 'image') {
+    if (state.backgroundMode === "image") {
       const width = videoEl.width
       const height = videoEl.height
 
@@ -70,7 +71,7 @@ async function startTransformer(videoEl, outputEl) {
 
       // Background
       let bgPixel
-      let ctx = outputEl.getContext('2d')
+      let ctx = outputEl.getContext("2d")
       if (image) {
         ctx.drawImage(image, 0, 0, width, height)
         // todo: keep if width and height did not change
@@ -103,7 +104,7 @@ async function startTransformer(videoEl, outputEl) {
         segmentation,
         backgroundBlurAmount,
         edgeBlurAmount,
-        flipHorizontal,
+        flipHorizontal
       )
     }
     animationFrameRequest = requestAnimationFrame(step)
@@ -123,7 +124,7 @@ function setVideoStream(videoEl, stream) {
   videoEl.srcObject = stream
 
   // https://github.com/tensorflow/tfjs-models/blob/b72c10bdbdec6b04a13f780180ed904736fa52a5/body-pix/demos/index.js#L117
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     videoEl.onloadeddata = () => {
       videoEl.width = videoEl.videoWidth
       videoEl.height = videoEl.videoHeight
@@ -143,7 +144,7 @@ function stopExistingVideoCapture(videoEl) {
 }
 
 export function stopBlurTransform() {
-  log('stopBlurTransform')
+  log("stopBlurTransform")
   stopTransformer()
   stopExistingVideoCapture(videoEl)
 }
@@ -153,10 +154,10 @@ export async function startBlurTransform(stream) {
     stopBlurTransform()
 
     if (stream) {
-      log('startBlurTransform')
+      log("startBlurTransform")
 
       if (!videoEl || !outputEl) {
-        let el = document.createElement('div')
+        let el = document.createElement("div")
         // el.className = 'transform debugTransform'
         el.innerHTML = `
         <video id="transformVideo" playsinline></video>
@@ -164,12 +165,12 @@ export async function startBlurTransform(stream) {
       `
         document.body.appendChild(el)
 
-        videoEl = document.getElementById('transformVideo')
-        outputEl = document.getElementById('transformOutput')
+        videoEl = document.getElementById("transformVideo")
+        outputEl = document.getElementById("transformOutput")
       }
 
-      assert(videoEl, 'expect videoEl')
-      assert(outputEl, 'expect videoEl')
+      assert(videoEl, "expect videoEl")
+      assert(outputEl, "expect videoEl")
 
       await setVideoStream(videoEl, stream)
       await videoEl.play()

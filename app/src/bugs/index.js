@@ -1,21 +1,23 @@
-import Vue from 'vue'
-import { PRODUCTION, SENTRY_DSN } from '../config'
-import { messages } from '../lib/emitter'
+import Vue from "vue"
+import { PRODUCTION, SENTRY_DSN } from "../config"
+import { messages } from "../lib/emitter"
 
-const log = require('debug')('app:bugs')
+const log = require("debug")("app:bugs")
 
 // Lazy loading of bug tracker
 export function setupBugTracker(done) {
   if (PRODUCTION && SENTRY_DSN && isAllowedBugTracking()) {
-    console.log('Sentry bug tracking is allowed')
-    import(/* webpackChunkName: 'sentry' */ './lazy-sentry').then(({ setupSentry }) => {
-      setupSentry({
-        dsn: SENTRY_DSN,
-        Vue,
-      })
-      console.log('Did init Sentry bug tracking')
-      if (done) done()
-    })
+    console.log("Sentry bug tracking is allowed")
+    import(/* webpackChunkName: 'sentry' */ "./lazy-sentry").then(
+      ({ setupSentry }) => {
+        setupSentry({
+          dsn: SENTRY_DSN,
+          Vue,
+        })
+        console.log("Did init Sentry bug tracking")
+        if (done) done()
+      }
+    )
   }
 }
 
@@ -24,23 +26,26 @@ export function setupBugTracker(done) {
 let collectedErrors = []
 
 export function isAllowedBugTracking() {
-  return localStorage.allowSentry === '1'
+  return localStorage.allowSentry === "1"
 }
 
-export function setAllowedBugTracking(allowed = true, reloadMessage = 'Reload to activate changes') {
-  log('setAllowedBugTracking', allowed)
+export function setAllowedBugTracking(
+  allowed = true,
+  reloadMessage = "Reload to activate changes"
+) {
+  log("setAllowedBugTracking", allowed)
   if (allowed) {
-    localStorage.allowSentry = '1'
+    localStorage.allowSentry = "1"
     setupBugTracker(_ => {
-      log('setupBugTracker', collectedErrors)
+      log("setupBugTracker", collectedErrors)
       let err
-      while (err = collectedErrors.pop()) {
-        log('send error', err)
+      while ((err = collectedErrors.pop())) {
+        log("send error", err)
         trackException(err)
       }
     })
   } else {
-    localStorage.allowSentry = '0'
+    localStorage.allowSentry = "0"
     if (confirm(reloadMessage)) {
       location.reload()
     }
@@ -49,18 +54,17 @@ export function setAllowedBugTracking(allowed = true, reloadMessage = 'Reload to
 
 export function trackException(e, silent = false) {
   if (!silent) {
-    console.error('Exception:', e)
+    console.error("Exception:", e)
   }
   if (window.sentry) {
-    log('sentry exception', e)
+    log("sentry exception", e)
     window.sentry.captureException(e)
   } else {
     collectedErrors.push(e)
-    messages.emit('requestBugTracking')
+    messages.emit("requestBugTracking")
   }
 }
 
 export function trackSilentException(e) {
   trackException(e, true)
 }
-

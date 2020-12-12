@@ -24,6 +24,7 @@
     "serve:https": "HTTPS=1 vue-cli-service serve",
     "serve:sw": "npm run build && serve -s dist",
     "test": "jest",
+    "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx,vue}'",
     "ncu": "ncu -u -x /tensorflow/ && npm i",
     "x": "echo \"Open browser at https://turn01.brie.fi\" && ssh -R 8080:localhost:8080 signal",
     "x:localhost": "ssh -R 80:localhost:8080 ssh.localhost.run",
