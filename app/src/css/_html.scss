@@ -12,13 +12,14 @@ html body * {
   -webkit-text-size-adjust: none;
 }
 
-html *:not(input,textarea,[contenteditable]) {
+html *:not(input, textarea, [contenteditable]) {
   // Be careful with * because WebKit is sensitive for input fields
   user-select: none;
   -webkit-touch-callout: none;
 }
 
-html, body {
+html,
+body {
   height: 100%; // Required for UI layout
   overflow: hidden; // Do not bounce on scroll macOS
   margin: 0;
@@ -28,7 +29,8 @@ html, body {
   // -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
-body, .theme-element {
+body,
+.theme-element {
   font-family: var(--font-family, $body-font-family);
   font-size: var(--font-size, $font-size);
 
@@ -85,7 +87,6 @@ html:lang(ko),
   s + s,
   u + ins,
   u + u {
-    margin-left: .125em;
+    margin-left: 0.125em;
   }
 }
-

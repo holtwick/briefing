@@ -2,7 +2,8 @@
 
 @import "variables";
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
@@ -27,7 +28,9 @@ html, body {
 }
 
 // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-.stack, .hstack, .vstack {
+.stack,
+.hstack,
+.vstack {
   display: flex;
 
   // Layout should not be affected by too big elements
@@ -62,11 +65,11 @@ html, body {
         position: absolute;
         opacity: 0.5;
         top: 0;
-        left: -( $sepHandleSize / 2);
+        left: -($sepHandleSize / 2);
         width: $sepHandleSize + $px-1;
         height: 100%;
         z-index: $z-index-floating;
-        content: ' ';
+        content: " ";
         cursor: col-resize;
       }
 
@@ -84,7 +87,6 @@ html, body {
       }
     }
   }
-
 }
 
 .-scrollable,
@@ -102,7 +104,9 @@ html, body {
   padding: $px-16;
 }
 
-.hstack, .stack.-horizontal, .stack.-orientation-horizontal {
+.hstack,
+.stack.-horizontal,
+.stack.-orientation-horizontal {
   flex-direction: row;
 
   > .-collapsed {
@@ -126,7 +130,9 @@ html, body {
   }
 }
 
-.vstack, .stack.-vertical, .stack.-orientation-vertical {
+.vstack,
+.stack.-vertical,
+.stack.-orientation-vertical {
   flex-direction: column;
 
   > .-collapsed {
@@ -154,7 +160,8 @@ html, body {
 }
 
 // https://stackoverflow.com/a/22218694/140927
-.placeholder, .-content-placeholder {
+.placeholder,
+.-content-placeholder {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -173,4 +180,3 @@ html, body {
   flex-shrink: 0;
   // padding: px(16);
 }
-

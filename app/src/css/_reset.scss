@@ -2,12 +2,39 @@
 
 // Inspired by https://github.com/jgthms/minireset.css/blob/master/minireset.css
 
-html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6 {
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: 100%;
   font-weight: normal;
 }
@@ -16,7 +43,10 @@ ul {
   list-style: none;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-size: inherit;
   font-family: inherit;
   margin: 0;
@@ -47,11 +77,14 @@ html {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
-img, video {
+img,
+video {
   height: auto;
   max-width: 100%;
   // display: inline-block;
@@ -66,11 +99,13 @@ table {
   border-spacing: 0;
 }
 
-td, th {
+td,
+th {
   padding: 0;
 }
 
-td:not([align]), th:not([align]) {
+td:not([align]),
+th:not([align]) {
   text-align: left;
 }
 
@@ -89,4 +124,3 @@ input[type="search"]::-webkit-search-results-decoration {
 *::-moz-focus-inner {
   border: 0 !important;
 }
-

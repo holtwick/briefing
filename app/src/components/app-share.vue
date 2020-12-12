@@ -10,7 +10,8 @@
         :value="url"
         ref="input"
         readonly
-        @click="selectAll">
+        @click="selectAll"
+      />
       <sea-button @action="doShare">{{ l.share.button_copy }}</sea-button>
     </div>
     <p>{{ l.share.qr_info }}</p>
@@ -21,8 +22,8 @@
 
 <style lang="scss">
 .share-container {
-
-  p, .p {
+  p,
+  .p {
     margin-bottom: 1rem;
   }
 
@@ -43,19 +44,19 @@
 </style>
 
 <script>
-import { qrcode } from '../lib/qrcode'
-import { createLinkForRoom, shareLink } from '../lib/share'
-import SeaButton from '../ui/sea-button'
+import { qrcode } from "../lib/qrcode"
+import { createLinkForRoom, shareLink } from "../lib/share"
+import SeaButton from "../ui/sea-button"
 
-const log = require('debug')('app:app-share')
+const log = require("debug")("app:app-share")
 
 export default {
-  name: 'app-share',
+  name: "app-share",
   components: { SeaButton },
   data() {
     return {
-      url: '',
-      qrcode: '',
+      url: "",
+      qrcode: "",
     }
   },
   methods: {
@@ -72,7 +73,7 @@ export default {
   async mounted() {
     this.url = createLinkForRoom(this.state.room)
     const typeNumber = 0
-    const errorCorrectionLevel = 'H'
+    const errorCorrectionLevel = "H"
     const qr = qrcode(typeNumber, errorCorrectionLevel)
     qr.addData(this.url)
     qr.make()
@@ -82,4 +83,3 @@ export default {
   },
 }
 </script>
-

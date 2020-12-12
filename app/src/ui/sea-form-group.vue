@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import { UUID } from '../lib/uuid'
+import { UUID } from "../lib/uuid"
 
 export default {
-  name: 'sea-form-group',
+  name: "sea-form-group",
   props: {
     label: {
       type: String,
@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      uid: UUID()
+      uid: UUID(),
     }
   },
 }

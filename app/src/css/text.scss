@@ -14,7 +14,7 @@
     color: inherit;
     font-weight: 500;
     line-height: 1.2;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     margin-top: 0;
   }
 
@@ -54,11 +54,12 @@
 
   h6,
   .h6 {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 
   // Paragraphs
-  p, .-text-p {
+  p,
+  .-text-p {
     margin: 0 0 $line-height;
   }
 
@@ -87,7 +88,8 @@
     text-decoration: none;
   }
 
-  kbd, tt {
+  kbd,
+  tt {
     color: var(--code-foreground);
     background: var(--code-background, var(--secondary-background));
     //font-size: $font-size-sm;

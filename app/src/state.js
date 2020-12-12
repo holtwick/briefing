@@ -1,10 +1,19 @@
-import { messages } from './lib/emitter'
-import { setupWebRTC } from './logic/connection'
-import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getDisplayMedia, getUserMedia, setAudioTracks } from './logic/stream'
-import { trackException, trackSilentException } from './bugs'
-import { PRODUCTION } from './config'
+import { messages } from "./lib/emitter"
+import { setupWebRTC } from "./logic/connection"
+import {
+  defaultAudioConstraints,
+  defaultVideoConstraints,
+  getDevices,
+  getDisplayMedia,
+  getUserMedia,
+  setAudioTracks,
+} from "./logic/stream"
+import { trackException, trackSilentException } from "./bugs"
+import { PRODUCTION } from "./config"
 
-const log = require('debug')('app:state')
+const log = require("debug")("app:state")
+
+const screenshots = false
 
 // export const DEBUG = location.port.toString() === '8080' || !location.pathname.startsWith('/ng/')
 // export const isPWA = process.env.VUE_APP_TARGET === 'pwa'
@@ -12,15 +21,15 @@ const log = require('debug')('app:state')
 // ROOM
 
 let m = /^\/ngs?\/(.*?)$/gi.exec(location.pathname)
-let room = m && m[1] || null
+let room = (m && m[1]) || null
 // console.log('Room =', room)
 
 try {
-  if (location.pathname === '/') {
+  if (location.pathname === "/") {
     window.history.pushState(
       null, // { room: '' },
       null, // 'brie.fi/ng',
-      '/ng',
+      "/ng"
     )
   }
 } catch (err) {
@@ -30,7 +39,6 @@ try {
 // STATE
 
 export let state = {
-
   // ID of this room
   room,
 
@@ -48,10 +56,10 @@ export let state = {
   bandwidth: false,
   fill: true,
 
-  backgroundMode: '',
+  backgroundMode: "",
   backgroundImageURL: null,
-  backgroundAuthor: '',
-  backgroundURL: '',
+  backgroundAuthor: "",
+  backgroundURL: "",
 
   muteVideo: false,
   muteAudio: false,
@@ -62,10 +70,10 @@ export let state = {
   devices: [],
 
   svg: {
-    stroke: '1.5',
+    stroke: "1.5",
   },
 
-  maximized: '',
+  maximized: "",
 
   // For notifications
   vapidPublicKey: null,
@@ -73,25 +81,31 @@ export let state = {
   error: null,
   upgrade: false,
   requestBugTracking: false,
+
+  screenshots,
 }
 
-messages.on('requestBugTracking', _ => state.requestBugTracking = true)
-messages.on('upgrade', _ => state.upgrade = true)
+messages.on("requestBugTracking", (_) => (state.requestBugTracking = true))
+messages.on("upgrade", (_) => (state.upgrade = true))
 
-messages.on('updateStream', updateStream)
+messages.on("updateStream", updateStream)
 
 function updateStream() {
   try {
     if (state.stream) {
-      state.stream?.getVideoTracks().forEach(t => t.enabled = !state?.muteVideo)
-      state.stream?.getAudioTracks().forEach(t => t.enabled = !state?.muteAudio)
+      state.stream
+        ?.getVideoTracks()
+        .forEach((t) => (t.enabled = !state?.muteVideo))
+      state.stream
+        ?.getAudioTracks()
+        .forEach((t) => (t.enabled = !state?.muteAudio))
     }
   } catch (err) {
     trackException(err)
   }
 }
 
-messages.on('switchMedia', switchMedia)
+messages.on("switchMedia", switchMedia)
 
 let blurLib
 
@@ -118,7 +132,7 @@ async function switchMedia() {
   }
 
   let stream, desktopStream, media
-  const showsDesktop = state.deviceVideo === 'desktop'
+  const showsDesktop = state.deviceVideo === "desktop"
 
   if (showsDesktop) {
     let { stream } = await getDisplayMedia()
@@ -132,7 +146,7 @@ async function switchMedia() {
   state.error = media.error
   stream = media.stream
 
-  log('Stream', stream, constraints)
+  log("Stream", stream, constraints)
   if (stream) {
     let success = true
 
@@ -160,64 +174,64 @@ async function switchMedia() {
     }
 
     if (state.backgroundMode && !desktopStream) {
-      blurLib = await import(/* webpackChunkName: 'blur' */ './logic/background')
+      blurLib = await import(
+        /* webpackChunkName: 'blur' */ "./logic/background"
+      )
       stream = await blurLib.startBlurTransform(stream)
       setAudioTracks(stream, audioTracks)
     } else {
       if (blurLib) {
-        log('stop blur')
+        log("stop blur")
         blurLib.stopBlurTransform()
       }
       blurLib = null
     }
-
   } else {
-    console.error('Media error:', media.error)
+    console.error("Media error:", media.error)
   }
 
   state.stream = stream
   updateStream()
-  messages.emit('setLocalStream', state.stream)
+  messages.emit("setLocalStream", state.stream)
 }
 
 export async function setup() {
+  console.log("Setup state")
   let rtc
   try {
-
     rtc = await setupWebRTC(state)
 
     if (!rtc) {
-      alert('Your browser does not support the required WebRTC technologies.\n\nPlease reconnect using an up to date web browser.\n\nThanks for your understanding.')
-      location.assign('/ng/')
+      alert(
+        "Your browser does not support the required WebRTC technologies.\n\nPlease reconnect using an up to date web browser.\n\nThanks for your understanding."
+      )
+      location.assign("/ng/")
       return
     }
 
     let { stream, error } = await getUserMedia()
     state.error = error
     if (stream) {
-
       // Safari getDevices only works immediately after getUserMedia (bug)
-      state.devices = (await getDevices() || []).map(d => {
-        log('found device', d)
+      state.devices = ((await getDevices()) || []).map((d) => {
+        log("found device", d)
         return {
-          kind: d?.kind?.toLowerCase() || '?',
+          kind: d?.kind?.toLowerCase() || "?",
           deviceId: d?.deviceId,
-          label: d.label || 'Unknown name',
+          label: d.label || "Unknown name",
         }
       })
-
     } else {
-      console.error('Media error', error)
+      console.error("Media error", error)
     }
 
     state.stream = stream
     updateStream()
-    messages.emit('setLocalStream', state.stream)
+    messages.emit("setLocalStream", state.stream)
 
     if (!PRODUCTION && state.backgroundMode) {
       setTimeout(switchMedia, 250)
     }
-
   } catch (err) {
     trackException(err)
   }
@@ -228,4 +242,3 @@ export async function setup() {
     },
   }
 }
-
