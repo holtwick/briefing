@@ -406,7 +406,7 @@ export default {
     if (!this.hasPeers) {
       this.mode = "share"
     }
-    this.fullscreenHandler = ev => {
+    this.fullscreenHandler = (ev) => {
       this.isFullScreen = !!document.fullscreenElement
     }
     document.addEventListener("fullscreenchange", this.fullscreenHandler)

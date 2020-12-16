@@ -63,24 +63,14 @@ export async function digestMessage(message) {
 
 export async function digestMessages(...messages) {
   console.log("messages", messages)
-  messages = messages.map(m =>
-    m
-      .toString()
-      .toLowerCase()
-      .trim()
-  )
+  messages = messages.map((m) => m.toString().toLowerCase().trim())
   messages.sort()
   return digestMessage(messages.join("\n"))
 }
 
 export async function sha256Messages(...messages) {
   console.log("messages", messages)
-  messages = messages.map(m =>
-    m
-      .toString()
-      .toLowerCase()
-      .trim()
-  )
+  messages = messages.map((m) => m.toString().toLowerCase().trim())
   messages.sort()
   const message = messages.join("\n")
   const msgUint8 = new TextEncoder().encode(message)
@@ -89,7 +79,7 @@ export async function sha256Messages(...messages) {
 
 function getFingerprintArray(fp) {
   if (!fp) return null
-  return fp.split(":").map(v => parseInt(v.toLowerCase(), 16))
+  return fp.split(":").map((v) => parseInt(v.toLowerCase(), 16))
   // return Uint8Array.from(fp.split(':').map(v => parseInt(v.toLowerCase(), 16)))
 }
 

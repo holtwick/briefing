@@ -25,7 +25,7 @@ export async function setBackgroundImage(url) {
       log("blob", blob)
       let url = URL.createObjectURL(blob)
       let img = new Image()
-      img.onload = function() {
+      img.onload = function () {
         image = this
         log("image", image)
       }
@@ -124,7 +124,7 @@ function setVideoStream(videoEl, stream) {
   videoEl.srcObject = stream
 
   // https://github.com/tensorflow/tfjs-models/blob/b72c10bdbdec6b04a13f780180ed904736fa52a5/body-pix/demos/index.js#L117
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     videoEl.onloadeddata = () => {
       videoEl.width = videoEl.videoWidth
       videoEl.height = videoEl.videoHeight

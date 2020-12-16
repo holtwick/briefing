@@ -137,8 +137,8 @@ export async function getDisplayMedia(
 }
 
 export function setAudioTracks(stream, audioTracks) {
-  Array.from(stream.getAudioTracks()).forEach(t => stream.removeTrack(t))
-  audioTracks.forEach(t => {
+  Array.from(stream.getAudioTracks()).forEach((t) => stream.removeTrack(t))
+  audioTracks.forEach((t) => {
     try {
       stream.addTrack(t)
     } catch (err) {

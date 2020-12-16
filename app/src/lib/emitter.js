@@ -36,7 +36,9 @@ export class Emitter {
 
   off(key, fn) {
     log("off", key)
-    this.subscribers = (this.subscribers[key] || []).filter(f => fn && f !== fn)
+    this.subscribers = (this.subscribers[key] || []).filter(
+      (f) => fn && f !== fn
+    )
   }
 }
 

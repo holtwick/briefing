@@ -95,9 +95,7 @@
           />
           Photo by
           <a
-            :href="
-              `${state.backgroundURL}?utm_source=briefing&utm_medium=referral`
-            "
+            :href="`${state.backgroundURL}?utm_source=briefing&utm_medium=referral`"
             >{{ state.backgroundAuthor }}</a
           >
           on
@@ -147,7 +145,7 @@ export default {
     }
   },
   computed: {
-    release: _ => RELEASE,
+    release: (_) => RELEASE,
     sentry: {
       set(v) {
         setAllowedBugTracking(v, this.l.settings.sentry_confirm)
@@ -158,7 +156,7 @@ export default {
     },
     video() {
       let videoDevices = this.state.devices.filter(
-        d => d.kind === "videoinput" && d.deviceId !== "default"
+        (d) => d.kind === "videoinput" && d.deviceId !== "default"
       )
       if (navigator?.mediaDevices?.getDisplayMedia) {
         return [
@@ -173,7 +171,7 @@ export default {
     },
     audio() {
       return this.state.devices.filter(
-        d => d.kind === "audioinput" && d.deviceId !== "default"
+        (d) => d.kind === "audioinput" && d.deviceId !== "default"
       )
     },
   },
