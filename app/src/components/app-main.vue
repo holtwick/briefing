@@ -53,7 +53,8 @@
 
         <div class="message-container -error" v-else-if="state.error">
           <div class="message">
-            {{ state.error }} <u @click="doReload">Reload page</u>
+            {{ state.error }}
+            <u @click="doReload">Reload page</u>
           </div>
         </div>
 

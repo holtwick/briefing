@@ -29,7 +29,9 @@
     <option v-if="placeholder" value="" disabled hidden>
       {{ placeholder }}
     </option>
-    <option v-for="o in options" :value="o" :key="o">{{ o }}</option>
+    <option v-for="o in options" :value="o" :key="o">
+      {{ o }}
+    </option>
     <slot></slot>
   </select>
 

@@ -8,11 +8,11 @@
       <p>
         Privacy is the driving force behind this project. It uses secure
         technologies like
-        <a href="https://webrtc-security.github.io/">WebRTC</a> to directly
-        connect between participants. The website that provides the web app and
-        mediates the communication stores as few data as possible and does not
-        know anything about the contents of established conversations. No
-        accounts are required. No cookies are used.
+        <a href="https://webrtc-security.github.io/">WebRTC</a>
+        to directly connect between participants. The website that provides the
+        web app and mediates the communication stores as few data as possible
+        and does not know anything about the contents of established
+        conversations. No accounts are required. No cookies are used.
       </p>
       <p>
         The difference between Briefing and most similar projects is, that it
@@ -29,14 +29,17 @@
         however still trust the signaling server for the authenticity of the
         peer-to-peer communications encryption in place.
       </p>
-      <p><strong>FAQ- Some answers to some questions</strong></p>
+      <p>
+        <strong>FAQ- Some answers to some questions</strong>
+      </p>
       <p><em>Why starting another video conf tool?</em></p>
       <p>
         During the Corona pandemic I tried to create a peer-to-peer solution for
-        home schooling called <a href="/goto/peer-school">peer.school</a>.
-        Although the project has been retired for various reasons, I learned so
-        much about WebRTC and video/audio communication, that I did want to
-        reuse this knowledge in this project.
+        home schooling called
+        <a href="/goto/peer-school">peer.school</a>. Although the project has
+        been retired for various reasons, I learned so much about WebRTC and
+        video/audio communication, that I did want to reuse this knowledge in
+        this project.
       </p>
       <p><em>Why is it free and Open Source?</em></p>
       <p>
@@ -51,7 +54,9 @@
           >briefing@holtwick.de</a
         >.
       </p>
-      <p><em>Which servers are actually involved in a call?</em></p>
+      <p>
+        <em>Which servers are actually involved in a call?</em>
+      </p>
       <ul>
         <li>Briefing web site (provides the web app)</li>
         <li>Briefing signaling server (coordinates peers in rooms)</li>
@@ -59,10 +64,10 @@
       </ul>
       <p><em>Feature X is missing! Found bug Y!</em></p>
       <p>
-        Please visit the <a href="/goto/issues">GitHub project</a> to see if
-        your request is already on the list or place a
-        <a href="/goto/bug">new issue</a>. Your contribution is of course
-        welcome as well.
+        Please visit the
+        <a href="/goto/issues">GitHub project</a> to see if your request is
+        already on the list or place a <a href="/goto/bug">new issue</a>. Your
+        contribution is of course welcome as well.
       </p>
       <p><em>How about native apps?</em></p>
       <p>
@@ -73,7 +78,8 @@
       </p>
       <p>---</p>
       <p>
-        (C)opyright 2020 by <a href="/goto/holtwick">Dirk Holtwick</a> |
+        (C)opyright 2020 by
+        <a href="/goto/holtwick">Dirk Holtwick</a> |
         <a href="/goto/privacy">Privacy Policy</a> |
         <a href="/goto/imprint">Imprint</a>
       </p>

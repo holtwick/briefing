@@ -32,23 +32,31 @@
     </div>
     <div class="form-group settings-group">
       <sea-switch v-model="state.fill">{{ l.settings.fill }}</sea-switch>
-      <div class="settings-info">{{ l.settings.fill_info }}</div>
+      <div class="settings-info">
+        {{ l.settings.fill_info }}
+      </div>
     </div>
     <div class="form-group settings-group" v-if="false">
       <sea-switch v-model="state.bandwidth">{{
         l.settings.bandwidth
       }}</sea-switch>
-      <div class="settings-info">{{ l.settings.bandwidth_info }}</div>
+      <div class="settings-info">
+        {{ l.settings.bandwidth_info }}
+      </div>
     </div>
     <div class="form-group settings-group" v-if="false">
       <sea-switch v-model="state.blur">{{ l.settings.blur }}</sea-switch>
-      <div class="settings-info">{{ l.settings.blur_info }}</div>
+      <div class="settings-info">
+        {{ l.settings.blur_info }}
+      </div>
     </div>
     <div class="form-group settings-group" v-if="enableSubscribe">
       <sea-switch v-model="state.subscribe">{{
         l.settings.subscribe
       }}</sea-switch>
-      <div class="settings-info">{{ l.settings.subscribe_info }}</div>
+      <div class="settings-info">
+        {{ l.settings.subscribe_info }}
+      </div>
     </div>
     <div v-if="false" class="form-group settings-group">
       <sea-switch v-model="sentry">{{ l.settings.sentry }}</sea-switch>
