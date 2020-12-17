@@ -49,7 +49,7 @@
     "debug": "^4.3.1",
     "register-service-worker": "^1.7.2",
     "simple-peer": "^9.9.3",
-    "socket.io-client": "^3",
+    "socket.io-client": "<3",
     "uuid": "^8.3.2",
     "vue": "^2.6.12"
   },
