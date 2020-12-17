@@ -36,7 +36,7 @@ export function setAllowedBugTracking(
   log("setAllowedBugTracking", allowed)
   if (allowed) {
     localStorage.allowSentry = "1"
-    setupBugTracker(_ => {
+    setupBugTracker((_) => {
       log("setupBugTracker", collectedErrors)
       let err
       while ((err = collectedErrors.pop())) {

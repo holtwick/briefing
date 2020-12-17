@@ -2,7 +2,7 @@
 
 const log = require("debug")("app:trapFocus")
 
-const findFocusable = element => {
+const findFocusable = (element) => {
   if (!element) {
     return null
   }
@@ -29,11 +29,11 @@ let onKeyDown
 
 const bind = (el, { value = true }) => {
   if (value && el) {
-    onKeyDown = event => {
+    onKeyDown = (event) => {
       log("trapped")
       const focusable = Array.from(findFocusable(el))
       let currentFocus = document.querySelector(":focus")
-      let index = focusable.findIndex(f => f.isSameNode(currentFocus))
+      let index = focusable.findIndex((f) => f.isSameNode(currentFocus))
       let length = focusable.length
       log("dic", focusable, currentFocus, index)
 
@@ -54,7 +54,7 @@ const bind = (el, { value = true }) => {
   }
 }
 
-const unbind = el => {
+const unbind = (el) => {
   el?.removeEventListener("keydown", onKeyDown)
 }
 

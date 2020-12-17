@@ -110,7 +110,7 @@ export class WebRTC extends Emitter {
   }
 
   updateStatus() {
-    let status = Object.values(this.peerConnections).map(peer => {
+    let status = Object.values(this.peerConnections).map((peer) => {
       let { active, initiator, local, remote, error } = peer
       return {
         active,
@@ -142,7 +142,7 @@ export class WebRTC extends Emitter {
 
     // We received the local signal (i.e. network location description) that
     // we will now send via web socket signaling server to the remote peer
-    peer.on("signal", signal => {
+    peer.on("signal", (signal) => {
       // log('received peer signal', remote)
       this.io.emit("signal", {
         from: local,
@@ -159,25 +159,25 @@ export class WebRTC extends Emitter {
     })
 
     // A message from the remote peer
-    peer.on("data", data => {
+    peer.on("data", (data) => {
       // depr
       let { type, ...msg } = JSON.parse(data)
       this.emit(type, msg)
     })
 
-    peer.on("message", data => {
+    peer.on("message", (data) => {
       this.emit("message", data) // Channel compat
     })
 
-    peer.on("stream", _ => this.updateStatus())
-    peer.on("track", _ => this.updateStatus())
+    peer.on("stream", (_) => this.updateStatus())
+    peer.on("track", (_) => this.updateStatus())
 
     return peer
   }
 
   postMessage(data) {
     // Channel compat
-    this.forEachPeer(peer => {
+    this.forEachPeer((peer) => {
       peer.postMessage(data)
     })
   }
@@ -188,7 +188,7 @@ export class WebRTC extends Emitter {
   }
 
   close() {
-    this.forEachPeer(peer => peer.close())
+    this.forEachPeer((peer) => peer.close())
     this.peerConnections = {}
     this.io.close()
   }

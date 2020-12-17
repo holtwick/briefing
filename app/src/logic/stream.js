@@ -79,7 +79,9 @@ export async function getUserMedia(
           "You denied access to your camera and microphone. Please check your setup.",
       }
     } else if (name === "NotFoundError") {
-      return { error: "No camera or microphone has been found!" }
+      return {
+        error: "No camera or microphone has been found!",
+      }
     }
     trackException(err)
     return {
@@ -114,7 +116,9 @@ export async function getDisplayMedia(
 ) {
   try {
     if (!navigator?.mediaDevices?.getDisplayMedia) {
-      return { error: "Accessing the desktop is not available." }
+      return {
+        error: "Accessing the desktop is not available.",
+      }
     }
     // Solution via https://stackoverflow.com/a/47958949/140927
     // Only available for HTTPS! See https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#Security
@@ -129,16 +133,20 @@ export async function getDisplayMedia(
           "You denied access to your camera and microphone. Please check your setup.",
       }
     } else if (name === "NotFoundError") {
-      return { error: "No camera or microphone has been found!" }
+      return {
+        error: "No camera or microphone has been found!",
+      }
     }
     trackException(err)
-    return { error: err?.message || err?.name || err.toString() }
+    return {
+      error: err?.message || err?.name || err.toString(),
+    }
   }
 }
 
 export function setAudioTracks(stream, audioTracks) {
-  Array.from(stream.getAudioTracks()).forEach(t => stream.removeTrack(t))
-  audioTracks.forEach(t => {
+  Array.from(stream.getAudioTracks()).forEach((t) => stream.removeTrack(t))
+  audioTracks.forEach((t) => {
     try {
       stream.addTrack(t)
     } catch (err) {

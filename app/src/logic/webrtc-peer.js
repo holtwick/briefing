@@ -54,10 +54,10 @@ export class WebRTCPeer extends Emitter {
     // https://github.com/feross/simple-peer/blob/master/README.md
     this.peer = new SimplePeer(opts)
 
-    this.peer.on("close", _ => this.close())
+    this.peer.on("close", (_) => this.close())
 
     // We receive a connection error
-    this.peer.on("error", err => {
+    this.peer.on("error", (err) => {
       log(`${this.id} | error`, err)
       this.error = err
       this.emit("error", err)
@@ -70,12 +70,12 @@ export class WebRTCPeer extends Emitter {
     // This means, we received network details (signal) we need to provide
     // the remote peer, so he can set up a connection to us. Usually we will
     // send this over a separate channel like the web socket signaling server
-    this.peer.on("signal", data => {
+    this.peer.on("signal", (data) => {
       // log(`${this.id} | signal`, this.initiator)
       this.emit("signal", data)
     })
 
-    this.peer.on("signalingStateChange", async _ => {
+    this.peer.on("signalingStateChange", async (_) => {
       const fpl =
         getFingerprintString(this.peer?._pc?.currentLocalDescription?.sdp) || ""
       const fpr =
@@ -90,21 +90,21 @@ export class WebRTCPeer extends Emitter {
     })
 
     // We received data from the peer
-    this.peer.on("data", data => {
+    this.peer.on("data", (data) => {
       log(`${this.id} | data`, data)
       this.emit("data", data)
       this.emit("message", { data }) // Channel compat
     })
 
     // Connection succeeded
-    this.peer.on("connect", event => {
+    this.peer.on("connect", (event) => {
       log(`${this.id} | connect`, event)
       this.active = true
       // p.send('whatever' + Math.random())
       this.emit("connect", event)
     })
 
-    this.peer.on("stream", stream => {
+    this.peer.on("stream", (stream) => {
       log("new stream", stream)
       this.stream = stream
       this.emit("stream", stream)
@@ -114,7 +114,7 @@ export class WebRTCPeer extends Emitter {
   setStream(stream) {
     if (!this.peer.streams.includes(stream)) {
       try {
-        this.peer.streams.forEach(s => {
+        this.peer.streams.forEach((s) => {
           try {
             this.peer.removeStream(s)
           } catch (err) {

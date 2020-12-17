@@ -53,7 +53,8 @@
 
         <div class="message-container -error" v-else-if="state.error">
           <div class="message">
-            {{ state.error }} <u @click="doReload">Reload page</u>
+            {{ state.error }}
+            <u @click="doReload">Reload page</u>
           </div>
         </div>
 
@@ -406,7 +407,7 @@ export default {
     if (!this.hasPeers) {
       this.mode = "share"
     }
-    this.fullscreenHandler = ev => {
+    this.fullscreenHandler = (ev) => {
       this.isFullScreen = !!document.fullscreenElement
     }
     document.addEventListener("fullscreenchange", this.fullscreenHandler)

@@ -32,23 +32,31 @@
     </div>
     <div class="form-group settings-group">
       <sea-switch v-model="state.fill">{{ l.settings.fill }}</sea-switch>
-      <div class="settings-info">{{ l.settings.fill_info }}</div>
+      <div class="settings-info">
+        {{ l.settings.fill_info }}
+      </div>
     </div>
     <div class="form-group settings-group" v-if="false">
       <sea-switch v-model="state.bandwidth">{{
         l.settings.bandwidth
       }}</sea-switch>
-      <div class="settings-info">{{ l.settings.bandwidth_info }}</div>
+      <div class="settings-info">
+        {{ l.settings.bandwidth_info }}
+      </div>
     </div>
     <div class="form-group settings-group" v-if="false">
       <sea-switch v-model="state.blur">{{ l.settings.blur }}</sea-switch>
-      <div class="settings-info">{{ l.settings.blur_info }}</div>
+      <div class="settings-info">
+        {{ l.settings.blur_info }}
+      </div>
     </div>
     <div class="form-group settings-group" v-if="enableSubscribe">
       <sea-switch v-model="state.subscribe">{{
         l.settings.subscribe
       }}</sea-switch>
-      <div class="settings-info">{{ l.settings.subscribe_info }}</div>
+      <div class="settings-info">
+        {{ l.settings.subscribe_info }}
+      </div>
     </div>
     <div v-if="false" class="form-group settings-group">
       <sea-switch v-model="sentry">{{ l.settings.sentry }}</sea-switch>
@@ -95,9 +103,7 @@
           />
           Photo by
           <a
-            :href="
-              `${state.backgroundURL}?utm_source=briefing&utm_medium=referral`
-            "
+            :href="`${state.backgroundURL}?utm_source=briefing&utm_medium=referral`"
             >{{ state.backgroundAuthor }}</a
           >
           on
@@ -147,7 +153,7 @@ export default {
     }
   },
   computed: {
-    release: _ => RELEASE,
+    release: (_) => RELEASE,
     sentry: {
       set(v) {
         setAllowedBugTracking(v, this.l.settings.sentry_confirm)
@@ -158,7 +164,7 @@ export default {
     },
     video() {
       let videoDevices = this.state.devices.filter(
-        d => d.kind === "videoinput" && d.deviceId !== "default"
+        (d) => d.kind === "videoinput" && d.deviceId !== "default"
       )
       if (navigator?.mediaDevices?.getDisplayMedia) {
         return [
@@ -173,7 +179,7 @@ export default {
     },
     audio() {
       return this.state.devices.filter(
-        d => d.kind === "audioinput" && d.deviceId !== "default"
+        (d) => d.kind === "audioinput" && d.deviceId !== "default"
       )
     },
   },

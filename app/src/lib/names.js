@@ -1,3 +1,6 @@
+// Thanks to Thomas Konings for this wonderful name generator
+// See https://gist.github.com/tkon99/4c98af713acc73bed74c
+
 export const ADJECTIVES = [
   "abandoned",
   "able",

@@ -19,7 +19,7 @@ export async function setupWebRTC(state) {
     room: state.room,
     peerSettings: {
       trickle: true,
-      sdpTransform: sdp => {
+      sdpTransform: (sdp) => {
         log("sdpTransform", state.bandwidth) // , sdp)
         let newSDP = sdp
         if (state.bandwidth) {
@@ -37,7 +37,7 @@ export async function setupWebRTC(state) {
     },
   })
 
-  webrtc.on("status", info => {
+  webrtc.on("status", (info) => {
     state.status = info.status
   })
 
@@ -48,19 +48,19 @@ export async function setupWebRTC(state) {
     }
   })
 
-  let onSetLocalStream = messages.on("setLocalStream", stream => {
-    webrtc.forEachPeer(peer => {
+  let onSetLocalStream = messages.on("setLocalStream", (stream) => {
+    webrtc.forEachPeer((peer) => {
       peer.setStream(stream)
     })
   })
 
-  let onNegotiateBandwidth = messages.on("negotiateBandwidth", stream => {
-    webrtc.forEachPeer(peer => {
+  let onNegotiateBandwidth = messages.on("negotiateBandwidth", (stream) => {
+    webrtc.forEachPeer((peer) => {
       peer.peer.negotiate()
     })
   })
 
-  let onSubscribePush = messages.on("subscribePush", async on => {
+  let onSubscribePush = messages.on("subscribePush", async (on) => {
     let add = state.subscription
     let registration = await navigator.serviceWorker.getRegistration()
     let subscription = await registration.pushManager.getSubscription()
