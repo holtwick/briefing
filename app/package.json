@@ -1,7 +1,7 @@
 {
   "name": "briefing",
   "description": "Secure direct video chat",
-  "version": "1.15.1",
+  "version": "1.15.0",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
@@ -27,7 +27,7 @@
     "build:ios": "VUE_APP_TARGET=ios vue-cli-service build",
     "test": "jest",
     "format": "prettier --write .",
-    "ncu": "ncu -u -x /tensorflow/ && npm i",
+    "ncu": "ncu -u -x /tensorflow|socket/ && npm i",
     "x:localhost": "ssh -R 80:localhost:8080 ssh.localhost.run",
     "x:lt": "lt --port 8080",
     "x:ngrok": "ngrok http 8080"
