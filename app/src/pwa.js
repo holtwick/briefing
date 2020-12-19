@@ -21,6 +21,11 @@ if (
   console.log("Handled Electron")
 }
 
+// Identify iOS Apps
+if (navigator.userAgent.toLowerCase().indexOf(" Briefing/") > -1) {
+  window.wkwebview = true
+}
+
 Vue.config.productionTip = false
 
 Vue.mixin({
