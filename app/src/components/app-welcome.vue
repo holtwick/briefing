@@ -359,7 +359,7 @@
 import { DEBUG } from "../config"
 import AppHelp from "./app-help"
 import { trackSilentException } from "../bugs"
-import { generateName } from "../lib/names"
+import { generateName, normalizeName } from "../lib/names"
 
 export default {
   name: "app-welcome",
@@ -379,7 +379,7 @@ export default {
   },
   methods: {
     doEnterRoom() {
-      const room = this.room || this.defaultName || ""
+      const room = normalizeName(this.room || this.defaultName || "")
       this.state.room = room
       try {
         window.history.pushState(
