@@ -404,7 +404,7 @@ export default {
   },
   async mounted() {
     this.conn = await setup()
-    if (!this.hasPeers) {
+    if (!this.hasPeers && !window.wkwebview) {
       this.mode = "share"
     }
     this.fullscreenHandler = (ev) => {

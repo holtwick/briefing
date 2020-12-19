@@ -10,8 +10,7 @@ import {
 } from "./logic/stream"
 import { trackException, trackSilentException } from "./bugs"
 import { PRODUCTION } from "./config"
-import { env } from "@tensorflow/tfjs-core"
-
+import { normalizeName } from "./lib/names"
 const log = require("debug")("app:state")
 
 const screenshots = false
@@ -21,21 +20,27 @@ const screenshots = false
 
 // ROOM
 
-let m = /^\/ngs?\/(.*?)$/gi.exec(location.pathname)
-let room = (m && m[1]) || null
-// console.log('Room =', room)
+const pathname = location.pathname
+let m = /^\/ngs?\/(.*?)$/gi.exec(pathname)
+let room = m && m[1]
+console.log("Room =", room)
 
 try {
-  if (location.pathname === "/") {
-    window.history.pushState(
-      null, // { room: '' },
-      null, // 'brie.fi/ng',
-      "/ng"
-    )
+  if (pathname === "/" || room === "/ng" || room === "" || room === null) {
+    room = null
+    history.pushState(null, null, "/ng")
+  } else {
+    let newRoom = normalizeName(room)
+    if (room !== newRoom) {
+      room = newRoom
+      history.pushState(null, null, "/ng/" + newRoom)
+    }
   }
 } catch (err) {
   trackSilentException(err)
 }
+
+console.log("Room =", room)
 
 // STATE
 

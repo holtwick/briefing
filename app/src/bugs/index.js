@@ -66,5 +66,6 @@ export function trackException(e, silent = false) {
 }
 
 export function trackSilentException(e) {
+  console.error(e)
   trackException(e, true)
 }
