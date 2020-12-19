@@ -22,16 +22,15 @@ const screenshots = false
 
 const pathname = location.pathname
 let m = /^\/ngs?\/(.*?)$/gi.exec(pathname)
-let room = (m && m[1]) || null
+let room = m && m[1]
 console.log("Room =", room)
 
 try {
-  if (pathname === "/" || room === "/ng") {
+  if (pathname === "/" || room === "/ng" || room === "" || room === null) {
     room = null
     history.pushState(null, null, "/ng")
   } else {
     let newRoom = normalizeName(room)
-    console.log("Room =", newRoom)
     if (room !== newRoom) {
       room = newRoom
       history.pushState(null, null, "/ng/" + newRoom)
@@ -41,7 +40,7 @@ try {
   trackSilentException(err)
 }
 
-// console.log("Room =", room)
+console.log("Room =", room)
 
 // STATE
 

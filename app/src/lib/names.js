@@ -14,18 +14,18 @@ export function normalizeName(name) {
 }
 
 export function generateName() {
-  function capFirst(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1)
-  }
+  // function capFirst(string) {
+  //   return string.charAt(0).toUpperCase() + string.slice(1)
+  // }
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min
   }
 
   return (
-    capFirst(ADJECTIVES[getRandomInt(0, ADJECTIVES.length + 1)]) +
+    ADJECTIVES[getRandomInt(0, ADJECTIVES.length + 1)] +
     "-" +
-    capFirst(NOUNS[getRandomInt(0, NOUNS.length + 1)]) +
+    NOUNS[getRandomInt(0, NOUNS.length + 1)] +
     "-" +
     getRandomInt(1, 99)
   )
