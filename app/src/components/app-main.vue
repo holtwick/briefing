@@ -402,8 +402,10 @@ export default {
     },
     didChangeFullscreen(ev) {},
   },
-  async mounted() {
-    this.conn = await setup()
+  mounted() {
+    setTimeout(async () => {
+      this.conn = await setup()
+    }, 950)
     if (!this.hasPeers && !window.wkwebview) {
       this.mode = "share"
     }
