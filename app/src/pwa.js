@@ -23,8 +23,11 @@ if (
 
 // Identify iOS Apps
 if (navigator.userAgent.toLowerCase().indexOf(" Briefing/") > -1) {
+  console.log("Identified WKWebView of a native app")
   window.wkwebview = true
 }
+
+// window.wkwebview = window?.webkit?.["messageHandlers"] != null //Apple embedded
 
 Vue.config.productionTip = false
 

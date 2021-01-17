@@ -79,40 +79,42 @@ export async function setupWebRTC(state) {
     })
   })
 
-  // async function getStats(peer) {
-  //   let bytes = 0
-  //   let timestamp = 0
-  //   return new Promise(resolve => {
-  //     peer?.peer?.getStats((_, reports) => {
-  //       reports.forEach(report => {
-  //         if (report.type === 'outbound-rtp') {
-  //           if (report.isRemote) return
-  //           bytes += report.bytesSent
-  //           timestamp = report.timestamp
-  //           // console.log('bb', bytes, prevBytes, timestamp, prevTimestamp)
-  //           resolve({ bytes, timestamp })
-  //         }
-  //       })
-  //     })
-  //   })
-  // }
-  //
+  async function getStats(peer) {
+    let bytes = 0
+    let timestamp = 0
+    return new Promise((resolve) => {
+      peer?.peer?.getStats((_, reports) => {
+        reports.forEach((report) => {
+          if (report.type === "outbound-rtp") {
+            if (report.isRemote) return
+            bytes += report.bytesSent
+            timestamp = report.timestamp
+            // console.log('bb', bytes, prevBytes, timestamp, prevTimestamp)
+            resolve({ bytes, timestamp })
+          }
+        })
+      })
+    })
+  }
+
   // // https://github.com/webrtc/samples/blob/gh-pages/src/content/peerconnection/bandwidth/js/main.js#L253
   // let prevTimestamp = 0
   // let prevBytes = 0
-  //
+
   // if (!!localStorage.debug) {
-  //   let el = document.createElement('div')
-  //   el.className = 'bandwidth'
+  //   let el = document.createElement("div")
+  //   el.className = "bandwidth"
   //   document.body.appendChild(el)
-  //
+
   //   setInterval(async () => {
   //     // const now = performance.now()
-  //     let results = await Promise.all(Object.values(webrtc.peerConnections).map(p => getStats(p)))
+  //     let results = await Promise.all(
+  //       Object.values(webrtc.peerConnections).map((p) => getStats(p))
+  //     )
   //     let bytes = results.reduce((acc, curr) => curr.bytes + acc, 0)
   //     let timestamp = results?.[0]?.timestamp
-  //     const bitrate = 8 * (bytes - prevBytes) / (timestamp - prevTimestamp)
-  //     el.textContent = bitrate.toFixed(2) + ' Bit/s'
+  //     const bitrate = (8 * (bytes - prevBytes)) / (timestamp - prevTimestamp)
+  //     el.textContent = bitrate.toFixed(2) + " Bit/s"
   //     prevBytes = bytes
   //     prevTimestamp = timestamp
   //   }, 1000)

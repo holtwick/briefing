@@ -405,7 +405,7 @@ export default {
   mounted() {
     setTimeout(async () => {
       this.conn = await setup()
-    }, 950)
+    }, 50)
     if (!this.hasPeers && !window.wkwebview) {
       this.mode = "share"
     }

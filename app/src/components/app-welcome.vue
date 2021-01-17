@@ -203,7 +203,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .page1 {
   text-align: center;
   flex-shrink: 0;
