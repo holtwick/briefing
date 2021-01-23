@@ -21,9 +21,10 @@ if (
   console.log("Handled Electron")
 }
 
-// Identify iOS Apps
-if (navigator.userAgent.toLowerCase().indexOf(" Briefing/") > -1) {
-  window.wkwebview = true
+window.iOS = navigator?.platform?.match(/(iPhone|iPod|iPad)/i) != null
+window.iPhone = navigator?.platform?.match(/(iPhone|iPod)/i) != null
+if (window.iPhone) {
+  console.log("Identified Phone of a native app")
 }
 
 Vue.config.productionTip = false

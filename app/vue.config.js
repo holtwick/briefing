@@ -35,7 +35,7 @@ let config = {
 
   pages: {
     index: {
-      entry: "src/pwa.js",
+      entry: "src/main.js",
       template: "public/index.html",
       filename: "index.html",
     },

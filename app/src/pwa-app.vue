@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "css/index";
+@import "./css/index.scss";
 
 .debug {
   position: fixed;

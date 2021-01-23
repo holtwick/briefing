@@ -402,9 +402,11 @@ export default {
     },
     didChangeFullscreen(ev) {},
   },
-  async mounted() {
-    this.conn = await setup()
-    if (!this.hasPeers && !window.wkwebview) {
+  mounted() {
+    setTimeout(async () => {
+      this.conn = await setup()
+    }, 50)
+    if (!this.hasPeers && !window.iPhone) {
       this.mode = "share"
     }
     this.fullscreenHandler = (ev) => {
