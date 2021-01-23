@@ -52,7 +52,8 @@
     "simple-peer": "^9.9.3",
     "socket.io-client": "^3",
     "uuid": "^8.3.2",
-    "vue": "^2.6.12"
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.11",
