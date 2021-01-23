@@ -406,7 +406,7 @@ export default {
     setTimeout(async () => {
       this.conn = await setup()
     }, 50)
-    if (!this.hasPeers && !window.wkwebview) {
+    if (!this.hasPeers && !window.iPhone) {
       this.mode = "share"
     }
     this.fullscreenHandler = (ev) => {

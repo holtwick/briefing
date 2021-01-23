@@ -89,8 +89,6 @@ export let state = {
   requestBugTracking: false,
 
   screenshots,
-
-  ios: process.env.VUE_APP_TARGET === "ios",
 }
 
 messages.on("requestBugTracking", (_) => (state.requestBugTracking = true))

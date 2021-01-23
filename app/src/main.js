@@ -21,13 +21,11 @@ if (
   console.log("Handled Electron")
 }
 
-// Identify iOS Apps
-if (navigator.userAgent.toLowerCase().indexOf(" Briefing/") > -1) {
-  console.log("Identified WKWebView of a native app")
-  window.wkwebview = true
+window.iOS = navigator?.platform?.match(/(iPhone|iPod|iPad)/i) != null
+window.iPhone = navigator?.platform?.match(/(iPhone|iPod)/i) != null
+if (window.iPhone) {
+  console.log("Identified Phone of a native app")
 }
-
-// window.wkwebview = window?.webkit?.["messageHandlers"] != null //Apple embedded
 
 Vue.config.productionTip = false
 

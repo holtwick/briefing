@@ -66,7 +66,7 @@
       <sea-switch v-model="sentry">Persist Settings</sea-switch>
       <!--      <div class="settings-info" v-html="l.settings.sentry_info"></div>-->
     </div>
-    <div class="form-group settings-group" v-if="!state.ios">
+    <div class="form-group settings-group" v-if="!iOS">
       <label class="form-labelx"><b>Background</b></label>
       <label class="form-radio">
         <input type="radio" value="" v-model="state.backgroundMode" />
@@ -150,6 +150,8 @@ export default {
   data() {
     return {
       enableSubscribe: false,
+      iOS: window.iOS,
+      iPhone: window.iPhone,
     }
   },
   computed: {
