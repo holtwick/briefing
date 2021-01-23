@@ -203,7 +203,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .page1 {
   text-align: center;
   flex-shrink: 0;
@@ -359,7 +359,7 @@
 import { DEBUG } from "../config"
 import AppHelp from "./app-help"
 import { trackSilentException } from "../bugs"
-import { generateName, normalizeName } from "../lib/names"
+import { generateName } from "../lib/names"
 
 export default {
   name: "app-welcome",
@@ -379,7 +379,7 @@ export default {
   },
   methods: {
     doEnterRoom() {
-      const room = normalizeName(this.room || this.defaultName || "")
+      const room = this.room || this.defaultName || ""
       this.state.room = room
       try {
         window.history.pushState(

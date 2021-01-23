@@ -405,8 +405,8 @@ export default {
   mounted() {
     setTimeout(async () => {
       this.conn = await setup()
-    }, 950)
-    if (!this.hasPeers && !window.wkwebview) {
+    }, 50)
+    if (!this.hasPeers && !window.iPhone) {
       this.mode = "share"
     }
     this.fullscreenHandler = (ev) => {

@@ -1,16 +1,14 @@
-## Brie.fi/ng
+# Brie.fi/ng
 
 > Secure video chat via pure WebRTC
 
 <img src="assets/sample.jpg" height="400">
 
-**Welcome to Briefing. Yet another secure video chat.**
-
 Privacy is the driving force behind this project. It uses secure technologies like [WebRTC](https://webrtc-security.github.io/) to directly connect between participants. The website that provides the web app and mediates the communication stores as few data as possible and does not know anything about the contents of established conversations. No accounts are required. No cookies are used.
 
 The difference between Briefing and most similar projects is, that it does not use a central server that distributes the video streams ([SFU](https://webrtcglossary.com/sfu/)). The advantage of an SFU is that it saves bandwidth due to the fact that the own video does not being uploaded to each participant but only once. The SFU can also do more optimizations the clients might not support. But then the video signal is not end-to-end encrypted any more i.e. you have to trust the SFU provider. Briefing instead sends data from peer to peer directly ("Mesh") and therefore the data does not travel over the server under normal operation. The WebRTC peers however still trust the signaling server for the authenticity of the peer-to-peer communications encryption in place.
 
-**FAQ- Some answers to some questions**
+## FAQ
 
 _Why starting another video conf tool?_
 
@@ -34,7 +32,15 @@ _How about native apps?_
 
 Frankly this is not required, because your browser can handle it all. You can of course put Briefing on your home screen e.g. in iOS Safari tap on the "Share" icon and choose "Add to Home Screen". You can do the same in browsers like Google Chrome.
 
-**License**
+## Installation
+
+You can just use the installation on <https://brie.fi/ng> for free.
+
+But in case you want to run it locally, you will need to follow these steps:
+
+TO BE WRITTEN
+
+## License
 
 Briefing is free and can be modified and forked. But the conditions of the EUPL (European Union Public License 1.2) need to be respected, which are similar to ones of the GPL. In particular modifications need to be free as well and made available to the public.
 
@@ -44,8 +50,5 @@ Get a quick overview of the license at [Choose an open source license](https://c
 
 _Author_
 
-My name is Dirk Holtwick. I'm an independent software developer located in Germany. Learn more at [hotlwick.de](https://holtwick.de/de/about).
-
----
-
-Fund this project by [sponsoring via GitHub](https://github.com/sponsors/holtwick).
+My name is Dirk Holtwick. I'm an independent software developer located in Germany. Learn more at [holtwick.de](https://holtwick.de/about).
+ 
