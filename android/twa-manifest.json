@@ -1,0 +1,24 @@
+{
+  "packageId": "fi.brie.twa",
+  "host": "brie.fi",
+  "name": "Briefing",
+  "launcherName": "Briefing",
+  "themeColor": "#272727",
+  "navigationColor": "#000000",
+  "backgroundColor": "#272727",
+  "enableNotifications": false,
+  "startUrl": "/",
+  "iconUrl": "https://brie.fi/android-chrome-512x512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "alias": "android",
+    "path": "./android.keystore"
+  },
+  "appVersionName": "3",
+  "appVersionCode": 3,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://brie.fi/manifest.json",
+  "fallbackType": "customtabs",
+  "appVersion": "3"
+}
