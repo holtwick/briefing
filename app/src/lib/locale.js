@@ -7,8 +7,8 @@ export function prepareLocaleStrings({
   defaultLang = "en",
 } = {}) {
   lang = lang || navigator?.language?.slice(0, 2)
-  if (DEBUG && localStorage.lang) {
-    lang = localStorage.lang
+  if (DEBUG && localStorage?.lang) {
+    lang = localStorage?.lang
   }
 
   return mergeDeep(mergeDeep({}, locales[defaultLang]), locales[lang] || {})

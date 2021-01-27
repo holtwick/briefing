@@ -68,6 +68,6 @@ new Vue({
 
 // Do some tests on the actual browser
 
-if (localStorage.test) {
+if (localStorage?.test) {
   import(/* webpackChunkName: 'test' */ "./in-browser-test.js").then()
 }

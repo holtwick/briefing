@@ -101,7 +101,7 @@ export async function setupWebRTC(state) {
   // let prevTimestamp = 0
   // let prevBytes = 0
 
-  // if (!!localStorage.debug) {
+  // if (!!localStorage?.debug) {
   //   let el = document.createElement("div")
   //   el.className = "bandwidth"
   //   document.body.appendChild(el)

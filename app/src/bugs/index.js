@@ -26,7 +26,7 @@ export function setupBugTracker(done) {
 let collectedErrors = []
 
 export function isAllowedBugTracking() {
-  return localStorage.allowSentry === "1"
+  return localStorage?.allowSentry === "1"
 }
 
 export function setAllowedBugTracking(
@@ -35,7 +35,7 @@ export function setAllowedBugTracking(
 ) {
   log("setAllowedBugTracking", allowed)
   if (allowed) {
-    localStorage.allowSentry = "1"
+    localStorage?.allowSentry = "1"
     setupBugTracker((_) => {
       log("setupBugTracker", collectedErrors)
       let err
@@ -45,7 +45,7 @@ export function setAllowedBugTracking(
       }
     })
   } else {
-    localStorage.allowSentry = "0"
+    localStorage?.allowSentry = "0"
     if (confirm(reloadMessage)) {
       location.reload()
     }
