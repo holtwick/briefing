@@ -36,6 +36,10 @@ Briefing is a PWA i.e. it is a web app, that can be installed from inside the br
 
 [Briefing is available in the Microsoft Store](https://www.microsoft.com/de-de/p/briefings/9pcs356fc2jf). The source is available in the `electron` folder.
 
+### Native Android App
+
+The `android` folder contains a sample. Build your own distribution following [this guide](https://developers.google.com/web/android/trusted-web-activity/quick-start).
+
 ## Installation
 
 You can just use the installation on <https://brie.fi/ng> for free.
