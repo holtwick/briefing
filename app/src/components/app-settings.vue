@@ -63,29 +63,28 @@
       <div class="settings-info" v-html="l.settings.sentry_info"></div>
     </div>
     <div class="form-group settings-group" v-if="false">
-      <sea-switch v-model="sentry">Persist Settings</sea-switch>
+      <sea-switch v-model="sentry">{{ l.settings.persist_settings }}</sea-switch>
       <!--      <div class="settings-info" v-html="l.settings.sentry_info"></div>-->
     </div>
     <div class="form-group settings-group" v-if="!iOS">
-      <label class="form-labelx"><b>Background</b></label>
+      <label class="form-labelx"><b>{{ l.settings.background }}</b></label>
       <label class="form-radio">
         <input type="radio" value="" v-model="state.backgroundMode" />
         <i class="form-icon"></i>
-        Original background
+        {{ l.settings.original_background }}
       </label>
       <label class="form-radio">
         <input type="radio" value="blur" v-model="state.backgroundMode" />
         <i class="form-icon"></i>
-        Blurred background
+        {{ l.settings.blurred_background }}
       </label>
       <label class="form-radio">
         <input type="radio" value="image" v-model="state.backgroundMode" />
         <i class="form-icon"></i>
-        Image background
+        {{ l.settings.image_background }}
       </label>
       <div v-if="state.backgroundMode === 'image'" class="settings-info">
-        You can upload your own background by dragging an image file on this
-        window.
+         {{ l.settings.image_tip }}
         <div v-if="!state.backgroundAuthor">
           <img
             v-if="state.backgroundImageURL"
@@ -116,7 +115,7 @@
           <br />
           <br />
           <a href="#" @click.prevent="doUnSplashImage"
-            >Click to get another random image.</a
+            >{{ l.settings.random_image }}</a
           >
         </div>
       </div>
