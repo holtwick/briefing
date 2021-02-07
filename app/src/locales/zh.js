@@ -7,8 +7,7 @@ export default {
   },
   share: {
     title: "邀请",
-    link_info:
-      "请您通过此链接邀请参加此会议的所有人：",
+    link_info: "请您通过此链接邀请参加此会议的所有人：",
     button_copy: "分享",
     qr_info: "您也可以使用移动设备摄像头扫描此二维码：",
     feedback:
@@ -41,15 +40,13 @@ export default {
       "实验性的：通过订阅，当其他人进入这个房间时，您会收到通知。然后，您可以一键加入对话。仅在浏览器正在运行时显示通知。 ",
     sentry: "允许错误跟踪",
     sentry_info: `当遇到编程错误或其他对改善应用程序有用的相关信息时，我们会将调试数据发送到<a href="https://sentry.io">sentry.io</a>.`,
-    sentry_confirm:
-      "感谢您允许错误跟踪。请确认立即重新加载页面。",
+    sentry_confirm: "感谢您允许错误跟踪。请确认立即重新加载页面。",
     background: "背景",
-    persist_settings:"持续设置",
-    original_background:"原始背景",
-    blurred_background:"模糊背景",
-    image_background:"图片背景",
-    image_tip:
-      `您可以通过在此窗口上拖动图像文件来上传自己的背景。`,
-    random_image:"单击以获取另一个随机图像。"
-    },
+    persist_settings: "持续设置",
+    original_background: "原始背景",
+    blurred_background: "模糊背景",
+    image_background: "图片背景",
+    image_tip: `您可以通过在此窗口上拖动图像文件来上传自己的背景。`,
+    random_image: "单击以获取另一个随机图像。",
+  },
 }
