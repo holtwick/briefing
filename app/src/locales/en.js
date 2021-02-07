@@ -44,13 +44,12 @@ export default {
     sentry_confirm:
       "Thanks for allowing bug tracking. Please confirm to reload the page now.",
     background: "Background",
-    persist_settings:"Persist Settings",
-    original_background:"Original background",
-    blurred_background:"Blurred background",
-    image_background:"Image background",
-    image_tip:
-      `You can upload your own background by dragging an image file on this
+    persist_settings: "Persist Settings",
+    original_background: "Original background",
+    blurred_background: "Blurred background",
+    image_background: "Image background",
+    image_tip: `You can upload your own background by dragging an image file on this
     window.`,
-    random_image:"Click to get another random image."
+    random_image: "Click to get another random image.",
   },
 }

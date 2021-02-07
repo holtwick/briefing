@@ -44,13 +44,12 @@ export default {
     sentry_confirm:
       "Grazie per aver permesso il tracciamento dei bug. Conferma per ricaricare la pagina ora.",
     background: "Background",
-    persist_settings:"Persist Settings",
-    original_background:"Original background",
-    blurred_background:"Blurred background",
-    image_background:"Image background",
-    image_tip:
-      `You can upload your own background by dragging an image file on this
+    persist_settings: "Persist Settings",
+    original_background: "Original background",
+    blurred_background: "Blurred background",
+    image_background: "Image background",
+    image_tip: `You can upload your own background by dragging an image file on this
     window.`,
-    random_image:"Click to get another random image."
+    random_image: "Click to get another random image.",
   },
 }
