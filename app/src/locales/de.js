@@ -42,5 +42,14 @@ export default {
     sentry_info: `Wenn wir auf einen Programmierfehler oder andere relevante Informationen stoßen, die zur Verbesserung der Anwendung nützlich sind, senden wir Debug-Daten an einen Dienst namens <a href="https://sentry.io">sentry.io</a>.`,
     sentry_confirm:
       "Danke, dass Sie die Fehleranalyse erlauben. Bitte bestätigen Sie, dass die Seite jetzt neu zu geladen werden darf.",
+    background: "Background",
+    persist_settings:"Persist Settings",
+    original_background:"Original background",
+    blurred_background:"Blurred background",
+    image_background:"Image background",
+    image_tip:
+      `You can upload your own background by dragging an image file on this
+    window.`,
+    random_image:"Click to get another random image."
   },
 }
