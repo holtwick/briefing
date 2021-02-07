@@ -4,6 +4,7 @@ import "./logic/registerServiceWorker"
 import de from "./locales/de"
 import en from "./locales/en"
 import it from "./locales/it"
+import zh from "./locales/zh"
 import App from "./pwa-app.vue"
 import { state } from "./state"
 import { setupBugTracker } from "./bugs"
@@ -59,7 +60,7 @@ Vue.mixin({
 })
 
 Vue.use(locale, {
-  locales: { en, de, it },
+  locales: { en, de, it, zh },
 })
 
 new Vue({
