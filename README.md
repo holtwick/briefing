@@ -68,3 +68,8 @@ _Author_
 
 My name is Dirk Holtwick. I'm an independent software developer located in Germany. Learn more at [holtwick.de](https://holtwick.de/about).
  
+## Contribute
+
+Contributions are always welcome. Best way is to start adding or responding to [issues](https://github.com/holtwick/briefing/issues).
+
+For adding or fixing translations get started here: https://github.com/holtwick/briefing/tree/master/app/src/locales
