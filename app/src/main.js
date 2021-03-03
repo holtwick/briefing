@@ -1,10 +1,11 @@
 import Vue from "vue"
 import locale from "./lib/locale"
 import "./logic/registerServiceWorker"
-import de from "./locales/de"
-import en from "./locales/en"
-import it from "./locales/it"
-import zh from "./locales/zh"
+import de from "./locales/de.json"
+import en from "./locales/en.json"
+import it from "./locales/it.json"
+import zh from "./locales/zh.json"
+import fr from "./locales/fr.json"
 import App from "./pwa-app.vue"
 import { state } from "./state"
 import { setupBugTracker } from "./bugs"
@@ -60,7 +61,7 @@ Vue.mixin({
 })
 
 Vue.use(locale, {
-  locales: { en, de, it, zh },
+  locales: { en, de, it, zh, fr },
 })
 
 new Vue({
