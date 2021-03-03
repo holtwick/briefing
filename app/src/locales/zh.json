@@ -11,7 +11,7 @@
     "button_copy": "分享",
     "qr_info": "您也可以使用移动设备摄像头扫描此二维码：",
     "feedback": "有问题请反馈到<a href=\"mailto:support@holtwick.de?subject=Briefing\">support@holtwick.de</a>",
-    "message": "通过按下\n          <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n            <path d=\"M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8\"></path>\n            <polyline points=\"16 6 12 2 8 6\"></polyline>\n            <line x1=\"12\" y1=\"2\" x2=\"12\" y2=\"15\"></line>\n          </svg>\n          来发送邀请朋友加入群聊"
+    "message": "通过按下 $symbol$ 来发送邀请朋友加入群聊"
   },
   "settings": {
     "title": "设置",
