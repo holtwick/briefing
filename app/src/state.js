@@ -9,7 +9,7 @@ import {
   setAudioTracks,
 } from "./logic/stream"
 import { trackException, trackSilentException } from "./bugs"
-import { PRODUCTION } from "./config"
+import { PRODUCTION, ROOM_ENTRY, ROOM_PATH } from "./config"
 import { normalizeName } from "./lib/names"
 const log = require("debug")("app:state")
 
@@ -20,20 +20,34 @@ const screenshots = false
 
 // ROOM
 
+const isOriginalBriefing = ROOM_PATH === "/ng/"
+
+let room
 const pathname = location.pathname
-let m = /^\/ngs?\/(.*?)$/gi.exec(pathname)
-let room = m && m[1]
+if (isOriginalBriefing) {
+  let m = /^\/ngs?\/(.*?)$/gi.exec(pathname)
+  room = m && m[1]
+} else {
+  if (pathname.startsWith(ROOM_PATH)) {
+    room = pathname.substr(ROOM_PATH.length)
+  }
+}
 console.log("Room =", room)
 
 try {
-  if (pathname === "/" || room === "/ng" || room === "" || room === null) {
+  if (
+    pathname === "/" ||
+    room === "" ||
+    room === null ||
+    (isOriginalBriefing && room === "/ng")
+  ) {
     room = null
-    history.pushState(null, null, "/ng")
+    history.pushState(null, null, isOriginalBriefing ? "/ng" : "/")
   } else {
     let newRoom = normalizeName(room)
     if (room !== newRoom) {
       room = newRoom
-      history.pushState(null, null, "/ng/" + newRoom)
+      history.pushState(null, null, ROOM_PATH + newRoom)
     }
   }
 } catch (err) {
