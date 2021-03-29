@@ -356,7 +356,7 @@
 </style>
 
 <script>
-import { DEBUG } from "../config"
+import { DEBUG, ROOM_PATH } from "../config"
 import AppHelp from "./app-help"
 import { trackSilentException } from "../bugs"
 import { generateName } from "../lib/names"
@@ -385,7 +385,7 @@ export default {
         window.history.pushState(
           null, // { room },
           null, // room,
-          "/ng/" + room
+          ROOM_PATH + room
         )
       } catch (err) {
         trackSilentException(err)
@@ -397,7 +397,7 @@ export default {
       let value = input.value.trim()
       input.style.width = "1px"
       input.style.width = (value ? input.scrollWidth : this.initialWidth) + "px"
-      this.url = "/ng/" + (value || this.defaultName)
+      this.url = ROOM_PATH + (value || this.defaultName)
     },
     charAnimation() {
       setTimeout(() => {
