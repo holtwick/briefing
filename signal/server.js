@@ -76,6 +76,15 @@ io.on('connection', function (socket) {
     })
   }
 
+  socket.on('status', (info , cb) => {
+    log('status', info, cb)
+    if (cb) cb({
+      api: 1,
+      pong: info?.ping || 'pong',
+      config: CONFIG
+    })
+  })
+
   // The peer that joined is responsible for initiating WebRTC connections
   socket.on('join', ({ room }) => {
     let peers = allSocketsForRoom(room)

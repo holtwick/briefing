@@ -124,6 +124,21 @@
         </div>
       </div>
     </div>
+    <div class="form-group settings-group">
+      <label class="form-labelx"><b>Signal Server</b></label>
+      <div>{{ signalStatus }} {{ SIGNAL_SERVER_URL }}</div>
+      <div>
+        <a href="#" @click.prevent="doCheckSignal">Check Connectivity</a>
+      </div>
+    </div>
+    <div class="form-group settings-group">
+      <label class="form-labelx"><b>STUN Server</b></label>
+      <div>{{ ICE_CONFIG.iceServers[0].urls }}</div>
+    </div>
+    <div class="form-group settings-group">
+      <label class="form-labelx"><b>TURN Server</b></label>
+      <div>{{ ICE_CONFIG.iceServers[1].urls }}</div>
+    </div>
     <div class="release-info">
       <a
         href="https://github.com/holtwick/briefing"
@@ -139,9 +154,10 @@
 <script>
 import { messages } from "../lib/emitter"
 import SeaSwitch from "../ui/sea-switch"
-import { RELEASE } from "../config"
+import { RELEASE, SIGNAL_SERVER_URL, ICE_CONFIG } from "../config"
 import { isAllowedBugTracking, setAllowedBugTracking } from "../bugs"
 import { setBackgroundImage } from "../logic/background"
+import { WebRTC } from "../logic/webrtc"
 
 const log = require("debug")("app:app-settings")
 
@@ -155,6 +171,9 @@ export default {
       enableSubscribe: false,
       iOS: window.iOS,
       iPhone: window.iPhone,
+      SIGNAL_SERVER_URL,
+      ICE_CONFIG,
+      signalStatus: "",
     }
   },
   computed: {
@@ -208,6 +227,10 @@ export default {
         }
       }
     },
+    async doCheckSignal() {
+      let result = await WebRTC.checkStatus()
+      this.signalStatus = result.ok ? "✅" : "❌"
+    },
   },
   // async mounted() {
   //   if (!this.state.backgroundImageURL) {
@@ -245,6 +268,9 @@ export default {
       await this.$nextTick()
       messages.emit("subscribePush")
     },
+  },
+  mounted() {
+    // this.doCheckSignal()
   },
 }
 </script>
