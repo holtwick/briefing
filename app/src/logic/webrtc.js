@@ -1,6 +1,7 @@
 // Copyright (c) 2020 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
 import io from "socket.io-client"
+import { UUID } from "../../../internal/briefing-internal/src/lib/uuid.js"
 import { SIGNAL_SERVER_URL } from "../config"
 import { assert } from "../lib/assert"
 import { Emitter } from "../lib/emitter"
@@ -16,6 +17,21 @@ export class WebRTC extends Emitter {
 
   static isSupported() {
     return WebRTCPeer.isSupported()
+  }
+
+  static async checkStatus() {
+    let socket = io(SIGNAL_SERVER_URL, {
+      // transports: ['websocket'],
+    })
+
+    return new Promise((resolve) => {
+      let id = UUID()
+      let result = socket.emit("status", { ping: id }, (result) => {
+        log("status", result)
+        result.ok = result.pong === id
+        resolve(result)
+      })
+    })
   }
 
   constructor({
