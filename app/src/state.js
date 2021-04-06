@@ -11,6 +11,7 @@ import {
 import { trackException, trackSilentException } from "./bugs"
 import { PRODUCTION, ROOM_PATH } from "./config"
 import { normalizeName } from "./lib/names"
+
 const log = require("debug")("app:state")
 
 const screenshots = false
