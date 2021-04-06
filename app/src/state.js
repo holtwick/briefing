@@ -9,7 +9,7 @@ import {
   setAudioTracks,
 } from "./logic/stream"
 import { trackException, trackSilentException } from "./bugs"
-import { PRODUCTION, ROOM_ENTRY, ROOM_PATH } from "./config"
+import { PRODUCTION, ROOM_PATH } from "./config"
 import { normalizeName } from "./lib/names"
 const log = require("debug")("app:state")
 
@@ -58,19 +58,21 @@ console.log("Room =", room)
 
 // STATE
 
+function isTrue(value, dflt = false) {
+  if (value == null) return dflt
+  return ["1", "true", "yes"].includes(value.toString().toLocaleLowerCase())
+}
+
+const urlParams = new URLSearchParams(window.location.search)
+
 export let state = {
   // ID of this room
   room,
 
-  // Local users peer ID
-  peerID: null,
-
-  // IDs of all currently active WebRTC peers
-  peers: [],
-
   // Video stream of the local user without sound
   stream: null,
 
+  // WebRTC connection status, containing peer info
   status: {},
 
   bandwidth: false,
@@ -81,8 +83,8 @@ export let state = {
   backgroundAuthor: "",
   backgroundURL: "",
 
-  muteVideo: false,
-  muteAudio: false,
+  muteVideo: !isTrue(urlParams.get("video"), true),
+  muteAudio: !isTrue(urlParams.get("audio"), true),
 
   deviceVideo: null,
   deviceAudio: null,

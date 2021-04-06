@@ -46,7 +46,7 @@ You can just use the installation on <https://brie.fi/ng> for free.
 
 But in case you want to run it on your own hardware, it is important to understand what parts are required:
 
-1. Frontend: The web app the user interacts with. You find it in the `app` folder. Build it via `npm run build` and put the contents of `dist` on your server. Briefing uses some tricks to have the neat `/ng` path working, and you can learn in the [Wiki how to configure Apache](https://github.com/holtwick/briefing/wiki/Apache-Configuration) to handle the routes correctly.
+1. Frontend: The web app the user interacts with. You find it in the `app` folder. Build it via `npm run build` and put the contents of `dist` on your server. Briefing uses some tricks to have the neat `/ng` path working, and you can learn in the [Wiki how to configure Apache](https://github.com/holtwick/briefing/wiki/Apache-Configuration) to handle the routes correctly. Under [configuartion](#configuration) you can learn how to sert up your own domain and room path.
 
 2. Signaling Server: You can use mine for the start, which is located at `wss://sig03.brie.fi`. If you want to use your own you find the source in `signal`. It is a simple node.js app that just connects peers in one room by helping to establish the WebRTC connection. You can learn from the [Wiki how to do port forwarding in Apache](https://github.com/holtwick/briefing/wiki/Signaling).
 
@@ -55,6 +55,19 @@ But in case you want to run it on your own hardware, it is important to understa
 The wiki has some more resources.
 
 Briefing needs quite some adoptions and modifications if you want to use it in your project. Please remember, that if you don't plan to publish your changes under EUPL, you'll need a commercial license:
+
+## Configuration
+
+In the `app` folder you will find a `.env` file with samples of how to adjust the settings for your needs. For example to modify the share URL and the sub path for your room you might do like this:
+
+```ini
+VUE_APP_ROOM_URL = https://example.com/room/
+VUE_APP_ROOM_PATH = /room/
+```
+
+Similar settings are available for your own signaling and STUN/TURN servers. 
+
+When you build the distribution for your web site via `npm run build` these settings will be baked in.
 
 ## License
 

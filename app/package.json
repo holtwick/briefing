@@ -20,16 +20,12 @@
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
-    "serve:ios": "VUE_APP_TARGET=ios vue-cli-service serve",
-    "serve:https": "HTTPS=1 vue-cli-service serve",
-    "serve:sw": "npm run build && serve -s dist",
     "build": "vue-cli-service build",
-    "build:ios": "VUE_APP_TARGET=ios vue-cli-service build",
-    "test": "jest",
-    "format": "prettier --write .",
     "x:localhost": "ssh -R 80:localhost:8080 ssh.localhost.run",
     "x:lt": "lt --port 8080",
-    "x:ngrok": "ngrok http 8080"
+    "x:ngrok": "ngrok http 8080",
+    "test": "jest",
+    "format": "prettier --write ."
   },
   "browserslist": [
     "> 1%",
