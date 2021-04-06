@@ -65,6 +65,8 @@ VUE_APP_ROOM_URL = https://example.com/room/
 VUE_APP_ROOM_PATH = /room/
 ```
 
+Make sure to also adopt the `ROOM_PATH` manually in [`service-worker.js`](https://github.com/holtwick/briefing/blob/master/app/src/service-worker.js#L3), which is not automatically updated yet.
+
 Similar settings are available for your own signaling and STUN/TURN servers. 
 
 When you build the distribution for your web site via `npm run build` these settings will be baked in.

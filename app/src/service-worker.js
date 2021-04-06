@@ -1,6 +1,6 @@
 // --- END GENERATED CODE, START CUSTOM CODE
 
-import { ROOM_PATH } from "./config.js"
+var ROOM_PATH = "/ng/"
 
 workbox.setConfig({ debug: true })
 
