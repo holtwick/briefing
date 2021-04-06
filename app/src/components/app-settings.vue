@@ -124,22 +124,9 @@
         </div>
       </div>
     </div>
-    <div class="form-group settings-group">
-      <label class="form-labelx"><b>Signal Server</b></label>
-      <div>{{ signalStatus }} {{ SIGNAL_SERVER_URL }}</div>
-      <div>
-        <a href="#" @click.prevent="doCheckSignal">Check Connectivity</a>
-      </div>
-    </div>
-    <div class="form-group settings-group">
-      <label class="form-labelx"><b>STUN Server</b></label>
-      <div>{{ ICE_CONFIG.iceServers[0].urls }}</div>
-    </div>
-    <div class="form-group settings-group">
-      <label class="form-labelx"><b>TURN Server</b></label>
-      <div>{{ ICE_CONFIG.iceServers[1].urls }}</div>
-    </div>
     <div class="release-info">
+      <a href="#" @click.prevent="showInfo = !showInfo">Server Info</a>
+      |
       <a
         href="https://github.com/holtwick/briefing"
         target="_blank"
@@ -147,6 +134,23 @@
         title="Open Github source code repository"
         >{{ release }}</a
       >
+    </div>
+    <div v-if="showInfo">
+      <div class="form-group settings-group">
+        <label class="form-labelx"><b>Signal Server</b></label>
+        <div>{{ signalStatus }} {{ SIGNAL_SERVER_URL }}</div>
+        <div>
+          <a href="#" @click.prevent="doCheckSignal">Check Connectivity</a>
+        </div>
+      </div>
+      <div class="form-group settings-group">
+        <label class="form-labelx"><b>STUN Server</b></label>
+        <div>{{ ICE_CONFIG.iceServers[0].urls }}</div>
+      </div>
+      <div class="form-group settings-group">
+        <label class="form-labelx"><b>TURN Server</b></label>
+        <div>{{ ICE_CONFIG.iceServers[1].urls }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -174,6 +178,7 @@ export default {
       SIGNAL_SERVER_URL,
       ICE_CONFIG,
       signalStatus: "",
+      showInfo: false,
     }
   },
   computed: {
