@@ -63,11 +63,15 @@
       <div class="settings-info" v-html="l.settings.sentry_info"></div>
     </div>
     <div class="form-group settings-group" v-if="false">
-      <sea-switch v-model="sentry">{{ l.settings.persist_settings }}</sea-switch>
+      <sea-switch v-model="sentry">{{
+        l.settings.persist_settings
+      }}</sea-switch>
       <!--      <div class="settings-info" v-html="l.settings.sentry_info"></div>-->
     </div>
     <div class="form-group settings-group" v-if="!iOS">
-      <label class="form-labelx"><b>{{ l.settings.background }}</b></label>
+      <label class="form-labelx"
+        ><b>{{ l.settings.background }}</b></label
+      >
       <label class="form-radio">
         <input type="radio" value="" v-model="state.backgroundMode" />
         <i class="form-icon"></i>
@@ -84,7 +88,7 @@
         {{ l.settings.image_background }}
       </label>
       <div v-if="state.backgroundMode === 'image'" class="settings-info">
-         {{ l.settings.image_tip }}
+        {{ l.settings.image_tip }}
         <div v-if="!state.backgroundAuthor">
           <img
             v-if="state.backgroundImageURL"
@@ -114,9 +118,9 @@
           >.
           <br />
           <br />
-          <a href="#" @click.prevent="doUnSplashImage"
-            >{{ l.settings.random_image }}</a
-          >
+          <a href="#" @click.prevent="doUnSplashImage">{{
+            l.settings.random_image
+          }}</a>
         </div>
       </div>
     </div>

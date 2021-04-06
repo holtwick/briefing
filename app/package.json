@@ -1,7 +1,7 @@
 {
   "name": "briefing",
   "description": "Secure direct video chat",
-  "version": "1.17.3",
+  "version": "1.18.0",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
@@ -20,17 +20,12 @@
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
-    "serve:ios": "VUE_APP_TARGET=ios vue-cli-service serve",
-    "serve:https": "HTTPS=1 vue-cli-service serve",
-    "serve:sw": "npm run build && serve -s dist",
     "build": "vue-cli-service build",
-    "build:ios": "VUE_APP_TARGET=ios vue-cli-service build",
-    "test": "jest",
-    "format": "prettier --write .",
-    "ncu": "ncu -u -x /tensorflow|socket/ && npm i",
     "x:localhost": "ssh -R 80:localhost:8080 ssh.localhost.run",
     "x:lt": "lt --port 8080",
-    "x:ngrok": "ngrok http 8080"
+    "x:ngrok": "ngrok http 8080",
+    "test": "jest",
+    "format": "prettier --write ."
   },
   "browserslist": [
     "> 1%",
@@ -38,8 +33,8 @@
     "electron >= 8"
   ],
   "dependencies": {
-    "@sentry/browser": "^6.2.1",
-    "@sentry/integrations": "^6.2.1",
+    "@sentry/browser": "^6.2.3",
+    "@sentry/integrations": "^6.2.3",
     "@tensorflow-models/body-pix": "^2.0.5",
     "@tensorflow/tfjs-converter": "^1.7.4",
     "@tensorflow/tfjs-core": "^1.7.4",
@@ -49,7 +44,7 @@
     "debug": "^4.3.1",
     "lodash": "^4.17.21",
     "register-service-worker": "^1.7.2",
-    "simple-peer": "^9.9.3",
+    "simple-peer": "^9.10.0",
     "socket.io-client": "^2.4.0",
     "uuid": "^8.3.2",
     "vue": "^2.6.12",

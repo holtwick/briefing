@@ -25,3 +25,6 @@ export const PRODUCTION = !DEBUG
 export const RELEASE = process.env.VUE_APP_RELEASE
 
 export const SENTRY_DSN = process.env.VUE_APP_SENTRY_DSN
+
+export const ROOM_URL = process.env.VUE_APP_ROOM_URL || "https://brie.fi/ng/"
+export const ROOM_PATH = process.env.VUE_APP_ROOM_PATH || "/ng/"

@@ -1,8 +1,9 @@
 import clipboardCopy from "clipboard-copy"
 import { trackException } from "../bugs"
+import { ROOM_URL } from "../config.js"
 
 export function createLinkForRoom(room) {
-  return `https://brie.fi/ng/${room}`
+  return ROOM_URL + room
 }
 
 export const canShare = navigator.share != null

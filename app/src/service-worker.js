@@ -1,5 +1,7 @@
 // --- END GENERATED CODE, START CUSTOM CODE
 
+import { ROOM_PATH } from "./config.js"
+
 workbox.setConfig({ debug: true })
 
 // Cache stuff
@@ -13,10 +15,17 @@ workbox.core.clientsClaim()
 self.__precacheManifest = [].concat(self.__precacheManifest || [])
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
 
+const whitelistRoomPath = new RegExp(
+  "^" + ROOM_PATH.replaceAll("/", "\\/") + ".*$",
+  "gim"
+)
+
+// console.log("whitelistRoomPath", whitelistRoomPath)
+
 workbox.routing.registerNavigationRoute(
   workbox.precaching.getCacheKeyForURL("/index.html"),
   {
-    whitelist: [/^\/ng.*$/],
+    whitelist: [/^\/ng.*$/, whitelistRoomPath],
   }
 )
 
@@ -40,7 +49,7 @@ self.addEventListener("notificationclick", (event) => {
         //   })
         //   return clientList[0].focus()
         // }
-        return self.clients.openWindow("/ng/" + room)
+        return self.clients.openWindow(ROOM_PATH + room)
       })
     )
   }
