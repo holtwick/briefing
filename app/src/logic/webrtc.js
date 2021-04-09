@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
 import io from "socket.io-client"
-import { UUID } from "../../../internal/briefing-internal/src/lib/uuid.js"
+import { UUID } from "../lib/uuid.js"
 import { SIGNAL_SERVER_URL } from "../config"
 import { assert } from "../lib/assert"
 import { Emitter } from "../lib/emitter"
