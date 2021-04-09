@@ -1,0 +1,29 @@
+# (C)opyright Dirk Holtwick, 2020-05-11 <dirk.holtwick@gmail.com>
+
+RewriteEngine on
+
+DirectoryIndex index.html
+
+# Force https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+
+# Avoid iframe embed
+Header set X-FRAME-OPTIONS: SAMEORIGIN
+
+<IfModule mod_headers.c>
+    FileETag None
+    Header unset ETag
+    # disable browser cache for service-worker.js file
+    <FilesMatch "^(service-worker.js)$">
+        Header unset Expires
+        Header set Cache-Control "max-age=0"
+        SetHandler application/x-httpd-php
+        Header set Content-Type "text/javascript; charset=utf-8"
+    </FilesMatch>
+</IfModule>
+
+# Sexy URL brie.fi/ng is
+RewriteRule ^$ /ng/ [L,R=301]
+RewriteRule ^ngs?/?$ /index.html [PT]
+RewriteRule ^ngs?/(.+?)$ /index.html [PT]
