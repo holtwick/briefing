@@ -8,25 +8,11 @@ Privacy is the driving force behind this project. It uses secure technologies li
 
 The difference between Briefing and most similar projects is, that it does not use a central server that distributes the video streams ([SFU](https://webrtcglossary.com/sfu/)). The advantage of an SFU is that it saves bandwidth due to the fact that the own video does not being uploaded to each participant but only once. The SFU can also do more optimizations the clients might not support. But then the video signal is not end-to-end encrypted anymore, i.e. you have to trust the SFU provider. Briefing instead sends data from peer to peer directly ("Mesh") and therefore the data does not travel over the server under normal operation. The WebRTC peers however still trust the signaling server for the authenticity of the peer-to-peer communications encryption in place.
 
-## FAQ
-
-_Why starting another video conference tool?_
-
-During the Corona pandemic 2020-2021, I tried to create a peer-to-peer solution for homeschooling called [peer.school](https://peer.school/?referrer=peer.school). Although the project has been retired for various reasons, I learned so much about WebRTC and video/audio communication, that I did want to reuse this knowledge in this project.
-
-_Why is it free and Open Source?_
-
-Only a free project does not require the user to create an account and unveil payment information, that could be used to identify that person. This is why the project is free and will remain free, as long as no additional costs like maintaining TURN servers etc. will require some funding. If you want to support me and the project directly you can [via Github](https://github.com/sponsors/holtwick) or [via PayPal](https://www.paypal.me/apperdeck). If you are interested in sponsoring please, contact me at [briefing@holtwick.de](mailto:briefing@holtwick.de).
-
-_Which servers are actually involved in a call?_
-
-- Briefing website (provides the web app)
-- Briefing signaling server (coordinates peers in rooms)
-- Briefing STUN/TURN server (helps to traverse fire walls)
-
 ## Apps
 
-Briefing is a PWA i.e. it is a web app, that can be installed from inside the browser on some platforms. To put Briefing on your home screen in iOS Safari tap on the "Share" icon and choose "Add to Home Screen". You can do the same in browsers like Google Chrome.
+Briefing is a [PWA](https://web.dev/progressive-web-apps/) i.e. it is a web app, that can be installed from inside the browser on some platforms. To put Briefing on your home screen in iOS Safari tap on the "Share" icon and choose "Add to Home Screen". You can do the same in browsers like Google Chrome. **Therefore, native apps are not really required.**
+
+But alongside to these awesome out-of-the-box features, we still have some native support as well:
 
 ### Native iOS App
 
