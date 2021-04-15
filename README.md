@@ -71,18 +71,24 @@ Similar settings are available for your own signaling and STUN/TURN servers.
 
 When you build the distribution for your web site via `npm run build` these settings will be baked in.
 
-## License
+## Licenses
 
-Briefing is free and can be modified and forked. But the conditions of the EUPL (European Union Public License 1.2) need to be respected, which are similar to ones of the GPL. In particular modifications need to be free as well and made available to the public.
+### Public License
 
-For commercial use please contact [license@holtwick.de](mailto:license@holtwick.de) for licensing alternatives.
+Briefing is free and can be modified and forked. But the conditions of the EUPL (European Union Public License 1.2) need to be respected, which are similar to ones of the GPL. In particular modifications need to be free as well and made available to the public. Get a quick overview of the license at [Choose an open source license](https://choosealicense.com/licenses/eupl-1.2/). This license is available in the [languages of the European Community](https://eupl.eu/).
 
-Get a quick overview of the license at [Choose an open source license](https://choosealicense.com/licenses/eupl-1.2/). This license is available in the [languages of the European Community](https://eupl.eu/).
+### Commercial License
 
-_Author_
+For commercial use or closed source projects, we can offer licensing under the following terms. 
 
-My name is Dirk Holtwick. I'm an independent software developer located in Germany. Learn more at [holtwick.de](https://holtwick.de/about).
- 
+> World-wide, non-exclusive, non-transferable and non-sub-licensable license of Briefing as is on https:// github.com/holtwick/briefing/ for use in purchasers products, as long as the resulting software does not stand in concurrence to Briefing itself. Any liability is excluded. The law of the Federal Republic of Germany shall apply exclusively.
+
+The one time fee is 499 EUR net. Please contact [license@holtwick.de](mailto:license@holtwick.de) or [purchase directly via Paddle](https://buy.paddle.com/product/650756).
+
+## Author
+
+My name is Dirk Holtwick. I'm an independent software developer located in Germany. Learn more about my work at [holtwick.de](https://holtwick.de/about).
+
 ## Contribute
 
 Contributions are always welcome. Best way is to start adding or responding to [issues](https://github.com/holtwick/briefing/issues).
