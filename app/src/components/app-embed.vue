@@ -122,11 +122,7 @@ export default {
       )
     },
     code() {
-      return `\
-<iframe
-  src="${this.url}"
-></ iframe>
-`
+      return `<iframe src="${this.url}"></iframe>`
     },
   },
   mounted() {
