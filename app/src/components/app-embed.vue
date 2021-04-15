@@ -9,8 +9,10 @@
       <div class="options">
         <sea-switch v-model="presetAudio">Audio</sea-switch>
         <sea-switch v-model="presetVideo">Video</sea-switch>
-        <sea-switch v-model="presetFullscreen">Fullscreen Option</sea-switch>
         <sea-switch v-model="presetInvite">Invite on Start</sea-switch>
+        <sea-switch v-model="presetFullscreen">Fullscreen Button</sea-switch>
+        <sea-switch v-model="presetPrefs">Setting Button</sea-switch>
+        <sea-switch v-model="presetShare">Share Button</sea-switch>
       </div>
       <div><br />HTML code to be used in client</div>
       <pre class="code">{{ code }}</pre>
@@ -89,10 +91,12 @@ export default {
     return {
       defaultName,
       room: defaultName,
-      presetAudio: false,
-      presetVideo: false,
-      presetFullscreen: SHOW_FULLSCREEN,
+      presetAudio: true,
+      presetVideo: true,
+      presetFullscreen: false,
       presetInvite: false,
+      presetPrefs: false,
+      presetShare: false,
       status: {},
     }
   },
@@ -110,7 +114,11 @@ export default {
         "&fs=" +
         Number(this.presetFullscreen) +
         "&invite=" +
-        Number(this.presetInvite)
+        Number(this.presetInvite) +
+        "&prefs=" +
+        Number(this.presetPrefs) +
+        "&share=" +
+        Number(this.presetShare)
       )
     },
     code() {

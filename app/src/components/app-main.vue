@@ -83,6 +83,7 @@
 
       <div class="tools hstack">
         <sea-link
+          v-if="state.showSettings"
           @action="doTogglePanel('settings')"
           class="tool"
           :class="{ '-active': mode === 'settings' }"
@@ -247,6 +248,7 @@
           </svg>
         </sea-link>
         <sea-link
+          v-if="state.showShare"
           @action="doTogglePanel('share')"
           class="tool"
           :class="{ '-active': mode === 'share' }"

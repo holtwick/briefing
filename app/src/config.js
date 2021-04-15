@@ -37,3 +37,5 @@ export const SHOW_INVITATION_HINT = isTrue(
   process.env.VUE_APP_SHOW_INVITATION_HINT,
   true
 )
+export const SHOW_SETTINGS = isTrue(process.env.VUE_APP_SHOW_SETTINGS, true)
+export const SHOW_SHARE = isTrue(process.env.VUE_APP_SHOW_SHARE, true)
