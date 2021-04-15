@@ -38,7 +38,7 @@ The simplest way to use Briefing is to distribute links to it. The have the form
 
 ### 2. Embedding
 
-You can also embed Briefing in your website using an `iframe`. [Visit this configiration page](https://brie.fi/ng/embed-demo) to find the best setting for you.
+You can also embed Briefing in your website using an `iframe`. [Visit this configuration page](https://brie.fi/ng/embed-demo) to find the best setting for you.
 
 ### 3. Installation
 
