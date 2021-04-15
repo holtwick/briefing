@@ -21,3 +21,5 @@ ios/Briefing/Briefing.xcodeproj/xcuserdata/dirk.xcuserdatad/xcdebugger/Breakpoin
 ios/Briefing/Briefing.xcodeproj/xcuserdata/dirk.xcuserdatad/xcschemes/xcschememanagement.plist
 app/public/faces
 .rsync-ignore
+pnpm-lock.yaml
+package-lock.json
