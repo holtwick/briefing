@@ -1,5 +1,5 @@
 <template>
-  <div class="page1">
+  <div class="-scroll">
     <div class="app-welcome">
       <h1>Embed Briefing</h1>
       <iframe class="iframe" :src="url"></iframe>
@@ -12,7 +12,6 @@
       </div>
       <div><br />HTML code to be used in client</div>
       <pre class="code">{{ code }}</pre>
-
       <div><br />Status sent from iframe</div>
       <pre class="code">{{ status }}</pre>
     </div>

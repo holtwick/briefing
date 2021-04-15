@@ -1,5 +1,5 @@
 <template>
-  <app-embed v-if="state.embedDemo === true" />
+  <app-embed class="app" v-if="state.embedDemo === true" />
   <app-welcome class="app" v-else-if="state.room == null" />
   <app-main v-else></app-main>
 </template>
