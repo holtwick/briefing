@@ -122,11 +122,10 @@ export default {
       )
     },
     code() {
-      return `\
-<iframe
+      return `<iframe 
   src="${this.url}"
-></ iframe>
-`
+  allow="camera; microphone; fullscreen; speaker; display-capture"
+></iframe>`
     },
   },
   mounted() {
