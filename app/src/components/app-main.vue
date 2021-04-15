@@ -67,7 +67,12 @@
 
         <div
           class="message-container"
-          v-else-if="!hasPeers && !state.screenshots && mode !== 'share'"
+          v-else-if="
+            !hasPeers &&
+            !state.screenshots &&
+            mode !== 'share' &&
+            state.showInviteHint
+          "
         >
           <div
             class="message"
@@ -204,7 +209,7 @@
           </sea-link>
         </div>
         <sea-link
-          v-if="supportsFullscreen"
+          v-if="state.showFullscreen && supportsFullscreen"
           @action="doToggleFullScreen"
           class="tool"
         >
@@ -403,7 +408,7 @@ export default {
     setTimeout(async () => {
       this.conn = await setup()
     }, 50)
-    if (!this.hasPeers && !window.iPhone) {
+    if (!this.hasPeers && !window.iPhone && this.state.showInviteOnStart) {
       this.mode = "share"
     }
     this.fullscreenHandler = (ev) => {

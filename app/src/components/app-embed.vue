@@ -9,6 +9,8 @@
       <div class="options">
         <sea-switch v-model="presetAudio">Audio</sea-switch>
         <sea-switch v-model="presetVideo">Video</sea-switch>
+        <sea-switch v-model="presetFullscreen">Fullscreen Option</sea-switch>
+        <sea-switch v-model="presetInvite">Invite on Start</sea-switch>
       </div>
       <div><br />HTML code to be used in client</div>
       <pre class="code">{{ code }}</pre>
@@ -71,7 +73,7 @@
 </style>
 
 <script>
-import { DEBUG, ROOM_PATH, ROOM_URL } from "../config"
+import { DEBUG, ROOM_PATH, ROOM_URL, SHOW_FULLSCREEN } from "../config"
 import { generateName } from "../lib/names"
 import { onMessageFromFrame } from "../lib/iframe"
 import SeaSwitch from "../ui/sea-switch"
@@ -89,6 +91,8 @@ export default {
       room: defaultName,
       presetAudio: false,
       presetVideo: false,
+      presetFullscreen: SHOW_FULLSCREEN,
+      presetInvite: false,
       status: {},
     }
   },
@@ -102,7 +106,11 @@ export default {
         "?audio=" +
         Number(this.presetAudio) +
         "&video=" +
-        Number(this.presetVideo)
+        Number(this.presetVideo) +
+        "&fs=" +
+        Number(this.presetFullscreen) +
+        "&invite=" +
+        Number(this.presetInvite)
       )
     },
     code() {

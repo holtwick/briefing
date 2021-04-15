@@ -9,7 +9,13 @@ import {
   setAudioTracks,
 } from "./logic/stream"
 import { trackException, trackSilentException } from "./bugs"
-import { PRODUCTION, ROOM_PATH } from "./config"
+import {
+  PRODUCTION,
+  ROOM_PATH,
+  SHOW_FULLSCREEN,
+  SHOW_INVITATION,
+  SHOW_INVITATION_HINT,
+} from "./config"
 import { normalizeName } from "./lib/names"
 import { postMessageToParent } from "./lib/iframe.js"
 import { objectSnapshot, isTrue } from "./lib/base.js"
@@ -105,6 +111,10 @@ export let state = {
   upgrade: false,
   requestBugTracking: false,
   embedDemo,
+
+  showInviteOnStart: isTrue(urlParams.get("invite"), SHOW_INVITATION),
+  showInviteHint: isTrue(urlParams.get("invite"), SHOW_INVITATION_HINT),
+  showFullscreen: isTrue(urlParams.get("fs"), SHOW_FULLSCREEN),
 
   screenshots,
 }
