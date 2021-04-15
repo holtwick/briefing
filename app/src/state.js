@@ -305,7 +305,7 @@ export function postUpdateToIframeParent() {
       maximized: state.maximized,
     }
     let snapshot = objectSnapshot(update)
-    console.log("snapshot", snapshot)
+    // console.log("snapshot", snapshot)
     if (snapshot !== lastUpdateSnapshot) {
       lastUpdateSnapshot = snapshot
       update.counter = counter++
