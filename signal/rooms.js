@@ -1,4 +1,4 @@
-const log = require('debug')('signal:rooms')
+const log = require("debug")("signal:rooms")
 
 let rooms = {}
 
@@ -27,18 +27,18 @@ function removeProperty(obj, key, value) {
 }
 
 function addSocketToRoom(sid, room) {
-  log('addSocketToRoom', sid, room)
+  log("addSocketToRoom", sid, room)
   return addProperty(rooms, room, sid)
 }
 
 function removeSocketFromRoom(sid, room) {
-  log('removeSocketFromRoom', sid, room)
+  log("removeSocketFromRoom", sid, room)
   return removeProperty(rooms, room, sid)
 }
 
 function allSocketsForRoom(room) {
   const sockets = Object.keys(rooms[room] || {})
-  log('allSocketsForRoom', room, sockets)
+  log("allSocketsForRoom", room, sockets)
   return sockets
 }
 
