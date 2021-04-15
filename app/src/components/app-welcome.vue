@@ -363,7 +363,9 @@ import { generateName } from "../lib/names"
 
 export default {
   name: "app-welcome",
-  components: { AppHelp },
+  components: {
+    AppHelp,
+  },
   data() {
     let defaultName = DEBUG
       ? process.env.VUE_APP_DEBUG_DEFAULT_ROOM || "development"

@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'briefing-signal',
+  title: "briefing-signal",
   port: 4444,
   timeout: 30000,
   max: 50,
