@@ -56,3 +56,8 @@ export function mergeDeep(target, source) {
 
   return target
 }
+
+export function isTrue(value, dflt = false) {
+  if (value == null) return dflt
+  return ["1", "true", "yes"].includes(value.toString().toLocaleLowerCase())
+}

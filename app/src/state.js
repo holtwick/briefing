@@ -12,7 +12,7 @@ import { trackException, trackSilentException } from "./bugs"
 import { PRODUCTION, ROOM_PATH } from "./config"
 import { normalizeName } from "./lib/names"
 import { postMessageToParent } from "./lib/iframe.js"
-import { objectSnapshot } from "./lib/base.js"
+import { objectSnapshot, isTrue } from "./lib/base.js"
 const log = require("debug")("app:state")
 
 const screenshots = false
@@ -56,14 +56,13 @@ try {
   trackSilentException(err)
 }
 
-console.log("Room =", room)
+// Hack to avoid routing ;)
+const embedDemo = room === "embed-demo"
+if (embedDemo) room = null
+
+console.log("Room =", room, "Embed Demo =", embedDemo)
 
 // STATE
-
-function isTrue(value, dflt = false) {
-  if (value == null) return dflt
-  return ["1", "true", "yes"].includes(value.toString().toLocaleLowerCase())
-}
 
 const urlParams = new URLSearchParams(window.location.search)
 
@@ -105,6 +104,7 @@ export let state = {
   error: null,
   upgrade: false,
   requestBugTracking: false,
+  embedDemo,
 
   screenshots,
 }

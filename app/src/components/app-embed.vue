@@ -1,5 +1,5 @@
 <template>
-  <div class="-scroll">
+  <div class="page1">
     <div class="app-welcome">
       <h1>Embed Briefing</h1>
       <iframe class="iframe" :src="url"></iframe>
@@ -74,8 +74,8 @@
 <script>
 import { DEBUG, ROOM_PATH, ROOM_URL } from "../config"
 import { generateName } from "../lib/names"
-import SeaSwitch from "../ui/sea-switch"
 import { onMessageFromFrame } from "../lib/iframe"
+import SeaSwitch from "../ui/sea-switch"
 
 export default {
   components: {
@@ -95,6 +95,7 @@ export default {
   },
   computed: {
     url() {
+      // const prefix = location.protocol + "//" + location.host + "/" + ROOM_PATH
       let prefix = DEBUG ? ROOM_PATH : ROOM_URL
       return (
         prefix +

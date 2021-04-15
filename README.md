@@ -8,7 +8,7 @@ Privacy is the driving force behind this project. It uses secure technologies li
 
 The difference between Briefing and most similar projects is, that it does not use a central server that distributes the video streams ([SFU](https://webrtcglossary.com/sfu/)). The advantage of an SFU is that it saves bandwidth due to the fact that the own video does not being uploaded to each participant but only once. The SFU can also do more optimizations the clients might not support. But then the video signal is not end-to-end encrypted anymore, i.e. you have to trust the SFU provider. Briefing instead sends data from peer to peer directly ("Mesh") and therefore the data does not travel over the server under normal operation. The WebRTC peers however still trust the signaling server for the authenticity of the peer-to-peer communications encryption in place.
 
-## Apps
+## Web App / Native Apps
 
 Briefing is a [PWA](https://web.dev/progressive-web-apps/) i.e. it is a web app, that can be installed from inside the browser on some platforms. To put Briefing on your home screen in iOS Safari tap on the "Share" icon and choose "Add to Home Screen". You can do the same in browsers like Google Chrome. **Therefore, native apps are not really required.**
 
@@ -26,11 +26,25 @@ But alongside to these awesome out-of-the-box features, we still have some nativ
 
 The `android` folder contains a sample. Build your own distribution following [this guide](https://developers.google.com/web/android/trusted-web-activity/quick-start).
 
-## Installation
+## Adopt Briefing for your Project
 
-You can just use the installation on <https://brie.fi/ng> for free.
+Briefing needs quite some adoptions and modifications if you want to use it in your project. Please remember, that if you don't plan to publish your changes under EUPL, you'll need to purchase a [commercial license](#commercial-license).
 
-But in case you want to run it on your own hardware, it is important to understand what parts are required:
+However, you can just use the installation on the website <https://brie.fi/ng> for free, as long as you keep the branding intact
+
+### 1. Link
+
+The simplest way to use Briefing is to distribute links to it. The have the form of `https://brie.fi/ng/<room-name>`, where you need to replace `<room-name>` by some random name you can choose.
+
+### 2. Embedding
+
+You can also embed Briefing in your website using an `iframe`. [Visit this configiration page](https://brie.fi/ng/embed-demo) to find the best setting for you.
+
+### 3. Installation
+
+But in case you want to run it on your own hardware, it is important to understand what parts are required.
+
+**Servers**
 
 1. Frontend: The web app the user interacts with. You find it in the `app` folder. Build it via `npm run build` and put the contents of `dist` on your server. Briefing uses some tricks to have the neat `/ng` path working, and you can learn in the [Wiki how to configure Apache](https://github.com/holtwick/briefing/wiki/Apache-Configuration) to handle the routes correctly. Under [configuration](#configuration), you can learn how to set up your own domain and room path.
 
@@ -38,11 +52,9 @@ But in case you want to run it on your own hardware, it is important to understa
 
 3. STUN/TURN Server: You can use mine or any other for the start. STUN is required to get peer to peer connections through firewalls. TURN is used if that does not succeed. The later one can cause some server load. Learn from the [Wiki how to set up such a server](https://github.com/holtwick/briefing/wiki/TURN-&-STUN-Installation).
 
-The wiki has some more resources.
+The [wiki](https://github.com/holtwick/briefing/wiki) has some more resources.
 
-Briefing needs quite some adoptions and modifications if you want to use it in your project. Please remember, that if you don't plan to publish your changes under EUPL, you'll need a [commercial license](#commercial-license).
-
-## Configuration
+**Configuration**
 
 In the `app` folder you will find a `.env` file with samples of how to adjust the settings for your needs. For example to modify the share URL and the sub path for your room you might do like this:
 
