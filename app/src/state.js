@@ -9,7 +9,15 @@ import {
   setAudioTracks,
 } from "./logic/stream"
 import { trackException, trackSilentException } from "./bugs"
-import { PRODUCTION, ROOM_PATH } from "./config"
+import {
+  PRODUCTION,
+  ROOM_PATH,
+  SHOW_FULLSCREEN,
+  SHOW_INVITATION,
+  SHOW_INVITATION_HINT,
+  SHOW_SETTINGS,
+  SHOW_SHARE,
+} from "./config"
 import { normalizeName } from "./lib/names"
 import { postMessageToParent } from "./lib/iframe.js"
 import { objectSnapshot, isTrue } from "./lib/base.js"
@@ -105,6 +113,12 @@ export let state = {
   upgrade: false,
   requestBugTracking: false,
   embedDemo,
+
+  showInviteOnStart: isTrue(urlParams.get("invite"), SHOW_INVITATION),
+  showInviteHint: isTrue(urlParams.get("invite"), SHOW_INVITATION_HINT),
+  showFullscreen: isTrue(urlParams.get("fs"), SHOW_FULLSCREEN),
+  showSettings: isTrue(urlParams.get("prefs"), SHOW_SETTINGS),
+  showShare: isTrue(urlParams.get("share"), SHOW_SHARE),
 
   screenshots,
 }
@@ -291,7 +305,7 @@ export function postUpdateToIframeParent() {
       maximized: state.maximized,
     }
     let snapshot = objectSnapshot(update)
-    console.log("snapshot", snapshot)
+    // console.log("snapshot", snapshot)
     if (snapshot !== lastUpdateSnapshot) {
       lastUpdateSnapshot = snapshot
       update.counter = counter++

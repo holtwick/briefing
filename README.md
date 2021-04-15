@@ -56,7 +56,7 @@ The [wiki](https://github.com/holtwick/briefing/wiki) has some more resources.
 
 **Configuration**
 
-In the `app` folder you will find a `.env` file with samples of how to adjust the settings for your needs. For example to modify the share URL and the sub path for your room you might do like this:
+In the `app` folder you will find a [.env](https://github.com/holtwick/briefing/blob/master/app/.env) file with samples of how to adjust the settings for your needs. For example to modify the share URL and the sub path for your room you might do like this:
 
 ```ini
 VUE_APP_ROOM_URL = https://example.com/room/

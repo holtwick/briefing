@@ -1,5 +1,5 @@
 <template>
-  <div class="page1">
+  <div class="-scroll">
     <div class="app-welcome">
       <h1>Embed Briefing</h1>
       <iframe class="iframe" :src="url"></iframe>
@@ -9,10 +9,13 @@
       <div class="options">
         <sea-switch v-model="presetAudio">Audio</sea-switch>
         <sea-switch v-model="presetVideo">Video</sea-switch>
+        <sea-switch v-model="presetInvite">Invite on Start</sea-switch>
+        <sea-switch v-model="presetFullscreen">Fullscreen Button</sea-switch>
+        <sea-switch v-model="presetPrefs">Setting Button</sea-switch>
+        <sea-switch v-model="presetShare">Share Button</sea-switch>
       </div>
       <div><br />HTML code to be used in client</div>
       <pre class="code">{{ code }}</pre>
-
       <div><br />Status sent from iframe</div>
       <pre class="code">{{ status }}</pre>
     </div>
@@ -72,7 +75,7 @@
 </style>
 
 <script>
-import { DEBUG, ROOM_PATH, ROOM_URL } from "../config"
+import { DEBUG, ROOM_PATH, ROOM_URL, SHOW_FULLSCREEN } from "../config"
 import { generateName } from "../lib/names"
 import { onMessageFromFrame } from "../lib/iframe"
 import SeaSwitch from "../ui/sea-switch"
@@ -88,8 +91,12 @@ export default {
     return {
       defaultName,
       room: defaultName,
-      presetAudio: false,
-      presetVideo: false,
+      presetAudio: true,
+      presetVideo: true,
+      presetFullscreen: false,
+      presetInvite: false,
+      presetPrefs: false,
+      presetShare: false,
       status: {},
     }
   },
@@ -103,7 +110,15 @@ export default {
         "?audio=" +
         Number(this.presetAudio) +
         "&video=" +
-        Number(this.presetVideo)
+        Number(this.presetVideo) +
+        "&fs=" +
+        Number(this.presetFullscreen) +
+        "&invite=" +
+        Number(this.presetInvite) +
+        "&prefs=" +
+        Number(this.presetPrefs) +
+        "&share=" +
+        Number(this.presetShare)
       )
     },
     code() {
