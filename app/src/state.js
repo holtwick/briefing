@@ -11,7 +11,8 @@ import {
 import { trackException, trackSilentException } from "./bugs"
 import { PRODUCTION, ROOM_PATH } from "./config"
 import { normalizeName } from "./lib/names"
-
+import { postMessageToParent } from "./lib/iframe.js"
+import { objectSnapshot } from "./lib/base.js"
 const log = require("debug")("app:state")
 
 const screenshots = false
@@ -264,4 +265,40 @@ export async function setup() {
       rtc?.cleanup()
     },
   }
+}
+
+// Communicate to parent
+
+let lastUpdateSnapshot = ""
+let counter = 0
+
+export function postUpdateToIframeParent() {
+  // setTimeout(() => {
+  try {
+    let update = {
+      room: state.room,
+      error: state.error,
+      peers: Array.from(state.status || []).map((info) => ({
+        id: info.id,
+        active: info.active,
+        initiator: info.initiator,
+        error: info.error,
+        fingerprint: info.fingerprint,
+      })),
+      backgroundMode: state.backgroundMode,
+      muteVideo: state.muteVideo,
+      muteAudio: state.muteAudio,
+      maximized: state.maximized,
+    }
+    let snapshot = objectSnapshot(update)
+    console.log("snapshot", snapshot)
+    if (snapshot !== lastUpdateSnapshot) {
+      lastUpdateSnapshot = snapshot
+      update.counter = counter++
+      postMessageToParent("status", update)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+  // }, 0)
 }

@@ -12,7 +12,7 @@ The difference between Briefing and most similar projects is, that it does not u
 
 _Why starting another video conference tool?_
 
-During the Corona pandemic 2020, I tried to create a peer-to-peer solution for homeschooling called [peer.school](https://peer.school/?referrer=peer.school). Although the project has been retired for various reasons, I learned so much about WebRTC and video/audio communication, that I did want to reuse this knowledge in this project.
+During the Corona pandemic 2020-2021, I tried to create a peer-to-peer solution for homeschooling called [peer.school](https://peer.school/?referrer=peer.school). Although the project has been retired for various reasons, I learned so much about WebRTC and video/audio communication, that I did want to reuse this knowledge in this project.
 
 _Why is it free and Open Source?_
 

@@ -78,7 +78,7 @@
       </p>
       <p>---</p>
       <p>
-        (C)opyright 2020 by
+        (C)opyright 2020-2021 by
         <a href="/goto/holtwick">Dirk Holtwick</a> |
         <a href="/goto/privacy">Privacy Policy</a> |
         <a href="/goto/imprint">Imprint</a>

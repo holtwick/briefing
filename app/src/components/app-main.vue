@@ -272,14 +272,6 @@
     >
       <app-share></app-share>
     </sea-modal>
-
-    <!--    <sea-modal :active.sync="share" close :title="l.share.title">-->
-    <!--      <app-share></app-share>-->
-    <!--    </sea-modal>-->
-
-    <!--    <sea-modal :active.sync="settings" close :title="l.settings.title" class="text">-->
-    <!--      <app-settings></app-settings>-->
-    <!--    </sea-modal>-->
   </div>
 </template>
 
