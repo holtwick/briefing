@@ -1,4 +1,4 @@
-(C)opyright 2020 Dirk Holtwick, <holtwick.de>
+(C)opyright 2020-2021 Dirk Holtwick, <holtwick.de>
 
 The following license applies.
 

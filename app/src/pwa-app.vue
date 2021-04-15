@@ -1,19 +1,21 @@
 <template>
-  <app-welcome class="app" v-if="state.room == null"></app-welcome>
+  <app-embed v-if="state.embedDemo === true" />
+  <app-welcome class="app" v-else-if="state.room == null" />
   <app-main v-else></app-main>
 </template>
 
 <script>
-import AppWelcome from "./components/app-welcome"
-
 const log = require("debug")("app:pwa-app")
 
 export default {
   name: "App",
   components: {
-    AppWelcome,
+    AppWelcome: () =>
+      import(/* webpackChunkName: 'welcome' */ "./components/app-welcome"),
     AppMain: () =>
       import(/* webpackChunkName: 'main' */ "./components/app-main"),
+    AppEmbed: () =>
+      import(/* webpackChunkName: 'embed' */ "./components/app-embed"),
   },
   data() {
     return {}
