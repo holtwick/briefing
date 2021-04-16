@@ -6,6 +6,7 @@ import en from "./locales/en.json"
 import it from "./locales/it.json"
 import zh from "./locales/zh.json"
 import fr from "./locales/fr.json"
+import ru from "./locales/ru.json"
 import App from "./pwa-app.vue"
 import { postUpdateToIframeParent, state } from "./state"
 import { setupBugTracker } from "./bugs"
@@ -72,9 +73,10 @@ Vue.use(locale, {
   locales: {
     en,
     de,
-    it,
-    zh,
+    it, // Thanks to https://github.com/albanobattistella
     fr,
+    zh, // Thanks to https://github.com/Bruce-Ming
+    ru, // Thanks to https://github.com/vorons
   },
 })
 
