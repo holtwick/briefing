@@ -78,8 +78,8 @@ export async function setupWebRTC(state) {
   })
 
   // Send a new message to all peers
-  messages.on("chatMessage", ({ name, message }) => {
-    webrtc.send("chatMessage", { name, message })
+  messages.on("chatMessage", ({ name, message, time }) => {
+    webrtc.send("chatMessage", { name, message, time })
   })
 
   // Listen to local userInfo and emit to webrtc for getting peer info

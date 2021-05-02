@@ -249,7 +249,7 @@
           </svg>
         </sea-link>
 
-        <sea-link @action="showChat()" class="tool messageBtn">
+        <sea-link @action="toggleChat()" class="tool messageBtn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -438,9 +438,13 @@ export default {
       }
     },
     didChangeFullscreen(ev) {},
-    showChat() {
-      this.unreadMessages = false
-      this.mode = "chat"
+    toggleChat() {
+      if (this.mode === "chat") {
+        this.mode = ""
+      } else {
+        this.unreadMessages = false
+        this.mode = "chat"
+      }
     },
     updateUserInfo() {
       messages.emit("userInfo", {
@@ -448,8 +452,6 @@ export default {
       })
     },
     triggerChatFunctions() {
-      this.updateUserInfo()
-
       messages.on("newMessage", () => {
         if (this.mode !== "chat") {
           this.unreadMessages = true
@@ -469,11 +471,12 @@ export default {
     },
     setName() {
       let name = localStorage.getItem("name")
-      if (!name) {
-        name = prompt("Enter Your Name : ")
-        localStorage.setItem("name", name)
+      if (name) {
+        this.name = name
+        messages.emit("userInfo", {
+          name: name,
+        })
       }
-      this.name = name
     },
   },
   mounted() {
