@@ -77,6 +77,13 @@
         <br />
         <tt>{{ fingerprint }}</tt>
       </label>
+      <label
+        title="Name"
+        class="-short"
+        style="right: 5rem;"
+      >
+        {{ name }}
+      </label>
     </div>
     <div
       v-if="state.muteVideo && id === 'self'"
@@ -158,6 +165,9 @@ export default {
       type: String,
     },
     id: {
+      type: String,
+    },
+    name: {
       type: String,
     },
   },

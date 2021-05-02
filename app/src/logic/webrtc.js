@@ -188,6 +188,11 @@ export class WebRTC extends Emitter {
     peer.on("stream", (_) => this.updateStatus())
     peer.on("track", (_) => this.updateStatus())
 
+    // Listening to userInfo and emitting back with local peer info
+    this.on("userInfo", (data) => {
+      this.emit('userInfoWithPeer', {peer, data})
+    })
+
     return peer
   }
 

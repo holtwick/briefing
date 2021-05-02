@@ -36,6 +36,7 @@
           :id="peer.remote"
           :stream="peer && peer.peer && peer.peer.stream"
           :fingerprint="peer && peer.peer && peer.peer.fingerprint"
+          :name="peer && peer.peer && peer.peer.name"
         />
 
         <div
@@ -247,6 +248,20 @@
             ></path>
           </svg>
         </sea-link>
+
+        <sea-link
+          @action="showChat()"
+          class="tool messageBtn"
+        >
+          <svg style="margin-left: .4em" height="24" viewBox="0 -45 512 511" width="24" fill="white"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="m407 .5h-302c-57.898438 0-105 47.101562-105 105v162.171875c0 46.199219 30.332031 86.4375 74.285156 99.316406l50.710938 50.714844c2.816406 2.8125 6.628906 4.394531 10.609375 4.394531 3.976562 0 7.792969-1.582031 10.605469-4.394531l46.519531-46.523437h214.269531c57.898438 0 105-47.101563 105-105v-160.679688c0-57.898438-47.101562-105-105-105zm75 265.679688c0 41.355468-33.644531 75-75 75h-220.480469c-3.976562 0-7.792969 1.582031-10.605469 4.394531l-40.308593 40.308593-42.929688-42.929687c-1.925781-1.925781-4.339843-3.292969-6.984375-3.949219-32.789062-8.160156-55.691406-37.492187-55.691406-71.332031v-162.171875c0-41.355469 33.644531-75 75-75h302c41.355469 0 75 33.644531 75 75zm0 0"/>
+            <path d="m351.242188 144.328125h-190.484376c-8.285156 0-15 6.71875-15 15 0 8.285156 6.714844 15 15 15h190.484376c8.285156 0 15-6.714844 15-15 0-8.28125-6.714844-15-15-15zm0 0"/>
+            <path d="m351.242188 197.351562h-190.484376c-8.285156 0-15 6.714844-15 15 0 8.285157 6.714844 15 15 15h190.484376c8.285156 0 15-6.714843 15-15 0-8.285156-6.714844-15-15-15zm0 0"/>
+          </svg>
+          <div v-if="unreadMessages" class="unread-msg"></div>
+        </sea-link>
+
         <sea-link
           v-if="state.showShare"
           @action="doTogglePanel('share')"
@@ -279,6 +294,15 @@
     >
       <app-share></app-share>
     </sea-modal>
+
+    <sea-modal
+      xclass="panel -left panel-share"
+      :active="mode === 'chat'"
+      title="Chat with others"
+      @close="mode = ''"
+    >
+      <app-chat :name="this.name"></app-chat>
+    </sea-modal>
   </div>
 </template>
 
@@ -301,6 +325,7 @@ export default {
     AppSettings: () =>
       import(/* webpackChunkName: 'settings' */ "./app-settings"),
     AppShare: () => import(/* webpackChunkName: 'share' */ "./app-share"),
+    AppChat: () => import(/* webpackChunkName: 'chat' */ "./app-chat"),
     SeaLink,
     SeaModal,
     SeaButton,
@@ -318,6 +343,8 @@ export default {
       fullscreenHandler: null,
       symbol:
         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>',
+      name: "",
+      unreadMessages: false,
     }
   },
   computed: {
@@ -405,8 +432,46 @@ export default {
       }
     },
     didChangeFullscreen(ev) {},
+    showChat() {
+      this.unreadMessages = false;
+      this.mode = 'chat';
+    },
+    updateUserInfo() {
+      messages.emit('userInfo', {
+        name: this.name
+      })
+    },
+    triggerChatFunctions() {
+      this.updateUserInfo();
+
+      messages.on('newMessage', () => {
+        if (this.mode !== 'chat') {
+          this.unreadMessages = true;
+        }
+      });
+
+      messages.on('userInfoUpdate', ({ peer, data }) => {
+        this.peers[this.peers.findIndex(el => el.remote === peer.local)].peer.name = data.data.name;
+      });
+
+      // Update Local Name to Remote peers every 10 seconds for new peers
+      setInterval(() => {
+        this.updateUserInfo();
+      }, 10000)
+    },
+    setName() {
+      let name = localStorage.getItem('name');
+      if (! name) {
+        name = prompt('Enter Your Name : ');
+        localStorage.setItem('name', name);
+      }
+      this.name = name;
+    }
   },
   mounted() {
+    this.setName();
+    this.triggerChatFunctions();
+
     setTimeout(async () => {
       this.conn = await setup()
     }, 50)
