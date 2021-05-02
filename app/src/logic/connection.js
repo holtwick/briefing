@@ -46,6 +46,7 @@ export async function setupWebRTC(state) {
     if (state.stream) {
       peer.setStream(state.stream)
     }
+    messages.emit('requestUserInfo');
   })
 
   // Getting Client's Info with Local Peer Info

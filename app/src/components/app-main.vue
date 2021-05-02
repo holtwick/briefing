@@ -455,9 +455,9 @@ export default {
       });
 
       // Update Local Name to Remote peers every 10 seconds for new peers
-      setInterval(() => {
+      messages.on('requestUserInfo', () => {
         this.updateUserInfo();
-      }, 10000)
+      });
     },
     setName() {
       let name = localStorage.getItem('name');
