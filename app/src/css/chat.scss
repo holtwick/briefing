@@ -3,11 +3,11 @@
 .unread-msg {
   border-radius: 50%;
   background-color: red;
-  height: .5em;
-  width: .5em;
+  height: 0.5em;
+  width: 0.5em;
   position: relative;
-  right: .25em;
-  top: -.4em;
+  right: 0.25em;
+  top: -0.4em;
 }
 
 .chat-container {
@@ -24,18 +24,17 @@
   p {
     color: #212529;
     padding: 10px 15px !important;
-    margin-bottom: 5px!important;
-    display: inline-block!important;
-    border-radius: .25rem!important;
+    margin-bottom: 5px !important;
+    display: inline-block !important;
+    border-radius: 0.25rem !important;
     line-height: 1.6;
   }
 
   .bg-light {
-    background-color: #c8e2f8!important;
+    background-color: #c8e2f8 !important;
   }
 
   .bg-dark {
-    background-color: #e4e7ed!important;
+    background-color: #e4e7ed !important;
   }
 }
-

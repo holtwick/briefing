@@ -77,11 +77,7 @@
         <br />
         <tt>{{ fingerprint }}</tt>
       </label>
-      <label
-        title="Name"
-        class="-short"
-        style="right: 5rem;"
-      >
+      <label title="Name" class="-short" style="right: 5rem">
         {{ name }}
       </label>
     </div>

@@ -46,23 +46,23 @@ export async function setupWebRTC(state) {
     if (state.stream) {
       peer.setStream(state.stream)
     }
-    messages.emit('requestUserInfo');
+    messages.emit("requestUserInfo")
   })
 
   // Getting Client's Info with Local Peer Info
-  webrtc.on('userInfoWithPeer', ({ peer, data }) => {
-    webrtc.send('userInfoUpdate', { peer, data })
+  webrtc.on("userInfoWithPeer", ({ peer, data }) => {
+    webrtc.send("userInfoUpdate", { peer, data })
   })
 
   // Listening to Remote Client's Info with its Local Peer Info and
   // emitting to Local Client
-  webrtc.on('userInfoUpdate', ({ peer, data }) => {
-    messages.emit('userInfoUpdate', { peer, data });
+  webrtc.on("userInfoUpdate", ({ peer, data }) => {
+    messages.emit("userInfoUpdate", { peer, data })
   })
 
   // Listening to new messages from Remote Client and emitting to Local client
   webrtc.on("chatMessage", (info) => {
-    messages.emit('newMessage', info);
+    messages.emit("newMessage", info)
   })
 
   let onSetLocalStream = messages.on("setLocalStream", (stream) => {
@@ -78,13 +78,13 @@ export async function setupWebRTC(state) {
   })
 
   // Send a new message to all peers
-  messages.on('chatMessage', ({ name, message }) => {
-    webrtc.send('chatMessage', { name, message })
+  messages.on("chatMessage", ({ name, message }) => {
+    webrtc.send("chatMessage", { name, message })
   })
 
   // Listen to local userInfo and emit to webrtc for getting peer info
-  messages.on('userInfo', (data) => {
-    webrtc.emit('userInfo', {data})
+  messages.on("userInfo", (data) => {
+    webrtc.emit("userInfo", { data })
   })
 
   let onSubscribePush = messages.on("subscribePush", async (on) => {

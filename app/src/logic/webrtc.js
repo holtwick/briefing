@@ -190,7 +190,7 @@ export class WebRTC extends Emitter {
 
     // Listening to userInfo and emitting back with local peer info
     this.on("userInfo", (data) => {
-      this.emit('userInfoWithPeer', {peer, data})
+      this.emit("userInfoWithPeer", { peer, data })
     })
 
     return peer
