@@ -9,7 +9,7 @@
       </button>
     </div>
     <div v-else>
-      <div style="height: 78vh; flex-direction: column">
+      <div class="messages-container">
         <div
           v-for="message in messages"
           :style="
@@ -23,8 +23,10 @@
         >
           <p :class="message.from_me ? 'bg-light' : 'bg-dark'">
             <span style="font-weight: 500">{{ message.message }}</span>
-            <small v-if="!message.from_me"><br />- {{ message.name }}</small>
-            <small style="font-size: .68em"><br />@ {{ message.time }}</small>
+            <br />
+            <small style="font-size: .68em">
+              <span v-if="!message.from_me">- {{ message.name }}</span> @ {{ message.time }}
+            </small>
           </p>
         </div>
       </div>
@@ -32,6 +34,7 @@
         placeholder="Type a message..."
         v-on:keyup.enter="sendMessage($event)"
         type="text"
+        id="message-input"
       />
     </div>
   </div>
@@ -77,6 +80,13 @@ export default {
         name: name,
       })
     },
+    scrollToEnd: function () {
+      let messages = this.$el.querySelector('.messages-container')
+      messages.scrollTop = messages.lastElementChild.offsetTop;
+    }
+  },
+  updated() {
+    this.$nextTick(() => this.scrollToEnd());
   },
   mounted() {
     messages.on("newMessage", (info) => {

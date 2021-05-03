@@ -249,7 +249,11 @@
           </svg>
         </sea-link>
 
-        <sea-link @action="toggleChat()" class="tool messageBtn">
+        <sea-link
+          @action="toggleChat()"
+          class="tool messageBtn"
+          :class="{ '-active': mode === 'chat' }"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -444,6 +448,7 @@ export default {
       } else {
         this.unreadMessages = false
         this.mode = "chat"
+        this.focusChatInput();
       }
     },
     updateUserInfo() {
@@ -478,6 +483,15 @@ export default {
         })
       }
     },
+    focusChatInput() {
+      if (
+        !/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)
+      ) {
+        setTimeout(() => {
+          document.getElementById('message-input').focus()
+        }, 100);
+      }
+    }
   },
   mounted() {
     this.setName()

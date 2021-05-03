@@ -11,6 +11,14 @@
 }
 
 .chat-container {
+  .messages-container {
+    height: 78vh;
+    flex-direction: column;
+    overflow-y: scroll;
+    margin-bottom: 1em;
+    padding-right: 0.2em;
+    padding-left: 0.2em;
+  }
   input {
     border: 1px solid gray;
     background: white;
