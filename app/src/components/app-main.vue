@@ -36,6 +36,7 @@
           :id="peer.remote"
           :stream="peer && peer.peer && peer.peer.stream"
           :fingerprint="peer && peer.peer && peer.peer.fingerprint"
+          :name="peer && peer.peer && peer.peer.name"
         />
 
         <div
@@ -247,6 +248,30 @@
             ></path>
           </svg>
         </sea-link>
+
+        <sea-link
+          @action="toggleChat()"
+          class="tool messageBtn"
+          :class="{ '-active': mode === 'chat' }"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-message-square"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            ></path>
+          </svg>
+          <div v-if="unreadMessages" class="unread-msg"></div>
+        </sea-link>
+
         <sea-link
           v-if="state.showShare"
           @action="doTogglePanel('share')"
@@ -279,6 +304,15 @@
     >
       <app-share></app-share>
     </sea-modal>
+
+    <sea-modal
+      xclass="panel -left panel-share"
+      :active="mode === 'chat'"
+      title="Chat with others"
+      @close="mode = ''"
+    >
+      <app-chat :name="this.name"></app-chat>
+    </sea-modal>
   </div>
 </template>
 
@@ -301,6 +335,7 @@ export default {
     AppSettings: () =>
       import(/* webpackChunkName: 'settings' */ "./app-settings"),
     AppShare: () => import(/* webpackChunkName: 'share' */ "./app-share"),
+    AppChat: () => import(/* webpackChunkName: 'chat' */ "./app-chat"),
     SeaLink,
     SeaModal,
     SeaButton,
@@ -318,6 +353,8 @@ export default {
       fullscreenHandler: null,
       symbol:
         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>',
+      name: "",
+      unreadMessages: false,
     }
   },
   computed: {
@@ -405,8 +442,61 @@ export default {
       }
     },
     didChangeFullscreen(ev) {},
+    toggleChat() {
+      if (this.mode === "chat") {
+        this.mode = ""
+      } else {
+        this.unreadMessages = false
+        this.mode = "chat"
+        this.focusChatInput();
+      }
+    },
+    updateUserInfo() {
+      messages.emit("userInfo", {
+        name: this.name,
+      })
+    },
+    triggerChatFunctions() {
+      messages.on("newMessage", () => {
+        if (this.mode !== "chat") {
+          this.unreadMessages = true
+        }
+      })
+
+      messages.on("userInfoUpdate", ({ peer, data }) => {
+        this.peers[
+          this.peers.findIndex((el) => el.remote === peer.local)
+        ].peer.name = data.data.name
+      })
+
+      // Update Local Name to Remote peers every 10 seconds for new peers
+      messages.on("requestUserInfo", () => {
+        this.updateUserInfo()
+      })
+    },
+    setName() {
+      let name = localStorage.getItem("name")
+      if (name) {
+        this.name = name
+        messages.emit("userInfo", {
+          name: name,
+        })
+      }
+    },
+    focusChatInput() {
+      if (
+        !/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)
+      ) {
+        setTimeout(() => {
+          document.getElementById('message-input').focus()
+        }, 100);
+      }
+    }
   },
   mounted() {
+    this.setName()
+    this.triggerChatFunctions()
+
     setTimeout(async () => {
       this.conn = await setup()
     }, 50)

@@ -29,6 +29,7 @@ export class WebRTCPeer extends Emitter {
     this.room = opt.room || ""
     this.id = "webrtc-peer" + ctr++
     this.fingerprint = ""
+    this.name = ""
 
     log("peer", this.id)
     this.setupPeer(opt)
