@@ -310,6 +310,7 @@
       :active="mode === 'chat'"
       title="Chat with others"
       @close="mode = ''"
+      :scrollable="false"
     >
       <app-chat :name="this.name"></app-chat>
     </sea-modal>
@@ -448,7 +449,7 @@ export default {
       } else {
         this.unreadMessages = false
         this.mode = "chat"
-        this.focusChatInput();
+        this.focusChatInput()
       }
     },
     updateUserInfo() {
@@ -488,10 +489,10 @@ export default {
         !/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)
       ) {
         setTimeout(() => {
-          document.getElementById('message-input').focus()
-        }, 100);
+          document.getElementById("message-input").focus()
+        }, 100)
       }
-    }
+    },
   },
   mounted() {
     this.setName()

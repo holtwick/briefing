@@ -40,7 +40,10 @@
           </sea-link>
         </div>
       </header>
-      <section class="sea-modal-body modal-body -fit -scrollable">
+      <section
+        class="sea-modal-body modal-body -fit"
+        :class="scrollable && '-scrollable'"
+      >
         <slot></slot>
       </section>
     </div>
@@ -70,6 +73,10 @@ export default {
       default: "",
     },
     close: {
+      type: Boolean,
+      default: true,
+    },
+    scrollable: {
       type: Boolean,
       default: true,
     },
