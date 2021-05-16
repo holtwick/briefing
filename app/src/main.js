@@ -7,6 +7,9 @@ import it from "./locales/it.json"
 import zh from "./locales/zh.json"
 import fr from "./locales/fr.json"
 import ru from "./locales/ru.json"
+import tr from "./locales/tr.json"
+import ro from "./locales/ro.json"
+import id from "./locales/id.json"
 import App from "./pwa-app.vue"
 import { postUpdateToIframeParent, state } from "./state"
 import { setupBugTracker } from "./bugs"
@@ -76,7 +79,10 @@ Vue.use(locale, {
     it, // Thanks to https://github.com/albanobattistella
     fr,
     zh, // Thanks to https://github.com/Bruce-Ming
-    ru, // Thanks to https://github.com/vorons
+    ru, // Thanks to https://github.com/vorons / Сергей
+    id, // Thanks to Yusuf via poeditor
+    ro, // Thanks to radumalica via poeditor
+    tr, // Thanks to volkankoc via poeditor
   },
 })
 
