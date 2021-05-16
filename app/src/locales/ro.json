@@ -1,0 +1,40 @@
+{
+  "welcome": {
+    "start": "Incepe conversatia",
+    "abstract": "Conversatie video de grup securizata",
+    "help": "Afla mai mult",
+    "created": "Creat de"
+  },
+  "share": {
+    "title": "Invita",
+    "link_info": "Va rugam partajati acest link cu toti participantii pe care ii vreti in sesiune:",
+    "button_copy": "Partajeaza",
+    "qr_info": "Puteti deasemenea scana acest cod QR cu un telefon mobil:",
+    "feedback": "Pentru sugestii scrieti la <a href=\"mailto:support@holtwick.de?subject=Briefing\">support@holtwick.de</a>",
+    "message": "Invita prin trimiterea link-ului apasand pe simbolul $symbol$."
+  },
+  "settings": {
+    "title": "Setari",
+    "video": "Sursa Video",
+    "audio": "Sursa Audio",
+    "desktop": "Partajeaza ecranul sau o fereastra",
+    "blur": "Blureaza fundalul",
+    "blur_info": "Experimental: Un algoritm inteligent de inteligență artificială este capabil să indetifice formele persoanelor și va estompa fundalul rămas. Acest lucru adaugă o anumită confidențialitate vizuală apelului dvs. Dar atenție, aceasta este o caracteristică foarte consumatoare de energie și foarte probabil nu va funcționa pe dispozitivele mobile! ",
+    "bandwidth": "Aplica optimizarile pentru viteza",
+    "bandwidth_info": "Experimental: Cu aceasta setare Briefing incearca sa reduca viteza folosita prin comprimarea video si audio.",
+    "fill": "Umple video pe tot ecranul",
+    "fill_info": "Briefing încearcă să utilizeze spațiul disponibil pe ecran cât mai mult posibil, mărind videoclipul într-un mod care îl face să se încadreze în cadrul său vizual. Când este dezactivat, veți vedea întregul videoclip, dar cu margini în jurul acestuia.",
+    "subscribe": "Inscrie-te in aceasta camera",
+    "subscribe_info": "Experimental: Prin abonare veți primi o notificare atunci când altcineva intră în această cameră. Puteți apoi să vă alăturați conversației cu un singur clic. Notificările vor fi afișate numai dacă browserul rulează.",
+    "sentry": "Permite raportarea de bug-uri",
+    "sentry_info": "Când întâmpinăm o eroare de programare sau alte informații relevante care sunt utile pentru îmbunătățirea aplicației, vom trimite date de depanare către un serviciu numit <a href=\"https://sentry.io\">sentry.io</a>.",
+    "sentry_confirm": "Multumesc pentru ca permiti raportarea de bug-uri. Te rog confirma prin reincarcarea paginii.",
+    "background": "Fundal",
+    "persist_settings": "Setari persistente",
+    "original_background": "Fundal original",
+    "blurred_background": "Fundal estompat",
+    "image_background": "Imagine de fundal",
+    "image_tip": "Poti urca propriul tau fundal prin tragerea unei imagini peste aceasta fereastra.",
+    "random_image": "Apasa pentru a vedea o imagine aleatorie."
+  }
+}

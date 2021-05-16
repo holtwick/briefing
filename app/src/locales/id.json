@@ -1,0 +1,40 @@
+{
+  "welcome": {
+    "start": "Mulai chat",
+    "abstract": "Video chat berkelompok langsung aman",
+    "help": "Pelajari Lagi",
+    "created": "Diciptakan oleh"
+  },
+  "share": {
+    "title": "Undang",
+    "link_info": "Silahkan bagikan tautan ini kepada orang yang ingin anda undang:",
+    "button_copy": "Bagikan",
+    "qr_info": "Anda juga dapat memindai Kode QR dengan ponsel pintar:",
+    "feedback": "Beri masukan dengan menulis ke <a href=\"mailto:support@holtwick.de?subject=Briefing\">support@holtwick.de</a>",
+    "message": "Undang melalui tautan dengan memencet pada $symbol$ symbol."
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "video": "Sumber Video",
+    "audio": "Sumber Audio",
+    "desktop": "Bagikan layar atau jendela",
+    "blur": "Latar belakang Buram",
+    "blur_info": "Eksperimental: Sebuah algoritma kecerdasan buatan dapat mengenali bentuk orang dan mengaburkan latar belakang yang ada. Ini akan menambahkan sedikit privasi secara visual pada panggilan anda. Tetapi, fitur ini menggunakan banyak tenaga dan kemungkinan tidak akan berjalan pada perangkat mobile!",
+    "bandwidth": "Terapkan optimalisasi bandwidth",
+    "bandwidth_info": "Eksperimen: Dengan mengaktifkan pengaturan ini, Briefing akan mengurangi bandwidth dengan mengecilkan data video dan audio.",
+    "fill": "Perbesar skala video",
+    "fill_info": "Briefing menggunakan sisa ruang layar sebanyak mungkin dengan memperbesar skala video dengan membuatnya pas dalam bingkai tampilan. Ketika dimatikan anda akan melihat video secara keseluruhan tetapi dengan pembatas di sekelilingnya.",
+    "subscribe": "Berlangganan ke ruang ini",
+    "subscribe_info": "Eksperimental : Dengan berlangganan anda akan menerima sebuah notifikasi ketika seseorang memasuki ruangan ini. Anda dapat kemudian bergabung dengan percakapan hanya dengan satu klik. Notifikasi hanya akan muncul ketika peramban sedang berjalan.",
+    "sentry": "Izinkan pelacakan bug",
+    "sentry_info": "Ketika menghadapi kegagalan pemograman atau informasi lain yang relevan serta berguna bagi pengemabangan aplikasi, kami akan mengirim data debug ke layanan bernama <a href=\"https://sentry.io\">sentry.io</a>.",
+    "sentry_confirm": "Terima kasih terlah mengizinkan pelacakan bug. Mohon segarkan laman sekarang.",
+    "background": "Latar belakang",
+    "persist_settings": "Pertahankan pengaturan",
+    "original_background": "Latar belakang bawaan",
+    "blurred_background": "Latar belakang blur",
+    "image_background": "Latar belakang gambar",
+    "image_tip": "Anda dapat mengunggah latar belakang anda sendiri dengan menarik file gambar ke dalam window ini.",
+    "random_image": "Klik untuk mendapatkan gambar acak lainnya."
+  }
+}

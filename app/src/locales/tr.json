@@ -1,0 +1,40 @@
+{
+  "welcome": {
+    "start": "Sohbete Başla",
+    "abstract": "Doğrudan güvenli görüntülü grup sohbet",
+    "help": "Daha Fazla Öğren",
+    "created": "Volkan Koç"
+  },
+  "share": {
+    "title": "Davet Et",
+    "link_info": "Herkesi oturuma davet etmek için lütfen bu bağlantıyı paylaşın:",
+    "button_copy": "Paylaş",
+    "qr_info": "QR Kodu telefon kamerası ile tarayabilirsiniz:",
+    "feedback": "Geri bildirim için <a href=\"mailto:support@holtwick.de?subject=Briefing\">support@holtwick.de</a>",
+    "message": "Butonu kullanarak davetiye gönderin $symbol$ symbol."
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "video": "Video Kaynağı",
+    "audio": "Ses Kaynağı",
+    "desktop": "Ekran yada pencere paylaş",
+    "blur": "Bulanık arkaplan",
+    "blur_info": "Deneysel: Bir yapay zeka uygulaması kişileri algılayabilir ve geri kalan kısmı bulanıklaştırabilir. Bu bir nevi gizlilik katar. Yalnız bu özellik çok güç tüketen bir sistemdir mobil cihazlarda çalışmalabilir.",
+    "bandwidth": "Bant genişliği optimizasyonunu uygula",
+    "bandwidth_info": "Deneysel: Briefing video ve ses datalarını küçülterek bant genişliği sağlamaya çalışır",
+    "fill": "Videoyu ölçeklendirin",
+    "fill_info": "Brifing, videoyu çerçeveye sığacak şekilde ölçeklendirerek mevcut ekran tamamını kullanmaya çalışır. Kapatıldığında ancak etrafında kenarlıklar olacak şekilde göreceksiniz.",
+    "subscribe": "Bu odaya abone ol",
+    "subscribe_info": "Deneysel: Abone olduğunu kanala bir kişi katıldığında bildirim alacaksınız. Sonra tek bir tıklama ile sohbete katılabilirsiniz. Bildirimler yalnızca tarayıcı açıksa gösterilecektir.",
+    "sentry": "Hata izlemeye izin ver",
+    "sentry_info": "Bir hata ile karşılaşılır ise veya uygulamanın iyileştirilmesi için yararlı olan diğer ilgili bilgilerle karşılaşıldığında, hata ayıklama verilerini <a href=\"https://sentry.io\"> sentry.io </a> adlı bir hizmete göndereceğiz.",
+    "sentry_confirm": "Hata izlemeye onay verdiğiniz için teşekkürler. Şimdi sayfayı lütfen yeniden yükleyin.",
+    "background": "Arkaplan",
+    "persist_settings": "Kalıcı Ayarlar",
+    "original_background": "Orjinal arkaplan",
+    "blurred_background": "Bulanıklandırılmış arkaplan",
+    "image_background": "Resim arkaplanı",
+    "image_tip": "Bir resim yükleyerek kendi arkaplanınızı oluşturabilirsiniz.",
+    "random_image": "Rasgele başka bir resim almak için tıklayınız."
+  }
+}
