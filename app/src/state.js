@@ -17,6 +17,7 @@ import {
   SHOW_INVITATION_HINT,
   SHOW_SETTINGS,
   SHOW_SHARE,
+  SHOW_CHAT,
 } from "./config"
 import { normalizeName } from "./lib/names"
 import { postMessageToParent } from "./lib/iframe.js"
@@ -119,6 +120,7 @@ export let state = {
   showFullscreen: isTrue(urlParams.get("fs"), SHOW_FULLSCREEN),
   showSettings: isTrue(urlParams.get("prefs"), SHOW_SETTINGS),
   showShare: isTrue(urlParams.get("share"), SHOW_SHARE),
+  showChat: isTrue(urlParams.get("chat"), SHOW_CHAT),
 
   screenshots,
 }

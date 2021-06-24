@@ -10,6 +10,8 @@ import ru from "./locales/ru.json"
 import tr from "./locales/tr.json"
 import ro from "./locales/ro.json"
 import id from "./locales/id.json"
+import es from "./locales/es.json"
+import pt from "./locales/pt.json"
 import App from "./pwa-app.vue"
 import { postUpdateToIframeParent, state } from "./state"
 import { setupBugTracker } from "./bugs"
@@ -83,6 +85,8 @@ Vue.use(locale, {
     id, // Thanks to Yusuf via poeditor
     ro, // Thanks to radumalica via poeditor
     tr, // Thanks to volkankoc via poeditor
+    es,
+    pt,
   },
 })
 

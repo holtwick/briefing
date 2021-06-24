@@ -250,6 +250,7 @@
         </sea-link>
 
         <sea-link
+          v-if="state.showChat"
           @action="toggleChat()"
           class="tool messageBtn"
           :class="{ '-active': mode === 'chat' }"
@@ -489,7 +490,7 @@ export default {
         !/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)
       ) {
         setTimeout(() => {
-          document.getElementById("message-input").focus()
+          document.getElementById("message-input")?.focus()
         }, 100)
       }
     },

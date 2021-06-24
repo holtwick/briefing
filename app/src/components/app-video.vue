@@ -41,7 +41,12 @@
     </div>
     <div
       v-if="fingerprint"
-      class="video video-placeholder video-fingerprint -content-placeholder -overlay -info"
+      class="
+        video video-placeholder video-fingerprint
+        -content-placeholder
+        -overlay
+        -info
+      "
       v-show="!state.maximized"
     >
       <label
