@@ -2,15 +2,17 @@
 
 // Unit sizes
 
+@use "sass:math";
+
 $base-font-size: 16; // Only for calculations! Never set it in <html>!
 $base-font-size-px: (1px * $base-font-size);
 
 @function rem($px) {
-  @return ($px / $base-font-size-px) * 1rem;
+  @return math.div($px, $base-font-size-px) * 1rem;
 }
 
 @function px($px) {
-  @return ($px / $base-font-size) * 1rem;
+  @return math.div($px, $base-font-size) * 1rem;
 }
 
 $px-1: rem(1px); // 1/8

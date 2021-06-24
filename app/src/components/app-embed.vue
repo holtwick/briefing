@@ -9,10 +9,12 @@
       <div class="options">
         <sea-switch v-model="presetAudio">Audio</sea-switch>
         <sea-switch v-model="presetVideo">Video</sea-switch>
-        <sea-switch v-model="presetInvite">Invite on Start</sea-switch>
         <sea-switch v-model="presetFullscreen">Fullscreen Button</sea-switch>
         <sea-switch v-model="presetPrefs">Setting Button</sea-switch>
         <sea-switch v-model="presetShare">Share Button</sea-switch>
+        <sea-switch v-model="presetChat">Share Chat</sea-switch>
+        <br />
+        <sea-switch v-model="presetInvite">Invite on Start</sea-switch>
       </div>
       <div><br />HTML code to be used in client</div>
       <pre class="code">{{ code }}</pre>
@@ -97,6 +99,7 @@ export default {
       presetInvite: false,
       presetPrefs: false,
       presetShare: false,
+      presetChat: false,
       status: {},
     }
   },
@@ -118,7 +121,9 @@ export default {
         "&prefs=" +
         Number(this.presetPrefs) +
         "&share=" +
-        Number(this.presetShare)
+        Number(this.presetShare) +
+        "&chat=" +
+        Number(this.presetChat)
       )
     },
     code() {
