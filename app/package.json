@@ -33,14 +33,14 @@
     "electron >= 8"
   ],
   "dependencies": {
-    "@sentry/browser": "^6.2.5",
-    "@sentry/integrations": "^6.2.5",
-    "@tensorflow-models/body-pix": "^2.0.5",
+    "@sentry/browser": "^6.7.2",
+    "@sentry/integrations": "^6.7.2",
+    "@tensorflow-models/body-pix": "^2.2.0",
     "@tensorflow/tfjs-converter": "^1.7.4",
     "@tensorflow/tfjs-core": "^1.7.4",
     "clipboard-copy": "^4.0.1",
-    "core-js": "^3.10.1",
-    "custom-electron-titlebar": "^3.2.6",
+    "core-js": "^3.15.1",
+    "custom-electron-titlebar": "^3.2.7",
     "debug": "^4.3.1",
     "lodash": "^4.17.21",
     "regenerator-runtime": "^0.13.7",
@@ -48,16 +48,16 @@
     "simple-peer": "^9.11.0",
     "socket.io-client": "^2.4.0",
     "uuid": "^8.3.2",
-    "vue": "^2.6.12",
-    "vue-template-compiler": "^2.6.12"
+    "vue": "^2.6.14",
+    "vue-template-compiler": "^2.6.14"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.12",
-    "@vue/cli-plugin-pwa": "^4.5.12",
-    "@vue/cli-service": "^4.5.12",
-    "jest": "^26.6.3",
-    "prettier": "^2.2.1",
-    "sass": "^1.32.12",
-    "sass-loader": "^10.1.1"
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-pwa": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "jest": "^27.0.5",
+    "prettier": "^2.3.1",
+    "sass": "^1.35.1",
+    "sass-loader": "^10"
   }
 }

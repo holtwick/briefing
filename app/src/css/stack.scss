@@ -65,7 +65,7 @@ body {
         position: absolute;
         opacity: 0.5;
         top: 0;
-        left: -($sepHandleSize / 2);
+        left: -($sepHandleSize * 0.5);
         width: $sepHandleSize + $px-1;
         height: 100%;
         z-index: $z-index-floating;

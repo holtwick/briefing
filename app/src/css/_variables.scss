@@ -99,14 +99,14 @@ $control-size: $px-40 !default;
 $control-size-sm: $px-24 !default;
 $control-size-lg: $px-64 !default;
 
-$control-spacing: $control-size / 5 * 3;
+$control-spacing: $control-size * 0.2 * 3;
 
 $control-padding-x: $px-8 !default;
 $control-padding-x-sm: $px-4 !default;
 $control-padding-x-lg: $px-16 !default;
-$control-padding-y: ($control-size - $line-height) / 2 - $border-width !default;
-$control-padding-y-sm: ($control-size-sm - $line-height) / 2 - $border-width !default;
-$control-padding-y-lg: ($control-size-lg - $line-height) / 2 - $border-width !default;
+$control-padding-y: ($control-size - $line-height) * 0.5 - $border-width !default;
+$control-padding-y-sm: ($control-size-sm - $line-height) * 0.5 - $border-width !default;
+$control-padding-y-lg: ($control-size-lg - $line-height) * 0.5 - $border-width !default;
 $control-icon-size: 0.8rem !default;
 
 // sea

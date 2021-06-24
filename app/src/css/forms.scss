@@ -242,8 +242,8 @@ textarea.form-input-autoresize {
   margin: 0; //' ($control-size - $control-size-sm) / 2 0;
   margin-top: $px-4;
   min-height: $control-size-sm;
-  padding: (($control-size-sm - $line-height) / 2) $control-padding-x
-    (($control-size-sm - $line-height) / 2)
+  padding: (($control-size-sm - $line-height) * 0.5) $control-padding-x
+    (($control-size-sm - $line-height) * 0.5)
     ($control-icon-size + $control-padding-x);
   position: relative;
 
@@ -282,7 +282,7 @@ textarea.form-input-autoresize {
 
   &.input-lg {
     font-size: $font-size-lg;
-    margin: ($control-size-lg - $control-size-sm) / 2 0;
+    margin: ($control-size-lg - $control-size-sm) * 0.5 0;
   }
 }
 
@@ -292,7 +292,7 @@ textarea.form-input-autoresize {
     background: $bg-color-light;
     height: $control-icon-size;
     left: 0;
-    top: ($control-size-sm - $control-icon-size) / 2;
+    top: ($control-size-sm - $control-icon-size) * 0.5;
     width: $control-icon-size;
   }
 
