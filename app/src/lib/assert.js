@@ -1,6 +1,7 @@
 // Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-const log = require("debug")("test:assert")
+import { Logger } from "zeed"
+const log = Logger("test:assert")
 
 import { trackSilentException } from "../bugs"
 

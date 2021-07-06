@@ -11,7 +11,8 @@ import {
 } from "./fingerprint"
 import { base32Encode } from "../lib/uuid"
 
-const log = require("debug")("app:webrtc-peer")
+import { Logger } from "zeed"
+const log = Logger("app:webrtc-peer")
 
 let ctr = 1
 

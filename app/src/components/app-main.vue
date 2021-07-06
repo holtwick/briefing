@@ -329,7 +329,8 @@ import AppVideo from "./app-video"
 import { setAllowedBugTracking } from "../bugs"
 import { setBackgroundImage } from "../logic/background"
 
-const log = require("debug")("app:app-sidebar")
+import { Logger } from "zeed"
+const log = Logger("app:app-sidebar")
 
 export default {
   name: "app-main",

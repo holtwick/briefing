@@ -60,7 +60,8 @@ import { removeElement } from "./lib/helpers"
 import SeaLink from "./sea-link"
 import SeaSymbol from "./sea-symbol"
 
-const log = require("debug")("ui:sea-modal")
+import { Logger } from "zeed"
+const log = Logger("ui:sea-modal")
 
 export default {
   name: "sea-modal",

@@ -8,7 +8,8 @@ import { Emitter } from "../lib/emitter"
 import { state } from "../state"
 import { WebRTCPeer } from "./webrtc-peer"
 
-const log = require("debug")("app:webrtc")
+import { Logger } from "zeed"
+const log = Logger("app:webrtc")
 
 // Handles multiple connections, one to each peer
 export class WebRTC extends Emitter {

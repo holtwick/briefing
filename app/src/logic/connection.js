@@ -6,7 +6,8 @@ import { messages } from "../lib/emitter"
 import { setMediaBitrate } from "./sdp-manipulation.js"
 import { removeBandwidthRestriction } from "./sdp-manipulation.js"
 
-const log = require("debug")("app:connection")
+import { Logger } from "zeed"
+const log = Logger("app:connection")
 
 export async function setupWebRTC(state) {
   let { WebRTC } = await import(/* webpackChunkName: 'webrtc' */ "./webrtc")

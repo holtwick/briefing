@@ -8,7 +8,8 @@ import { trackException } from "../bugs/index"
 
 const bodyPix = require("@tensorflow-models/body-pix")
 
-const log = require("debug")("app:blur")
+import { Logger } from "zeed"
+const log = Logger("app:blur")
 
 let animationFrameRequest
 let videoEl, outputEl, captureStream

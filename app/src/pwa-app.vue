@@ -5,7 +5,8 @@
 </template>
 
 <script>
-const log = require("debug")("app:pwa-app")
+import { Logger } from "zeed"
+const log = Logger("app:pwa-app")
 
 export default {
   name: "App",

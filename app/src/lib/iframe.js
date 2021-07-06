@@ -1,6 +1,7 @@
 const source = "briefing"
 
-const log = require("debug")("app:iframe")
+import { Logger } from "zeed"
+const log = Logger("app:iframe")
 
 export function postMessageToParent(name, data = {}) {
   try {
