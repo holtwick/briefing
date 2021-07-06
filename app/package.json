@@ -33,15 +33,15 @@
     "electron >= 8"
   ],
   "dependencies": {
-    "@sentry/browser": "^6.7.2",
-    "@sentry/integrations": "^6.7.2",
+    "@sentry/browser": "^6.8.0",
+    "@sentry/integrations": "^6.8.0",
     "@tensorflow-models/body-pix": "^2.2.0",
     "@tensorflow/tfjs-converter": "^1.7.4",
     "@tensorflow/tfjs-core": "^1.7.4",
     "clipboard-copy": "^4.0.1",
-    "core-js": "^3.15.1",
+    "core-js": "^3.15.2",
     "custom-electron-titlebar": "^3.2.7",
-    "debug": "^4.3.1",
+    "debug": "^4.3.2",
     "lodash": "^4.17.21",
     "regenerator-runtime": "^0.13.7",
     "register-service-worker": "^1.7.2",
@@ -55,8 +55,8 @@
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-plugin-pwa": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
-    "jest": "^27.0.5",
-    "prettier": "^2.3.1",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
     "sass": "^1.35.1",
     "sass-loader": "^10"
   }
