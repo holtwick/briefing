@@ -2,7 +2,7 @@ import Vue from "vue"
 import { PRODUCTION, SENTRY_DSN } from "../config"
 import { messages } from "../lib/emitter"
 
-import { Logger } from "zeed"
+import { Logger } from "../lib/logger"
 const log = Logger("app:bugs")
 
 // Lazy loading of bug tracker

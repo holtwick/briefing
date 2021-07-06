@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { Logger } from "zeed"
+import { Logger } from "../lib/logger"
 const log = Logger("app:fa-textarea")
 
 export default {

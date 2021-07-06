@@ -22,7 +22,8 @@ import {
 import { normalizeName } from "./lib/names"
 import { postMessageToParent } from "./lib/iframe.js"
 import { objectSnapshot, isTrue } from "./lib/base.js"
-import { Logger } from "zeed"
+import { Logger } from "./lib/logger"
+
 const log = Logger("app:state")
 
 const screenshots = false

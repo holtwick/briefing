@@ -1,6 +1,6 @@
 // Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { Logger } from "zeed"
+import { Logger } from "./logger"
 const log = Logger("test:assert")
 
 import { trackSilentException } from "../bugs"

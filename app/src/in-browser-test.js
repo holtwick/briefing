@@ -8,7 +8,7 @@ import {
 
 console.log("test")
 
-// import { Logger } from "zeed"
+// import { Logger } from "./lib/logger"
 // const log = Logger("test:browser")
 
 const sample =

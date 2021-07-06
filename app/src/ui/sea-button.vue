@@ -34,7 +34,7 @@
 import SeaSymbol from "./sea-symbol"
 import { trackException } from "../bugs"
 
-import { Logger } from "zeed"
+import { Logger } from "../lib/logger"
 const log = Logger("ui:button")
 
 // @action, @click

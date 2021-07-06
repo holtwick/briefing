@@ -136,7 +136,7 @@
 <script>
 import { trackSilentException } from "../bugs"
 
-import { Logger } from "zeed"
+import { Logger } from "../lib/logger"
 const log = Logger("app:app-peer")
 
 window.screenshotNumber = 0

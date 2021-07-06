@@ -1,6 +1,6 @@
 import { trackSilentException } from "../bugs"
 
-import { Logger } from "zeed"
+import { Logger } from "./logger"
 const log = Logger("app:emitter")
 
 export class Emitter {
