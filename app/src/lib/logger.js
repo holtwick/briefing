@@ -1,5 +1,9 @@
-import { Logger, activateConsoleDebug } from "zeed/dist/esm/index.browser"
+import { Logger, activateConsoleDebug } from "zeed"
 
-activateConsoleDebug()
+try {
+  activateConsoleDebug()
+} catch (e) {
+  console.warn("activateConsoleDebug() did fail")
+}
 
 export { Logger }
