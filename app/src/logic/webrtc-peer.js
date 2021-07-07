@@ -9,9 +9,10 @@ import {
   sha256Messages,
   splitByNChars,
 } from "./fingerprint"
-import { base32Encode } from "../lib/uuid"
 
-const log = require("debug")("app:webrtc-peer")
+import { Logger } from "../lib/logger"
+import { encodeBase32 } from "zeed"
+const log = Logger("app:webrtc-peer")
 
 let ctr = 1
 
@@ -84,7 +85,7 @@ export class WebRTCPeer extends Emitter {
         ""
       if (fpl && fpr) {
         const digest = await sha256Messages(this.room, fpl, fpr)
-        this.fingerprint = splitByNChars(base32Encode(digest), 4)
+        this.fingerprint = splitByNChars(encodeBase32(digest), 4)
       } else {
         this.fingerprint = ""
       }

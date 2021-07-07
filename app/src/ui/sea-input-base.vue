@@ -78,7 +78,8 @@
 </template>
 
 <script>
-const log = require("debug")("app:fa-textarea")
+import { Logger } from "../lib/logger"
+const log = Logger("app:fa-textarea")
 
 export default {
   name: "sea-input-base",

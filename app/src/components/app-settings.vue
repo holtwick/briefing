@@ -163,7 +163,8 @@ import { isAllowedBugTracking, setAllowedBugTracking } from "../bugs"
 import { setBackgroundImage } from "../logic/background"
 import { WebRTC } from "../logic/webrtc"
 
-const log = require("debug")("app:app-settings")
+import { Logger } from "../lib/logger"
+const log = Logger("app:app-settings")
 
 export default {
   name: "app-settings",
