@@ -34,7 +34,8 @@
 import SeaSymbol from "./sea-symbol"
 import { trackException } from "../bugs"
 
-const log = require("debug")("ui:button")
+import { Logger } from "../lib/logger"
+const log = Logger("ui:button")
 
 // @action, @click
 

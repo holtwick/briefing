@@ -1,7 +1,7 @@
 {
   "name": "briefing",
   "description": "Secure direct video chat",
-  "version": "1.20.2",
+  "version": "1.20.3",
   "private": true,
   "author": {
     "name": "Dirk Holtwick",
@@ -9,6 +9,7 @@
     "url": "https://holtwick.de"
   },
   "license": "EUPL-1.2",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/holtwick/briefing.git"
@@ -32,16 +33,18 @@
     "last 2 versions",
     "electron >= 8"
   ],
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
   "dependencies": {
-    "@sentry/browser": "^6.7.2",
-    "@sentry/integrations": "^6.7.2",
+    "@sentry/browser": "^6.8.0",
+    "@sentry/integrations": "^6.8.0",
     "@tensorflow-models/body-pix": "^2.2.0",
     "@tensorflow/tfjs-converter": "^1.7.4",
     "@tensorflow/tfjs-core": "^1.7.4",
     "clipboard-copy": "^4.0.1",
-    "core-js": "^3.15.1",
+    "core-js": "^3.15.2",
     "custom-electron-titlebar": "^3.2.7",
-    "debug": "^4.3.1",
     "lodash": "^4.17.21",
     "regenerator-runtime": "^0.13.7",
     "register-service-worker": "^1.7.2",
@@ -49,14 +52,15 @@
     "socket.io-client": "^2.4.0",
     "uuid": "^8.3.2",
     "vue": "^2.6.14",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "zeed": "^0.3.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-plugin-pwa": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
-    "jest": "^27.0.5",
-    "prettier": "^2.3.1",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
     "sass": "^1.35.1",
     "sass-loader": "^10"
   }

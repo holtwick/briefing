@@ -1,3 +1,5 @@
+import { encodeBase32 } from "zeed"
+
 export function getCompactChecksum(...args) {
   args.sort()
   let values = Array.prototype.concat.apply([], args) // join
@@ -9,41 +11,6 @@ export function getCompactChecksum(...args) {
     checksum += left * 0xff + right
   }
   return (checksum % 0xffff).toString(16).padStart(4, "0")
-}
-
-const BASE32_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
-
-// https://www.crockford.com/base32.html
-// https://github.com/LinusU/base32-encode/blob/master/index.js
-export function base32Encode(buffer, outputLength) {
-  let length = buffer.byteLength
-  let view = new Uint8Array(buffer)
-
-  let bits = 0
-  let value = 0
-  let output = ""
-
-  for (let i = 0; i < length; i++) {
-    value = (value << 8) | view[i]
-    bits += 8
-
-    while (bits >= 5) {
-      output += BASE32_ALPHABET[(value >>> (bits - 5)) & 31]
-      bits -= 5
-
-      if (outputLength >= 0) {
-        if (output.length >= outputLength) {
-          return output
-        }
-      }
-    }
-  }
-
-  if (bits > 0) {
-    output += BASE32_ALPHABET[(value << (5 - bits)) & 31]
-  }
-
-  return output
 }
 
 export function splitByNChars(value, splitN = 3, join = "-") {
@@ -58,7 +25,7 @@ export function splitByNChars(value, splitN = 3, join = "-") {
 export async function digestMessage(message) {
   const msgUint8 = new TextEncoder().encode(message)
   const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8)
-  return base32Encode(hashBuffer, 9)
+  return encodeBase32(hashBuffer, 9)
 }
 
 export async function digestMessages(...messages) {

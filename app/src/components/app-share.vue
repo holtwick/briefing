@@ -48,7 +48,8 @@ import { qrcode } from "../lib/qrcode"
 import { createLinkForRoom, shareLink } from "../lib/share"
 import SeaButton from "../ui/sea-button"
 
-const log = require("debug")("app:app-share")
+import { Logger } from "../lib/logger"
+const log = Logger("app:app-share")
 
 export default {
   name: "app-share",
