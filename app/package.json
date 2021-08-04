@@ -37,23 +37,23 @@
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "dependencies": {
-    "@sentry/browser": "^6.8.0",
-    "@sentry/integrations": "^6.8.0",
+    "@sentry/browser": "^6.10.0",
+    "@sentry/integrations": "^6.10.0",
     "@tensorflow-models/body-pix": "^2.2.0",
     "@tensorflow/tfjs-converter": "^1.7.4",
     "@tensorflow/tfjs-core": "^1.7.4",
     "clipboard-copy": "^4.0.1",
-    "core-js": "^3.15.2",
+    "core-js": "^3.16.0",
     "custom-electron-titlebar": "^3.2.7",
     "lodash": "^4.17.21",
-    "regenerator-runtime": "^0.13.7",
+    "regenerator-runtime": "^0.13.9",
     "register-service-worker": "^1.7.2",
     "simple-peer": "^9.11.0",
     "socket.io-client": "^2.4.0",
     "uuid": "^8.3.2",
     "vue": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
-    "zeed": "^0.3.7"
+    "zeed": "^0.5.12"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.13",
