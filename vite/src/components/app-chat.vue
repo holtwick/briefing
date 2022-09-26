@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { messages } from "@/lib/emitter"
+import { messages } from "../lib/emitter"
 
 export default {
   name: "app-chat",

@@ -6,15 +6,18 @@
 
 <script>
 import { Logger } from "./lib/logger"
+import AppWelcome from "./components/app-welcome.vue"
+import AppMain from "./components/app-main.vue"
+import AppEmbed from "./components/app-embed.vue"
 
 const log = Logger("app:pwa-app")
 
 export default {
   name: "App",
   components: {
-    AppWelcome: () => import("./components/app-welcome.vue"),
-    AppMain: () => import("./components/app-main.vue"),
-    AppEmbed: () => import("./components/app-embed.vue"),
+    AppWelcome,
+    AppMain,
+    AppEmbed,
   },
   data() {
     return {}

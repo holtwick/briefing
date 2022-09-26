@@ -6,7 +6,7 @@ import { assert } from "../lib/assert"
 import { state } from "../state"
 import { trackException } from "../bugs/index"
 
-const bodyPix = require("@tensorflow-models/body-pix")
+const bodyPix = import("@tensorflow-models/body-pix")
 
 import { Logger } from "../lib/logger"
 const log = Logger("app:blur")
