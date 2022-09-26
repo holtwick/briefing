@@ -1,0 +1,44 @@
+@import "variables";
+
+.videos {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1rem;
+
+  .peer {
+    z-index: 2;
+
+    &.-maximized {
+      position: absolute;
+      top: 0.25rem;
+      left: 0.25rem;
+      bottom: 0;
+      right: 0.25rem;
+      z-index: 1;
+    }
+
+    &:not(.-maximized) {
+      height: 6rem;
+      width: 6rem;
+      flex-grow: 0;
+      flex-shrink: 0;
+      margin: 0;
+
+      .video {
+        border: 0.5px solid #272727;
+        background: #272727;
+      }
+    }
+  }
+}
+
+@media (orientation: landscape) {
+  .videos {
+    flex-direction: column;
+    //align-items: flex-end;
+    //justify-content: flex-end;
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Briefing",
+  "short_name": "Briefing",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#272727",
+  "theme_color": "#272727",
+  "author": "Dirk Holtwick",
+  "description": "Secure direct video chat",
+  "homepage_url": "https://brie.fi/",
+  "url": "https://brie.fi/",
+  "lang": "EN",
+  "screenshots": [
+    {
+      "src": "https://brie.fi/sample.jpg",
+      "type": "image/png",
+      "size": "1478x1988",
+      "description": "Screenshot Briefing App"
+    }
+  ],
+  "features": [
+    "Direct secure group video chat",
+    "Verify integrity",
+    "Blur background"
+  ],
+  "orientation": "any",
+  "prefer_related_applications": false
+}

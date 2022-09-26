@@ -1,0 +1,61 @@
+{
+  "author": {
+    "email": "dirk.holtwick@gmail.com",
+    "name": "Dirk Holtwick",
+    "url": "https://holtwick.de"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "electron >= 8"
+  ],
+  "dependencies": {
+    "@sentry/browser": "^7.13.0",
+    "@sentry/integrations": "^7.13.0",
+    "@tensorflow-models/body-pix": "^2.2.0",
+    "@tensorflow/tfjs-converter": "<2.0.0",
+    "@tensorflow/tfjs-core": "<2.0.0",
+    "clipboard-copy": "^4.0.1",
+    "core-js": "^3.25.3",
+    "custom-electron-titlebar": "^3.2.7",
+    "lodash": "^4.17.21",
+    "regenerator-runtime": "^0.13.9",
+    "simple-peer": "^9.11.1",
+    "socket.io-client": "^2.4.0",
+    "uuid": "^9.0.0",
+    "vue": "^2.6.14",
+    "vue-template-compiler": "^2.6.14",
+    "zeed": "^0.8.26"
+  },
+  "description": "Secure direct video chat",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.1.0",
+    "@vitejs/plugin-vue2": "^2.0.0",
+    "prettier": "^2.7.1",
+    "sass": "^1.35.1",
+    "vite": "^3.1.0"
+  },
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "funding": {
+    "type": "GitHub Sponsors ❤",
+    "url": "https://github.com/sponsors/holtwick"
+  },
+  "license": "EUPL-1.2",
+  "name": "briefing",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
+  "scripts": {
+    "build": "vite build",
+    "format": "prettier --write .",
+    "preview": "vite preview",
+    "start": "vite",
+    "test": "jest"
+  },
+  "type": "module",
+  "version": "1.20.3"
+}

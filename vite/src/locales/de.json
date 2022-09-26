@@ -1,0 +1,40 @@
+{
+  "welcome": {
+    "start": "Starte Chat",
+    "abstract": "Sicherer direkter Video-Chat für Gruppen",
+    "help": "Mehr Informationen",
+    "created": "Erstellt von"
+  },
+  "share": {
+    "title": "Einladen",
+    "link_info": "Gib diesen Link weiter an jeden der an dieser Sitzung teilnehmen soll:",
+    "button_copy": "Teilen",
+    "qr_info": "Oder scanne diesen QR-Code mit einer Kamera:",
+    "feedback": "Feedback bitte an <a href=\"mailto:support@holtwick.de?subject=Briefing\">support@holtwick.de</a>",
+    "message": "Einladungs-Link verschicken durch Klick auf das $symbol$-Symbol."
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "video": "Video Geräte",
+    "audio": "Audio Geräte",
+    "desktop": "Bildschirm oder Fenster teilen",
+    "blur": "Hintergrund verschwommen",
+    "blur_info": "Experimentell: Ein intelligenter Algorithmus der künstlichen Intelligenz ist in der Lage, die Konturen von Personen zu identifizieren und den verbleibenden Hintergrund zu verwischen. Dies fügt deinem Anruf etwas visuelle Privatsphäre hinzu. Aber Achtung, dies ist eine sehr energieintensive Funktion und wird auf mobilen Geräten sehr wahrscheinlich nicht funktionieren!",
+    "bandwidth": "Bandbreitenoptimierungen",
+    "bandwidth_info": "Experimentell: Bei dieser Einstellung versucht Briefing, die Bandbreite durch geringer Qualität der Video- und Audiodaten zu reduzieren.",
+    "fill": "Video ausfüllend",
+    "fill_info": "Briefing versucht, den verfügbaren Bildschirmplatz so weit wie möglich auszunutzen, indem das Video so skaliert wird, dass es in den ganzen sichtbaren Rahmen passt. Ansonsten siehst du stattdessen das gesamte Video, jedoch mit einem Rahmen ums Video.",
+    "subscribe": "Diesen Raum abonnieren",
+    "subscribe_info": "Experimentell: Wenn Sie den Raium abonnieren, erhalten Sie eine Benachrichtigung, wenn jemand anderes diesen Raum betritt. Sie können dann mit einem Klick in das Gespräch einsteigen. Die Benachrichtigungen werden nur angezeigt, wenn der Browser läuft.",
+    "sentry": "Fehleranalyse erlauben",
+    "sentry_info": "Wenn wir auf einen Programmierfehler oder andere relevante Informationen stoßen, die zur Verbesserung der Anwendung nützlich sind, senden wir Debug-Daten an einen Dienst namens <a href=\"https://sentry.io\">sentry.io</a>.",
+    "sentry_confirm": "Danke, dass du die Fehleranalyse erlaubst. Bitte bestätige, dass die Seite jetzt neu zu geladen werden darf.",
+    "background": "Hintergrund",
+    "persist_settings": "Einstellungen speichern",
+    "original_background": "Echter Hintergrund",
+    "blurred_background": "Verschwommener Hintergrund",
+    "image_background": "Hintergrundbild",
+    "image_tip": "Ziehe ein Bild auf dieses Fenster, um deinen eigenen Hintergrund zu verwenden",
+    "random_image": "Klicke um ein zufälliges Bild zu erhalten."
+  }
+}

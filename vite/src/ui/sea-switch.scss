@@ -1,0 +1,120 @@
+// Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
+
+@import "../css/variables";
+
+// Alternative implementation idea, by just changing CSS variables!
+// https://css-tricks.com/custom-styling-form-inputs-with-modern-css-features/
+
+$switchWidth: $px-48;
+$switchHeight: $px-24;
+$switchBorder: $px-4;
+$switchKnobWidth: $switchWidth - $switchBorder * 2;
+$switchKnobHeight: $switchHeight - $switchBorder * 2;
+$switchXSelected: $switchKnobWidth - $switchKnobHeight + $switchBorder;
+$switchKnobBlob: $switchKnobWidth - $switchKnobHeight;
+
+//.sea-switch-container { }
+
+.sea-switch {
+  --switch-bg: rgba(141, 141, 141, 1);
+  --switch-bg-active: var(--primary-color, #007ed9);
+  --switch-knob-color: #ffffff;
+
+  //&.--primary {
+  //  --switch-bg: rgba(--primary-color);
+  //}
+
+  &.-secondary {
+    --switch-bg-active: var(--secondary-color);
+  }
+
+  &.-alt {
+    --switch-bg-active: var(--alt-color);
+  }
+
+  &.-success {
+    --switch-bg-active: var(--success-color);
+  }
+
+  &.-error,
+  &.-danger {
+    --switch-bg-active: var(--error-color);
+  }
+
+  &.-warning {
+    --switch-bg-active: var(--warning-color);
+  }
+
+  display: flex;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+  height: $switchHeight;
+  line-height: $switchHeight;
+
+  span {
+    display: inline-block;
+    // background: #aaddff;
+    height: $switchHeight;
+    line-height: $switchHeight;
+  }
+
+  i {
+    // Background
+    position: relative;
+    display: inline-block;
+    margin-right: 0.5rem;
+    width: $switchWidth;
+    height: $switchHeight;
+    background-color: var(--switch-bg);
+    border-radius: $switchHeight * 0.5;
+    vertical-align: text-bottom;
+    transition: background-color 0.3s linear;
+
+    &::after {
+      // Knob
+      content: "";
+      position: absolute;
+      left: 0;
+      width: $switchKnobHeight;
+      height: $switchKnobHeight;
+      background-color: var(--switch-knob-color);
+      border-radius: $switchKnobHeight * 0.5;
+      transform: translate3d($switchBorder, $switchBorder, 0);
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  input:focus + i {
+    @include control-shadow;
+  }
+
+  &:active i::after {
+    width: $switchKnobHeight * 1.5;
+    transform: translate3d($switchBorder, $switchBorder, 0);
+  }
+
+  &:active input:checked + i::after {
+    transform: translate3d(
+      $switchXSelected - $switchKnobHeight * 0.5,
+      $switchBorder,
+      0
+    );
+  }
+
+  input {
+    // display: none;
+    @include hiddenButSelectable;
+
+    &:checked + i {
+      background-color: var(--switch-bg-active);
+
+      &::after {
+        transform: translate3d($switchXSelected, $switchBorder, 0);
+      }
+    }
+  }
+
+  .sea-switch-label {
+    margin-right: $px-16;
+  }
+}

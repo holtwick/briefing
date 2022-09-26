@@ -1,0 +1,608 @@
+// Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
+
+// Forms
+//.form-group {
+//  &:not(:first-child) {
+//    margin-top: $control-spacing; // $layout-spacing;
+//  }
+//}
+
+@import "variables";
+
+//.form-group + .form-group {
+//  margin-top: $control-spacing; // $layout-spacing;
+//}
+
+fieldset {
+  margin-bottom: $layout-spacing-lg;
+}
+
+legend {
+  font-size: $font-size-lg;
+  font-weight: 500;
+  margin-bottom: $layout-spacing-lg;
+}
+
+// Form element: Label
+.form-label {
+  display: block;
+  line-height: $line-height;
+  padding: $control-padding-y + $border-width 0;
+
+  &.label-sm {
+    font-size: $font-size-sm;
+    padding: $control-padding-y-sm + $border-width 0;
+  }
+
+  &.label-lg {
+    font-size: $font-size-lg;
+    padding: $control-padding-y-lg + $border-width 0;
+  }
+}
+
+.form-input,
+.form-select {
+  --color: var(--input-text, var(--text-color));
+  --background: var(--input-background, #{$bg-color-light});
+  --border: var(--input-border, none);
+
+  background: var(--background);
+  color: var(--color);
+  border: var(--input-border);
+}
+
+// Form element: Input
+.form-input {
+  appearance: none;
+  background-image: none;
+  //border: $border-width solid $border-color-dark;
+  border-radius: $border-radius;
+  display: block;
+  font-size: $font-size;
+  min-height: $control-size;
+  line-height: $line-height;
+  max-width: 100%;
+  outline: none;
+  padding: $control-padding-y $control-padding-x;
+  // position: relative; // This corrupts overflow for embedded overflows
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
+  width: 100%;
+
+  &.-focus,
+  &:focus {
+    @include control-shadow();
+    border-color: $primary-color;
+  }
+
+  &::placeholder {
+    color: $gray-color;
+  }
+
+  // Input sizes
+  &.input-sm {
+    font-size: $font-size-sm;
+    height: $control-size-sm;
+    padding: $control-padding-y-sm $control-padding-x-sm;
+  }
+
+  &.input-lg {
+    font-size: $font-size-lg;
+    height: $control-size-lg;
+    padding: $control-padding-y-lg $control-padding-x-lg;
+  }
+
+  &.input-inline {
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+  }
+
+  // Input types
+  &[type="file"] {
+    height: auto;
+  }
+}
+
+// Form element: Textarea
+textarea.form-input {
+  &,
+  &.input-lg,
+  &.input-sm {
+    height: auto;
+  }
+
+  resize: vertical;
+}
+
+textarea.form-input-autoresize {
+  resize: none;
+}
+
+// Form element: Input hint
+.form-input-hint {
+  color: $gray-color;
+  font-size: $font-size-sm;
+  margin-top: $unit-1;
+
+  .has-success &,
+  .is-success + & {
+    color: $success-color;
+  }
+
+  .has-error &,
+  .is-error + & {
+    color: $error-color;
+  }
+}
+
+// Form element: Select
+.form-select {
+  appearance: none;
+  //border: $border-width solid $border-color-dark;
+  border-radius: $border-radius;
+  font-size: $font-size;
+  height: $control-size;
+  line-height: $line-height;
+  outline: none;
+  padding: $control-padding-y $control-padding-x;
+  vertical-align: middle;
+  width: 100%;
+
+  &.-focus,
+  &:focus {
+    @include control-shadow();
+    border-color: $primary-color;
+  }
+
+  &::placeholder,
+  &:invalid {
+    color: $gray-color;
+  }
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  // Select sizes
+  &.select-sm {
+    font-size: $font-size-sm;
+    height: $control-size-sm;
+    padding: $control-padding-y-sm ($control-icon-size + $control-padding-x-sm)
+      $control-padding-y-sm $control-padding-x-sm;
+  }
+
+  &.select-lg {
+    font-size: $font-size-lg;
+    height: $control-size-lg;
+    padding: $control-padding-y-lg ($control-icon-size + $control-padding-x-lg)
+      $control-padding-y-lg $control-padding-x-lg;
+  }
+
+  // Multiple select
+  &[size],
+  &[multiple] {
+    height: auto;
+    padding: $control-padding-y $control-padding-x;
+
+    option {
+      padding: $unit-h $unit-1;
+    }
+  }
+
+  &:not([multiple]):not([size]) {
+    background: var(--input-background)
+      url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e")
+      no-repeat right $px-16 center/$px-8 $px-16;
+    padding-right: $control-icon-size + $control-padding-x;
+  }
+}
+
+// Form Icons
+.has-icon-left,
+.has-icon-right {
+  position: relative;
+
+  .form-icon {
+    height: $control-icon-size;
+    margin: 0 $control-padding-y;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $control-icon-size;
+    z-index: $z-index-0 + 1;
+    pointer-events: none;
+  }
+}
+
+.has-icon-left {
+  .form-icon {
+    left: $border-width;
+  }
+
+  .form-input {
+    padding-left: $control-icon-size + $control-padding-y * 2;
+  }
+}
+
+.has-icon-right {
+  .form-icon {
+    right: $border-width;
+  }
+
+  .form-input {
+    padding-right: $control-icon-size + $control-padding-y * 2;
+  }
+}
+
+// Form element: Checkbox and Radio
+.form-checkbox,
+.form-radio {
+  display: block;
+  line-height: $line-height;
+  margin: 0; //' ($control-size - $control-size-sm) / 2 0;
+  margin-top: $px-4;
+  min-height: $control-size-sm;
+  padding: (($control-size-sm - $line-height) * 0.5) $control-padding-x
+    (($control-size-sm - $line-height) * 0.5)
+    ($control-icon-size + $control-padding-x);
+  position: relative;
+
+  input {
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+
+    &:focus + .form-icon {
+      @include control-shadow();
+      border-color: $primary-color;
+    }
+
+    &:checked + .form-icon {
+      background: $primary-color;
+      border-color: $primary-color;
+    }
+  }
+
+  .form-icon {
+    border: $border-width solid $border-color-dark;
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
+  }
+
+  // Input checkbox and radio sizes
+  &.input-sm {
+    font-size: $font-size-sm;
+    margin: 0;
+  }
+
+  &.input-lg {
+    font-size: $font-size-lg;
+    margin: ($control-size-lg - $control-size-sm) * 0.5 0;
+  }
+}
+
+.form-checkbox,
+.form-radio {
+  .form-icon {
+    background: $bg-color-light;
+    height: $control-icon-size;
+    left: 0;
+    top: ($control-size-sm - $control-icon-size) * 0.5;
+    width: $control-icon-size;
+  }
+
+  input {
+    &:active + .form-icon {
+      background: $bg-color-dark;
+    }
+  }
+}
+
+.form-checkbox {
+  .form-icon {
+    border-radius: $border-radius;
+  }
+
+  input {
+    &:checked + .form-icon {
+      &::before {
+        background-clip: padding-box;
+        border: $border-width-lg solid $light-color;
+        border-left-width: 0;
+        border-top-width: 0;
+        content: "";
+        height: 9px;
+        left: 50%;
+        margin-left: -3px;
+        margin-top: -6px;
+        position: absolute;
+        top: 50%;
+        transform: rotate(45deg);
+        width: 6px;
+      }
+    }
+
+    &:indeterminate + .form-icon {
+      background: $primary-color;
+      border-color: $primary-color;
+
+      &::before {
+        background: $bg-color-light;
+        content: "";
+        height: 2px;
+        left: 50%;
+        margin-left: -5px;
+        margin-top: -1px;
+        position: absolute;
+        top: 50%;
+        width: 10px;
+      }
+    }
+  }
+}
+
+.form-radio {
+  .form-icon {
+    border-radius: 50%;
+  }
+
+  input {
+    &:checked + .form-icon {
+      &::before {
+        background: $bg-color-light;
+        border-radius: 50%;
+        content: "";
+        height: 6px;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 6px;
+      }
+    }
+  }
+}
+
+// Form element: Input groups
+.input-group {
+  display: flex;
+
+  .input-group-addon {
+    background: $bg-color;
+    border: $border-width solid $border-color-dark;
+    border-radius: $border-radius;
+    line-height: $line-height;
+    padding: $control-padding-y $control-padding-x;
+    white-space: nowrap;
+
+    &.addon-sm {
+      font-size: $font-size-sm;
+      padding: $control-padding-y-sm $control-padding-x-sm;
+    }
+
+    &.addon-lg {
+      font-size: $font-size-lg;
+      padding: $control-padding-y-lg $control-padding-x-lg;
+    }
+  }
+
+  .form-input,
+  .form-select {
+    flex: 1 1 auto;
+    width: 1%;
+  }
+
+  .input-group-btn {
+    z-index: $z-index-0;
+  }
+
+  .form-input,
+  .form-select,
+  .input-group-addon,
+  .input-group-btn {
+    &:first-child:not(:last-child) {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+      margin-left: -$border-width;
+    }
+
+    &:last-child:not(:first-child) {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      margin-left: -$border-width;
+    }
+
+    &.-focus,
+    &:focus {
+      z-index: $z-index-0 + 1;
+    }
+  }
+
+  .form-select {
+    width: auto;
+  }
+
+  &.input-inline {
+    display: inline-flex;
+  }
+}
+
+// Form validation states
+.form-input,
+.form-select {
+  .has-success &,
+  &.is-success {
+    background: lighten($success-color, 53%);
+    border-color: $success-color;
+
+    &.-focus,
+    &:focus {
+      @include control-shadow($success-color);
+    }
+  }
+
+  .has-error &,
+  &.is-error {
+    background: lighten($error-color, 53%);
+    border-color: $error-color;
+
+    &.-focus,
+    &:focus {
+      @include control-shadow($error-color);
+    }
+  }
+}
+
+.form-checkbox,
+.form-radio {
+  .has-error &,
+  &.is-error {
+    .form-icon {
+      border-color: $error-color;
+    }
+
+    input {
+      &:checked + .form-icon {
+        background: $error-color;
+        border-color: $error-color;
+      }
+
+      &:focus + .form-icon {
+        @include control-shadow($error-color);
+        border-color: $error-color;
+      }
+    }
+  }
+}
+
+.form-checkbox {
+  .has-error &,
+  &.is-error {
+    input {
+      &:indeterminate + .form-icon {
+        background: $error-color;
+        border-color: $error-color;
+      }
+    }
+  }
+}
+
+// validation based on :placeholder-shown (Edge doesn't support it yet)
+.form-input {
+  &:not(:placeholder-shown) {
+    &:invalid {
+      border-color: $error-color;
+      box-shadow: none; // Fixes a Firefox render issue
+
+      &.-focus,
+      &:focus {
+        @include control-shadow($error-color);
+        background: lighten($error-color, 53%);
+      }
+
+      & + .form-input-hint {
+        color: $error-color;
+      }
+    }
+  }
+}
+
+// Form disabled and readonly
+.form-input,
+.form-select {
+  &:disabled,
+  &.disabled {
+    background-color: $bg-color-dark;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.form-input {
+  &[readonly] {
+    background-color: $bg-color;
+  }
+}
+
+input {
+  &:disabled,
+  &.disabled {
+    & + .form-icon {
+      background: $bg-color-dark;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+}
+
+// Form horizontal
+.form-horizontal {
+  padding: $layout-spacing 0;
+
+  .form-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+// Form inline
+.form-inline {
+  display: inline-block;
+}
+
+// https://github.com/filamentgroup/select-css/issues/35
+
+//:-moz-focusring, ::-moz-focus-inner, :active, :focus {
+//  outline:none;
+//  border:0;
+//  -moz-outline-style: none;
+//}
+//// select
+//{
+//  &::-ms-expand { // IE hide native arrow icon
+//    display: none;
+//  }
+//
+//  &:-moz-focusring { // Firefox hide dotted line
+//    color: transparent;
+//    text-shadow: 0 0 0 #000000;
+//  }
+//}
+
+.form-body {
+  position: relative;
+  transition: opacity;
+
+  textarea:hover + .sea-input-paste {
+    color: rgba(0, 0, 0, 0.15);
+    display: block;
+  }
+
+  .sea-input-paste {
+    position: absolute;
+    right: $px-1;
+    top: $px-1;
+    bottom: $px-1;
+    text-align: center;
+    line-height: px(40-6-4);
+    width: px(32);
+    display: none;
+    padding: $px-4;
+    background: #eeeeee; //  rgba(255, 255, 255, 1);
+
+    &:hover {
+      color: black;
+      display: block;
+      cursor: default !important;
+    }
+  }
+}

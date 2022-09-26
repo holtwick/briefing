@@ -1,0 +1,40 @@
+{
+  "welcome": {
+    "start": "Démarrer le chat",
+    "abstract": "Chat vidéo de groupe direct et sécurisé",
+    "help": "En savoir plus",
+    "created": "Créé par"
+  },
+  "share": {
+    "title": "Inviter",
+    "link_info": "Veuillez partager ce lien avec toutes les personnes que vous souhaitez inviter à cette session :",
+    "button_copy": "Partager",
+    "qr_info": "Vous pouvez également scanner ce QR Code avec un appareil photo mobile :",
+    "feedback": "Pour tout commentaire, écrivez à <a href=\"mailto:support@holtwick.de?subject=Briefing\">support@holtwick.de</a>",
+    "message": "Inviter en envoyant le lien en appuyant sur le bouton $symbol$ symbole."
+  },
+  "settings": {
+    "title": "Paramètres",
+    "video": "Source vidéo",
+    "audio": "Source audio",
+    "desktop": "Partager l'écran ou la fenêtre",
+    "blur": "Fond flou",
+    "blur_info": "Expérimental : Un algorithme intelligent d'intelligence artificielle est capable d'indexer les formes des personnes et de brouiller l'arrière-plan restant. Cela ajoute une certaine intimité visuelle à votre appel. Mais attention, cette fonction est très gourmande en énergie et ne fonctionnera très probablement pas sur les appareils mobiles ! ",
+    "bandwidth": "Appliquer des optimisations de la bande passante",
+    "bandwidth_info": "Expérimental : avec ce réglage, Briefing tente de réduire la bande passante en réduisant les données vidéo et audio.",
+    "fill": "Agrandir la vidéo",
+    "fill_info": "Briefing essaie d'utiliser au maximum l'espace disponible sur l'écran en augmentant l'échelle de la vidéo de manière à ce qu'elle s'inscrive dans son cadre visuel. Lorsqu'elle est éteinte, vous verrez la vidéo en entier, mais avec des bordures autour.",
+    "subscribe": "Abonnez-vous à cette salle",
+    "subscribe_info": "Expérimental : en vous inscrivant, vous recevrez une notification lorsque quelqu'un d'autre entrera dans cette salle. Vous pouvez alors vous joindre à la conversation en un seul clic. Les notifications ne seront affichées que si le navigateur est en cours d'exécution.",
+    "sentry": "Permettre le suivi des bogues",
+    "sentry_info": "En cas d'erreur de programmation ou d'autres informations utiles pour améliorer l'application, nous envoyons les données de débogage à un service appelé <a href=\"https://sentry.io\">sentry.io</a>.",
+    "sentry_confirm": "Merci de permettre le suivi des bogues. Veuillez confirmer pour recharger la page maintenant.",
+    "background": "Contexte",
+    "persist_settings": "Paramètres persistants",
+    "original_background": "Contexte original",
+    "blurred_background": "Fond flou",
+    "image_background": "Fond d'image",
+    "image_tip": "Vous pouvez télécharger votre propre arrière-plan en faisant glisser un fichier image sur cette fenêtre.",
+    "random_image": "Cliquez pour obtenir une autre image aléatoire."
+  }
+}

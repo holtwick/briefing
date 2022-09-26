@@ -1,0 +1,19 @@
+@import "variables";
+
+.app {
+  color: var(--text-color);
+  background: var(--background);
+
+  padding: $safe-top $safe-right $safe-bottom $safe-left;
+
+  &:before {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $safe-top;
+    background: var(--statusbar-color, rgba(255, 255, 255, 0.25));
+    content: "";
+  }
+}

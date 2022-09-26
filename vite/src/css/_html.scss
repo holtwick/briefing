@@ -1,0 +1,92 @@
+// Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
+
+@import "variables";
+@import "reset";
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html body * {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: none;
+}
+
+html *:not(input, textarea, [contenteditable]) {
+  // Be careful with * because WebKit is sensitive for input fields
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+html,
+body {
+  height: 100%; // Required for UI layout
+  overflow: hidden; // Do not bounce on scroll macOS
+  margin: 0;
+  padding: 0;
+  // font-size: 16px;
+  // font-family: var(--font-family);
+  // -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+body,
+.theme-element {
+  font-family: var(--font-family, $body-font-family);
+  font-size: var(--font-size, $font-size);
+
+  background: var(--background);
+  color: var(--text-color);
+}
+
+body {
+  overflow-x: hidden;
+  font-variant-ligatures: common-ligatures; // https://twitter.com/rsms/status/1094379965452185600
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Optimized for East Asian CJK
+
+html:lang(zh),
+html:lang(zh-Hans),
+.lang-zh,
+.lang-zh-hans {
+  font-family: $cjk-zh-hans-font-family;
+}
+
+html:lang(zh-Hant),
+.lang-zh-hant {
+  font-family: $cjk-zh-hant-font-family;
+}
+
+html:lang(ja),
+.lang-ja {
+  font-family: $cjk-jp-font-family;
+}
+
+html:lang(ko),
+.lang-ko {
+  font-family: $cjk-ko-font-family;
+}
+
+:lang(zh),
+:lang(ja),
+.lang-cjk {
+  ins,
+  u {
+    border-bottom: $border-width solid;
+    text-decoration: none;
+  }
+
+  del + del,
+  del + s,
+  ins + ins,
+  ins + u,
+  s + del,
+  s + s,
+  u + ins,
+  u + u {
+    margin-left: 0.125em;
+  }
+}

@@ -1,0 +1,122 @@
+@media (orientation: landscape) {
+  .videos {
+    flex-direction: row !important;
+
+    // https://stackoverflow.com/a/12198561/140927
+    .item:first-child:nth-last-child(1) {
+      min-height: 100%;
+      width: 100%;
+    }
+
+    .item:first-child:nth-last-child(2),
+    .item:first-child:nth-last-child(2) ~ .item {
+      min-height: 100%;
+      width: 50%;
+    }
+
+    .item:first-child:nth-last-child(3),
+    .item:first-child:nth-last-child(3) ~ .item {
+      min-height: 100%;
+      width: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(4),
+    .item:first-child:nth-last-child(4) ~ .item {
+      min-height: 50%;
+      width: 50%;
+    }
+
+    .item:first-child:nth-last-child(5),
+    .item:first-child:nth-last-child(5) ~ .item,
+    .item:first-child:nth-last-child(6),
+    .item:first-child:nth-last-child(6) ~ .item {
+      min-height: 50%;
+      width: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(7),
+    .item:first-child:nth-last-child(7) ~ .item,
+    .item:first-child:nth-last-child(8),
+    .item:first-child:nth-last-child(8) ~ .item {
+      min-height: 50%;
+      width: 25%;
+    }
+
+    .item:first-child:nth-last-child(9),
+    .item:first-child:nth-last-child(9) ~ .item {
+      min-height: 33.3333%;
+      width: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(10),
+    .item:first-child:nth-last-child(10) ~ .item,
+    .item:first-child:nth-last-child(11),
+    .item:first-child:nth-last-child(11) ~ .item,
+    .item:first-child:nth-last-child(12),
+    .item:first-child:nth-last-child(12) ~ .item {
+      min-height: 33.3333%;
+      width: 25%;
+    }
+  }
+}
+
+@media (orientation: portrait) {
+  .videos {
+    flex-direction: column !important;
+
+    .item:first-child:nth-last-child(1) {
+      width: 100%;
+      height: 100%;
+    }
+
+    .item:first-child:nth-last-child(2),
+    .item:first-child:nth-last-child(2) ~ .item {
+      width: 100%;
+      height: 50%;
+    }
+
+    .item:first-child:nth-last-child(3),
+    .item:first-child:nth-last-child(3) ~ .item {
+      width: 100%;
+      height: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(4),
+    .item:first-child:nth-last-child(4) ~ .item {
+      width: 50%;
+      height: 50%;
+    }
+
+    .item:first-child:nth-last-child(5),
+    .item:first-child:nth-last-child(5) ~ .item,
+    .item:first-child:nth-last-child(6),
+    .item:first-child:nth-last-child(6) ~ .item {
+      width: 50%;
+      height: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(7),
+    .item:first-child:nth-last-child(7) ~ .item,
+    .item:first-child:nth-last-child(8),
+    .item:first-child:nth-last-child(8) ~ .item {
+      width: 50%;
+      height: 25%;
+    }
+
+    .item:first-child:nth-last-child(9),
+    .item:first-child:nth-last-child(9) ~ .item {
+      width: 33.3333%;
+      height: 33.3333%;
+    }
+
+    .item:first-child:nth-last-child(10),
+    .item:first-child:nth-last-child(10) ~ .item,
+    .item:first-child:nth-last-child(11),
+    .item:first-child:nth-last-child(11) ~ .item,
+    .item:first-child:nth-last-child(12),
+    .item:first-child:nth-last-child(12) ~ .item {
+      width: 33.3333%;
+      height: 25%;
+    }
+  }
+}

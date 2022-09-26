@@ -23,3 +23,4 @@ app/public/faces
 .rsync-ignore
 pnpm-lock.yaml
 package-lock.json
+vite/fix.sh

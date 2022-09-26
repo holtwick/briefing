@@ -1,0 +1,182 @@
+// Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
+
+@import "variables";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+* {
+  // flex:auto is usually the default, but for our purposes `none` fits better
+  flex: none;
+}
+
+.app {
+  // If a first level child of body is a stack it has to consume the
+  // full height, otherwise content will grow outside of view
+  height: 100%;
+}
+
+.-relative {
+  position: relative;
+}
+
+.-absolute {
+  position: absolute;
+}
+
+// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+.stack,
+.hstack,
+.vstack {
+  display: flex;
+
+  // Layout should not be affected by too big elements
+  // overflow: hidden;
+
+  // &, > * {}
+
+  // > .-collapsed {}
+  // > .-fix {}
+
+  > .-fit,
+  > .-fill,
+  > .-grow {
+    flex: auto;
+    overflow: hidden; // Important to get the scrollable exceeding contents to work
+  }
+
+  // A thin line, can be used for resizing as well with sea-separator
+  > .stack-separator,
+  > .-separator {
+    background: var(--separator-color);
+
+    &.handle {
+      position: relative;
+      cursor: col-resize;
+      overflow: visible;
+
+      $sepHandleSize: $px-8;
+
+      &:after {
+        display: flex;
+        position: absolute;
+        opacity: 0.5;
+        top: 0;
+        left: -($sepHandleSize * 0.5);
+        width: $sepHandleSize + $px-1;
+        height: 100%;
+        z-index: $z-index-floating;
+        content: " ";
+        cursor: col-resize;
+      }
+
+      &:hover:after {
+        background: var(--separator-focus-color);
+      }
+
+      &.invisible {
+        width: 0;
+        min-width: 0;
+
+        &:after {
+          width: $sepHandleSize;
+        }
+      }
+    }
+  }
+}
+
+.-scrollable,
+.-scroll {
+  // https://css-tricks.com/popping-hidden-overflow/
+  position: static !important;
+  overflow: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  // -webkit-overflow-scrolling: touch !important;
+  // !important is required to override -fix overflow:hidden
+}
+
+.-content {
+  padding: $px-16;
+}
+
+.hstack,
+.stack.-horizontal,
+.stack.-orientation-horizontal {
+  flex-direction: row;
+
+  > .-collapsed {
+    width: 0;
+    max-width: 0;
+    // height: 100%;
+  }
+
+  > .stack-separator,
+  > .-separator {
+    min-width: 1px;
+    width: $px-1;
+  }
+
+  &.-space > * {
+    margin-right: $px-8;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.vstack,
+.stack.-vertical,
+.stack.-orientation-vertical {
+  flex-direction: column;
+
+  > .-collapsed {
+    height: 0;
+    max-height: 0;
+  }
+
+  > .stack-separator,
+  > .-separator {
+    min-height: 1px;
+    height: $px-1;
+  }
+
+  &.-space > * {
+    margin-bottom: $px-8;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.-content-center {
+  @include centerContent;
+}
+
+// https://stackoverflow.com/a/22218694/140927
+.placeholder,
+.-content-placeholder {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  @include centerContent;
+  color: var(--secondary-color, #cccccc);
+  text-align: center;
+  padding: $px-16;
+}
+
+.-selectable {
+  user-select: text;
+}
+
+.text {
+  flex-shrink: 0;
+  // padding: px(16);
+}

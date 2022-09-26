@@ -1,0 +1,126 @@
+// Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
+
+// Inspired by https://github.com/jgthms/minireset.css/blob/master/minireset.css
+
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: inherit;
+  font-family: inherit;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  appearance: none;
+  border: none;
+  width: auto;
+  min-width: 0;
+  background: inherit;
+  color: inherit;
+  // display: inline-block;
+
+  //&:focus {
+  //  border: inherit; // Fix a jitter in Firefox
+  //}
+}
+
+a {
+  outline: none;
+}
+
+[contenteditable] {
+  outline: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+  // display: inline-block;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+td:not([align]),
+th:not([align]) {
+  text-align: left;
+}
+
+// WebKit search field
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+// Mozilla dotted focus
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Firefox
+
+*::-moz-focus-inner {
+  border: 0 !important;
+}

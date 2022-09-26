@@ -1,0 +1,40 @@
+{
+  "welcome": {
+    "start": "Iniciar Chat",
+    "abstract": "Chat de vídeo seguro direto em grupo",
+    "help": "Saiba mais",
+    "created": "Criado por"
+  },
+  "share": {
+    "title": "Convide",
+    "link_info": "Por favor, partilhe este link com todas as pessoas que queira convidar para esta sessão:",
+    "button_copy": "Compartilhe",
+    "qr_info": "Você também pode digitalizar este Código QR com uma câmera de dispositivo móvel:",
+    "feedback": "Para feedback escreva para <a href=\"mailto:support@holtwick.de?subject=Briefing\">support@holtwick.de</a>",
+    "message": "Convide enviando o link pressionando o símbolo $symbol$."
+  },
+  "settings": {
+    "title": "Configurações",
+    "video": "Fonte de vídeo",
+    "audio": "Fonte de áudio",
+    "desktop": "Partilhar ecrã ou janela",
+    "blur": "Fundo desfocado",
+    "blur_info": "Experimental: Um algoritmo inteligente de inteligência artificial é capaz de indetificar as formas das pessoas e irá desfocar o fundo restante. Isto adiciona alguma privacidade visual à sua chamada. Mas atenção, este é um recurso que consome muita energia e muito provavelmente não funcionará em dispositivos móveis! ",
+    "bandwidth": "Aplicar optimizações de largura de banda",
+    "bandwidth_info": "Experimental: Com este cenário, o Briefing tenta reduzir a largura de banda através do desbaste de dados de vídeo e áudio.",
+    "fill": "Ampliar vídeo",
+    "fill_info": "O Briefing tenta utilizar ao máximo o espaço de tela disponível, ampliando o vídeo de uma forma que o faça caber no seu quadro visual. Quando desligado, você verá o vídeo inteiro em vez disso, mas com bordas ao redor dele.",
+    "subscribe": "Subscreva esta sala",
+    "subscribe_info": "Experimental: Ao subscrever você receberá uma notificação quando outra pessoa entrar nesta sala. Você pode então juntar-se à conversa com um clique. As notificações só serão mostradas se o navegador estiver em execução.",
+    "sentry": "Permitir o acompanhamento de bugs",
+    "sentry_info": "Ao contar um erro de programação ou outra informação relevante que seja útil para melhorar o aplicativo, enviaremos dados de debug para um serviço chamado <a href=\"https://sentry.io\">sentry.io</a>.",
+    "sentry_confirm": "Obrigado por permitir o acompanhamento de bugs. Por favor, confirme para recarregar a página agora.",
+    "background": "Antecedentes",
+    "persist_settings": "Configurações Persistentes",
+    "original_background": "Fundo original",
+    "blurred_background": "Fundo desfocado",
+    "image_background": "Imagem de fundo",
+    "image_tip": "Você pode carregar seu próprio fundo arrastando um arquivo de imagem nesta janela.",
+    "random_image": "Clique para obter outra imagem aleatória."
+  }
+}

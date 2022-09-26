@@ -1,0 +1,146 @@
+// Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
+
+@import "units";
+@import "macros";
+
+// Core features
+
+$rtl: false !default;
+
+$blueSecondary: rgba(43, 184, 255, 1);
+$blue: rgba(10, 124, 179, 1);
+$orange: rgba(255, 161, 43, 1);
+$orangeSecondary: rgba(255, 172, 69, 1);
+
+$primary-color: $blue !default; // #5755d9 #FFBD33
+$alt-color: $orange;
+
+$dark-color: #333333 !default;
+$light-color: #ffffff !default;
+
+// https://css-tricks.com/snippets/sass/tint-shade-functions/
+
+$shade-dark: black;
+$tint-light: white;
+
+@function tint($color, $percentage) {
+  @return mix($tint-light, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix($shade-dark, $color, $percentage);
+}
+
+@function swatch($color, $h) {
+  @if $h >= 900 {
+    @return mix($shade-dark, $color, 80%);
+  } @else if $h >= 800 {
+    @return mix($shade-dark, $color, 60%);
+  } @else if $h >= 700 {
+    @return mix($shade-dark, $color, 35%); // 40
+  } @else if $h >= 600 {
+    @return mix($shade-dark, $color, 15%); // 20
+  } @else if $h >= 500 {
+    @return $color;
+  } @else if $h >= 400 {
+    @return mix($tint-light, $color, 20%);
+  } @else if $h >= 300 {
+    @return mix($tint-light, $color, 50%); // 40
+  } @else if $h >= 200 {
+    @return mix($tint-light, $color, 80%);
+  } @else if $h >= 100 {
+    @return mix($tint-light, $color, 90%); // 90
+  }
+}
+
+// Gray colors
+
+$gray-color: lighten($dark-color, 55%) !default;
+$gray-color-dark: darken($gray-color, 30%) !default;
+$gray-color-light: lighten($gray-color, 20%) !default;
+
+$border-color: lighten($dark-color, 65%) !default;
+$border-color-dark: darken($border-color, 10%) !default;
+$border-color-light: lighten($border-color, 8%) !default;
+
+$bg-color: lighten($dark-color, 75%) !default;
+$bg-color-dark: darken($bg-color, 3%) !default;
+$bg-color-light: $light-color !default;
+
+// Control colors https://colors.eva.design/
+
+$success-color: #32b643 !default;
+$warning-color: #ffb700 !default;
+$error-color: #e85600 !default;
+
+// Other colors
+
+$code-color: #d73e48 !default;
+$highlight-color: #ffe9b3 !default;
+
+$body-bg: #272727 !default;
+$body-font-color: #eee !default;
+
+$link-color: $primary-color !default;
+$link-color-dark: darken($link-color, 10%) !default;
+$link-color-light: lighten($link-color, 10%) !default;
+
+// Sizes
+
+$layout-spacing: $px-8 !default;
+$layout-spacing-sm: $px-4 !default;
+$layout-spacing-lg: $px-16 !default;
+
+$border-radius: 0 !default;
+$border-width: $px-1 !default;
+$border-width-lg: $px-2 !default;
+
+$control-size: $px-40 !default;
+$control-size-sm: $px-24 !default;
+$control-size-lg: $px-64 !default;
+
+$control-spacing: $control-size * 0.2 * 3;
+
+$control-padding-x: $px-8 !default;
+$control-padding-x-sm: $px-4 !default;
+$control-padding-x-lg: $px-16 !default;
+$control-padding-y: ($control-size - $line-height) * 0.5 - $border-width !default;
+$control-padding-y-sm: ($control-size-sm - $line-height) * 0.5 - $border-width !default;
+$control-padding-y-lg: ($control-size-lg - $line-height) * 0.5 - $border-width !default;
+$control-icon-size: 0.8rem !default;
+
+// sea
+
+$shadow-color: $primary-color;
+$control-spacing: $px-24; //  $control-size / 5 * 3;
+
+// ---------------------
+
+// Fonts
+
+// Credit: https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
+$base-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+  Roboto !default;
+$mono-font-family: "SF Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Courier,
+  monospace !default;
+$fallback-font-family: "Helvetica Neue", sans-serif !default;
+$cjk-zh-hans-font-family: $base-font-family, "PingFang SC", "Hiragino Sans GB",
+  "Microsoft YaHei", $fallback-font-family !default;
+$cjk-zh-hant-font-family: $base-font-family, "PingFang TC", "Hiragino Sans CNS",
+  "Microsoft JhengHei", $fallback-font-family !default;
+$cjk-jp-font-family: $base-font-family, "Hiragino Sans",
+  "Hiragino Kaku Gothic Pro", "Yu Gothic", YuGothic, Meiryo,
+  $fallback-font-family !default;
+$cjk-ko-font-family: $base-font-family, "Malgun Gothic", $fallback-font-family !default;
+$body-font-family: $base-font-family, $fallback-font-family !default;
+
+// Font sizes
+
+//$html-font-size: 16px !default;
+$html-line-height: 1.5 !default;
+
+$font-size: 1rem !default;
+$font-size-sm: px(14) !default;
+$font-size-lg: px(24) !default;
+
+$line-height: px(20) !default;

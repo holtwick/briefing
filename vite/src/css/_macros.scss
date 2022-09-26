@@ -1,0 +1,223 @@
+// Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
+
+// Mixins
+
+@import "units";
+
+@mixin selectable {
+  // !important needs to be there because otherwise it does not propagate in WebKit!
+  user-select: text !important;
+  -webkit-touch-callout: initial !important;
+}
+
+//@mixin vscroll {
+//  overflow: auto;
+//  overflow-x: hidden;
+//  overflow-y: auto;
+//  -webkit-overflow-scrolling: touch;
+//}
+
+// Button variant mixin
+@mixin button-variant($color: $primary-color) {
+  background: $color;
+  border-color: darken($color, 3%);
+  color: $light-color;
+  &:focus {
+    @include control-shadow($color);
+  }
+  &:focus,
+  &:hover {
+    background: darken($color, 2%);
+    border-color: darken($color, 5%);
+    color: $light-color;
+  }
+  &:active,
+  &.active {
+    background: darken($color, 7%);
+    border-color: darken($color, 10%);
+    color: $light-color;
+  }
+  &.loading {
+    &::after {
+      border-bottom-color: $light-color;
+      border-left-color: $light-color;
+    }
+  }
+}
+
+@mixin button-outline-variant($color: $primary-color) {
+  background: $light-color;
+  border-color: $color;
+  color: $color;
+  &:focus {
+    @include control-shadow($color);
+  }
+  &:focus,
+  &:hover {
+    background: lighten($color, 50%);
+    border-color: darken($color, 2%);
+    color: $color;
+  }
+  &:active,
+  &.active {
+    background: $color;
+    border-color: darken($color, 5%);
+    color: $light-color;
+  }
+  &.loading {
+    &::after {
+      border-bottom-color: $color;
+      border-left-color: $color;
+    }
+  }
+}
+
+// Component focus shadow
+@mixin control-shadow($color: $shadow-color) {
+  // http://help.dottoro.com/lanifqvh.php
+  //box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+  //box-shadow: 0 0 0 3px activeborder; // Blink
+  //box-shadow: 0 0 0 3px -moz-mac-focusring; // Firefox
+  //outline: auto 0 -webkit-focus-ring-color; // Webkit
+
+  // border-color: $color;
+  // box-shadow: 0 0 0 4px rgba($color, 0.25);
+  // box-shadow: 0 0 0 $px-2 rgba($color, 0.25);
+
+  box-shadow: var(--focus-shadow);
+}
+
+// Shadow mixin
+@mixin shadow-variant($offset) {
+  box-shadow: 0 $offset ($offset + 0.05rem) * 2 rgba($dark-color, 0.3);
+}
+
+@mixin hiddenButSelectable {
+  // Due to scroll issues on WebKit and Mozilla it should not be hidden completely, otherwise unexpected things
+  // will happen when tabbing around
+
+  // position: fixed;
+  // width: 1px;
+  // height: 1px;
+  padding: 0;
+  margin: 0;
+  // overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  //clip: rect(1px, 1px, 1px, 1px);
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  display: block;
+  visibility: visible;
+  white-space: nowrap;
+}
+
+// https://a11yproject.com/posts/how-to-hide-content/
+//.visually-hidden {
+//  position: absolute !important;
+//  height: 1px;
+//  width: 1px;
+//  overflow: hidden;
+//  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+//  clip: rect(1px, 1px, 1px, 1px);
+//  white-space: nowrap;
+//}
+
+// Label base style
+@mixin label-base() {
+  border-radius: $border-radius;
+  line-height: 1.25;
+  padding: 0.1rem 0.2rem;
+}
+
+@mixin label-variant($color: $light-color, $bg-color: $primary-color) {
+  background: $bg-color;
+  color: $color;
+}
+
+@mixin hyphens {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+@mixin centerContent {
+  // display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Mega awesome idea https://css-tricks.com/css-custom-properties-theming/
+@mixin backgroundVarLighter($name, $perc: 0.25) {
+  background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, $perc),
+      rgba(255, 255, 255, $perc)
+    )
+    var($name);
+}
+
+@mixin backgroundVarDarker($name, $perc: 0.25) {
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, $perc),
+      rgba(0, 0, 0, $perc)
+    )
+    var($name);
+}
+
+@mixin backgroundVar($name, $perc: 0) {
+  @if $perc < 0 {
+    @include backgroundVarLighter($name, $perc * -1);
+  } @else if $perc > 0 {
+    @include backgroundVarDarker($name, $perc);
+  } @else {
+    background: var($name);
+  }
+}
+
+@mixin hstack {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin vstack {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin fix {
+}
+
+@mixin fit {
+  flex: auto;
+}
+
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin mediaMobile {
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin notMediaMobile {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin mediaTablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin mediaDesktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

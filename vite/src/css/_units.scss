@@ -1,0 +1,115 @@
+// Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
+
+// Unit sizes
+
+@use "sass:math";
+
+$base-font-size: 16; // Only for calculations! Never set it in <html>!
+$base-font-size-px: (1px * $base-font-size);
+
+@function rem($px) {
+  @return math.div($px, $base-font-size-px) * 1rem;
+}
+
+@function px($px) {
+  @return math.div($px, $base-font-size) * 1rem;
+}
+
+$px-1: rem(1px); // 1/8
+$px-2: rem(2px); // 1/4
+$px-4: rem(4px); // 1/2
+$px-8: rem(8px); // 1
+$px-16: rem(16px); // 2
+$px-24: rem(24px); // 3
+$px-32: rem(32px); // 4
+$px-40: rem(40px); // 5
+$px-48: rem(48px); // 6
+$px-64: rem(64px); // 8
+$px-128: rem(16px); // 16
+
+// Unit sizes
+$unit-o: rem(1px); // 1px
+$unit-h: rem(2px); // 2px
+$unit-1: rem(4px);
+$unit-2: rem(8px);
+$unit-3: rem(12px);
+$unit-4: rem(16px);
+$unit-5: rem(20px);
+$unit-6: rem(24px);
+$unit-7: rem(28px);
+$unit-8: rem(32px);
+$unit-9: rem(36px);
+$unit-10: rem(40px);
+$unit-12: rem(48px);
+$unit-16: rem(64px);
+
+$control-width-xs: 180px !default;
+$control-width-sm: 320px !default;
+$control-width-md: 640px !default;
+$control-width-lg: 960px !default;
+$control-width-xl: 1280px !default;
+
+// Responsive breakpoints
+
+$size-xs: rem(480px) !default;
+$size-sm: rem(600px) !default;
+$size-md: rem(840px) !default;
+$size-lg: rem(960px) !default;
+$size-xl: rem(1280px) !default;
+$size-2x: rem(1440px) !default;
+
+$responsive-breakpoint: $size-xs !default;
+
+// z-index
+$z-index-0: 1 !default;
+$z-index-1: 100 !default;
+$z-index-2: 200 !default;
+$z-index-3: 300 !default;
+$z-index-4: 400 !default;
+$z-index-5: 500 !default;
+$z-index-6: 600 !default;
+$z-index-7: 700 !default;
+$z-index-8: 800 !default;
+$z-index-9: 900 !default;
+
+// Content > Floating > Overlay > Modal > Popover > Tooltip
+
+$z-index-floating: $z-index-1 !default; // separator-handle, knobs
+$z-index-overlay: $z-index-2 !default; // modal backgrounds
+$z-index-modal: $z-index-3 !default; // modal, dialog, page (mobile)
+$z-index-popover: $z-index-4 !default; // menu, dropdown, popover
+$z-index-tooltip: $z-index-1 !default;
+
+// font-weight
+$font-weight-thin: 100 !default;
+$font-weight-extra-light: 200 !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semi-bold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-extra-bold: 800 !default;
+$font-weight-black: 900 !default;
+$font-weight-extra-black: 950 !default;
+
+// https://www.smashingmagazine.com/2019/12/ui-design-tips-speed-up-workflow/
+
+$font-size-sm-2: px(12) !default;
+$font-size-sm-1: px(14) !default;
+$font-size: px(16) !default;
+$font-size-lg-1: px(18) !default;
+$font-size-lg-2: px(20) !default;
+$font-size-lg-3: px(24) !default;
+$font-size-lg-4: px(30) !default;
+$font-size-lg-5: px(36) !default;
+$font-size-lg-6: px(48) !default;
+$font-size-lg-7: px(60) !default;
+$font-size-lg-8: px(72) !default;
+
+$line-height: px(24) !default;
+$line-height-bigger: px(28) !default;
+
+$safe-top: env(safe-area-inset-top, 0);
+$safe-right: env(safe-area-inset-right, 0);
+$safe-bottom: env(safe-area-inset-bottom, 0);
+$safe-left: env(safe-area-inset-left, 0);
