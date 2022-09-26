@@ -1,6 +1,6 @@
 // Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import SimplePeer from "simple-peer"
+import { Peer } from "./simple-peer"
 import { cloneObject } from "../lib/base"
 import { Emitter } from "../lib/emitter"
 import { trackException } from "../bugs"
@@ -18,7 +18,7 @@ let ctr = 1
 
 export class WebRTCPeer extends Emitter {
   static isSupported() {
-    return SimplePeer.WEBRTC_SUPPORT
+    return Peer.WEBRTC_SUPPORT
   }
 
   constructor({ remote, local, ...opt } = {}) {

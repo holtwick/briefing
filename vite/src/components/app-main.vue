@@ -329,15 +329,18 @@ import SeaButton from "../ui/sea-button.vue"
 import SeaLink from "../ui/sea-link.vue"
 import SeaModal from "../ui/sea-modal.vue"
 import AppVideo from "./app-video.vue"
+import AppSettings from "./app-settings.vue"
+import AppShare from "./app-share.vue"
+import AppChat from "./app-chat.vue"
 
 const log = Logger("app:app-sidebar")
 
 export default {
   name: "app-main",
   components: {
-    AppSettings: () => import("./app-settings.vue"),
-    AppShare: () => import("./app-share.vue"),
-    AppChat: () => import("./app-chat.vue"),
+    AppSettings,
+    AppShare,
+    AppChat,
     SeaLink,
     SeaModal,
     SeaButton,
