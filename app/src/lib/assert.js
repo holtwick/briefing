@@ -7,7 +7,7 @@ import { trackSilentException } from "../bugs"
 
 export function assert(cond, ...args) {
   if (!cond) {
-    if (typeof console !== undefined) {
+    if (typeof console !== "undefined") {
       if (console.assert) {
         // https://developer.mozilla.org/de/docs/Web/API/Console/assert
         console.assert(cond, ...args)
@@ -16,7 +16,7 @@ export function assert(cond, ...args) {
       }
     }
     try {
-      if (typeof expect !== undefined) {
+      if (typeof expect !== "undefined") {
         expect(cond).toBeTruthy()
       }
     } catch (err) {

@@ -1,6 +1,6 @@
+import { Logger } from "zeed"
 import { trackSilentException } from "../bugs"
 
-import { Logger } from "zeed"
 const log = Logger("app:emitter")
 
 export class Emitter {
@@ -14,12 +14,12 @@ export class Emitter {
         try {
           fn(info)
         } catch (err) {
-          console.warn("emit warning:", err)
+          log.warn("emit warning:", err)
           trackSilentException(err)
         }
       }
     } catch (err) {
-      console.error("emit exception", err)
+      log.error("emit exception", err)
       trackSilentException(err)
     }
   }

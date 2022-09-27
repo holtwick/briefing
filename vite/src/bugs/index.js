@@ -1,8 +1,8 @@
 import Vue from "vue"
+import { Logger } from "zeed"
 import { PRODUCTION, SENTRY_DSN } from "../config"
 import { messages } from "../lib/emitter"
 
-import { Logger } from "zeed"
 const log = Logger("app:bugs")
 
 // Lazy loading of bug tracker
@@ -53,7 +53,7 @@ export function setAllowedBugTracking(
 
 export function trackException(e, silent = false) {
   if (!silent) {
-    console.error("Exception:", e)
+    log.error("Exception:", e)
   }
   if (window.sentry) {
     log("sentry exception", e)
@@ -65,6 +65,6 @@ export function trackException(e, silent = false) {
 }
 
 export function trackSilentException(e) {
-  console.error(e)
+  log.error(e)
   trackException(e, true)
 }
