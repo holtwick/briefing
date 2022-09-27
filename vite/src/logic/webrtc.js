@@ -1,10 +1,9 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
 import io from "socket.io-client"
-import { Logger, uuid } from "zeed"
+import { Emitter, Logger, uuid } from "zeed"
 import { SIGNAL_SERVER_URL } from "../config"
 import { assert } from "../lib/assert"
-import { Emitter } from "../lib/emitter"
 import { state } from "../state"
 import { WebRTCPeer } from "./webrtc-peer"
 

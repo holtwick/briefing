@@ -1,4 +1,18 @@
-import { messages } from "./lib/emitter"
+import { Logger, messages } from "zeed"
+import { trackException, trackSilentException } from "./bugs"
+import {
+  PRODUCTION,
+  ROOM_PATH,
+  SHOW_CHAT,
+  SHOW_FULLSCREEN,
+  SHOW_INVITATION,
+  SHOW_INVITATION_HINT,
+  SHOW_SETTINGS,
+  SHOW_SHARE,
+} from "./config"
+import { isTrue, objectSnapshot } from "./lib/base.js"
+import { postMessageToParent } from "./lib/iframe.js"
+import { normalizeName } from "./lib/names"
 import { setupWebRTC } from "./logic/connection"
 import {
   defaultAudioConstraints,
@@ -8,21 +22,6 @@ import {
   getUserMedia,
   setAudioTracks,
 } from "./logic/stream"
-import { trackException, trackSilentException } from "./bugs"
-import {
-  PRODUCTION,
-  ROOM_PATH,
-  SHOW_FULLSCREEN,
-  SHOW_INVITATION,
-  SHOW_INVITATION_HINT,
-  SHOW_SETTINGS,
-  SHOW_SHARE,
-  SHOW_CHAT,
-} from "./config"
-import { normalizeName } from "./lib/names"
-import { postMessageToParent } from "./lib/iframe.js"
-import { objectSnapshot, isTrue } from "./lib/base.js"
-import { Logger } from "zeed"
 
 const log = Logger("app:state")
 

@@ -1,7 +1,6 @@
 import Vue from "vue"
-import { Logger } from "zeed"
+import { Logger, messages } from "zeed"
 import { PRODUCTION, SENTRY_DSN } from "../config"
-import { messages } from "../lib/emitter"
 
 const log = Logger("app:bugs")
 

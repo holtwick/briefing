@@ -319,19 +319,18 @@
 </template>
 
 <script>
+import { Logger, messages } from "zeed"
 import { setAllowedBugTracking } from "../bugs"
-import { messages } from "../lib/emitter"
-import { Logger } from "zeed"
 import { createLinkForRoom, shareLink } from "../lib/share"
 import { setBackgroundImage } from "../logic/background"
 import { setup } from "../state"
 import SeaButton from "../ui/sea-button.vue"
 import SeaLink from "../ui/sea-link.vue"
 import SeaModal from "../ui/sea-modal.vue"
-import AppVideo from "./app-video.vue"
+import AppChat from "./app-chat.vue"
 import AppSettings from "./app-settings.vue"
 import AppShare from "./app-share.vue"
-import AppChat from "./app-chat.vue"
+import AppVideo from "./app-video.vue"
 
 const log = Logger("app:app-sidebar")
 

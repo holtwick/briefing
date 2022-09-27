@@ -156,10 +156,9 @@
 </template>
 
 <script>
+import { Logger, messages } from "zeed"
 import { isAllowedBugTracking, setAllowedBugTracking } from "../bugs"
 import { ICE_CONFIG, RELEASE, SIGNAL_SERVER_URL } from "../config"
-import { messages } from "../lib/emitter"
-import { Logger } from "zeed"
 import { setBackgroundImage } from "../logic/background"
 import { WebRTC } from "../logic/webrtc"
 import SeaSwitch from "../ui/sea-switch.vue"

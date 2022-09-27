@@ -1,10 +1,8 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { encodeBase32 } from "zeed"
+import { Emitter, encodeBase32, Logger } from "zeed"
 import { trackException } from "../bugs"
 import { cloneObject } from "../lib/base"
-import { Emitter } from "../lib/emitter"
-import { Logger } from "zeed"
 import {
   getFingerprintString,
   sha256Messages,

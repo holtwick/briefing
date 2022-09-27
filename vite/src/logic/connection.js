@@ -1,10 +1,12 @@
 // https://webrtchacks.com/limit-webrtc-bandwidth-sdp/
 
+import { messages } from "zeed"
 import { ICE_CONFIG } from "../config"
 import { urlBase64ToUint8Array } from "../lib/base64"
-import { messages } from "../lib/emitter"
-import { setMediaBitrate } from "./sdp-manipulation.js"
-import { removeBandwidthRestriction } from "./sdp-manipulation.js"
+import {
+  removeBandwidthRestriction,
+  setMediaBitrate,
+} from "./sdp-manipulation.js"
 
 import { Logger } from "zeed"
 const log = Logger("app:connection")
