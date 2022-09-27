@@ -22,7 +22,7 @@ import {
 import { normalizeName } from "./lib/names"
 import { postMessageToParent } from "./lib/iframe.js"
 import { objectSnapshot, isTrue } from "./lib/base.js"
-import { Logger } from "./lib/logger"
+import { Logger } from "zeed"
 
 const log = Logger("app:state")
 

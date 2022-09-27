@@ -10,7 +10,7 @@ import {
   splitByNChars,
 } from "./fingerprint"
 
-import { Logger } from "../lib/logger"
+import { Logger } from "zeed"
 import { encodeBase32 } from "zeed"
 const log = Logger("app:webrtc-peer")
 

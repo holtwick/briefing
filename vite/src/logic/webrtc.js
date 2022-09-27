@@ -8,7 +8,7 @@ import { state } from "../state"
 import { WebRTCPeer } from "./webrtc-peer"
 
 import { uuid } from "zeed"
-import { Logger } from "../lib/logger"
+import { Logger } from "zeed"
 
 const log = Logger("app:webrtc")
 

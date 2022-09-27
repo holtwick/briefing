@@ -48,7 +48,7 @@ import { qrcode } from "../lib/qrcode"
 import { createLinkForRoom, shareLink } from "../lib/share"
 import SeaButton from "../ui/sea-button"
 
-import { Logger } from "../lib/logger"
+import { Logger } from "zeed"
 const log = Logger("app:app-share")
 
 export default {

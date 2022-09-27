@@ -41,12 +41,7 @@
     </div>
     <div
       v-if="fingerprint"
-      class="
-        video video-placeholder video-fingerprint
-        -content-placeholder
-        -overlay
-        -info
-      "
+      class="video video-placeholder video-fingerprint -content-placeholder -overlay -info"
       v-show="!state.maximized"
     >
       <label
@@ -136,7 +131,7 @@
 <script>
 import { trackSilentException } from "../bugs"
 
-import { Logger } from "../lib/logger"
+import { Logger } from "zeed"
 const log = Logger("app:app-peer")
 
 window.screenshotNumber = 0

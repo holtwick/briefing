@@ -163,7 +163,7 @@ import { isAllowedBugTracking, setAllowedBugTracking } from "../bugs"
 import { setBackgroundImage } from "../logic/background"
 import { WebRTC } from "../logic/webrtc"
 
-import { Logger } from "../lib/logger"
+import { Logger } from "zeed"
 const log = Logger("app:app-settings")
 
 export default {

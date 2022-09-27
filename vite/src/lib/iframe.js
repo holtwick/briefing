@@ -1,7 +1,8 @@
-const source = "briefing"
+import { Logger } from "zeed"
 
-import { Logger } from "./logger"
 const log = Logger("app:iframe")
+
+const source = "briefing"
 
 export function postMessageToParent(name, data = {}) {
   try {

@@ -1,9 +1,9 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { Logger } from "./logger"
-const log = Logger("test:assert")
-
 import { trackSilentException } from "../bugs"
+import { Logger } from "zeed"
+
+const log = Logger("test:assert")
 
 export function assert(cond, ...args) {
   if (!cond) {

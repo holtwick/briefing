@@ -321,7 +321,7 @@
 <script>
 import { setAllowedBugTracking } from "../bugs"
 import { messages } from "../lib/emitter"
-import { Logger } from "../lib/logger"
+import { Logger } from "zeed"
 import { createLinkForRoom, shareLink } from "../lib/share"
 import { setBackgroundImage } from "../logic/background"
 import { setup } from "../state"

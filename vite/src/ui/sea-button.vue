@@ -32,7 +32,7 @@
 <script>
 // import Popover from './sea-popover'
 import { trackException } from "../bugs"
-import { Logger } from "../lib/logger"
+import { Logger } from "zeed"
 import SeaSymbol from "./sea-symbol.vue"
 
 const log = Logger("ui:button")

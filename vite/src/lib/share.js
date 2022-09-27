@@ -1,5 +1,4 @@
 import clipboardCopy from "clipboard-copy"
-import { trackException } from "../bugs"
 import { ROOM_URL } from "../config.js"
 
 export function createLinkForRoom(room) {

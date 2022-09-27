@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { Logger } from "./lib/logger"
+import { Logger } from "zeed"
 import AppWelcome from "./components/app-welcome.vue"
 import AppMain from "./components/app-main.vue"
 import AppEmbed from "./components/app-embed.vue"

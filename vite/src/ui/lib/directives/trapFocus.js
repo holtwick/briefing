@@ -1,6 +1,7 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { Logger } from "../../../lib/logger"
+import { Logger } from "zeed"
+
 const log = Logger("app:trapFocus")
 
 const findFocusable = (element) => {

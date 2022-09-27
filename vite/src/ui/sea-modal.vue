@@ -55,7 +55,7 @@
 </style>
 
 <script>
-import { Logger } from "../lib/logger"
+import { Logger } from "zeed"
 import trapFocus from "./lib/directives/trapFocus"
 import { removeElement } from "./lib/helpers"
 import SeaLink from "./sea-link.vue"

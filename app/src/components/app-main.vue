@@ -328,8 +328,8 @@ import SeaModal from "../ui/sea-modal"
 import AppVideo from "./app-video"
 import { setAllowedBugTracking } from "../bugs"
 import { setBackgroundImage } from "../logic/background"
+import { Logger } from "zeed"
 
-import { Logger } from "../lib/logger"
 const log = Logger("app:app-sidebar")
 
 export default {

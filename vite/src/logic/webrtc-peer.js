@@ -1,17 +1,17 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { Peer } from "./simple-peer"
+import { encodeBase32 } from "zeed"
+import { trackException } from "../bugs"
 import { cloneObject } from "../lib/base"
 import { Emitter } from "../lib/emitter"
-import { trackException } from "../bugs"
+import { Logger } from "zeed"
 import {
   getFingerprintString,
   sha256Messages,
   splitByNChars,
 } from "./fingerprint"
+import { Peer } from "./simple-peer"
 
-import { Logger } from "../lib/logger"
-import { encodeBase32 } from "zeed"
 const log = Logger("app:webrtc-peer")
 
 let ctr = 1
@@ -51,10 +51,10 @@ export class WebRTCPeer extends Emitter {
       },
     })
 
-    log("SimplePeer opts:", opts)
+    log("Peer opts:", opts)
 
     // https://github.com/feross/simple-peer/blob/master/README.md
-    this.peer = new SimplePeer(opts)
+    this.peer = new Peer(opts)
 
     this.peer.on("close", (_) => this.close())
 

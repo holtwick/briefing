@@ -44,7 +44,7 @@
 </style>
 
 <script>
-import { Logger } from "../lib/logger"
+import { Logger } from "zeed"
 import { qrcode } from "../lib/qrcode"
 import { createLinkForRoom, shareLink } from "../lib/share"
 import SeaButton from "../ui/sea-button.vue"
