@@ -1,14 +1,12 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
 import io from "socket.io-client"
+import { Logger, uuid } from "zeed"
 import { SIGNAL_SERVER_URL } from "../config"
 import { assert } from "../lib/assert"
 import { Emitter } from "../lib/emitter"
 import { state } from "../state"
 import { WebRTCPeer } from "./webrtc-peer"
-
-import { uuid } from "zeed"
-import { Logger } from "zeed"
 
 const log = Logger("app:webrtc")
 
@@ -28,7 +26,7 @@ export class WebRTC extends Emitter {
 
     return new Promise((resolve) => {
       let id = uuid()
-      let result = socket.emit("status", { ping: id }, (result) => {
+      socket.emit("status", { ping: id }, (result) => {
         log("status", result)
         result.ok = result.pong === id
         resolve(result)
