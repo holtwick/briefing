@@ -24,3 +24,5 @@ app/public/faces
 pnpm-lock.yaml
 package-lock.json
 vite/fix.sh
+.out.*
+vite/.out.*

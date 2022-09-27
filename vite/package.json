@@ -15,7 +15,6 @@
     "@zerva/websocket": "^0.13.4",
     "clipboard-copy": "^4.0.1",
     "lodash": "^4.17.21",
-    "socket.io-client": "^2.5.0",
     "vue": "^2.6.14",
     "zeed": "^0.8.26"
   },
@@ -55,7 +54,7 @@
     "preview": "vite preview",
     "check": "vue-tsc --noEmit",
     "serve": "ZEED=* LEVEL=i node dist/main.cjs",
-    "start": "ZEED=* LEVEL=i zerva src/zerva/index.ts",
+    "start": "ZEED=* LEVEL=a zerva src/zerva/index.ts",
     "test": "ZEED=* LEVEL=i vitest -r src --global"
   },
   "type": "module",
