@@ -1,11 +1,10 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
+import { WebSocketConnection } from "@zerva/websocket"
 import { Emitter, Logger, uuid } from "zeed"
-import { SIGNAL_SERVER_URL } from "../config"
 import { assert } from "../lib/assert"
 import { state } from "../state"
 import { WebRTCPeer } from "./webrtc-peer"
-import { WebSocketConnection } from "@zerva/websocket"
 
 const log = Logger("app:webrtc")
 
@@ -53,7 +52,7 @@ export class WebRTC extends Emitter {
     this.room = room
     this.peerSettings = peerSettings
 
-    log("webrtc reaches out to", SIGNAL_SERVER_URL)
+    log("webrtc contacts signal server")
 
     this.channel = new WebSocketConnection()
 
@@ -61,7 +60,7 @@ export class WebRTC extends Emitter {
 
     const methods = {
       joined: ({ room, peers, vapidPublicKey }) => {
-        // log("joined", state, this.io, room, peers, vapidPublicKey)
+        log("joined", state, room, peers, vapidPublicKey)
 
         state.vapidPublicKey = vapidPublicKey
 
@@ -128,10 +127,14 @@ export class WebRTC extends Emitter {
       status: ({ info }) => {
         log(`status = ${info}`)
       },
+
+      error: (info: any) => {
+        log.error("websocket error server side:", info)
+      },
     }
 
     this.channel.on("message", (event) => {
-      log("onMessage:", event.data)
+      log("onMessage:", event)
       try {
         let { name, data } = JSON.parse(event.data)
         methods[name]?.(data)
@@ -140,10 +143,10 @@ export class WebRTC extends Emitter {
       }
     })
 
-    this.channel.on("disconnect", () => {
-      //   log("channel disconnect")
-      //   connected.value = false
-    })
+    // this.channel.on("disconnect", () => {
+    //   log("channel disconnect")
+    // connected.value = false
+    // })
 
     this.channel.on("close", () => {
       //   log("channel close")
@@ -151,7 +154,8 @@ export class WebRTC extends Emitter {
     })
 
     this.channel.on("connect", () => {
-      this.channelEmit("status", { hello: "world" })
+      log("onConnect")
+      // this.channelEmit("status", { hello: "world" })
       this.channelEmit("join", { room })
     })
   }

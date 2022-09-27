@@ -1,25 +1,30 @@
-import { on, onInit, register, requireModules } from "@zerva/core"
-import { Channel, Logger, uname } from "zeed"
+import { assertModules, on, onInit, register } from "@zerva/core"
 import "@zerva/websocket"
+import { Channel, Logger, uname } from "zeed"
 
 const log = Logger("room")
 
 const moduleName = "room"
 
+interface RoomPeer {
+  id: string
+  emit(name: string, data: any): void
+  channel: Channel
+}
+
 interface Room {
   name: string
-  peers: Record<string, Channel>
+  peers: Map<string, RoomPeer>
 }
 
 export function useRoom(config: {} = {}) {
   log("setup")
-
   register(moduleName)
 
   const rooms = new Map<string, Room>()
 
   onInit(() => {
-    requireModules("websocket")
+    assertModules("websocket")
   })
 
   const useConnection = (channel: Channel) => {
@@ -28,31 +33,73 @@ export function useRoom(config: {} = {}) {
     let log = Logger(`${peerId}::${moduleName}`)
     log.info("useConnection")
 
-    let roomName: string | undefined
+    let roomInfo: Room
 
     function channelEmit(name: string, data: any) {
       channel.postMessage(JSON.stringify({ name, data }))
     }
 
     const methods = {
+      join: ({ room }) => {
+        if (roomInfo) {
+          log.warn("Tries to connect more than once.")
+          return
+        }
+
+        // Get / create room
+        roomInfo = rooms.get(room)
+        if (roomInfo == null) {
+          roomInfo = {
+            name: room,
+            peers: new Map(),
+          }
+          rooms.set(room, roomInfo)
+        }
+
+        // Existing peers
+        let peers = Object.keys(roomInfo.peers)
+
+        // Add ourself
+        roomInfo.peers.set(peerId, {
+          id: peerId,
+          channel,
+          emit: channelEmit,
+        })
+
+        // Let client know
+        channelEmit("joined", {
+          room,
+          peers,
+        })
+      },
+
       signal: (data: any) => {
+        log("signal", data)
+        const { from, to } = data
+        if (from !== peerId) {
+          log.warn("Strange message that was not sent by us.")
+        } else if (to) {
+          roomInfo?.peers.get(to)?.emit("signal", data)
+        } else {
+          log.warn("Missing data for signal.")
+        }
         log("signal")
       },
 
       status: (info: any) => {
         log("status", info)
         channelEmit("status", {
-          info: {
-            server: true,
-          },
+          api: 1,
+          pong: info?.ping || "pong",
+          config: {},
         })
       },
     }
 
     channel.on("message", (event) => {
-      log("onMessage:", event.data)
       try {
         let { name, data } = JSON.parse(event.data)
+        log(`onMessage "${name}":`, data)
         methods[name]?.(data)
       } catch (err) {
         log.error("onMessage error:", err)
@@ -61,26 +108,16 @@ export function useRoom(config: {} = {}) {
 
     channel.on("close", () => {
       log("close")
+      roomInfo.peers.delete(peerId)
+      if (roomInfo.peers.size <= 0) {
+        // we can also leave it dangle around
+      }
+      roomInfo = undefined
     })
-
-    // const leave = async (id: string) => {
-    //   if (roomName) {
-    //     log.info("room leave", roomName, id)
-    //     let room = rooms.get(roomName)
-    //     if (room) {
-    //       room.peers.delete(id)
-    //       room.queue.enqueue(async () => {
-    //         for (const peer of Array.from(room?.peers?.values() || [])) {
-    //           peer.client?.peerLeftRoom?.(id)
-    //         }
-    //       })
-    //     }
-    //   }
-    // }
   }
 
   on("webSocketConnect", ({ channel }) => {
-    log("webSocketConnect", channel)
+    log("webSocketConnect")
     useConnection(channel)
   })
 }
