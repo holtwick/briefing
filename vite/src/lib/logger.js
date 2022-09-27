@@ -1,9 +1,9 @@
-import { Logger, activateConsoleDebug } from "zeed"
+/**
+ * To see the log output enter this in browsers console:
+ *
+ * ```
+ * localStorage.zeed = '*'
+ * ```
+ */
 
-try {
-  activateConsoleDebug()
-} catch (e) {
-  console.warn("activateConsoleDebug() did fail")
-}
-
-export { Logger }
+export { Logger } from "zeed"
