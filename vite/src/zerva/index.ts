@@ -13,9 +13,9 @@ useVite({
 })
 
 on("httpInit", ({ get }) => {
-  get("/test", ({ req, res }) => {
-    return "test"
-  })
+  // get("/test", ({ req, res }) => {
+  //   return "test"
+  // })
 })
 
 serve()

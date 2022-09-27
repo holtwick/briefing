@@ -28,9 +28,6 @@ const log = Logger("app:state")
 
 const screenshots = false
 
-// export const DEBUG = location.port.toString() === '8080' || !location.pathname.startsWith('/ng/')
-// export const isPWA = process.env.VUE_APP_TARGET === 'pwa'
-
 // ROOM
 
 const isOriginalBriefing = ROOM_PATH === "/ng/"

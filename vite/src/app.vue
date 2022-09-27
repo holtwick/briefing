@@ -10,7 +10,7 @@ import AppWelcome from "./components/app-welcome.vue"
 import AppMain from "./components/app-main.vue"
 import AppEmbed from "./components/app-embed.vue"
 
-const log = Logger("app:pwa-app")
+const log = Logger("app:app")
 
 export default {
   name: "App",
@@ -23,7 +23,7 @@ export default {
     return {}
   },
   mounted() {
-    log("pwa")
+    log("mounted")
   },
 }
 </script>

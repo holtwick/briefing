@@ -25349,9 +25349,6 @@ A3({
   www: B2("www")
 });
 l("httpInit", ({ get }) => {
-  get("/test", ({ req, res }) => {
-    return "test";
-  });
 });
 b();
 //# sourceMappingURL=.out.cjs.map
