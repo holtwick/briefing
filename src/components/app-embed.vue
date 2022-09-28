@@ -6,6 +6,9 @@
       <div class="url">
         <a :href="url" targe="_blank">{{ url }}</a>
       </div>
+      <div class="url">
+        Room: <input type="text" :placeholder="defaultName" v-model="room" />
+      </div>
       <div class="options">
         <sea-switch v-model="presetAudio">Audio</sea-switch>
         <sea-switch v-model="presetVideo">Video</sea-switch>
@@ -78,9 +81,10 @@
 
 <script>
 import { Logger } from "zeed"
-import { DEBUG, ROOM_PATH, ROOM_URL } from "../config"
+import { ROOM_URL } from "../config"
 import { onMessageFromFrame } from "../lib/iframe"
 import { generateName } from "../lib/names"
+import SeaInputBase from "../ui/sea-input-base.vue"
 import SeaSwitch from "../ui/sea-switch.vue"
 
 const log = Logger("app-embed")
@@ -88,14 +92,13 @@ const log = Logger("app-embed")
 export default {
   components: {
     SeaSwitch,
+    SeaInputBase,
   },
   data() {
-    let defaultName = DEBUG
-      ? import.meta.env.BRIEFING_DEBUG_DEFAULT_ROOM || "development"
-      : generateName()
+    let defaultName = generateName()
     return {
       defaultName,
-      room: defaultName,
+      room: "",
       presetAudio: true,
       presetVideo: true,
       presetFullscreen: false,
@@ -109,10 +112,10 @@ export default {
   computed: {
     url() {
       // const prefix = location.protocol + "//" + location.host + "/" + ROOM_PATH
-      let prefix = DEBUG ? ROOM_PATH : ROOM_URL
+      let prefix = ROOM_URL
       return (
         prefix +
-        this.defaultName +
+        (this.room || this.defaultName) +
         "?audio=" +
         Number(this.presetAudio) +
         "&video=" +

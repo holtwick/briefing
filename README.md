@@ -25,7 +25,6 @@ For support of other platform visit the [legacy branch](https://github.com/holtw
 Clone or download this repository to your local machine, then:
 
 ```
-cd app
 npm install
 npm start
 ```
