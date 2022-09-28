@@ -95,4 +95,4 @@ For adding or fixing translations get started here: https://github.com/holtwick/
 
 ## Legacy
 
-Version 1.0 was based on Webpack and had examples for iOS, Android, Windows and Electron and a separate signal server. This code is not maintained any more but still accessible via the [legacy branch]().
+Version 1.0 was based on Webpack and had examples for iOS, Android, Windows and Electron and a separate signal server. This code is not maintained any more but still accessible via the [legacy branch](https://github.com/holtwick/briefing/tree/legacy).
