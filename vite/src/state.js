@@ -31,20 +31,25 @@ const screenshots = false
 
 const isOriginalBriefing = ROOM_PATH === "/ng/"
 
-let room
-const pathname = location.pathname
-if (isOriginalBriefing) {
-  let m = /^\/ngs?\/(.*?)$/gi.exec(pathname)
-  room = m && m[1]
-} else {
-  if (pathname.startsWith(ROOM_PATH)) {
-    room = pathname.substr(ROOM_PATH.length)
+function getRoomByCurrentLocation() {
+  const pathname = location.pathname
+  log("getRoomByCurrentLocation", pathname)
+  if (isOriginalBriefing) {
+    let m = /^\/ngs?\/(.*?)$/gi.exec(pathname)
+    return m && m[1]
+  } else {
+    if (pathname.startsWith(ROOM_PATH)) {
+      return pathname.substr(ROOM_PATH.length)
+    }
   }
 }
 
+let room = getRoomByCurrentLocation()
 log.info("Room =", room)
 
+// Normalize URL matching to room
 try {
+  const pathname = location.pathname
   if (
     pathname === "/" ||
     room === "" ||
@@ -63,6 +68,12 @@ try {
 } catch (err) {
   trackSilentException(err)
 }
+
+// Track URL changes and fix room
+window.addEventListener("popstate", (event) => {
+  state.room = getRoomByCurrentLocation()
+  log("popstate", state.room, event)
+})
 
 // Hack to avoid routing ;)
 const embedDemo = room === "embed-demo"

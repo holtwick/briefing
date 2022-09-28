@@ -1,7 +1,9 @@
+import { getWebsocketUrlFromLocation } from "@zerva/websocket"
 import { isTrue } from "./lib/base"
 
 // See https://github.com/holtwick/briefing-signal
-export const SIGNAL_SERVER_URL = import.meta.env.VUE_APP_SIGNAL_URL
+export const SIGNAL_SERVER_URL =
+  import.meta.env.VUE_APP_SIGNAL_URL || getWebsocketUrlFromLocation()
 
 // See https://github.com/feross/simple-peer#peer--new-peeropts
 export const ICE_CONFIG = {
@@ -29,8 +31,8 @@ export const RELEASE = import.meta.env.VUE_APP_RELEASE
 export const SENTRY_DSN = import.meta.env.VUE_APP_SENTRY_DSN
 
 export const ROOM_URL =
-  import.meta.env.VUE_APP_ROOM_URL || "https://brie.fi/ng/"
-export const ROOM_PATH = import.meta.env.VUE_APP_ROOM_PATH || "/ng/"
+  import.meta.env.VUE_APP_ROOM_URL || `${location.protocol}://${location.host}/` // "https://brie.fi/ng/"
+export const ROOM_PATH = import.meta.env.VUE_APP_ROOM_PATH || "/" // "/ng/"
 
 export const SHOW_FULLSCREEN = isTrue(
   import.meta.env.VUE_APP_SHOW_FULLSCREEN,

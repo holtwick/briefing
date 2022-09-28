@@ -321,6 +321,7 @@
 <script>
 import { Logger, messages } from "zeed"
 import { setAllowedBugTracking } from "../bugs"
+import { ROOM_PATH } from "../config"
 import { createLinkForRoom, shareLink } from "../lib/share"
 import { setBackgroundImage } from "../logic/background"
 import { setup } from "../state"
@@ -389,7 +390,7 @@ export default {
     },
     doQuit() {
       if (confirm("Really quit this session?")) {
-        location.assign("/ng/")
+        location.assign(ROOM_PATH)
       }
     },
     doReload() {

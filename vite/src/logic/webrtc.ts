@@ -2,6 +2,7 @@
 
 import { WebSocketConnection } from "@zerva/websocket"
 import { Emitter, Logger, uuid } from "zeed"
+import { SIGNAL_SERVER_URL } from "../config"
 import { assert } from "../lib/assert"
 import { state } from "../state"
 import { WebRTCPeer } from "./webrtc-peer"
@@ -31,7 +32,7 @@ export class WebRTC extends Emitter {
     return new Promise((resolve, reject) => {
       let id = uuid()
 
-      let channel = new WebSocketConnection()
+      let channel = new WebSocketConnection(SIGNAL_SERVER_URL)
 
       channel.on("connect", () => {
         channel.postMessage(
@@ -76,7 +77,7 @@ export class WebRTC extends Emitter {
 
     log("webrtc contacts signal server")
 
-    this.websocketChannel = new WebSocketConnection()
+    this.websocketChannel = new WebSocketConnection(SIGNAL_SERVER_URL)
 
     const methods = {
       remove: (id: string) => {
