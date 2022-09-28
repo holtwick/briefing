@@ -117,9 +117,15 @@ export function useRoom(config: {} = {}) {
     channel.on("close", () => {
       log("close")
       roomInfo.peers.delete(peerId)
+
       if (roomInfo.peers.size <= 0) {
         // we can also leave it dangle around
+      } else {
+        for (let peer of roomInfo.peers.values()) {
+          peer.emit("remove", peerId)
+        }
       }
+
       roomInfo = undefined
     })
   }
