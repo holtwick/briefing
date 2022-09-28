@@ -133,6 +133,8 @@ export let state = {
   showChat: isTrue(urlParams.get("chat"), SHOW_CHAT),
 
   screenshots,
+
+  original: isOriginalBriefing,
 }
 
 messages.on("requestBugTracking", (_) => (state.requestBugTracking = true))
