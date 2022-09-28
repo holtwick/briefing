@@ -1,12 +1,5 @@
 <template>
-  <div
-    class="app hstack"
-    @dragover="onDragOver"
-    @dragend="onDragEnd"
-    @dragexit="onDragEnd"
-    @dragleave="onDragEnd"
-    @drop="onDrop"
-  >
+  <div class="app hstack">
     <sea-modal
       xclass="panel -left panel-settings"
       :active="mode === 'settings'"
@@ -323,7 +316,6 @@ import { Logger, messages } from "zeed"
 import { setAllowedBugTracking } from "../bugs"
 import { ROOM_PATH } from "../config"
 import { createLinkForRoom, shareLink } from "../lib/share"
-import { setBackgroundImage } from "../logic/background"
 import { setup } from "../state"
 import SeaButton from "../ui/sea-button.vue"
 import SeaLink from "../ui/sea-link.vue"
@@ -352,7 +344,7 @@ export default {
       settings: false,
       share: false,
       conn: null,
-      dragOver: false,
+
       supportsFullscreen: document.fullscreenEnabled,
       isFullScreen: false,
       fullscreenHandler: null,
@@ -413,38 +405,6 @@ export default {
     },
     doTogglePanel(mode = "settings") {
       this.mode = !mode || this.mode === mode ? "" : mode
-    },
-    onDragOver(ev) {
-      ev.preventDefault()
-      ev.dataTransfer.dropEffect = "copy"
-      this.dragOver = true
-    },
-    onDragEnd(ev) {
-      this.dragOver = false
-      ev.preventDefault()
-    },
-    onDrop(ev) {
-      this.dragOver = false
-      ev.preventDefault()
-      let dataProvider = ev.dataTransfer || ev.clipboardData
-      if (dataProvider) {
-        const files = dataProvider?.files || []
-        if (files.length) {
-          let url = URL.createObjectURL(files[0])
-          setBackgroundImage(url)
-          this.state.backgroundImageURL = url
-          this.state.backgroundAuthor = ""
-          this.state.backgroundURL = ""
-
-          // If just the background mode changes, don't restart the whole thing
-          // if ((value && !prevValue) || (prevValue && !value)) {
-          if (this.state.backgroundImageURL !== "image") {
-            this.state.backgroundMode = "image"
-            messages.emit("switchMedia")
-          }
-          // }
-        }
-      }
     },
     didChangeFullscreen(ev) {},
     toggleChat() {

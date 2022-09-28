@@ -33,9 +33,6 @@
   "dependencies": {
     "@sentry/browser": "^7.14.0",
     "@sentry/tracing": "^7.14.0",
-    "@tensorflow-models/body-pix": "^2.2.0",
-    "@tensorflow/tfjs-converter": "<2.0.0",
-    "@tensorflow/tfjs-core": "<2.0.0",
     "@zerva/core": "^0.13.6",
     "@zerva/http": "^0.13.6",
     "@zerva/websocket": "^0.13.6",

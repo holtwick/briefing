@@ -68,62 +68,6 @@
       }}</sea-switch>
       <!--      <div class="settings-info" v-html="l.settings.sentry_info"></div>-->
     </div>
-    <div class="form-group settings-group" v-if="!iOS">
-      <label class="form-labelx"
-        ><b>{{ l.settings.background }}</b></label
-      >
-      <label class="form-radio">
-        <input type="radio" value="" v-model="state.backgroundMode" />
-        <i class="form-icon"></i>
-        {{ l.settings.original_background }}
-      </label>
-      <label class="form-radio">
-        <input type="radio" value="blur" v-model="state.backgroundMode" />
-        <i class="form-icon"></i>
-        {{ l.settings.blurred_background }}
-      </label>
-      <label class="form-radio">
-        <input type="radio" value="image" v-model="state.backgroundMode" />
-        <i class="form-icon"></i>
-        {{ l.settings.image_background }}
-      </label>
-      <div v-if="state.backgroundMode === 'image'" class="settings-info">
-        {{ l.settings.image_tip }}
-        <div v-if="!state.backgroundAuthor">
-          <img
-            v-if="state.backgroundImageURL"
-            :src="state.backgroundImageURL"
-            alt="Your custom image"
-            title="Your custom image"
-          />
-        </div>
-        <div v-else>
-          <img
-            v-if="state.backgroundImageURL"
-            :src="state.backgroundImageURL"
-            :alt="`Image by ${state.backgroundAuthor}`"
-            :title="`Image by ${state.backgroundAuthor}`"
-          />
-          Photo by
-          <a
-            :href="`${state.backgroundURL}?utm_source=briefing&utm_medium=referral`"
-            >{{ state.backgroundAuthor }}</a
-          >
-          on
-          <a
-            href="https://unsplash.com/?utm_source=briefing&utm_medium=referral"
-            target="_blank"
-            rel="noopener nofollow"
-            >Unsplash</a
-          >.
-          <br />
-          <br />
-          <a href="#" @click.prevent="doUnSplashImage">{{
-            l.settings.random_image
-          }}</a>
-        </div>
-      </div>
-    </div>
     <div class="release-info">
       <a href="#" @click.prevent="showInfo = !showInfo">Server Info</a>
       |
@@ -159,7 +103,6 @@
 import { Logger, messages } from "zeed"
 import { isAllowedBugTracking, setAllowedBugTracking } from "../bugs"
 import { ICE_CONFIG, RELEASE, SIGNAL_SERVER_URL } from "../config"
-import { setBackgroundImage } from "../logic/background"
 import { WebRTC } from "../logic/webrtc"
 import SeaSwitch from "../ui/sea-switch.vue"
 
@@ -213,35 +156,11 @@ export default {
     },
   },
   methods: {
-    async doUnSplashImage() {
-      const UNSPLASH_API = import.meta.env.BRIEFING_UNSPLASH_API
-      if (UNSPLASH_API) {
-        // Request (GET https://api.unsplash.com/photos/random?client_id=y7oYdXFfoT8OrOjUVrMpsiyFr5UkBy8mQOQgkIpx3z4&content_filter=high&query=background)
-        let resp = await fetch(
-          `https://api.unsplash.com/photos/random?client_id=${UNSPLASH_API}&content_filter=high&query=background`
-        )
-        if (resp) {
-          let info = await resp.json()
-          this.state.backgroundAuthor = info?.user?.name || "Unknown"
-          this.state.backgroundURL =
-            info?.links?.html || "https://unsplash.com/"
-          // log('Unsplash', info?.urls?.regular)
-          let url = info?.urls?.regular
-          this.state.backgroundImageURL = url
-          await setBackgroundImage(url)
-        }
-      }
-    },
     async doCheckSignal() {
       let result = await WebRTC.checkStatus()
       this.signalStatus = result.ok ? "✅" : "❌"
     },
   },
-  // async mounted() {
-  //   if (!this.state.backgroundImageURL) {
-  //     await this.doUnSplashImage()
-  //   }
-  // },
   watch: {
     async "state.deviceVideo"() {
       await this.$nextTick()
@@ -253,12 +172,6 @@ export default {
     },
     async "state.backgroundMode"(value, prevValue) {
       await this.$nextTick()
-
-      if (value === "image") {
-        if (!this.state.backgroundImageURL) {
-          await this.doUnSplashImage()
-        }
-      }
 
       // If just the background mode changes, don't restart the whole thing
       if ((value && !prevValue) || (prevValue && !value)) {

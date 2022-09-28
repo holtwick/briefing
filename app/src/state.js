@@ -225,18 +225,6 @@ async function switchMedia() {
     if (!success) {
       await switchMedia()
     }
-
-    if (state.backgroundMode && !desktopStream) {
-      blurLib = await import("./logic/background")
-      stream = await blurLib.startBlurTransform(stream)
-      setAudioTracks(stream, audioTracks)
-    } else {
-      if (blurLib) {
-        log("stop blur")
-        blurLib.stopBlurTransform()
-      }
-      blurLib = null
-    }
   } else {
     log.error("Media error:", media.error)
   }

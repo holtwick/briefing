@@ -8,7 +8,7 @@ Privacy is the driving force behind this project. It uses secure technologies li
 
 The difference between Briefing and most similar projects is, that it does not use a central server that distributes the video streams ([SFU](https://webrtcglossary.com/sfu/)). The advantage of an SFU is that it saves bandwidth due to the fact that the own video does not being uploaded to each participant but only once. The SFU can also do more optimizations the clients might not support. But then the video signal is not end-to-end encrypted anymore, i.e. you have to trust the SFU provider. Briefing instead sends data from peer to peer directly ("Mesh") and therefore the data does not travel over the server under normal operation. The WebRTC peers however still trust the signaling server for the authenticity of the peer-to-peer communications encryption in place.
 
-## Web App / Native Apps
+## Web App / Native App
 
 Briefing is a [PWA](https://web.dev/progressive-web-apps/) i.e. it is a web app, that can be installed from inside the browser on some platforms. To put Briefing on your home screen in iOS Safari tap on the "Share" icon and choose "Add to Home Screen". You can do the same in browsers like Google Chrome. **Therefore, native apps are not really required.**
 
@@ -18,13 +18,19 @@ But alongside to these awesome out-of-the-box features, we still have some nativ
 
 [Briefing is available in the Apple App Store](https://apps.apple.com/app/briefing-video-chat/id1510803601). You can find sample code in the `ios` folder.
 
-### Native Electron App
+For support of other platform visit the [legacy branch](https://github.com/holtwick/briefing/tree/legacy)
 
-[Briefing is available in the Microsoft Store](https://www.microsoft.com/de-de/p/briefings/9pcs356fc2jf). The source is available in the `electron` folder.
+### Run locally
 
-### Native Android App
+Clone or download this repository to your local machine, then:
 
-The `android` folder contains a sample. Build your own distribution following [this guide](https://developers.google.com/web/android/trusted-web-activity/quick-start).
+```
+cd app
+npm install
+npm start
+```
+
+Open your browser at [http://localhost:8080](http://localhost:8080).
 
 ## Adopt Briefing for your Project
 
@@ -40,7 +46,7 @@ The simplest way to use Briefing is to distribute links to it. They have the for
 
 You can also embed Briefing in your website using an `iframe`. [Visit this configuration page](https://brie.fi/ng/embed-demo) to find the best setting for you.
 
-### 3. Installation
+### 3. Installation / "Whitelabel"
 
 But in case you want to run it on your own hardware, it is important to understand what parts are required.
 
