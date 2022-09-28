@@ -77,10 +77,13 @@
 </style>
 
 <script>
-import { DEBUG, ROOM_PATH, ROOM_URL, SHOW_FULLSCREEN } from "../config"
-import { generateName } from "../lib/names"
+import { Logger } from "zeed"
+import { DEBUG, ROOM_PATH, ROOM_URL } from "../config"
 import { onMessageFromFrame } from "../lib/iframe"
+import { generateName } from "../lib/names"
 import SeaSwitch from "../ui/sea-switch.vue"
+
+const log = Logger("app-embed")
 
 export default {
   components: {
@@ -135,7 +138,7 @@ export default {
   },
   mounted() {
     onMessageFromFrame("status", (data) => {
-      console.log("new guest count", data)
+      log("new guest count", data)
       this.status = data
     })
   },

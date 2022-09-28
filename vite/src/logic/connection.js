@@ -125,7 +125,7 @@ export async function setupWebRTC(state) {
             if (report.isRemote) return
             bytes += report.bytesSent
             timestamp = report.timestamp
-            // console.log('bb', bytes, prevBytes, timestamp, prevTimestamp)
+            // log('bb', bytes, prevBytes, timestamp, prevTimestamp)
             resolve({ bytes, timestamp })
           }
         })

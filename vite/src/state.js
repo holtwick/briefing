@@ -41,7 +41,8 @@ if (isOriginalBriefing) {
     room = pathname.substr(ROOM_PATH.length)
   }
 }
-console.log("Room =", room)
+
+log.info("Room =", room)
 
 try {
   if (
@@ -67,7 +68,7 @@ try {
 const embedDemo = room === "embed-demo"
 if (embedDemo) room = null
 
-console.log("Room =", room, "Embed Demo =", embedDemo)
+log.info("Room =", room, "Embed Demo =", embedDemo)
 
 // STATE
 
@@ -124,6 +125,7 @@ export let state = {
 }
 
 messages.on("requestBugTracking", (_) => (state.requestBugTracking = true))
+
 messages.on("upgrade", (_) => (state.upgrade = true))
 
 messages.on("updateStream", updateStream)
@@ -223,7 +225,7 @@ async function switchMedia() {
       blurLib = null
     }
   } else {
-    console.error("Media error:", media.error)
+    log.error("Media error:", media.error)
   }
 
   state.stream = stream
@@ -232,7 +234,7 @@ async function switchMedia() {
 }
 
 export async function setup() {
-  console.log("Setup state")
+  log("Setup state")
   let rtc
   try {
     rtc = await setupWebRTC(state)
@@ -258,7 +260,7 @@ export async function setup() {
         }
       })
     } else {
-      console.error("Media error", error)
+      log.error("Media error", error)
     }
 
     state.stream = stream
@@ -303,14 +305,14 @@ export function postUpdateToIframeParent() {
         maximized: state.maximized,
       }
       let snapshot = objectSnapshot(update)
-      // console.log("snapshot", snapshot)
+      // log.log("snapshot", snapshot)
       if (snapshot !== lastUpdateSnapshot) {
         lastUpdateSnapshot = snapshot
         update.counter = counter++
         postMessageToParent("status", update)
       }
     } catch (err) {
-      console.error(err)
+      log.error(err)
     }
   }, 0)
 }

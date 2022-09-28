@@ -15,7 +15,7 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     outDir: "www",
-    sourcemap: false,
+    sourcemap: true,
     minify: true,
     target: "es6",
   },

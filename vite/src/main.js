@@ -30,15 +30,15 @@ setupBugTracker()
 //   navigator.userAgent.toLowerCase().indexOf(" electron/") > -1 &&
 //   window.beaker == null
 // ) {
-//   console.log("Identified Electron")
+//   log("Identified Electron")
 //   import("./pwa-electron.js").then()
-//   console.log("Handled Electron")
+//   log("Handled Electron")
 // }
 
 window.iOS = navigator?.platform?.match(/(iPhone|iPod|iPad)/i) != null
 window.iPhone = navigator?.platform?.match(/(iPhone|iPod)/i) != null
 if (window.iPhone) {
-  console.log("Identified Phone of a native app")
+  log("Identified Phone of a native app")
 }
 
 Vue.config.productionTip = false
@@ -68,7 +68,7 @@ Vue.mixin({
           }
           href = target?.href
         }
-        console.info("Open external link", event.target)
+        log.info("Open external link", event.target)
         if (href) {
           window.electron.shell.openExternal(href)
         }
