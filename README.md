@@ -47,6 +47,8 @@ You can also embed Briefing in your website using an `iframe`. [Visit this confi
 
 ### 3. Installation / "Whitelabel"
 
+> See also the [instructions for Docker](docs/docker.md)
+
 But in case you want to run it on your own hardware, it is important to understand what parts are required.
 
 **Servers**

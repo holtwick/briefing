@@ -12,6 +12,7 @@ bg.jpg
 bower_components
 dist
 dist_electron
+docker
 internal
 legacy
 legacy/app/public/faces

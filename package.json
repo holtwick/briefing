@@ -20,6 +20,7 @@
   "type": "module",
   "scripts": {
     "build": "nr clean && zerva build src/zerva/index.ts && vite build",
+    "build:docker": "nr build && ./scripts/make-docker.sh",
     "check": "vue-tsc --noEmit",
     "clean": "rm -rf dist www",
     "format": "prettier --write .",
