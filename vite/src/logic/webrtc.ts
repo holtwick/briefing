@@ -10,27 +10,42 @@ const log = Logger("app:webrtc")
 
 // Handles multiple connections, one to each peer
 export class WebRTC extends Emitter {
-  peerConnections = {}
+  peerConnections: Record<string, WebRTCPeer> = {}
   peerSettings = {}
   channel: WebSocketConnection
   room: string
+  status: any
 
   static isSupported() {
     return WebRTCPeer.isSupported()
   }
 
   static async checkStatus() {
-    // let socket = io(SIGNAL_SERVER_URL, {
-    //   // transports: ['websocket'],
-    // })
-    // return new Promise((resolve) => {
-    //   let id = uuid()
-    //   socket.emit("status", { ping: id }, (result) => {
-    //     log("status", result)
-    //     result.ok = result.pong === id
-    //     resolve(result)
-    //   })
-    // })
+    return new Promise((resolve, reject) => {
+      let id = uuid()
+
+      let channel = new WebSocketConnection()
+
+      channel.on("connect", () => {
+        channel.postMessage(
+          JSON.stringify({ name: "status", data: { ping: id } })
+        )
+      })
+
+      channel.on("message", (event) => {
+        let { name, data } = JSON.parse(event.data)
+        log("check result", name, data)
+        if (name === "status") {
+          data.ok = data.pong === id
+          if (data.ok) {
+            resolve(data)
+            return
+          }
+        }
+        reject("error")
+        channel.close()
+      })
+    })
   }
 
   channelEmit(name: string, data: any) {
@@ -59,31 +74,22 @@ export class WebRTC extends Emitter {
     const local = uuid() // this.io.id
 
     const methods = {
+      remove: (id: string) => {
+        let peer = this.peerConnections[id]
+        if (peer) {
+          peer.close()
+          delete this.peerConnections[id]
+          this.updateStatus()
+          this.emit("disconnected", { peer })
+        }
+      },
+
       joined: ({ room, peers, vapidPublicKey }) => {
         log("joined", state, room, peers, vapidPublicKey)
 
-        state.vapidPublicKey = vapidPublicKey
+        // state.vapidPublicKey = vapidPublicKey
 
         log("me", local, room, "peers", peers)
-
-        // We will try to establish a separate connection to all of them
-        // If the new participant (us) initiates the connections, the others do
-        // not need to get updates about new peers
-        this.channelEmit("signal", ({ from, to, signal, initiator }) => {
-          // log('received signal', from, to === local, initiator)
-          // If we are not already connected, do it now
-          let peer = this.peerConnections[from]
-          if (!peer) {
-            peer = this.handlePeer({
-              remote: from,
-              local,
-              initiator: false,
-              wrtc,
-            })
-          }
-          peer.signal(signal)
-          this.updateStatus()
-        })
 
         for (let i = 0; i < peers.length; i++) {
           const remote = peers[i]
@@ -96,16 +102,6 @@ export class WebRTC extends Emitter {
         }
 
         this.updateStatus()
-      },
-
-      remove: (id: string) => {
-        let peer = this.peerConnections[id]
-        if (peer) {
-          peer.close()
-          delete this.peerConnections[id]
-          this.updateStatus()
-          this.emit("disconnected", { peer })
-        }
       },
 
       signal: ({ from, to, signal, initiator }) => {
@@ -126,6 +122,7 @@ export class WebRTC extends Emitter {
 
       status: ({ info }) => {
         log(`status = ${info}`)
+        this.status = info
       },
 
       error: (info: any) => {
@@ -201,9 +198,6 @@ export class WebRTC extends Emitter {
     // we will now send via web socket signaling server to the remote peer
     peer.on("signal", (signal) => {
       // log('received peer signal', remote)
-      // this.channel.emit("message", {
-      //   id: "signal",
-      // })
       this.channelEmit("signal", {
         from: local,
         to: remote,

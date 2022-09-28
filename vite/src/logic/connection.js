@@ -2,6 +2,7 @@
 
 import { Logger, messages } from "zeed"
 import { ICE_CONFIG } from "../config"
+import { cloneObject } from "../lib/base"
 import { urlBase64ToUint8Array } from "../lib/base64"
 import {
   removeBandwidthRestriction,
@@ -39,7 +40,8 @@ export async function setupWebRTC(state) {
   })
 
   webrtc.on("status", (info) => {
-    state.status = info.status
+    log("status", info)
+    state.status = cloneObject(info.status)
   })
 
   webrtc.on("connected", ({ peer }) => {

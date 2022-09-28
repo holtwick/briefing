@@ -41,6 +41,8 @@ export function useRoom(config: {} = {}) {
 
     const methods = {
       join: ({ room }) => {
+        log("join")
+
         if (roomInfo) {
           log.warn("Tries to connect more than once.")
           return
@@ -57,7 +59,7 @@ export function useRoom(config: {} = {}) {
         }
 
         // Existing peers
-        let peers = Object.keys(roomInfo.peers)
+        let peers = [...roomInfo.peers.keys()]
 
         // Add ourself
         roomInfo.peers.set(peerId, {
