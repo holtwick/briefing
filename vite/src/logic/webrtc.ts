@@ -10,9 +10,16 @@ const log = Logger("app:webrtc")
 
 // Handles multiple connections, one to each peer
 export class WebRTC extends Emitter {
+  /** Direct connections via WebRTC. Do not mix up with websocket connections ;)  */
   peerConnections: Record<string, WebRTCPeer> = {}
+
   peerSettings = {}
-  channel: WebSocketConnection
+
+  /** The ID that has been assigned to us via websocket/joined. To be used in further communication via websocket. */
+  websocketId: string
+
+  websocketChannel: WebSocketConnection
+
   room: string
   status: any
 
@@ -49,7 +56,7 @@ export class WebRTC extends Emitter {
   }
 
   channelEmit(name: string, data: any) {
-    this.channel.postMessage(JSON.stringify({ name, data }))
+    this.websocketChannel.postMessage(JSON.stringify({ name, data }))
   }
 
   constructor({
@@ -69,9 +76,7 @@ export class WebRTC extends Emitter {
 
     log("webrtc contacts signal server")
 
-    this.channel = new WebSocketConnection()
-
-    const local = uuid() // this.io.id
+    this.websocketChannel = new WebSocketConnection()
 
     const methods = {
       remove: (id: string) => {
@@ -84,18 +89,16 @@ export class WebRTC extends Emitter {
         }
       },
 
-      joined: ({ room, peers, vapidPublicKey }) => {
-        log("joined", state, room, peers, vapidPublicKey)
+      joined: ({ room, peers, self }) => {
+        log("joined", state, room, peers)
 
-        // state.vapidPublicKey = vapidPublicKey
-
-        log("me", local, room, "peers", peers)
+        this.websocketId = self
 
         for (let i = 0; i < peers.length; i++) {
           const remote = peers[i]
           this.handlePeer({
             remote,
-            local,
+            local: this.websocketId,
             initiator: true,
             wrtc,
           })
@@ -111,7 +114,7 @@ export class WebRTC extends Emitter {
         if (!peer) {
           peer = this.handlePeer({
             remote: from,
-            local,
+            local: this.websocketId,
             initiator: false,
             wrtc,
           })
@@ -130,7 +133,7 @@ export class WebRTC extends Emitter {
       },
     }
 
-    this.channel.on("message", (event) => {
+    this.websocketChannel.on("message", (event) => {
       log("onMessage:", event)
       try {
         let { name, data } = JSON.parse(event.data)
@@ -145,12 +148,12 @@ export class WebRTC extends Emitter {
     // connected.value = false
     // })
 
-    this.channel.on("close", () => {
+    this.websocketChannel.on("close", () => {
       //   log("channel close")
       //   connected.value = false
     })
 
-    this.channel.on("connect", () => {
+    this.websocketChannel.on("connect", () => {
       log("onConnect")
       // this.channelEmit("status", { hello: "world" })
       this.channelEmit("join", { room })
@@ -249,7 +252,7 @@ export class WebRTC extends Emitter {
   close() {
     this.forEachPeer((peer) => peer.close())
     this.peerConnections = {}
-    this.channel.close()
+    this.websocketChannel.close()
   }
 
   async cleanup() {

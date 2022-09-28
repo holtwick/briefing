@@ -58,10 +58,10 @@ export function useRoom(config: {} = {}) {
           rooms.set(room, roomInfo)
         }
 
-        // Existing peers
+        // Existing peers (before we add self)
         let peers = [...roomInfo.peers.keys()]
 
-        // Add ourself
+        // Add self
         roomInfo.peers.set(peerId, {
           id: peerId,
           channel,
@@ -72,6 +72,7 @@ export function useRoom(config: {} = {}) {
         channelEmit("joined", {
           room,
           peers,
+          self: peerId,
         })
       },
 
@@ -81,7 +82,12 @@ export function useRoom(config: {} = {}) {
         if (from !== peerId) {
           log.warn("Strange message that was not sent by us.")
         } else if (to) {
-          roomInfo?.peers.get(to)?.emit("signal", data)
+          const peer = roomInfo?.peers.get(to)
+          if (!peer) {
+            log.warn(`Cannot find peer ${to} for sending signal.`)
+          } else {
+            peer.emit("signal", data)
+          }
         } else {
           log.warn("Missing data for signal.")
         }
