@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  briefing:
+    build: .
+    restart: always
+    volumes:
+      - ./dist:/app/dist
+      - ./www:/app/www
+      - ./data:/app/data
+    env_file:
+      - docker-zerva.env
+
+networks:
+  default:
+    external:
+      name: proxy

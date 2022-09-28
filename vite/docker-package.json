@@ -1,0 +1,15 @@
+{
+  "name": "briefing-docker",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "Dirk Holtwick",
+    "email": "dirk.holtwick@gmail.com",
+    "url": "https://holtwick.de"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "ZEED=* node --enable-source-maps dist/main.cjs"
+  },
+  "dependencies": {}
+}

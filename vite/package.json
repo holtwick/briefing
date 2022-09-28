@@ -20,6 +20,7 @@
   },
   "description": "Secure direct video chat",
   "devDependencies": {
+    "@antfu/ni": "^0.18.0",
     "@types/node": "^18.7.23",
     "@vitejs/plugin-vue2": "^2.0.0",
     "@zerva/bin": "^0.13.6",
@@ -47,7 +48,7 @@
     "url": "https://github.com/holtwick/briefing.git"
   },
   "scripts": {
-    "build": "npm run clean && zerva build src/zerva/index.ts && vite build",
+    "build": "nr clean && zerva build src/zerva/index.ts && vite build",
     "clean": "rm -rf dist www",
     "reset": "rm -rf node_modules pnpm-lock.yaml dist dist_www www",
     "format": "prettier --write .",
@@ -55,7 +56,7 @@
     "check": "vue-tsc --noEmit",
     "serve": "ZEED=* LEVEL=i node dist/main.cjs",
     "start": "ZEED=* LEVEL=a zerva src/zerva/index.ts",
-    "test": "ZEED=* LEVEL=i vitest -r src --global"
+    "test": "ZEED=* LEVEL=i vitest -r src --globals"
   },
   "type": "module",
   "version": "1.20.3"

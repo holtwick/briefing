@@ -1,0 +1,11 @@
+node_modules
+pnpm*
+.pnpm*
+tmp
+*.log
+.out*
+*.local
+data
+dist
+www
+docker*

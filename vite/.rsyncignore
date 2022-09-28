@@ -1,0 +1,11 @@
++ package.json
++ .dockerignore
++ Dockerfile
++ docker-zerva.env
++ docker-compose.yml
++ docker-package.json
++ dist
++ dist/**
++ www
++ www/**
+- *
