@@ -1,8 +1,34 @@
 {
+  "name": "briefing",
+  "version": "1.20.3",
+  "private": true,
+  "description": "Secure direct video chat",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
+  "funding": {
+    "type": "GitHub Sponsors ❤",
+    "url": "https://github.com/sponsors/holtwick"
+  },
+  "license": "EUPL-1.2",
   "author": {
-    "email": "dirk.holtwick@gmail.com",
     "name": "Dirk Holtwick",
+    "email": "dirk.holtwick@gmail.com",
     "url": "https://holtwick.de"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "nr clean && zerva build src/zerva/index.ts && vite build",
+    "check": "vue-tsc --noEmit",
+    "clean": "rm -rf dist www",
+    "format": "prettier --write .",
+    "preview": "vite preview",
+    "reset": "rm -rf node_modules pnpm-lock.yaml dist dist_www www",
+    "serve": "ZEED=* LEVEL=i node dist/main.cjs",
+    "start": "ZEED=* LEVEL=a zerva src/zerva/index.ts",
+    "test": "ZEED=* LEVEL=i vitest -r src --globals",
+    "upload": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-dev:briefing"
   },
   "dependencies": {
     "@sentry/browser": "^7.13.0",
@@ -18,7 +44,6 @@
     "vue": "^2.6.14",
     "zeed": "^0.8.28"
   },
-  "description": "Secure direct video chat",
   "devDependencies": {
     "@antfu/ni": "^0.18.0",
     "@types/node": "^18.7.23",
@@ -35,29 +60,5 @@
   },
   "engines": {
     "node": ">=16.0.0"
-  },
-  "funding": {
-    "type": "GitHub Sponsors ❤",
-    "url": "https://github.com/sponsors/holtwick"
-  },
-  "license": "EUPL-1.2",
-  "name": "briefing",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/holtwick/briefing.git"
-  },
-  "scripts": {
-    "build": "nr clean && zerva build src/zerva/index.ts && vite build",
-    "clean": "rm -rf dist www",
-    "reset": "rm -rf node_modules pnpm-lock.yaml dist dist_www www",
-    "format": "prettier --write .",
-    "preview": "vite preview",
-    "check": "vue-tsc --noEmit",
-    "serve": "ZEED=* LEVEL=i node dist/main.cjs",
-    "start": "ZEED=* LEVEL=a zerva src/zerva/index.ts",
-    "test": "ZEED=* LEVEL=i vitest -r src --globals"
-  },
-  "type": "module",
-  "version": "1.20.3"
+  }
 }
