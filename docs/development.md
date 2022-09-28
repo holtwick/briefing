@@ -9,6 +9,10 @@ npm start
 
 Access the local server via [http://localhost:8080](http://localhost:8080).
 
+## Customization
+
+Most customization can be done by setting env variables, see [.env](../.env) for examples.
+
 ## Debugging
 
 Enable logging by entering the following in the browsers console:

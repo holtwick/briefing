@@ -9,7 +9,7 @@ The easiest way to install Briefing is by using Docker.
 
 ## Debug
 
-To stop run ``docker-compose down`.
+To stop run `docker-compose down`.
 
 In case of problems try to start without the `-d` flag to see logs, like `docker-compose up --build`.
 
