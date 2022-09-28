@@ -30,11 +30,10 @@
 </style>
 
 <script>
-// import Popover from './sea-popover'
-import SeaSymbol from "./sea-symbol"
-import { trackException } from "../bugs"
-
 import { Logger } from "zeed"
+import { trackException } from "../bugs"
+import SeaSymbol from "./sea-symbol.vue"
+
 const log = Logger("ui:button")
 
 // @action, @click

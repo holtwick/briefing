@@ -1,6 +1,8 @@
 import clipboardCopy from "clipboard-copy"
-import { trackException } from "../bugs"
+import { Logger } from "zeed"
 import { ROOM_URL } from "../config.js"
+
+const log = Logger("share")
 
 export function createLinkForRoom(room) {
   return ROOM_URL + room
@@ -25,7 +27,7 @@ export async function shareLink(
       })
       return true
     } catch (err) {
-      console.warn(err)
+      log.warn(err)
       // trackException(err)
     }
   } else if (window.electron) {
@@ -35,7 +37,7 @@ export async function shareLink(
       // alert('The URL has been copied to your clipboard.')
       return true
     } catch (err) {
-      console.warn(err)
+      log.warn(err)
       // trackException(err)
     }
   } else {

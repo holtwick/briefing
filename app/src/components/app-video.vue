@@ -77,7 +77,12 @@
         <br />
         <tt>{{ fingerprint }}</tt>
       </label>
-      <label title="Name" class="-short" style="right: 5rem">
+      <label
+        title="Name"
+        class="-short"
+        style="right: 5rem"
+        v-if="String(name).trim().length"
+      >
         {{ name }}
       </label>
     </div>
@@ -130,8 +135,8 @@
 
 <script>
 import { trackSilentException } from "../bugs"
-
 import { Logger } from "zeed"
+
 const log = Logger("app:app-peer")
 
 window.screenshotNumber = 0

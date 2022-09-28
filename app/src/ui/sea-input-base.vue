@@ -79,6 +79,7 @@
 
 <script>
 import { Logger } from "zeed"
+
 const log = Logger("app:fa-textarea")
 
 export default {

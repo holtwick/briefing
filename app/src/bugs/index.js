@@ -1,24 +1,21 @@
 import Vue from "vue"
+import { Logger, messages } from "zeed"
 import { PRODUCTION, SENTRY_DSN } from "../config"
-import { messages } from "../lib/emitter"
 
-import { Logger } from "zeed"
 const log = Logger("app:bugs")
 
 // Lazy loading of bug tracker
 export function setupBugTracker(done) {
   if (PRODUCTION && SENTRY_DSN && isAllowedBugTracking()) {
     console.log("Sentry bug tracking is allowed")
-    import(/* webpackChunkName: 'sentry' */ "./lazy-sentry").then(
-      ({ setupSentry }) => {
-        setupSentry({
-          dsn: SENTRY_DSN,
-          Vue,
-        })
-        console.log("Did init Sentry bug tracking")
-        if (done) done()
-      }
-    )
+    import("./lazy-sentry").then(({ setupSentry }) => {
+      setupSentry({
+        dsn: SENTRY_DSN,
+        Vue,
+      })
+      console.log("Did init Sentry bug tracking")
+      if (done) done()
+    })
   }
 }
 
@@ -55,7 +52,7 @@ export function setAllowedBugTracking(
 
 export function trackException(e, silent = false) {
   if (!silent) {
-    console.error("Exception:", e)
+    log.error("Exception:", e)
   }
   if (window.sentry) {
     log("sentry exception", e)
@@ -67,6 +64,6 @@ export function trackException(e, silent = false) {
 }
 
 export function trackSilentException(e) {
-  console.error(e)
+  log.error(e)
   trackException(e, true)
 }

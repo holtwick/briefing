@@ -29,8 +29,8 @@
 // Mix of this receipt: https://www.cssscript.com/realistic-ios-switch-pure-css/
 // And IBM Carbon: https://www.carbondesignsystem.com/components/toggle/code
 
-import SeaFormGroup from "./sea-form-group"
-import SeaInputBase from "./sea-input-base"
+import SeaFormGroup from "./sea-form-group.vue"
+import SeaInputBase from "./sea-input-base.vue"
 
 export default {
   name: "sea-switch",

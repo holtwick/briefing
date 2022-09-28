@@ -15,7 +15,7 @@
       <sea-button @action="doShare">{{ l.share.button_copy }}</sea-button>
     </div>
     <p>{{ l.share.qr_info }}</p>
-    <p class="qrcode" v-html="qrcode">QRCode</p>
+    <p class="qrcode" v-html="qrcode"></p>
     <p v-html="l.share.feedback"></p>
   </div>
 </template>
@@ -44,11 +44,11 @@
 </style>
 
 <script>
+import { Logger } from "zeed"
 import { qrcode } from "../lib/qrcode"
 import { createLinkForRoom, shareLink } from "../lib/share"
-import SeaButton from "../ui/sea-button"
+import SeaButton from "../ui/sea-button.vue"
 
-import { Logger } from "zeed"
 const log = Logger("app:app-share")
 
 export default {

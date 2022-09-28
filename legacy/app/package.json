@@ -1,0 +1,67 @@
+{
+  "name": "briefing",
+  "description": "Secure direct video chat",
+  "version": "1.20.3",
+  "private": true,
+  "author": {
+    "name": "Dirk Holtwick",
+    "email": "dirk.holtwick@gmail.com",
+    "url": "https://holtwick.de"
+  },
+  "license": "EUPL-1.2",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
+  "funding": {
+    "type": "GitHub Sponsors ❤",
+    "url": "https://github.com/sponsors/holtwick"
+  },
+  "scripts": {
+    "start": "npm run serve",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "x:localhost": "ssh -R 80:localhost:8080 ssh.localhost.run",
+    "x:lt": "lt --port 8080",
+    "x:ngrok": "ngrok http 8080",
+    "test": "jest",
+    "format": "prettier --write ."
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "electron >= 8"
+  ],
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "dependencies": {
+    "@sentry/browser": "^6.15.0",
+    "@sentry/integrations": "^6.15.0",
+    "@tensorflow-models/body-pix": "^2.2.0",
+    "@tensorflow/tfjs-converter": "<2.0.0",
+    "@tensorflow/tfjs-core": "<2.0.0",
+    "clipboard-copy": "^4.0.1",
+    "core-js": "^3.19.1",
+    "custom-electron-titlebar": "^3.2.7",
+    "lodash": "^4.17.21",
+    "regenerator-runtime": "^0.13.9",
+    "register-service-worker": "^1.7.2",
+    "simple-peer": "^9.11.0",
+    "socket.io-client": "^2.4.0",
+    "uuid": "^8.3.2",
+    "vue": "^2.6.14",
+    "vue-template-compiler": "^2.6.14",
+    "zeed": "^0.7.75"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-pwa": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "sass": "^1.35.1",
+    "sass-loader": "^10"
+  }
+}

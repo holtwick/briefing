@@ -1,4 +1,6 @@
-import { encodeBase32 } from "zeed"
+import { encodeBase32, Logger } from "zeed"
+
+const log = Logger("fingerprint")
 
 export function getCompactChecksum(...args) {
   args.sort()
@@ -29,14 +31,14 @@ export async function digestMessage(message) {
 }
 
 export async function digestMessages(...messages) {
-  console.log("messages", messages)
+  log("messages", messages)
   messages = messages.map((m) => m.toString().toLowerCase().trim())
   messages.sort()
   return digestMessage(messages.join("\n"))
 }
 
 export async function sha256Messages(...messages) {
-  console.log("messages", messages)
+  log("messages", messages)
   messages = messages.map((m) => m.toString().toLowerCase().trim())
   messages.sort()
   const message = messages.join("\n")
@@ -54,7 +56,7 @@ export function getFingerprint(sdp) {
   if (sdp) {
     let m = /^a=fingerprint(:[\w-]+)?\s+(.*)$/gm.exec(sdp)
     if (m.length) {
-      // console.log(sdp, m)
+      // log(sdp, m)
       return getFingerprintArray(m[2])
     }
   }

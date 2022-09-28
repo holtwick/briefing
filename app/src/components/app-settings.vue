@@ -156,14 +156,13 @@
 </template>
 
 <script>
-import { messages } from "../lib/emitter"
-import SeaSwitch from "../ui/sea-switch"
-import { RELEASE, SIGNAL_SERVER_URL, ICE_CONFIG } from "../config"
+import { Logger, messages } from "zeed"
 import { isAllowedBugTracking, setAllowedBugTracking } from "../bugs"
+import { ICE_CONFIG, RELEASE, SIGNAL_SERVER_URL } from "../config"
 import { setBackgroundImage } from "../logic/background"
 import { WebRTC } from "../logic/webrtc"
+import SeaSwitch from "../ui/sea-switch.vue"
 
-import { Logger } from "zeed"
 const log = Logger("app:app-settings")
 
 export default {
@@ -215,7 +214,7 @@ export default {
   },
   methods: {
     async doUnSplashImage() {
-      const UNSPLASH_API = process.env.VUE_APP_UNSPLASH_API
+      const UNSPLASH_API = import.meta.env.BRIEFING_UNSPLASH_API
       if (UNSPLASH_API) {
         // Request (GET https://api.unsplash.com/photos/random?client_id=y7oYdXFfoT8OrOjUVrMpsiyFr5UkBy8mQOQgkIpx3z4&content_filter=high&query=background)
         let resp = await fetch(

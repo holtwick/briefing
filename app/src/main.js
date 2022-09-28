@@ -1,38 +1,44 @@
 import Vue from "vue"
+import { Logger } from "zeed"
+import App from "./app.vue"
+import { setupBugTracker } from "./bugs"
 import locale from "./lib/locale"
-import "./logic/registerServiceWorker"
 import de from "./locales/de.json"
 import en from "./locales/en.json"
-import it from "./locales/it.json"
-import zh from "./locales/zh.json"
+import es from "./locales/es.json"
 import fr from "./locales/fr.json"
+import id from "./locales/id.json"
+import it from "./locales/it.json"
+import pt from "./locales/pt.json"
+import ro from "./locales/ro.json"
 import ru from "./locales/ru.json"
 import tr from "./locales/tr.json"
-import ro from "./locales/ro.json"
-import id from "./locales/id.json"
-import es from "./locales/es.json"
-import pt from "./locales/pt.json"
-import App from "./pwa-app.vue"
+import zh from "./locales/zh.json"
 import { postUpdateToIframeParent, state } from "./state"
-import { setupBugTracker } from "./bugs"
+
+// import "./logic/registerServiceWorker"
+
+const log = Logger("main")
+
+log(`env = ${JSON.stringify(import.meta.env, null, 2)}`)
 
 // This will be done privacy conform, see bugs/README-BUGTRACKER.md
 setupBugTracker()
 
 // Electron specific i.e. Windows App will become a nicer modern window title and some other small features
-if (
-  navigator.userAgent.toLowerCase().indexOf(" electron/") > -1 &&
-  window.beaker == null
-) {
-  console.log("Identified Electron")
-  import(/* webpackChunkName: 'pwa-electron' */ "./pwa-electron").then()
-  console.log("Handled Electron")
-}
+// if (
+//   navigator.userAgent.toLowerCase().indexOf(" electron/") > -1 &&
+//   window.beaker == null
+// ) {
+//   log("Identified Electron")
+//   import("./pwa-electron.js").then()
+//   log("Handled Electron")
+// }
 
 window.iOS = navigator?.platform?.match(/(iPhone|iPod|iPad)/i) != null
 window.iPhone = navigator?.platform?.match(/(iPhone|iPod)/i) != null
 if (window.iPhone) {
-  console.log("Identified Phone of a native app")
+  log("Identified Phone of a native app")
 }
 
 Vue.config.productionTip = false
@@ -62,7 +68,7 @@ Vue.mixin({
           }
           href = target?.href
         }
-        console.info("Open external link", event.target)
+        log.info("Open external link", event.target)
         if (href) {
           window.electron.shell.openExternal(href)
         }
@@ -95,7 +101,8 @@ new Vue({
 }).$mount("#app")
 
 // Do some tests on the actual browser
+// localStorage.test = true
 
 if (localStorage?.test) {
-  import(/* webpackChunkName: 'test' */ "./in-browser-test.js").then()
+  import("./in-browser-test.js").then()
 }

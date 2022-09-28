@@ -1,6 +1,6 @@
+import { Logger } from "zeed"
 import { trackException, trackSilentException } from "../bugs"
 
-import { Logger } from "zeed"
 const log = Logger("app:stream")
 
 export async function getDevices() {

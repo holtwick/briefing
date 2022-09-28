@@ -55,12 +55,12 @@
 </style>
 
 <script>
+import { Logger } from "zeed"
 import trapFocus from "./lib/directives/trapFocus"
 import { removeElement } from "./lib/helpers"
-import SeaLink from "./sea-link"
-import SeaSymbol from "./sea-symbol"
+import SeaLink from "./sea-link.vue"
+import SeaSymbol from "./sea-symbol.vue"
 
-import { Logger } from "zeed"
 const log = Logger("ui:sea-modal")
 
 export default {

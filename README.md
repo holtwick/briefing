@@ -16,7 +16,7 @@ But alongside to these awesome out-of-the-box features, we still have some nativ
 
 ### Native iOS App
 
-[Briefing is available in the Apple AppStore](https://apps.apple.com/app/briefing-video-chat/id1510803601). You can find sample code in the `ios` folder.
+[Briefing is available in the Apple App Store](https://apps.apple.com/app/briefing-video-chat/id1510803601). You can find sample code in the `ios` folder.
 
 ### Native Electron App
 
@@ -34,7 +34,7 @@ However, you can just use the installation on the website <https://brie.fi/ng> f
 
 ### 1. Link
 
-The simplest way to use Briefing is to distribute links to it. The have the form of `https://brie.fi/ng/<room-name>`, where you need to replace `<room-name>` by some random name you can choose.
+The simplest way to use Briefing is to distribute links to it. They have the form of `https://brie.fi/ng/<room-name>`, where you need to replace `<room-name>` by some random name you can choose.
 
 ### 2. Embedding
 

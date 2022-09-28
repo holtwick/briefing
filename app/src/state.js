@@ -1,4 +1,18 @@
-import { messages } from "./lib/emitter"
+import { Logger, messages } from "zeed"
+import { trackException, trackSilentException } from "./bugs"
+import {
+  PRODUCTION,
+  ROOM_PATH,
+  SHOW_CHAT,
+  SHOW_FULLSCREEN,
+  SHOW_INVITATION,
+  SHOW_INVITATION_HINT,
+  SHOW_SETTINGS,
+  SHOW_SHARE,
+} from "./config"
+import { isTrue, objectSnapshot } from "./lib/base.js"
+import { postMessageToParent } from "./lib/iframe.js"
+import { normalizeName } from "./lib/names"
 import { setupWebRTC } from "./logic/connection"
 import {
   defaultAudioConstraints,
@@ -8,46 +22,34 @@ import {
   getUserMedia,
   setAudioTracks,
 } from "./logic/stream"
-import { trackException, trackSilentException } from "./bugs"
-import {
-  PRODUCTION,
-  ROOM_PATH,
-  SHOW_FULLSCREEN,
-  SHOW_INVITATION,
-  SHOW_INVITATION_HINT,
-  SHOW_SETTINGS,
-  SHOW_SHARE,
-  SHOW_CHAT,
-} from "./config"
-import { normalizeName } from "./lib/names"
-import { postMessageToParent } from "./lib/iframe.js"
-import { objectSnapshot, isTrue } from "./lib/base.js"
-import { Logger } from "zeed"
 
 const log = Logger("app:state")
 
 const screenshots = false
 
-// export const DEBUG = location.port.toString() === '8080' || !location.pathname.startsWith('/ng/')
-// export const isPWA = process.env.VUE_APP_TARGET === 'pwa'
-
 // ROOM
 
 const isOriginalBriefing = ROOM_PATH === "/ng/"
 
-let room
-const pathname = location.pathname
-if (isOriginalBriefing) {
-  let m = /^\/ngs?\/(.*?)$/gi.exec(pathname)
-  room = m && m[1]
-} else {
-  if (pathname.startsWith(ROOM_PATH)) {
-    room = pathname.substr(ROOM_PATH.length)
+function getRoomByCurrentLocation() {
+  const pathname = location.pathname
+  log("getRoomByCurrentLocation", pathname)
+  if (isOriginalBriefing) {
+    let m = /^\/ngs?\/(.*?)$/gi.exec(pathname)
+    return m && m[1]
+  } else {
+    if (pathname.startsWith(ROOM_PATH)) {
+      return pathname.substr(ROOM_PATH.length)
+    }
   }
 }
-console.log("Room =", room)
 
+let room = getRoomByCurrentLocation()
+log.info("Room =", room)
+
+// Normalize URL matching to room
 try {
+  const pathname = location.pathname
   if (
     pathname === "/" ||
     room === "" ||
@@ -67,11 +69,17 @@ try {
   trackSilentException(err)
 }
 
+// Track URL changes and fix room
+window.addEventListener("popstate", (event) => {
+  state.room = getRoomByCurrentLocation()
+  log("popstate", state.room, event)
+})
+
 // Hack to avoid routing ;)
 const embedDemo = room === "embed-demo"
 if (embedDemo) room = null
 
-console.log("Room =", room, "Embed Demo =", embedDemo)
+log.info("Room =", room, "Embed Demo =", embedDemo)
 
 // STATE
 
@@ -128,6 +136,7 @@ export let state = {
 }
 
 messages.on("requestBugTracking", (_) => (state.requestBugTracking = true))
+
 messages.on("upgrade", (_) => (state.upgrade = true))
 
 messages.on("updateStream", updateStream)
@@ -216,9 +225,7 @@ async function switchMedia() {
     }
 
     if (state.backgroundMode && !desktopStream) {
-      blurLib = await import(
-        /* webpackChunkName: 'blur' */ "./logic/background"
-      )
+      blurLib = await import("./logic/background")
       stream = await blurLib.startBlurTransform(stream)
       setAudioTracks(stream, audioTracks)
     } else {
@@ -229,7 +236,7 @@ async function switchMedia() {
       blurLib = null
     }
   } else {
-    console.error("Media error:", media.error)
+    log.error("Media error:", media.error)
   }
 
   state.stream = stream
@@ -238,7 +245,7 @@ async function switchMedia() {
 }
 
 export async function setup() {
-  console.log("Setup state")
+  log("Setup state")
   let rtc
   try {
     rtc = await setupWebRTC(state)
@@ -264,7 +271,7 @@ export async function setup() {
         }
       })
     } else {
-      console.error("Media error", error)
+      log.error("Media error", error)
     }
 
     state.stream = stream
@@ -309,14 +316,14 @@ export function postUpdateToIframeParent() {
         maximized: state.maximized,
       }
       let snapshot = objectSnapshot(update)
-      // console.log("snapshot", snapshot)
+      // log.log("snapshot", snapshot)
       if (snapshot !== lastUpdateSnapshot) {
         lastUpdateSnapshot = snapshot
         update.counter = counter++
         postMessageToParent("status", update)
       }
     } catch (err) {
-      console.error(err)
+      log.error(err)
     }
   }, 0)
 }

@@ -356,10 +356,10 @@
 </style>
 
 <script>
-import { DEBUG, ROOM_PATH } from "../config"
-import AppHelp from "./app-help"
 import { trackSilentException } from "../bugs"
+import { DEBUG, ROOM_PATH } from "../config"
 import { generateName } from "../lib/names"
+import AppHelp from "./app-help.vue"
 
 export default {
   name: "app-welcome",
@@ -368,7 +368,7 @@ export default {
   },
   data() {
     let defaultName = DEBUG
-      ? process.env.VUE_APP_DEBUG_DEFAULT_ROOM || "development"
+      ? import.meta.env.BRIEFING_DEBUG_DEFAULT_ROOM || "development"
       : generateName()
     return {
       defaultName,

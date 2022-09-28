@@ -1,17 +1,18 @@
 // https://webrtchacks.com/limit-webrtc-bandwidth-sdp/
 
+import { Logger, messages } from "zeed"
 import { ICE_CONFIG } from "../config"
+import { cloneObject } from "../lib/base"
 import { urlBase64ToUint8Array } from "../lib/base64"
-import { messages } from "../lib/emitter"
-import { setMediaBitrate } from "./sdp-manipulation.js"
-import { removeBandwidthRestriction } from "./sdp-manipulation.js"
+import {
+  removeBandwidthRestriction,
+  setMediaBitrate,
+} from "./sdp-manipulation.js"
+import { WebRTC } from "./webrtc"
 
-import { Logger } from "zeed"
 const log = Logger("app:connection")
 
 export async function setupWebRTC(state) {
-  let { WebRTC } = await import(/* webpackChunkName: 'webrtc' */ "./webrtc")
-
   if (!WebRTC.isSupported()) return null
 
   let config = ICE_CONFIG
@@ -39,7 +40,14 @@ export async function setupWebRTC(state) {
   })
 
   webrtc.on("status", (info) => {
-    state.status = info.status
+    log("status", info.status)
+    // hack somehow Vue doesn't like the real WebRtcPeer object any more
+    let status = info.status.map((p) => {
+      let pp = cloneObject(p)
+      pp.peer.stream = p.peer.stream
+      return pp
+    })
+    state.status = status
   })
 
   webrtc.on("connected", ({ peer }) => {
@@ -117,7 +125,7 @@ export async function setupWebRTC(state) {
             if (report.isRemote) return
             bytes += report.bytesSent
             timestamp = report.timestamp
-            // console.log('bb', bytes, prevBytes, timestamp, prevTimestamp)
+            // log('bb', bytes, prevBytes, timestamp, prevTimestamp)
             resolve({ bytes, timestamp })
           }
         })

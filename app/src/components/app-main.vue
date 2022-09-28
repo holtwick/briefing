@@ -34,9 +34,9 @@
           v-for="peer in peers"
           :key="peer.remote"
           :id="peer.remote"
-          :stream="peer && peer.peer && peer.peer.stream"
-          :fingerprint="peer && peer.peer && peer.peer.fingerprint"
-          :name="peer && peer.peer && peer.peer.name"
+          :stream="peer?.peer?.stream"
+          :fingerprint="peer?.peer?.fingerprint"
+          :name="peer?.peer?.name"
         />
 
         <div
@@ -319,26 +319,28 @@
 </template>
 
 <script>
-import { messages } from "../lib/emitter"
-import { createLinkForRoom, shareLink } from "../lib/share"
-import { setup } from "../state"
-import SeaButton from "../ui/sea-button"
-import SeaLink from "../ui/sea-link"
-import SeaModal from "../ui/sea-modal"
-import AppVideo from "./app-video"
+import { Logger, messages } from "zeed"
 import { setAllowedBugTracking } from "../bugs"
+import { ROOM_PATH } from "../config"
+import { createLinkForRoom, shareLink } from "../lib/share"
 import { setBackgroundImage } from "../logic/background"
-import { Logger } from "zeed"
+import { setup } from "../state"
+import SeaButton from "../ui/sea-button.vue"
+import SeaLink from "../ui/sea-link.vue"
+import SeaModal from "../ui/sea-modal.vue"
+import AppChat from "./app-chat.vue"
+import AppSettings from "./app-settings.vue"
+import AppShare from "./app-share.vue"
+import AppVideo from "./app-video.vue"
 
 const log = Logger("app:app-sidebar")
 
 export default {
   name: "app-main",
   components: {
-    AppSettings: () =>
-      import(/* webpackChunkName: 'settings' */ "./app-settings"),
-    AppShare: () => import(/* webpackChunkName: 'share' */ "./app-share"),
-    AppChat: () => import(/* webpackChunkName: 'chat' */ "./app-chat"),
+    AppSettings,
+    AppShare,
+    AppChat,
     SeaLink,
     SeaModal,
     SeaButton,
@@ -388,7 +390,7 @@ export default {
     },
     doQuit() {
       if (confirm("Really quit this session?")) {
-        location.assign("/ng/")
+        location.assign(ROOM_PATH)
       }
     },
     doReload() {
