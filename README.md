@@ -101,4 +101,4 @@ For adding or fixing translations get started here: https://github.com/holtwick/
 
 ## Legacy
 
-Version 1.0 was based on Webpack and had examples for iOS, Android, Windows and Electron and a separate signal server. This code is not maintained any more but still accessible via the [legacy branch](https://github.com/holtwick/briefing/tree/legacy).
+Version 1.0 was based on Webpack and had examples for iOS, Android, Windows and Electron and a separate signal server. It also featured background blur and image backdrops via Unsplash. All these implementations where outdated. But the code is still accessible via the [legacy branch](https://github.com/holtwick/briefing/tree/legacy), yet not maintained and supported anymore.

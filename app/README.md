@@ -1,6 +1,13 @@
 # Brie.fi/ng Frontend
 
-The front end of Briefing as PWA.
+Server and client code of Briefing.
+
+### Technology stack
+
+- [Vue2](https://v2.vuejs.org/)
+- [Vite](https://vitejs.dev/)
+- [Zerva](https://www.npmjs.com/package/@zerva/core)
+- [Zeed](https://www.npmjs.com/package/zeed)
 
 ### Icons
 
