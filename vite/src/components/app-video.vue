@@ -77,7 +77,12 @@
         <br />
         <tt>{{ fingerprint }}</tt>
       </label>
-      <label title="Name" class="-short" style="right: 5rem">
+      <label
+        title="Name"
+        class="-short"
+        style="right: 5rem"
+        v-if="String(name).trim().length"
+      >
         {{ name }}
       </label>
     </div>

@@ -6,7 +6,7 @@ import { assert } from "../lib/assert"
 import { state } from "../state"
 import { trackException } from "../bugs/index"
 
-const bodyPix = import("@tensorflow-models/body-pix")
+const bodyPix = import("@tensorflow-models/body-pix") // todo
 
 import { Logger } from "zeed"
 const log = Logger("app:blur")

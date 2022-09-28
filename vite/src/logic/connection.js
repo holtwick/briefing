@@ -40,8 +40,14 @@ export async function setupWebRTC(state) {
   })
 
   webrtc.on("status", (info) => {
-    log("status", info)
-    state.status = cloneObject(info.status)
+    log("status", info.status)
+    // hack somehow Vue doesn't like the real WebRtcPeer object any more
+    let status = info.status.map((p) => {
+      let pp = cloneObject(p)
+      pp.peer.stream = p.peer.stream
+      return pp
+    })
+    state.status = status
   })
 
   webrtc.on("connected", ({ peer }) => {

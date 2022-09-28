@@ -212,7 +212,7 @@ async function switchMedia() {
     }
 
     if (state.backgroundMode && !desktopStream) {
-      blurLib = await import("./logic/background.js")
+      blurLib = await import("./logic/background")
       stream = await blurLib.startBlurTransform(stream)
       setAudioTracks(stream, audioTracks)
     } else {
