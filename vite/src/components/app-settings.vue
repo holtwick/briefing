@@ -214,7 +214,7 @@ export default {
   },
   methods: {
     async doUnSplashImage() {
-      const UNSPLASH_API = process.env.VUE_APP_UNSPLASH_API
+      const UNSPLASH_API = import.meta.env.BRIEFING_UNSPLASH_API
       if (UNSPLASH_API) {
         // Request (GET https://api.unsplash.com/photos/random?client_id=y7oYdXFfoT8OrOjUVrMpsiyFr5UkBy8mQOQgkIpx3z4&content_filter=high&query=background)
         let resp = await fetch(

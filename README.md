@@ -59,8 +59,8 @@ The [wiki](https://github.com/holtwick/briefing/wiki) has some more resources.
 In the `app` folder you will find a [.env](https://github.com/holtwick/briefing/blob/master/app/.env) file with samples of how to adjust the settings for your needs. For example to modify the share URL and the sub path for your room you might do like this:
 
 ```ini
-VUE_APP_ROOM_URL = https://example.com/room/
-VUE_APP_ROOM_PATH = /room/
+BRIEFING_ROOM_URL = https://example.com/room/
+BRIEFING_ROOM_PATH = /room/
 ```
 
 Make sure to also adopt the `ROOM_PATH` manually in [`service-worker.js`](https://github.com/holtwick/briefing/blob/master/app/src/service-worker.js#L3), which is not automatically updated yet.

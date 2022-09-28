@@ -91,7 +91,7 @@ export default {
   },
   data() {
     let defaultName = DEBUG
-      ? import.meta.env.VUE_APP_DEBUG_DEFAULT_ROOM || "development"
+      ? import.meta.env.BRIEFING_DEBUG_DEFAULT_ROOM || "development"
       : generateName()
     return {
       defaultName,
