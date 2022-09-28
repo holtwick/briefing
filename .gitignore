@@ -13,6 +13,7 @@ bower_components
 dist
 dist_electron
 internal
+legacy
 legacy/app/public/faces
 legacy/ios/Briefing/Briefing.xcodeproj/project.xcworkspace/xcuserdata/dirk.xcuserdatad/UserInterfaceState.xcuserstate
 legacy/ios/Briefing/Briefing.xcodeproj/xcuserdata/dirk.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
@@ -24,5 +25,5 @@ package-lock.json
 pnpm-lock.yaml
 tmp
 video
+www
 yarn-error.log
-legacy

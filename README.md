@@ -92,3 +92,7 @@ My name is Dirk Holtwick. I'm an independent software developer located in Germa
 Contributions are always welcome. The best way is to start adding or responding to [issues](https://github.com/holtwick/briefing/issues).
 
 For adding or fixing translations get started here: https://github.com/holtwick/briefing/tree/master/app/src/locales
+
+## Legacy
+
+Version 1.0 was based on Webpack and had examples for iOS, Android, Windows and Electron and a separate signal server. This code is not maintained any more but still accessible via the [legacy branch]().
