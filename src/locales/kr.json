@@ -1,0 +1,40 @@
+{
+  "welcome": {
+    "start": "시작하기",
+    "abstract": "안전하게 보호되는 그룹 영상 통화",
+    "help": "알아보기",
+    "created": "개발자"
+  },
+  "share": {
+    "title": "초대하기",
+    "link_info": "모두에게 링크를 공유해 초대해보세요:",
+    "button_copy": "공유하기",
+    "qr_info": "모바일 기기의 카메라를 이용해 QR 코드를 스캔할 수도 있습니다:",
+    "feedback": "피드백 <a href=\"mailto:support@holtwick.de?subject=Briefing\">support@holtwick.de</a>",
+    "message": "$symbol$ 아이콘을 클릭하여 링크를 보내 초대해보세요."
+  },
+  "settings": {
+    "title": "설정",
+    "video": "비디오 소스",
+    "audio": "오디오 소스",
+    "desktop": "전체화면 또는 앱 화면 공유",
+    "blur": "흐린 배경화면",
+    "blur_info": "실험 기능 : AI 알고리즘이 사람의 형체를 인식해 배경을 흐리게 합니다. 해당 기능을 사용하려면 당신의 시각적 개인정보 동의가 필요합니다. 하지만, 전력 소모량이 많아 모바일 기기에서는 원활히 기능하지 않을 가능성이 큽니다!",
+    "bandwidth": "대역폭 최적화 적용",
+    "bandwidth_info": "실험 기능: 이 설정을 통해 Briefing은 비디오 및 오디오 데이터를 정제해 대역폭을 줄이려고 합니다.",
+    "fill": "비디오 스케일 업",
+    "fill_info": "Briefing은 영상을 비주얼 프레임에 맞게 스케일 업 해 사용 가능한 화면 공간을 다 사용합니다. 해제하면 비디오를 전체 화면으로 볼 수 있는 대신 테두리가 있는 상태로 표시됩니다.",
+    "subscribe": "방 구독하기",
+    "subscribe_info": "실험 기능: 구독하기 기능으로 누군가 이 방에 들어온 다면 알림을 받을 수 있습니다. 한 번의 클릭으로 참여자와 소통이 가능합니다. 알림은 브라우저가 작동하고 있을 때만 보여집니다.",
+    "sentry": "버그 트래킹 허용",
+    "sentry_info": "프로그램 오류나 앱을 개선할 수 있는 유용한 정보를 마주했을 때, <a href=\"https://sentry.io\">sentry.io</a>로 디버그 데이터를 보냅니다.",
+    "sentry_confirm": "버그 트래킹을 허용해주셔서 감사합니다. 페이지를 새로고침해 확인해주세요.",
+    "background": "배경",
+    "persist_settings": "지속 설정",
+    "original_background": "기본 배경",
+    "blurred_background": "블러처리 된 배경",
+    "image_background": "이미지 배경",
+    "image_tip": "이미지 파일을 이 위치로 드래그해 이미지 파일을 업로드 할 수 있습니다.",
+    "random_image": "랜덤으로 이미지 고르기."
+  }
+}

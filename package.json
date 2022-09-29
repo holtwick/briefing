@@ -1,0 +1,62 @@
+{
+  "name": "briefing",
+  "version": "2.0.1",
+  "private": true,
+  "description": "Secure direct video chat",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
+  "funding": {
+    "type": "GitHub Sponsors ❤",
+    "url": "https://github.com/sponsors/holtwick"
+  },
+  "license": "EUPL-1.2",
+  "author": {
+    "name": "Dirk Holtwick",
+    "email": "dirk.holtwick@gmail.com",
+    "url": "https://holtwick.de"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "nr clean && zerva build src/zerva/index.ts && vite build",
+    "build:docker": "nr build && ./scripts/make-docker.sh",
+    "check": "vue-tsc --noEmit",
+    "clean": "rm -rf dist www",
+    "format": "prettier --write .",
+    "preview": "vite preview",
+    "reset": "rm -rf node_modules pnpm-lock.yaml dist dist_www www",
+    "serve": "ZEED=* LEVEL=i node dist/main.cjs",
+    "start": "ZEED=* LEVEL=a zerva src/zerva/index.ts",
+    "test": "ZEED=* LEVEL=i vitest -r src --globals",
+    "upload": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-dev:briefing"
+  },
+  "dependencies": {
+    "@sentry/browser": "^7.14.0",
+    "@sentry/tracing": "^7.14.0",
+    "@zerva/core": "^0.13.6",
+    "@zerva/http": "^0.13.6",
+    "@zerva/websocket": "^0.13.6",
+    "clipboard-copy": "^4.0.1",
+    "lodash": "^4.17.21",
+    "vue": "^2.7.10",
+    "zeed": "^0.8.28"
+  },
+  "devDependencies": {
+    "@antfu/ni": "^0.18.0",
+    "@types/node": "^18.7.23",
+    "@vitejs/plugin-vue2": "^2.0.0",
+    "@zerva/bin": "^0.13.6",
+    "@zerva/vite": "^0.13.6",
+    "prettier": "^2.7.1",
+    "sass": "^1.55.0",
+    "tsc": "^2.0.4",
+    "typescript": "^4.8.4",
+    "vite": "^3.1.4",
+    "vitest": "^0.23.4",
+    "vue-tsc": "^0.40.13"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

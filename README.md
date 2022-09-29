@@ -8,7 +8,7 @@ Privacy is the driving force behind this project. It uses secure technologies li
 
 The difference between Briefing and most similar projects is, that it does not use a central server that distributes the video streams ([SFU](https://webrtcglossary.com/sfu/)). The advantage of an SFU is that it saves bandwidth due to the fact that the own video does not being uploaded to each participant but only once. The SFU can also do more optimizations the clients might not support. But then the video signal is not end-to-end encrypted anymore, i.e. you have to trust the SFU provider. Briefing instead sends data from peer to peer directly ("Mesh") and therefore the data does not travel over the server under normal operation. The WebRTC peers however still trust the signaling server for the authenticity of the peer-to-peer communications encryption in place.
 
-## Web App / Native Apps
+## Web App / Native App
 
 Briefing is a [PWA](https://web.dev/progressive-web-apps/) i.e. it is a web app, that can be installed from inside the browser on some platforms. To put Briefing on your home screen in iOS Safari tap on the "Share" icon and choose "Add to Home Screen". You can do the same in browsers like Google Chrome. **Therefore, native apps are not really required.**
 
@@ -16,15 +16,20 @@ But alongside to these awesome out-of-the-box features, we still have some nativ
 
 ### Native iOS App
 
-[Briefing is available in the Apple AppStore](https://apps.apple.com/app/briefing-video-chat/id1510803601). You can find sample code in the `ios` folder.
+[Briefing is available in the Apple App Store](https://apps.apple.com/app/briefing-video-chat/id1510803601). You can find sample code in the `ios` folder.
 
-### Native Electron App
+For support of other platform visit the [legacy branch](https://github.com/holtwick/briefing/tree/legacy)
 
-[Briefing is available in the Microsoft Store](https://www.microsoft.com/de-de/p/briefings/9pcs356fc2jf). The source is available in the `electron` folder.
+### Run locally
 
-### Native Android App
+Clone or download this repository to your local machine, then:
 
-The `android` folder contains a sample. Build your own distribution following [this guide](https://developers.google.com/web/android/trusted-web-activity/quick-start).
+```
+npm install
+npm start
+```
+
+Open your browser at [http://localhost:8080](http://localhost:8080).
 
 ## Adopt Briefing for your Project
 
@@ -34,13 +39,15 @@ However, you can just use the installation on the website <https://brie.fi/ng> f
 
 ### 1. Link
 
-The simplest way to use Briefing is to distribute links to it. The have the form of `https://brie.fi/ng/<room-name>`, where you need to replace `<room-name>` by some random name you can choose.
+The simplest way to use Briefing is to distribute links to it. They have the form of `https://brie.fi/ng/<room-name>`, where you need to replace `<room-name>` by some random name you can choose.
 
 ### 2. Embedding
 
 You can also embed Briefing in your website using an `iframe`. [Visit this configuration page](https://brie.fi/ng/embed-demo) to find the best setting for you.
 
-### 3. Installation
+### 3. Installation / "Whitelabel"
+
+> See also the [instructions for Docker](docs/docker.md)
 
 But in case you want to run it on your own hardware, it is important to understand what parts are required.
 
@@ -59,8 +66,8 @@ The [wiki](https://github.com/holtwick/briefing/wiki) has some more resources.
 In the `app` folder you will find a [.env](https://github.com/holtwick/briefing/blob/master/app/.env) file with samples of how to adjust the settings for your needs. For example to modify the share URL and the sub path for your room you might do like this:
 
 ```ini
-VUE_APP_ROOM_URL = https://example.com/room/
-VUE_APP_ROOM_PATH = /room/
+BRIEFING_ROOM_URL = https://example.com/room/
+BRIEFING_ROOM_PATH = /room/
 ```
 
 Make sure to also adopt the `ROOM_PATH` manually in [`service-worker.js`](https://github.com/holtwick/briefing/blob/master/app/src/service-worker.js#L3), which is not automatically updated yet.
@@ -92,3 +99,7 @@ My name is Dirk Holtwick. I'm an independent software developer located in Germa
 Contributions are always welcome. The best way is to start adding or responding to [issues](https://github.com/holtwick/briefing/issues).
 
 For adding or fixing translations get started here: https://github.com/holtwick/briefing/tree/master/app/src/locales
+
+## Legacy
+
+Version 1.0 was based on Webpack and had examples for iOS, Android, Windows and Electron and a separate signal server. It also featured background blur and image backdrops via Unsplash. All these implementations where outdated. But the code is still accessible via the [legacy branch](https://github.com/holtwick/briefing/tree/legacy), yet not maintained and supported anymore.
