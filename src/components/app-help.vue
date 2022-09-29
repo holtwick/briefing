@@ -40,9 +40,9 @@
       <p><br /></p>
       <p>
         (C)opyright 2020-2022 by
-        <a href="/goto/holtwick">Dirk Holtwick</a> |
-        <a href="/goto/privacy">Privacy Policy</a> |
-        <a href="/goto/imprint">Imprint</a>
+        <a :href="gotoUrl('holtwick')">Dirk Holtwick</a> |
+        <a :href="gotoUrl('privacy')">Privacy Policy</a> |
+        <a :href="gotoUrl('imprint')">Imprint</a>
       </p>
     </div>
   </div>
@@ -82,12 +82,16 @@
 </style>
 
 <script>
+import { gotoUrl } from "../external-links"
+
 export default {
   name: "app-help",
   data() {
     return {}
   },
-  methods: {},
+  methods: {
+    gotoUrl,
+  },
   async mounted() {},
 }
 </script>

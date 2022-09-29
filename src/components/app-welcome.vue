@@ -44,7 +44,7 @@
         <p>
           {{ l.welcome.created }}
           <a
-            href="/goto/holtwick"
+            :href="gotoUrl('holtwick')"
             target="_blank"
             rel="noopener"
             @click="openExternalLink"
@@ -52,7 +52,7 @@
           >
           <a
             title="Follow @holtwick on Twitter"
-            href="/goto/twitter"
+            :href="gotoUrl('twitter')"
             class="brand-icon"
             target="_blank"
             rel="noopener"
@@ -66,7 +66,7 @@
           </a>
           <a
             title="Connect to Dirk Holtwick at LinkedIn"
-            href="/goto/linkedin"
+            :href="gotoUrl('linkedin')"
             class="brand-icon"
             target="_blank"
             rel="noopener"
@@ -80,7 +80,7 @@
           </a>
           <a
             title="Upvote on Product Hunt"
-            href="/goto/producthunt"
+            :href="gotoUrl('producthunt')"
             class="brand-icon"
             target="_blank"
             rel="noopener"
@@ -94,7 +94,7 @@
           </a>
           <a
             title="Upvote on AlternativeTo"
-            href="/goto/alternative-to"
+            :href="gotoUrl('alternative') - to"
             class="brand-icon"
             target="_blank"
             rel="noopener"
@@ -125,7 +125,7 @@
           </a>
           <a
             title="GitHub"
-            href="/goto/api"
+            :href="gotoUrl('api')"
             class="brand-icon"
             target="_blank"
             rel="noopener"
@@ -139,7 +139,7 @@
           </a>
           <a
             title="Microsoft Windows App Store"
-            href="/goto/appstore-windows"
+            :href="gotoUrl('appstore') - windows"
             class="brand-icon"
             target="_blank"
             rel="noopener"
@@ -167,7 +167,7 @@
           </a>
           <a
             title="Install Progressive Web App"
-            href="/goto/pwa"
+            :href="gotoUrl('pwa')"
             class="brand-icon"
             target="_blank"
             rel="noopener"
@@ -358,6 +358,7 @@
 <script>
 import { trackSilentException } from "../bugs"
 import { DEBUG, ROOM_PATH } from "../config"
+import { gotoUrl } from "../external-links"
 import { generateName } from "../lib/names"
 import AppHelp from "./app-help.vue"
 
@@ -380,6 +381,7 @@ export default {
     }
   },
   methods: {
+    gotoUrl,
     doEnterRoom() {
       const room = this.room || this.defaultName || ""
       this.state.room = room
