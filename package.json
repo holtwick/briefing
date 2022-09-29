@@ -29,7 +29,8 @@
     "serve": "ZEED=* LEVEL=i node dist/main.cjs",
     "start": "ZEED=* LEVEL=a zerva src/zerva/index.ts",
     "test": "ZEED=* LEVEL=i vitest -r src --globals",
-    "upload": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-dev:briefing"
+    "upload": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-pro:briefing",
+    "production": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-dev:briefing"
   },
   "dependencies": {
     "@sentry/browser": "^7.14.0",

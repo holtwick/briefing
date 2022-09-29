@@ -121,7 +121,6 @@ export let state = {
   vapidPublicKey: null,
 
   error: null,
-  upgrade: false,
   requestBugTracking: false,
   embedDemo,
 
@@ -138,8 +137,6 @@ export let state = {
 }
 
 messages.on("requestBugTracking", (_) => (state.requestBugTracking = true))
-
-messages.on("upgrade", (_) => (state.upgrade = true))
 
 messages.on("updateStream", updateStream)
 
