@@ -22,6 +22,18 @@ const log = Logger("main")
 
 log(`env = ${JSON.stringify(import.meta.env, null, 2)}`)
 
+// Force removal of 1.0 service-workers
+try {
+  log("try removal of service workers")
+  navigator.serviceWorker.getRegistrations().then(function (registrations) {
+    for (let registration of registrations) {
+      registration.unregister()
+    }
+  })
+} catch (err) {
+  log.error("Unregistering failed", err)
+}
+
 // This will be done privacy conform, see bugs/README-BUGTRACKER.md
 setupBugTracker()
 

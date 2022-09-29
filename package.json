@@ -1,6 +1,6 @@
 {
   "name": "briefing",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "description": "Secure direct video chat",
   "repository": {
@@ -29,7 +29,8 @@
     "serve": "ZEED=* LEVEL=i node dist/main.cjs",
     "start": "ZEED=* LEVEL=a zerva src/zerva/index.ts",
     "test": "ZEED=* LEVEL=i vitest -r src --globals",
-    "upload": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-dev:briefing"
+    "upload": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-pro:briefing",
+    "production": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-dev:briefing"
   },
   "dependencies": {
     "@sentry/browser": "^7.14.0",
