@@ -23,7 +23,7 @@ export const ICE_CONFIG = {
   ],
 }
 
-export const DEBUG = import.meta.env.NODE_ENV !== "production"
+export const DEBUG = import.meta.env.MODE !== "production"
 export const PRODUCTION = !DEBUG
 
 export const RELEASE = import.meta.env.BRIEFING_RELEASE
