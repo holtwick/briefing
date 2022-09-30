@@ -1,6 +1,6 @@
 {
   "name": "briefing",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "private": true,
   "description": "Secure direct video chat",
   "repository": {
@@ -35,20 +35,20 @@
   "dependencies": {
     "@sentry/browser": "^7.14.0",
     "@sentry/tracing": "^7.14.0",
-    "@zerva/core": "^0.13.6",
-    "@zerva/http": "^0.13.6",
-    "@zerva/websocket": "^0.13.6",
+    "@zerva/core": "^0.14.2",
+    "@zerva/http": "^0.14.2",
+    "@zerva/websocket": "^0.14.2",
     "clipboard-copy": "^4.0.1",
     "lodash": "^4.17.21",
     "vue": "^2.7.10",
-    "zeed": "^0.8.28"
+    "zeed": "^0.8.31"
   },
   "devDependencies": {
-    "@antfu/ni": "^0.18.0",
+    "@antfu/ni": "^0.18.2",
     "@types/node": "^18.7.23",
     "@vitejs/plugin-vue2": "^2.0.0",
-    "@zerva/bin": "^0.13.6",
-    "@zerva/vite": "^0.13.6",
+    "@zerva/bin": "^0.14.2",
+    "@zerva/vite": "^0.14.2",
     "prettier": "^2.7.1",
     "sass": "^1.55.0",
     "tsc": "^2.0.4",
