@@ -34,7 +34,7 @@
             >
           </div>
         </div>
-        <div class="history" v-if="history">
+        <div class="history" v-if="history.length > 0">
           <div class="history-intro">{{ l.welcome.history }}</div>
           <div class="history-list">
             <template v-for="room in history">
