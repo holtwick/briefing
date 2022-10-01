@@ -2,7 +2,7 @@
 
 > Secure video chat via pure WebRTC
 
-<img src="assets/sample.jpg" height="400">
+<img src="public/sample.jpg" height="400">
 
 Privacy is the driving force behind this project. It uses secure technologies like [WebRTC](https://webrtc-security.github.io/) to directly connect between participants. The website that provides the web app and mediates the communication stores as few data as possible and does not know anything about the contents of established conversations. No accounts are required. No cookies are used.
 
