@@ -3,6 +3,7 @@ import { useHttp } from "@zerva/http"
 import { useVite } from "@zerva/vite"
 import { useWebSocket } from "@zerva/websocket"
 import { toPath } from "zeed"
+import { useApple } from "./apple"
 import { useRoom } from "./room"
 
 useHttp({
@@ -18,5 +19,7 @@ useVite({
 })
 
 useRoom()
+
+useApple()
 
 serve()
