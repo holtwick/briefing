@@ -3,7 +3,8 @@
     "start": "Start Chat",
     "abstract": "Secure direct group video chat",
     "help": "Learn More",
-    "created": "Created by"
+    "created": "Created by",
+    "history": "Previously visited rooms"
   },
   "share": {
     "title": "Invite",

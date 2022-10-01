@@ -6,4 +6,4 @@
 
 ## Posts
 
-- [Briefing 2.0](version2.md) ([de](version2-de.md))
+- [Briefing 2.0](version2-en.md) ([de](version2-de.md))
