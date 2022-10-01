@@ -308,6 +308,7 @@
 import { Logger, messages } from "zeed"
 import { setAllowedBugTracking } from "../bugs"
 import { ROOM_PATH } from "../config"
+import { historyAddRoom } from "../lib/history"
 import { createLinkForRoom, shareLink } from "../lib/share"
 import { setup } from "../state"
 import SeaButton from "../ui/sea-button.vue"
@@ -465,6 +466,9 @@ export default {
       this.isFullScreen = !!document.fullscreenElement
     }
     document.addEventListener("fullscreenchange", this.fullscreenHandler)
+
+    // Remember room name for next visits
+    historyAddRoom(this.state.room)
   },
   beforeDestroy() {
     document.removeEventListener("fullscreenchange", this.fullscreenHandler)

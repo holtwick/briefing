@@ -17,7 +17,7 @@ const links = {
   producthunt: "https://www.producthunt.com/posts/briefing-2",
   "appstore-windows": "https://www.microsoft.com/p/briefings/9pcs356fc2jf",
   pwa: "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Developer_guide/Installing",
-  "alternative-to": "https://alternativeto.net/software/brie-fi-ng/",
+  "alternative-to": "https://alternativeto.net/software/brie-fi-ng/about/",
   issues: "https://github.com/holtwick/briefing/issues/",
   bug: "https://github.com/holtwick/briefing/issues/new?assignees=&labels=bug_report&template=bug_report.md&title=",
   feature:

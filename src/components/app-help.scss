@@ -1,0 +1,31 @@
+.help {
+  min-height: 100%;
+  background: rgb(247, 251, 253);
+  color: #272727;
+  display: block;
+  font-family: Georgia, serif;
+  line-height: 1.5rem;
+  padding-bottom: 4rem;
+
+  .text {
+    max-width: 40rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left !important;
+    padding: 1rem !important;
+    padding-top: 4rem !important;
+  }
+
+  .text a {
+    color: #005a81 !important;
+    text-decoration: underline;
+  }
+
+  .text a:hover {
+    color: #00b5ff !important;
+  }
+
+  .text a:active {
+    color: #99e2ff !important;
+  }
+}

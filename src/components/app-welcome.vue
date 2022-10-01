@@ -1,45 +1,121 @@
 <template>
   <div class="-scroll">
     <div class="page1">
-      <div class="logo">
-        <form id="form" @submit.prevent="doEnterRoom">
-          <a @click.prevent="doEnterRoom" :href="url" id="link" class="link"
-            >Brie<span class="dot">.</span>fi<span class="slash">/</span>ng<span
-              class="slash"
-              >/</span
-            ></a
-          >
-          <wbr />
-          <input
-            type="text"
-            id="room"
-            name="room"
-            ref="input"
-            enterkeyhint="go"
-            spellcheck="false"
-            v-model="room"
-            :placeholder="defaultName"
-          />
-        </form>
-        <div class="button-container">
-          <a
-            @click.prevent="doEnterRoom"
-            :href="url"
-            class="button start-button"
-            id="button"
-            >{{ l.welcome.start }}</a
-          >
+      <div class="main">
+        <div class="logo">
+          <form id="form" @submit.prevent="doEnterInputRoom">
+            <a
+              @click.prevent="doEnterInputRoom"
+              :href="url"
+              id="link"
+              class="link"
+              >Brie<span class="dot">.</span>fi<span class="slash">/</span
+              >ng<span class="slash">/</span></a
+            >
+            <wbr />
+            <input
+              type="text"
+              id="room"
+              name="room"
+              ref="input"
+              enterkeyhint="go"
+              spellcheck="false"
+              v-model="room"
+              :placeholder="defaultName"
+            />
+          </form>
+          <div class="button-container">
+            <a
+              @click.prevent="doEnterInputRoom"
+              :href="url"
+              class="button start-button"
+              id="button"
+              >{{ l.welcome.start }}</a
+            >
+          </div>
+        </div>
+        <div class="history" v-if="history">
+          <div class="history-intro">{{ l.welcome.history }}</div>
+          <div class="history-list">
+            <template v-for="room in history">
+              &nbsp;<a
+                :href="roomPath + room"
+                @click.prevent="doEnterRoom(room)"
+                >{{ room }}</a
+              >&nbsp;
+            </template>
+          </div>
         </div>
       </div>
       <div class="footer links">
         <p>
-          {{ l.welcome.abstract }}
-
           <a
-            href="#help"
-            onclick="document.getElementById('help').scrollIntoView({behavior: 'smooth'}); return false;"
-            >{{ l.welcome.help }}</a
+            title="GitHub"
+            :href="gotoUrl('api')"
+            class="brand-icon"
+            target="_blank"
+            rel="noopener"
+            @click="openExternalLink"
           >
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+              />
+            </svg>
+            Github
+          </a>
+          |
+          <a
+            title="Apple iOS App Store"
+            href="https://apps.apple.com/app/briefing-video-chat/id1510803601"
+            class="brand-icon"
+            target="_blank"
+            rel="noopener"
+            @click="openExternalLink"
+          >
+            <svg id="apple" viewBox="0 0 24 24">
+              <path
+                d="M7.078 23.55c-.473-.316-.893-.703-1.244-1.15-.383-.463-.738-.95-1.064-1.454-.766-1.12-1.365-2.345-1.78-3.636-.5-1.502-.743-2.94-.743-4.347 0-1.57.34-2.94 1.002-4.09.49-.9 1.22-1.653 2.1-2.182.85-.53 1.84-.82 2.84-.84.35 0 .73.05 1.13.15.29.08.64.21 1.07.37.55.21.85.34.95.37.32.12.59.17.8.17.16 0 .39-.05.645-.13.145-.05.42-.14.81-.31.386-.14.692-.26.935-.35.37-.11.728-.21 1.05-.26.39-.06.777-.08 1.148-.05.71.05 1.36.2 1.94.42 1.02.41 1.843 1.05 2.457 1.96-.26.16-.5.346-.725.55-.487.43-.9.94-1.23 1.505-.43.77-.65 1.64-.644 2.52.015 1.083.29 2.035.84 2.86.387.6.904 1.114 1.534 1.536.31.21.582.355.84.45-.12.375-.252.74-.405 1.1-.347.807-.76 1.58-1.25 2.31-.432.63-.772 1.1-1.03 1.41-.402.48-.79.84-1.18 1.097-.43.285-.935.436-1.452.436-.35.015-.7-.03-1.034-.127-.29-.095-.576-.202-.856-.323-.293-.134-.596-.248-.905-.34-.38-.1-.77-.148-1.164-.147-.4 0-.79.05-1.16.145-.31.088-.61.196-.907.325-.42.175-.695.29-.855.34-.324.096-.656.154-.99.175-.52 0-1.004-.15-1.486-.45zm6.854-18.46c-.68.34-1.326.484-1.973.436-.1-.646 0-1.31.27-2.037.24-.62.56-1.18 1-1.68.46-.52 1.01-.95 1.63-1.26.66-.34 1.29-.52 1.89-.55.08.68 0 1.35-.25 2.07-.228.64-.568 1.23-1 1.76-.435.52-.975.95-1.586 1.26z"
+              />
+            </svg>
+            iOS App
+          </a>
+          |
+          <a
+            title="Install Progressive Web App"
+            :href="gotoUrl('pwa')"
+            class="brand-icon"
+            target="_blank"
+            rel="noopener"
+            @click="openExternalLink"
+          >
+            <svg role="img" viewBox="0 0 1952.00 734.93">
+              <g>
+                <path
+                  fill-opacity="1"
+                  stroke-width="0.2"
+                  stroke-linejoin="round"
+                  d="M 1436.62,603.304L 1493.01,460.705L 1655.83,460.705L 1578.56,244.39L 1675.2,0.000528336L 1952,734.933L 1747.87,734.933L 1700.57,603.304L 1436.62,603.304 Z "
+                />
+                <path
+                  fill-opacity="1"
+                  stroke-width="0.2"
+                  stroke-linejoin="round"
+                  d="M 1262.47,734.935L 1558.79,0.00156593L 1362.34,0.0025425L 1159.64,474.933L 1015.5,0.00351906L 864.499,0.00351906L 709.731,474.933L 600.585,258.517L 501.812,562.819L 602.096,734.935L 795.427,734.935L 935.284,309.025L 1068.63,734.935L 1262.47,734.935 Z "
+                />
+                <path
+                  fill-opacity="1"
+                  stroke-width="0.2"
+                  stroke-linejoin="round"
+                  d="M 186.476,482.643L 307.479,482.643C 344.133,482.643 376.772,478.552 405.396,470.37L 436.689,373.962L 524.148,104.516C 517.484,93.9535 509.876,83.9667 501.324,74.5569C 456.419,24.852 390.719,0.000406265 304.222,0.000406265L -3.8147e-006,0.000406265L -3.8147e-006,734.933L 186.476,734.933L 186.476,482.643 Z M 346.642,169.079C 364.182,186.732 372.951,210.355 372.951,239.95C 372.951,269.772 365.238,293.424 349.813,310.906C 332.903,330.331 301.766,340.043 256.404,340.043L 186.476,340.043L 186.476,142.598L 256.918,142.598C 299.195,142.598 329.103,151.425 346.642,169.079 Z "
+                />
+              </g>
+            </svg>
+            Web App
+          </a>
+        </p>
+        <p>
+          {{ l.welcome.abstract }}
         </p>
         <p>
           {{ l.welcome.created }}
@@ -94,7 +170,7 @@
           </a>
           <a
             title="Upvote on AlternativeTo"
-            :href="gotoUrl('alternative') - to"
+            :href="gotoUrl('alternative-to')"
             class="brand-icon"
             target="_blank"
             rel="noopener"
@@ -123,79 +199,13 @@
               ></path>
             </svg>
           </a>
+        </p>
+        <p>
           <a
-            title="GitHub"
-            :href="gotoUrl('api')"
-            class="brand-icon"
-            target="_blank"
-            rel="noopener"
-            @click="openExternalLink"
+            href="#help"
+            onclick="document.getElementById('help').scrollIntoView({behavior: 'smooth'}); return false;"
+            >↓ {{ l.welcome.help }} ↓</a
           >
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-              />
-            </svg>
-          </a>
-          <a
-            title="Microsoft Windows App Store"
-            :href="gotoUrl('appstore') - windows"
-            class="brand-icon"
-            target="_blank"
-            rel="noopener"
-            @click="openExternalLink"
-          >
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"
-              />
-            </svg>
-          </a>
-          <a
-            title="Apple iOS App Store"
-            href="https://apps.apple.com/app/briefing-video-chat/id1510803601"
-            class="brand-icon"
-            target="_blank"
-            rel="noopener"
-            @click="openExternalLink"
-          >
-            <svg id="apple" viewBox="0 0 24 24">
-              <path
-                d="M7.078 23.55c-.473-.316-.893-.703-1.244-1.15-.383-.463-.738-.95-1.064-1.454-.766-1.12-1.365-2.345-1.78-3.636-.5-1.502-.743-2.94-.743-4.347 0-1.57.34-2.94 1.002-4.09.49-.9 1.22-1.653 2.1-2.182.85-.53 1.84-.82 2.84-.84.35 0 .73.05 1.13.15.29.08.64.21 1.07.37.55.21.85.34.95.37.32.12.59.17.8.17.16 0 .39-.05.645-.13.145-.05.42-.14.81-.31.386-.14.692-.26.935-.35.37-.11.728-.21 1.05-.26.39-.06.777-.08 1.148-.05.71.05 1.36.2 1.94.42 1.02.41 1.843 1.05 2.457 1.96-.26.16-.5.346-.725.55-.487.43-.9.94-1.23 1.505-.43.77-.65 1.64-.644 2.52.015 1.083.29 2.035.84 2.86.387.6.904 1.114 1.534 1.536.31.21.582.355.84.45-.12.375-.252.74-.405 1.1-.347.807-.76 1.58-1.25 2.31-.432.63-.772 1.1-1.03 1.41-.402.48-.79.84-1.18 1.097-.43.285-.935.436-1.452.436-.35.015-.7-.03-1.034-.127-.29-.095-.576-.202-.856-.323-.293-.134-.596-.248-.905-.34-.38-.1-.77-.148-1.164-.147-.4 0-.79.05-1.16.145-.31.088-.61.196-.907.325-.42.175-.695.29-.855.34-.324.096-.656.154-.99.175-.52 0-1.004-.15-1.486-.45zm6.854-18.46c-.68.34-1.326.484-1.973.436-.1-.646 0-1.31.27-2.037.24-.62.56-1.18 1-1.68.46-.52 1.01-.95 1.63-1.26.66-.34 1.29-.52 1.89-.55.08.68 0 1.35-.25 2.07-.228.64-.568 1.23-1 1.76-.435.52-.975.95-1.586 1.26z"
-              />
-            </svg>
-          </a>
-          <a
-            title="Install Progressive Web App"
-            :href="gotoUrl('pwa')"
-            class="brand-icon"
-            target="_blank"
-            rel="noopener"
-            @click="openExternalLink"
-          >
-            <svg role="img" viewBox="0 0 1952.00 734.93">
-              <g>
-                <path
-                  fill-opacity="1"
-                  stroke-width="0.2"
-                  stroke-linejoin="round"
-                  d="M 1436.62,603.304L 1493.01,460.705L 1655.83,460.705L 1578.56,244.39L 1675.2,0.000528336L 1952,734.933L 1747.87,734.933L 1700.57,603.304L 1436.62,603.304 Z "
-                />
-                <path
-                  fill-opacity="1"
-                  stroke-width="0.2"
-                  stroke-linejoin="round"
-                  d="M 1262.47,734.935L 1558.79,0.00156593L 1362.34,0.0025425L 1159.64,474.933L 1015.5,0.00351906L 864.499,0.00351906L 709.731,474.933L 600.585,258.517L 501.812,562.819L 602.096,734.935L 795.427,734.935L 935.284,309.025L 1068.63,734.935L 1262.47,734.935 Z "
-                />
-                <path
-                  fill-opacity="1"
-                  stroke-width="0.2"
-                  stroke-linejoin="round"
-                  d="M 186.476,482.643L 307.479,482.643C 344.133,482.643 376.772,478.552 405.396,470.37L 436.689,373.962L 524.148,104.516C 517.484,93.9535 509.876,83.9667 501.324,74.5569C 456.419,24.852 390.719,0.000406265 304.222,0.000406265L -3.8147e-006,0.000406265L -3.8147e-006,734.933L 186.476,734.933L 186.476,482.643 Z M 346.642,169.079C 364.182,186.732 372.951,210.355 372.951,239.95C 372.951,269.772 365.238,293.424 349.813,310.906C 332.903,330.331 301.766,340.043 256.404,340.043L 186.476,340.043L 186.476,142.598L 256.918,142.598C 299.195,142.598 329.103,151.425 346.642,169.079 Z "
-                />
-              </g>
-            </svg>
-          </a>
         </p>
       </div>
     </div>
@@ -204,161 +214,14 @@
 </template>
 
 <style lang="scss">
-.page1 {
-  text-align: center;
-  flex-shrink: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  line-height: 1.5;
-
-  /*.text {*/
-  /*  max-width: 40rem;*/
-  /*  margin-left: auto;*/
-  /*  margin-right: auto;*/
-  /*  text-align: left;*/
-  /*  padding: 1rem;*/
-  /*  margin-top: 4rem;*/
-  /*}*/
-
-  a {
-    color: inherit;
-    text-decoration: inherit;
-  }
-
-  .logo {
-    flex: auto;
-    flex-direction: column;
-    justify-content: center;
-    display: inline-flex;
-    align-items: center;
-    font-variant-ligatures: common-ligatures;
-    padding: 1rem;
-    padding-top: 5rem;
-    font-size: 4rem;
-  }
-
-  .dot,
-  .slash {
-    color: #00b5ff;
-    opacity: 0.8;
-  }
-
-  .button-container {
-    margin-top: 2rem;
-  }
-
-  .button {
-    border: none;
-    background: #00a2e4;
-    color: white;
-    font-weight: 400;
-    font-size: 2rem;
-    border-radius: 0.25rem;
-    padding: 1rem 1.5rem;
-    text-decoration: none;
-
-    &:hover {
-      background: #00b5ff;
-    }
-
-    &:active {
-      background: #0088c0;
-    }
-  }
-
-  .footer {
-    margin-top: 5rem;
-    opacity: 0.6;
-    padding: 1rem;
-
-    a {
-      color: #00b5ff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: rgba(129, 228, 255, 1);
-    }
-
-    a:active {
-      color: #0088c0;
-    }
-  }
-
-  /*.text a {*/
-  /*  color: #0088c0;*/
-  /*  text-decoration: none;*/
-
-  /*  a:hover {*/
-  /*    color: #00b5ff;*/
-  /*  }*/
-
-  /*  a:active {*/
-  /*    color: #99e2ff;*/
-  /*  }*/
-  /*}*/
-
-  input,
-  input::placeholder {
-    appearance: none;
-    border: none;
-    background: transparent;
-    color: #99e2ff !important;
-    font-size: inherit;
-  }
-
-  input {
-    max-width: 90vw !important;
-    width: 1px;
-    padding: 0;
-    margin: 0;
-    outline: 0;
-  }
-
-  input::placeholder {
-    opacity: 0.5;
-  }
-
-  @media only screen and (max-width: 799px) {
-    .logo {
-      font-size: 8vw;
-    }
-
-    .link {
-      font-size: 12vw;
-      display: block;
-    }
-
-    .button-container {
-      /*margin-top: 4vw;*/
-      margin-top: 4rem;
-    }
-
-    .button {
-      font-size: 4vw;
-    }
-  }
-
-  .brand-icon {
-    margin-left: 0.5rem;
-    display: inline-block;
-    vertical-align: middle;
-
-    svg {
-      fill: currentColor;
-      color: inherit;
-      width: 1rem; //  auto !important;
-      height: 1rem;
-    }
-  }
-}
+@import "app-welcome.scss";
 </style>
 
 <script>
 import { trackSilentException } from "../bugs"
 import { DEBUG, ROOM_PATH } from "../config"
 import { gotoUrl } from "../external-links"
+import { historyAllRooms } from "../lib/history"
 import { generateName } from "../lib/names"
 import AppHelp from "./app-help.vue"
 
@@ -378,22 +241,28 @@ export default {
       initialWidth: -1,
       currentChar: 0,
       observer: null,
+      history: historyAllRooms().slice(0, 5),
+      roomPath: ROOM_PATH,
     }
   },
   methods: {
     gotoUrl,
-    doEnterRoom() {
-      const room = this.room || this.defaultName || ""
-      this.state.room = room
-      try {
-        window.history.pushState(
-          null, // { room },
-          null, // room,
-          ROOM_PATH + room
-        )
-      } catch (err) {
-        trackSilentException(err)
+    doEnterRoom(room) {
+      if (room) {
+        this.state.room = room
+        try {
+          window.history.pushState(
+            null, // { room },
+            null, // room,
+            ROOM_PATH + room
+          )
+        } catch (err) {
+          trackSilentException(err)
+        }
       }
+    },
+    doEnterInputRoom() {
+      this.doEnterRoom(this.room || this.defaultName || "")
     },
     updateInput() {
       const input = this.$refs.input

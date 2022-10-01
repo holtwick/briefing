@@ -75,7 +75,7 @@ window.addEventListener("popstate", (event) => {
   log("popstate", state.room, event)
 })
 
-// Hack to avoid routing ;)
+// Hack to avoid more complex routing for now ;)
 const embedDemo = room === "embed-demo"
 if (embedDemo) room = null
 
@@ -156,8 +156,6 @@ function updateStream() {
 }
 
 messages.on("switchMedia", switchMedia)
-
-let blurLib
 
 async function switchMedia() {
   let audio = {
