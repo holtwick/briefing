@@ -1,0 +1,25 @@
+{
+  "applinks": {
+    "details": [
+        {
+          "appIDs": [ "8SS3YPUJH9.de.holtwick.Briefing" ],
+          "components": [               
+            {
+              "/": "/ng/*",
+              "comment": "Enter a room https://brie.fi/ng/example-room-name"
+            },
+            {
+              "/": "/",
+              "comment": "Open Briefing app"
+            }
+          ]
+        }
+    ]
+  },
+  "webcredentials": {
+    "apps": [ "8SS3YPUJH9.de.holtwick.Briefing" ]
+  },
+  "appclips": {
+      "apps": ["8SS3YPUJH9.de.holtwick.Briefing.BriefingAppClip"]
+  }
+}
