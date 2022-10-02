@@ -32,7 +32,7 @@
     "test": "cross-env ZEED=* LEVEL=i vitest -r src --globals",
     "upload:production": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-dev:briefing",
     "upload:stage": "cross-env MODE=stage nr build:basis && rsync -rvz --exclude-from=.rsyncignore * docker-pro:briefing",
-    "upload:dockerhub": "nr build:docker && cd docker && docker build . && docker push holtwick/briefing:tagname"
+    "upload:dockerhub": "nr build:docker && cd docker && docker build -t holtwick/briefing:$npm_package_version . && docker push holtwick/briefing:$npm_package_version"
   },
   "dependencies": {
     "@sentry/browser": "^7.14.0",
