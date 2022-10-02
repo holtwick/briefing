@@ -27,7 +27,4 @@ localStorage.zeed = "*"
 - [Vite](https://vitejs.dev/)
 - [Zerva](https://www.npmjs.com/package/@zerva/core)
 - [Zeed](https://www.npmjs.com/package/zeed)
-
-## Icons
-
 - [Feather Icons](https://feathericons.com)

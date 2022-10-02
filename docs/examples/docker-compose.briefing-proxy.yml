@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  briefing:
+    image: holtwick/briefing
+    restart: always
+    volumes:
+      - ./data:/app/data
+
+networks:
+  default:
+    external:
+      name: proxy

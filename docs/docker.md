@@ -12,6 +12,8 @@ If running locally, you can now access it via <http://localhost:8080>.
 
 For production installation I recommend using a [proxy](#proxy) and consider making a `docker-compose.yml`.
 
+**Important! If not running locally in order to get camera and audio access working, an [SSL connection is required](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#privacy_and_security)!**
+
 ## Configuration
 
 Further configuration is currently not required ;)
@@ -41,13 +43,4 @@ We recommend using a proxy to easily support safe `https`, which is required to 
 
 A good proxy is [nginxproxymanager.com](https://nginxproxymanager.com/).
 
-In order to get it working add these lines to `docker-compose.yml`:
-
-```yml
-networks:
-  default:
-    external:
-      name: proxy
-```
-
-In the manager itself use `briefing` as the service name and port `8080`.
+You can find the required `docker-compose.yml` files in the [examples](examples) folder.
