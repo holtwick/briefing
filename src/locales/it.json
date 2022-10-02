@@ -3,7 +3,8 @@
     "start": "Avvia chat",
     "abstract": "Video chat di gruppo sicura e diretta",
     "help": "Per saperne di più",
-    "created": "Creato da"
+    "created": "Creato da",
+    "history": "Stanze visitate in precedenza"
   },
   "share": {
     "title": "Condivi",

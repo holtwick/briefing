@@ -3,7 +3,8 @@
     "start": "Starte Chat",
     "abstract": "Sicherer direkter Video-Chat für Gruppen",
     "help": "Mehr Informationen",
-    "created": "Erstellt von"
+    "created": "Erstellt von",
+    "history": "Zuvor besuchte Räume"
   },
   "share": {
     "title": "Einladen",

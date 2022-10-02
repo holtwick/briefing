@@ -3,7 +3,8 @@
     "start": "开始聊天",
     "abstract": "安全的点对点的群组聊天工具",
     "help": "了解更多",
-    "created": "作者:"
+    "created": "作者:",
+    "history": "以前访问过的房间"
   },
   "share": {
     "title": "邀请",

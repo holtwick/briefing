@@ -3,7 +3,8 @@
     "start": "Démarrer le chat",
     "abstract": "Chat vidéo de groupe direct et sécurisé",
     "help": "En savoir plus",
-    "created": "Créé par"
+    "created": "Créé par",
+    "history": "Salles déjà visitées"
   },
   "share": {
     "title": "Inviter",
