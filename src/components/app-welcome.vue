@@ -2,48 +2,48 @@
   <div class="-scroll">
     <div class="page1">
       <div class="main">
-        <div class="logo">
-          <form id="form" @submit.prevent="doEnterInputRoom">
-            <a
-              @click.prevent="doEnterInputRoom"
-              :href="url"
-              id="link"
-              class="link"
-              >Brie<span class="dot">.</span>fi<span class="slash">/</span
-              >ng<span class="slash">/</span></a
-            >
-            <wbr />
-            <input
-              type="text"
-              id="room"
-              name="room"
-              ref="input"
-              enterkeyhint="go"
-              spellcheck="false"
-              v-model="room"
-              :placeholder="defaultName"
-            />
-          </form>
-          <div class="button-container">
-            <a
-              @click.prevent="doEnterInputRoom"
-              :href="url"
-              class="button start-button"
-              id="button"
-              >{{ l.welcome.start }}</a
-            >
+        <div class="main-body">
+          <div class="logo">
+            <form id="form" @submit.prevent="doEnterInputRoom">
+              <a
+                @click.prevent="doEnterInputRoom"
+                :href="url"
+                id="link"
+                class="link"
+                >Brie<span class="dot">.</span>fi<span class="slash">/</span
+                >ng<span class="slash">/</span></a
+              >
+              <wbr />
+              <input
+                type="text"
+                id="room"
+                name="room"
+                ref="input"
+                enterkeyhint="go"
+                spellcheck="false"
+                v-model="room"
+                :placeholder="defaultName"
+              />
+            </form>
+            <div class="button-container">
+              <a
+                @click.prevent="doEnterInputRoom"
+                :href="url"
+                class="button start-button"
+                id="button"
+                >{{ l.welcome.start }}</a
+              >
+            </div>
           </div>
-        </div>
-        <div class="history" v-if="history.length > 0">
-          <div class="history-intro">{{ l.welcome.history }}</div>
-          <div class="history-list">
-            <template v-for="room in history">
-              &nbsp;<a
-                :href="roomPath + room"
-                @click.prevent="doEnterRoom(room)"
-                >{{ room }}</a
-              >&nbsp;
-            </template>
+          <div class="history" v-if="history.length > 0">
+            <div class="history-intro">{{ l.welcome.history }}</div>
+            <div class="history-list">
+              <template v-for="room in history">
+                <a :href="roomPath + room" @click.prevent="doEnterRoom(room)">{{
+                  room
+                }}</a>
+              </template>
+            </div>
           </div>
         </div>
       </div>

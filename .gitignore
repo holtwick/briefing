@@ -1,3 +1,4 @@
+.env.*
 .DS_* 
 .htaccess
 .htaccess*
@@ -6,7 +7,6 @@
 .rsync-ignore
 *.local
 *.log
-*.sh
 app/public/faces
 bg.jpg
 bower_components
