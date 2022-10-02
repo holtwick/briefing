@@ -1,5 +1,15 @@
 # Docker
 
+A public docker image is available via [hub.docker.com/r/holtwick/briefing](https://hub.docker.com/r/holtwick/briefing).
+
+Use it like this:
+
+```sh
+docker run -d -p 8080:8080 holtwick/briefing
+```
+
+## Alternative: Build locally
+
 The easiest way to install Briefing is by using Docker.
 
 1. Run `npm run build:docker` to create all files needed.
