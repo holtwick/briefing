@@ -3,9 +3,13 @@
     <div class="page1">
       <div class="logo">
         <form id="form" @submit.prevent="doEnterRoom">
-          <a @click.prevent="doEnterRoom" :href="url" id="link" class="link"
-            >example<span class="dot">.</span>com<span class="slash">/</span></a
-          >
+          <a
+            @click.prevent="doEnterRoom"
+            :href="url"
+            id="link"
+            class="link"
+            v-html="roomHtml"
+          ></a>
           <wbr />
           <input
             type="text"
@@ -46,7 +50,7 @@
 
 <script>
 import { trackSilentException } from "../bugs"
-import { DEBUG, ROOM_PATH } from "../config"
+import { DEBUG, ROOM_PATH, ROOM_URL } from "../config"
 import { generateName } from "../lib/names"
 
 export default {
@@ -63,6 +67,9 @@ export default {
       initialWidth: -1,
       currentChar: 0,
       observer: null,
+      roomHtml: ROOM_URL.replace(/^https?:\/\//gm, "")
+        .replaceAll("/", '<span class="slash">/</span>')
+        .replaceAll(".", '<span class="dot">.</span>'),
     }
   },
   methods: {
