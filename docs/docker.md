@@ -14,6 +14,8 @@ For production installation I recommend using a [proxy](#proxy) and consider mak
 
 **Important! If not running locally in order to get camera and audio access working, an [SSL connection is required](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#privacy_and_security)!**
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/YFwlnkRVmPc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Configuration
 
 Further configuration is currently not required ;)
@@ -44,3 +46,5 @@ We recommend using a proxy to easily support safe `https`, which is required to 
 A good proxy is [nginxproxymanager.com](https://nginxproxymanager.com/).
 
 You can find the required `docker-compose.yml` files in the [examples](examples) folder.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/KIpB6rlxRsE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
