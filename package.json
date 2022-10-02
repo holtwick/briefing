@@ -19,9 +19,9 @@
   },
   "type": "module",
   "scripts": {
-    "build": "cross-env MODE=production-docker nr build:basis",
+    "build": "cross-env MODE=production nr build:basis",
     "build:basis": "nr clean && zerva build src/zerva/index.ts && vite build --mode $MODE",
-    "build:docker": "cross-env MODE=docker nr build:basis && ./scripts/make-docker.sh",
+    "build:docker": "cross-env MODE=production-docker nr build:basis && ./scripts/make-docker.sh",
     "check": "vue-tsc --noEmit",
     "clean": "rm -rf dist www",
     "format": "prettier --write .",
@@ -31,7 +31,8 @@
     "start": "cross-env ZEED=* LEVEL=a zerva src/zerva/index.ts",
     "test": "cross-env ZEED=* LEVEL=i vitest -r src --globals",
     "upload:production": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-dev:briefing",
-    "upload:stage": "cross-env MODE=stage nr build:basis && rsync -rvz --exclude-from=.rsyncignore * docker-pro:briefing"
+    "upload:stage": "cross-env MODE=stage nr build:basis && rsync -rvz --exclude-from=.rsyncignore * docker-pro:briefing",
+    "upload:dockerhub": "nr build:docker && cd docker && docker build . && docker push holtwick/briefing:tagname"
   },
   "dependencies": {
     "@sentry/browser": "^7.14.0",
