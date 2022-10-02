@@ -4,14 +4,16 @@ version: "3"
 
 services:
   briefing:
-    image: holtwick/briefing
+    build: .
     restart: always
     volumes:
+      - ./dist:/app/dist
+      - ./www:/app/www
       - ./data:/app/data
-    ports:
-      - 8080:8080
+    env_file:
+      - docker-zerva.env
 
-# networks:
-#   default:
-#     external:
-#       name: proxy
+networks:
+  default:
+    external:
+      name: proxy

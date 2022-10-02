@@ -8,6 +8,7 @@
 
 - [Briefing 2.0](version2-en.md) ([de](version2-de.md))
 
-## Other Resources
+## Other Resources for Maintainers
 
 - [Marketing](marketing-en.md) ([de](marketing-de.md)) - Describes Briefing in a few words
+- [Internal](internal.md) - Details for repository maintainers
