@@ -26,7 +26,7 @@ Es gibt aber auch die Möglichkeit, die App in eigenen Projekte zu verwenden. Fo
 
 ## Lizenzen
 
-Generell ist Briefing frei, allerdings steht auch eine [kommerzielle Lizenz](#commercial-license) zur Verfügung, um deren Erwerb ich, insbesondere bei "White Labeling" Anwendungen, bitte.
+Generell ist Briefing frei, allerdings steht auch eine [kommerzielle Lizenz](#commercial-license) zur Verfügung, um deren Erwerb ich, insbesondere bei "White Labeling" Anwendungen, bitte. Ansonsten freue ich mich über die Unterstützung des Projektes durch [Sponsoring via GitHub](https://github.com/sponsors/holtwick), um die Weiterentwicklung zu fördern. Danke.
 
 ### Öffentliche Lizenz
 
