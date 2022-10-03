@@ -238,7 +238,7 @@ export async function setup() {
       alert(
         "Your browser does not support the required WebRTC technologies.\n\nPlease reconnect using an up to date web browser.\n\nThanks for your understanding."
       )
-      location.assign("/ng/")
+      location.assign(ROOM_PATH)
       return
     }
 
