@@ -1,6 +1,8 @@
 # Brie.fi/ng Docs
 
 - [Installation via Docker](docker.md)
+- [Installation on fly.io](fly.io.md)
+- [Installation on render.com](render.com.md)
 - [Development and White Label](development.md)
 - [STUN / TURN via coturn](coturn.md)
 

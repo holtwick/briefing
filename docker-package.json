@@ -11,5 +11,8 @@
   "scripts": {
     "start": "node dist/main.cjs"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  }
 }
