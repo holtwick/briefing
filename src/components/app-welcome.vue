@@ -219,7 +219,7 @@
 
 <script>
 import { trackSilentException } from "../bugs"
-import { DEBUG, ROOM_PATH } from "../config"
+import { DEFAULT_ROOM, ROOM_PATH } from "../config"
 import { gotoUrl } from "../external-links"
 import { historyAllRooms } from "../lib/history"
 import { generateName } from "../lib/names"
@@ -231,9 +231,7 @@ export default {
     AppHelp,
   },
   data() {
-    let defaultName = DEBUG
-      ? import.meta.env.BRIEFING_DEBUG_DEFAULT_ROOM || "development"
-      : generateName()
+    let defaultName = DEFAULT_ROOM ?? generateName()
     return {
       defaultName,
       room: defaultName,

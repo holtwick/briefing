@@ -50,16 +50,14 @@
 
 <script>
 import { trackSilentException } from "../bugs"
-import { DEBUG, ROOM_PATH, ROOM_URL } from "../config"
+import { DEFAULT_ROOM, ROOM_PATH, ROOM_URL } from "../config"
 import { generateName } from "../lib/names"
 
 export default {
   name: "app-whitelabel",
   components: {},
   data() {
-    let defaultName = DEBUG
-      ? import.meta.env.BRIEFING_DEBUG_DEFAULT_ROOM || "development"
-      : generateName()
+    let defaultName = DEFAULT_ROOM ?? generateName()
     return {
       defaultName,
       room: defaultName,

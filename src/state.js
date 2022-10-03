@@ -1,7 +1,6 @@
 import { Logger, messages } from "zeed"
 import { trackException, trackSilentException } from "./bugs"
 import {
-  PRODUCTION,
   ROOM_PATH,
   SHOW_CHAT,
   SHOW_FULLSCREEN,
@@ -263,7 +262,7 @@ export async function setup() {
     updateStream()
     messages.emit("setLocalStream", state.stream)
 
-    if (!PRODUCTION && state.backgroundMode) {
+    if (!state.backgroundMode) {
       setTimeout(switchMedia, 250)
     }
   } catch (err) {
