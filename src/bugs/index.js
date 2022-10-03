@@ -1,12 +1,12 @@
 import Vue from "vue"
 import { Logger, messages } from "zeed"
-import { PRODUCTION, SENTRY_DSN } from "../config"
+import { SENTRY_DSN } from "../config"
 
 const log = Logger("app:bugs")
 
 // Lazy loading of bug tracker
 export function setupBugTracker(done) {
-  if (PRODUCTION && SENTRY_DSN && isAllowedBugTracking()) {
+  if (SENTRY_DSN && isAllowedBugTracking()) {
     console.log("Sentry bug tracking is allowed")
     import("./lazy-sentry").then(({ setupSentry }) => {
       setupSentry({

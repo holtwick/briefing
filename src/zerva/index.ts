@@ -4,6 +4,7 @@ import { useVite } from "@zerva/vite"
 import { useWebSocket } from "@zerva/websocket"
 import { toPath } from "zeed"
 import { useApple } from "./apple"
+import { useConfig } from "./config"
 import { useRoom } from "./room"
 
 useHttp({
@@ -17,6 +18,8 @@ useVite({
   root: toPath("."),
   www: toPath("www"),
 })
+
+useConfig()
 
 useRoom()
 
