@@ -48,8 +48,12 @@ My name is Dirk Holtwick. I am an independent software developer based in German
 
 Contributions are always welcome. The best place to start is to add or respond to [Issues](https://github.com/holtwick/briefing/issues).
 
-To add or correct translations, start here: https://github.com/holtwick/briefing/tree/master/app/src/locales
+To add or correct translations, start here: [src/locales](src/locales/).
 
 ## Previous version
 
 Version 1.0 was based on Webpack and had examples for iOS, Android, Windows, and Electron, as well as a separate signal server. It also offered background blur and image backgrounds via Unsplash. All of these implementations were deprecated. However, the code is still accessible via the [legacy branch](https://github.com/holtwick/briefing/tree/legacy), but is no longer maintained or supported.
+
+---
+
+This document is also available in [German language](README-de.md).

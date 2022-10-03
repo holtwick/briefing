@@ -48,7 +48,7 @@ Mein Name ist Dirk Holtwick. Ich bin ein unabhängiger Softwareentwickler mit Si
 
 Beiträge sind immer willkommen. Am besten fängst du an [Issues](https://github.com/holtwick/briefing/issues) hinzuzufügen oder darauf zu antworten.
 
-Um Übersetzungen hinzuzufügen oder zu korrigieren, starte hier: https://github.com/holtwick/briefing/tree/master/app/src/locales
+Um Übersetzungen hinzuzufügen oder zu korrigieren, starte hier: [src/locales](src/locales/).
 
 ## Vorgänger Version
 
