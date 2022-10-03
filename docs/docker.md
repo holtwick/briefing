@@ -29,13 +29,13 @@ The easiest way to install Briefing is by using Docker.
 1. Run `npm run build:docker` to create all files needed.
 2. Copy the newly generated folder `docker` to the server.
 3. On the server go inside the `docker` folder
-4. Run `docker-compose up -d --build`
+4. Run `docker compose up -d --build`
 
 ## Debug
 
-To stop run `docker-compose down`.
+To stop run `docker compose down`.
 
-In case of problems try to start without the `-d` flag to see logs, like `docker-compose up --build`.
+In case of problems try to start without the `-d` flag to see logs, like `docker compose up --build`.
 
 Once built, you can also leave out the `--build` flag.
 

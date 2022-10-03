@@ -20,11 +20,7 @@ export function useConfig() {
     2
   )}`
 
-  const hasConfig = Object.keys(options).length > 0
-
   on("httpInit", ({ get }) => {
-    if (hasConfig) {
-      get("config.js", configText)
-    }
+    get("config.js", configText)
   })
 }

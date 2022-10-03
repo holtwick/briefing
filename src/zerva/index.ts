@@ -12,17 +12,17 @@ useHttp({
   helmet: false,
 })
 
+useConfig()
+
+useApple()
+
 useWebSocket()
+
+useRoom()
 
 useVite({
   root: toPath("."),
   www: toPath("www"),
 })
-
-useConfig()
-
-useRoom()
-
-useApple()
 
 serve()

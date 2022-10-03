@@ -1,5 +1,8 @@
 import { getWebsocketUrlFromLocation } from "@zerva/websocket"
+import { Logger } from "zeed"
 import { isTrue } from "./lib/base"
+
+const log = Logger("config")
 
 /**
  * There are multiple ways for configuration, listed by priority:
@@ -50,9 +53,9 @@ export const SENTRY_DSN = getConfig("SENTRY_DSN")
 export const ROOM_URL = getConfig(
   "ROOM_URL",
   `${location.protocol}//${location.host}/`
-) // "https://brie.fi/ng/"
+)
 
-export const ROOM_PATH = getConfig("ROOM_PATH", "/") // "/ng/"
+export const ROOM_PATH = getConfig("ROOM_PATH", "/")
 
 export const SHOW_FULLSCREEN = isTrue(getConfig("SHOW_FULLSCREEN"), true)
 export const SHOW_INVITATION = isTrue(getConfig("SHOW_INVITATION"), true)
@@ -65,3 +68,25 @@ export const SHOW_SHARE = isTrue(getConfig("SHOW_SHARE"), true)
 export const SHOW_CHAT = isTrue(getConfig("SHOW_CHAT"), true)
 
 export const DEFAULT_ROOM = getConfig("DEFAULT_ROOM")
+
+log.info(
+  `Config: ${JSON.stringify(
+    {
+      RELEASE,
+      ROOM_URL,
+      ROOM_PATH,
+      DEFAULT_ROOM,
+      SIGNAL_SERVER_URL,
+      ICE_CONFIG,
+      SENTRY_DSN,
+      SHOW_FULLSCREEN,
+      SHOW_CHAT,
+      SHOW_INVITATION,
+      SHOW_INVITATION_HINT,
+      SHOW_SETTINGS,
+      SHOW_SHARE,
+    },
+    null,
+    2
+  )}`
+)

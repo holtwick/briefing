@@ -34,7 +34,7 @@
       </div>
       <div class="footer links">
         <p>
-          FOR WHITELABEL USE YOU'LL NEED TO PURCHASE A
+          FOR WHITELABEL USE WE ASK YOU TO PURCHASE A
           <a href="https://github.com/holtwick/briefing/#commercial-license">
             COMMERCIAL LICENSE
           </a>
