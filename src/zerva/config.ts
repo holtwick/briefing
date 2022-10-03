@@ -21,9 +21,9 @@ export function useConfig() {
     2
   )}`
 
-  log.info("Dynamic config for the frontend:\n\n${configText}")
+  log.info(`Dynamic config for the frontend:\n\n${configText}`)
 
   on("httpInit", ({ get }) => {
-    get("config.js", configText)
+    get("/briefing-config.js", () => configText)
   })
 }
