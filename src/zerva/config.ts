@@ -4,7 +4,7 @@ import { Logger } from "zeed"
 
 const log = Logger("config")
 
-export function useConfig(config: {} = {}) {
+export function useConfig() {
   log("setup")
 
   let options = {}
@@ -19,9 +19,12 @@ export function useConfig(config: {} = {}) {
     null,
     2
   )}`
-  //
+
+  const hasConfig = Object.keys(options).length > 0
 
   on("httpInit", ({ get }) => {
-    get("config.js", configText)
+    if (hasConfig) {
+      get("config.js", configText)
+    }
   })
 }
