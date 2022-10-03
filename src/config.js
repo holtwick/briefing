@@ -50,12 +50,12 @@ export const RELEASE = import.meta.env.BRIEFING_RELEASE
 
 export const SENTRY_DSN = getConfig("SENTRY_DSN")
 
+export const ROOM_PATH = getConfig("ROOM_PATH", "/")
+
 export const ROOM_URL = getConfig(
   "ROOM_URL",
-  `${location.protocol}//${location.host}/`
+  `${location.protocol}//${location.host}${ROOM_PATH}`
 )
-
-export const ROOM_PATH = getConfig("ROOM_PATH", "/")
 
 export const SHOW_FULLSCREEN = isTrue(getConfig("SHOW_FULLSCREEN"), true)
 export const SHOW_INVITATION = isTrue(getConfig("SHOW_INVITATION"), true)
