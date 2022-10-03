@@ -9,7 +9,7 @@
   },
   "type": "module",
   "scripts": {
-    "start": "ZEED=* node --enable-source-maps dist/main.cjs"
+    "start": "node dist/main.cjs"
   },
   "dependencies": {}
 }
