@@ -1,9 +1,9 @@
-import { mergeDeep } from "./base"
+import { mergeDeep } from './base'
 
 export function prepareLocaleStrings({
   lang,
   locales = { en: {} },
-  defaultLang = "en",
+  defaultLang = 'en',
 } = {}) {
   if (localStorage.briefingLang) {
     lang = localStorage.briefingLang

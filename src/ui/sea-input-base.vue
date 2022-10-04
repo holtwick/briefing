@@ -78,12 +78,12 @@
 </template>
 
 <script>
-import { Logger } from "zeed"
+import { Logger } from 'zeed'
 
-const log = Logger("app:fa-textarea")
+const log = Logger('app:fa-textarea')
 
 export default {
-  name: "sea-input-base",
+  name: 'sea-input-base',
   inheritAttrs: false,
   props: {
     label: {
@@ -92,7 +92,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "Text",
+      default: 'Text',
     },
     value: {
       type: [String, Boolean, Number],
@@ -125,9 +125,9 @@ export default {
         return this.newValue
       },
       set(value) {
-        log("set value", value)
+        log('set value', value)
         this.newValue = value
-        this.$emit("input", value)
+        this.$emit('input', value)
         // !this.isValid && this.checkHtml5Validity()
       },
     },

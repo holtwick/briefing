@@ -45,34 +45,34 @@
 </template>
 
 <style lang="scss">
-@import "app-welcome.scss";
+@import 'app-welcome.scss';
 </style>
 
 <script>
-import { trackSilentException } from "../bugs"
-import { DEFAULT_ROOM, ROOM_PATH, ROOM_URL } from "../config"
-import { generateName } from "../lib/names"
+import { trackSilentException } from '../bugs'
+import { DEFAULT_ROOM, ROOM_PATH, ROOM_URL } from '../config'
+import { generateName } from '../lib/names'
 
 export default {
-  name: "app-whitelabel",
+  name: 'app-whitelabel',
   components: {},
   data() {
     let defaultName = DEFAULT_ROOM ?? generateName()
     return {
       defaultName,
       room: defaultName,
-      url: "",
+      url: '',
       initialWidth: -1,
       currentChar: 0,
       observer: null,
-      roomHtml: ROOM_URL.replace(/^https?:\/\//gm, "")
-        .replaceAll("/", '<span class="slash">/</span>')
-        .replaceAll(".", '<span class="dot">.</span>'),
+      roomHtml: ROOM_URL.replace(/^https?:\/\//gm, '')
+        .replaceAll('/', '<span class="slash">/</span>')
+        .replaceAll('.', '<span class="dot">.</span>'),
     }
   },
   methods: {
     doEnterRoom() {
-      const room = this.room || this.defaultName || ""
+      const room = this.room || this.defaultName || ''
       this.state.room = room
       try {
         window.history.pushState(
@@ -88,8 +88,8 @@ export default {
       const input = this.$refs.input
       if (this.initialWidth < 0) this.initialWidth = input.scrollWidth
       let value = input.value.trim()
-      input.style.width = "1px"
-      input.style.width = (value ? input.scrollWidth : this.initialWidth) + "px"
+      input.style.width = '1px'
+      input.style.width = (value ? input.scrollWidth : this.initialWidth) + 'px'
       this.url = ROOM_PATH + (value || this.defaultName)
     },
     charAnimation() {
@@ -116,7 +116,7 @@ export default {
 
     const input = this.$refs.input
     if (input) {
-      input.style.width = input.scrollWidth + "px"
+      input.style.width = input.scrollWidth + 'px'
       this.updateInput()
 
       this.observer = new ResizeObserver(this.updateInput)

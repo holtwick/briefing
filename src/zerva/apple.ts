@@ -1,36 +1,36 @@
-import { on } from "@zerva/core"
-import { Logger } from "zeed"
+import { on } from '@zerva/core'
+import { Logger } from 'zeed'
 
-const log = Logger("apple")
+const log = Logger('apple')
 
 const json = {
   applinks: {
     details: [
       {
-        appIDs: ["8SS3YPUJH9.de.holtwick.Briefing"],
+        appIDs: ['8SS3YPUJH9.de.holtwick.Briefing'],
         components: [
           {
-            "/": "/ng/*",
-            comment: "Enter a room https://brie.fi/ng/example-room-name",
+            '/': '/ng/*',
+            comment: 'Enter a room https://brie.fi/ng/example-room-name',
           },
           {
-            "/": "/",
-            comment: "Open Briefing app",
+            '/': '/',
+            comment: 'Open Briefing app',
           },
         ],
       },
     ],
   },
   webcredentials: {
-    apps: ["8SS3YPUJH9.de.holtwick.Briefing"],
+    apps: ['8SS3YPUJH9.de.holtwick.Briefing'],
   },
   appclips: {
-    apps: ["8SS3YPUJH9.de.holtwick.Briefing.BriefingAppClip"],
+    apps: ['8SS3YPUJH9.de.holtwick.Briefing.BriefingAppClip'],
   },
 }
 
 export function useApple() {
-  on("httpInit", ({ get }) => {
+  on('httpInit', ({ get }) => {
     get(/(^|\/)apple-app-site-association/gim, ({ res }) => {
       // res.set("Content-Type", "application/pkcs7-mime")
       return json

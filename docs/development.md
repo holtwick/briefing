@@ -18,7 +18,7 @@ Most customization can be done by setting env variables, see [.env](../.env) for
 Enable logging by entering the following in the browsers console:
 
 ```js
-localStorage.zeed = "*"
+localStorage.zeed = '*'
 ```
 
 ## Technology stack

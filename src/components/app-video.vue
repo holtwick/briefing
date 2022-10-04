@@ -134,15 +134,15 @@
 </template>
 
 <script>
-import { trackSilentException } from "../bugs"
-import { Logger } from "zeed"
+import { trackSilentException } from '../bugs'
+import { Logger } from 'zeed'
 
-const log = Logger("app:app-peer")
+const log = Logger('app:app-peer')
 
 window.screenshotNumber = 0
 
 export default {
-  name: "app-video",
+  name: 'app-video',
   props: {
     stream: {
       type: MediaStream | Object,
@@ -183,7 +183,7 @@ export default {
   methods: {
     playVideo(video) {
       let startPlayPromise = video.play()
-      log("play", startPlayPromise)
+      log('play', startPlayPromise)
       if (startPlayPromise !== undefined) {
         startPlayPromise
           .then(() => {
@@ -191,7 +191,7 @@ export default {
             // has begun.
           })
           .catch((error) => {
-            if (error.name === "NotAllowedError") {
+            if (error.name === 'NotAllowedError') {
               this.showPlayButton = true
             } else {
               trackSilentException(error)
@@ -200,15 +200,15 @@ export default {
       }
     },
     async doConnectStream(stream) {
-      log("doConnectStream", this.title, stream)
+      log('doConnectStream', this.title, stream)
       if (stream) {
         try {
           await this.$nextTick()
 
           let video = this.$refs.video
-          log("connectStreamToVideoElement", stream, video)
+          log('connectStreamToVideoElement', stream, video)
           if (stream) {
-            if ("srcObject" in video) {
+            if ('srcObject' in video) {
               video.srcObject = stream
             } else {
               video.src = window.URL.createObjectURL(stream) // for older browsers
@@ -229,7 +229,7 @@ export default {
       if (this.showPlayButton) {
         this.doPlay()
       } else if (this.state.maximized === this.id) {
-        this.state.maximized = ""
+        this.state.maximized = ''
       } else {
         this.state.maximized = this.id
       }
@@ -239,7 +239,7 @@ export default {
     },
     async doPlay() {
       try {
-        log("force play manually")
+        log('force play manually')
         this.$refs?.video?.play()
         this.showPlayButton = false
       } catch (err) {

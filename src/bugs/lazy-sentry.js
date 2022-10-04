@@ -1,7 +1,7 @@
-import * as Sentry from "@sentry/browser"
-import { BrowserTracing } from "@sentry/tracing"
-import { RELEASE } from "../config"
-import { assert } from "../lib/assert"
+import * as Sentry from '@sentry/browser'
+import { BrowserTracing } from '@sentry/tracing'
+import { RELEASE } from '../config'
+import { assert } from '../lib/assert'
 
 window.sentry = Sentry
 

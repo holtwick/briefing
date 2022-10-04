@@ -2,7 +2,7 @@
 
 // Mixins
 
-@import "units";
+@import 'units';
 
 @mixin selectable {
   // !important needs to be there because otherwise it does not propagate in WebKit!

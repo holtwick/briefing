@@ -1,6 +1,6 @@
-import { encodeBase32, Logger } from "zeed"
+import { encodeBase32, Logger } from 'zeed'
 
-const log = Logger("fingerprint")
+const log = Logger('fingerprint')
 
 export function getCompactChecksum(...args) {
   args.sort()
@@ -12,10 +12,10 @@ export function getCompactChecksum(...args) {
     const right = values[j + 1]
     checksum += left * 0xff + right
   }
-  return (checksum % 0xffff).toString(16).padStart(4, "0")
+  return (checksum % 0xffff).toString(16).padStart(4, '0')
 }
 
-export function splitByNChars(value, splitN = 3, join = "-") {
+export function splitByNChars(value, splitN = 3, join = '-') {
   let strings = []
   while (value?.length) {
     strings.push(value.substr(0, splitN))
@@ -26,29 +26,29 @@ export function splitByNChars(value, splitN = 3, join = "-") {
 
 export async function digestMessage(message) {
   const msgUint8 = new TextEncoder().encode(message)
-  const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8)
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8)
   return encodeBase32(hashBuffer, 9)
 }
 
 export async function digestMessages(...messages) {
-  log("messages", messages)
+  log('messages', messages)
   messages = messages.map((m) => m.toString().toLowerCase().trim())
   messages.sort()
-  return digestMessage(messages.join("\n"))
+  return digestMessage(messages.join('\n'))
 }
 
 export async function sha256Messages(...messages) {
-  log("messages", messages)
+  log('messages', messages)
   messages = messages.map((m) => m.toString().toLowerCase().trim())
   messages.sort()
-  const message = messages.join("\n")
+  const message = messages.join('\n')
   const msgUint8 = new TextEncoder().encode(message)
-  return await crypto.subtle.digest("SHA-256", msgUint8)
+  return await crypto.subtle.digest('SHA-256', msgUint8)
 }
 
 function getFingerprintArray(fp) {
   if (!fp) return null
-  return fp.split(":").map((v) => parseInt(v.toLowerCase(), 16))
+  return fp.split(':').map((v) => parseInt(v.toLowerCase(), 16))
   // return Uint8Array.from(fp.split(':').map(v => parseInt(v.toLowerCase(), 16)))
 }
 

@@ -1,13 +1,13 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { trackSilentException } from "../bugs"
-import { Logger } from "zeed"
+import { trackSilentException } from '../bugs'
+import { Logger } from 'zeed'
 
-const log = Logger("test:assert")
+const log = Logger('test:assert')
 
 export function assert(cond, ...args) {
   if (!cond) {
-    if (typeof console !== "undefined") {
+    if (typeof console !== 'undefined') {
       if (console.assert) {
         // https://developer.mozilla.org/de/docs/Web/API/Console/assert
         console.assert(cond, ...args)
@@ -16,11 +16,11 @@ export function assert(cond, ...args) {
       }
     }
     try {
-      if (typeof expect !== "undefined") {
+      if (typeof expect !== 'undefined') {
         expect(cond).toBeTruthy()
       }
     } catch (err) {
-      console.warn("assert err", err)
+      console.warn('assert err', err)
       trackSilentException(err)
       // console.error('Exception:', err)
     }

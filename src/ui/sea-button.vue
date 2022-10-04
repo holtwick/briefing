@@ -26,28 +26,28 @@
 </template>
 
 <style lang="scss">
-@import "./sea-button";
+@import './sea-button';
 </style>
 
 <script>
-import { Logger } from "zeed"
-import { trackException } from "../bugs"
-import SeaSymbol from "./sea-symbol.vue"
+import { Logger } from 'zeed'
+import { trackException } from '../bugs'
+import SeaSymbol from './sea-symbol.vue'
 
-const log = Logger("ui:button")
+const log = Logger('ui:button')
 
 // @action, @click
 
 export default {
-  name: "sea-button",
+  name: 'sea-button',
   components: { SeaSymbol },
   props: {
     title: {
       type: String,
-      default: "",
+      default: '',
     },
     theme: {
-      default: "primary",
+      default: 'primary',
     },
     symbol: {
       type: String,
@@ -60,9 +60,9 @@ export default {
     },
     role: {
       type: String,
-      default: "button",
+      default: 'button',
       validator(value) {
-        return ["button", "link"].includes(value)
+        return ['button', 'link'].includes(value)
       },
     },
     active: {
@@ -91,8 +91,8 @@ export default {
       return {
         [`sea-${this.role}`]: true,
         [`-${this.theme}`]: true,
-        "-active": this.active === true,
-        "-has-title": this.slotted,
+        '-active': this.active === true,
+        '-has-title': this.slotted,
       }
     },
   },
@@ -104,9 +104,9 @@ export default {
       try {
         // ev.waitUntil = async () => null
         await this.$nextTick()
-        this.$emit("click", ev)
-        this.$emit("action", ev)
-        this.$emit("update:active", !this.active)
+        this.$emit('click', ev)
+        this.$emit('action', ev)
+        this.$emit('update:active', !this.active)
         if (ev.waitUntil) {
           await ev.waitUntil
         }
@@ -114,7 +114,7 @@ export default {
         trackException(err)
       }
       this.disabled = false
-      log("click done", ev.waitUntil)
+      log('click done', ev.waitUntil)
     },
     async doClick(ev) {
       if (!this.passive) {

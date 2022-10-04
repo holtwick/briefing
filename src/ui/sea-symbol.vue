@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "sea-symbol",
+  name: 'sea-symbol',
   props: {
     name: {
       type: String,

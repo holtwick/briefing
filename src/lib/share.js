@@ -1,8 +1,8 @@
-import clipboardCopy from "clipboard-copy"
-import { Logger } from "zeed"
-import { ROOM_URL } from "../config.js"
+import clipboardCopy from 'clipboard-copy'
+import { Logger } from 'zeed'
+import { ROOM_URL } from '../config.js'
 
-const log = Logger("share")
+const log = Logger('share')
 
 export function createLinkForRoom(room) {
   return ROOM_URL + room
@@ -14,8 +14,8 @@ export const canCopy = !canShare
 export async function shareLink(
   url,
   {
-    title = "Briefing URL",
-    text = "Please open the link in your browser to join the video conference",
+    title = 'Briefing URL',
+    text = 'Please open the link in your browser to join the video conference',
   } = {}
 ) {
   if (navigator.share) {

@@ -2,7 +2,7 @@
 
 // Unit sizes
 
-@use "sass:math";
+@use 'sass:math';
 
 $base-font-size: 16; // Only for calculations! Never set it in <html>!
 $base-font-size-px: (1px * $base-font-size);

@@ -80,14 +80,14 @@
 </style>
 
 <script>
-import { Logger } from "zeed"
-import { ROOM_URL } from "../config"
-import { onMessageFromFrame } from "../lib/iframe"
-import { generateName } from "../lib/names"
-import SeaInputBase from "../ui/sea-input-base.vue"
-import SeaSwitch from "../ui/sea-switch.vue"
+import { Logger } from 'zeed'
+import { ROOM_URL } from '../config'
+import { onMessageFromFrame } from '../lib/iframe'
+import { generateName } from '../lib/names'
+import SeaInputBase from '../ui/sea-input-base.vue'
+import SeaSwitch from '../ui/sea-switch.vue'
 
-const log = Logger("app-embed")
+const log = Logger('app-embed')
 
 export default {
   components: {
@@ -98,7 +98,7 @@ export default {
     let defaultName = generateName()
     return {
       defaultName,
-      room: "",
+      room: '',
       presetAudio: true,
       presetVideo: true,
       presetFullscreen: false,
@@ -116,19 +116,19 @@ export default {
       return (
         prefix +
         (this.room || this.defaultName) +
-        "?audio=" +
+        '?audio=' +
         Number(this.presetAudio) +
-        "&video=" +
+        '&video=' +
         Number(this.presetVideo) +
-        "&fs=" +
+        '&fs=' +
         Number(this.presetFullscreen) +
-        "&invite=" +
+        '&invite=' +
         Number(this.presetInvite) +
-        "&prefs=" +
+        '&prefs=' +
         Number(this.presetPrefs) +
-        "&share=" +
+        '&share=' +
         Number(this.presetShare) +
-        "&chat=" +
+        '&chat=' +
         Number(this.presetChat)
       )
     },
@@ -140,8 +140,8 @@ export default {
     },
   },
   mounted() {
-    onMessageFromFrame("status", (data) => {
-      log("new guest count", data)
+    onMessageFromFrame('status', (data) => {
+      log('new guest count', data)
       this.status = data
     })
   },

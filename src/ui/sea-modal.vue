@@ -51,27 +51,27 @@
 </template>
 
 <style lang="scss">
-@import "./sea-modal";
+@import './sea-modal';
 </style>
 
 <script>
-import { Logger } from "zeed"
-import trapFocus from "./lib/directives/trapFocus"
-import { removeElement } from "./lib/helpers"
-import SeaLink from "./sea-link.vue"
-import SeaSymbol from "./sea-symbol.vue"
+import { Logger } from 'zeed'
+import trapFocus from './lib/directives/trapFocus'
+import { removeElement } from './lib/helpers'
+import SeaLink from './sea-link.vue'
+import SeaSymbol from './sea-symbol.vue'
 
-const log = Logger("ui:sea-modal")
+const log = Logger('ui:sea-modal')
 
 export default {
-  name: "sea-modal",
+  name: 'sea-modal',
   props: {
     active: {
       type: Boolean,
     },
     title: {
       type: String,
-      default: "",
+      default: '',
     },
     close: {
       type: Boolean,
@@ -86,7 +86,7 @@ export default {
       default: false,
     },
     role: {
-      default: "dialog",
+      default: 'dialog',
     },
     canCancel: {
       type: Boolean,
@@ -95,7 +95,7 @@ export default {
     onCancel: {
       type: Function,
       default: () => {
-        log("onCancel not defined")
+        log('onCancel not defined')
       },
     },
   },
@@ -108,8 +108,8 @@ export default {
   },
   methods: {
     doCancel() {
-      log("do cancel")
-      this.$emit("cancel")
+      log('do cancel')
+      this.$emit('cancel')
       let onCancel = this?.$parent?.onCancel || this?.onCancel
       if (onCancel) {
         onCancel.apply(null, arguments)
@@ -117,8 +117,8 @@ export default {
       this.doClose()
     },
     doClose() {
-      this.$emit("close", false)
-      this.$emit("update:active", false)
+      this.$emit('close', false)
+      this.$emit('update:active', false)
 
       if (this.standalone) {
         // Timeout for the animation complete before destroying
@@ -132,16 +132,16 @@ export default {
     keyPress(event) {
       if (this.active && event.keyCode === 27) {
         // Esc key
-        this.doCancel("escape")
+        this.doCancel('escape')
       }
     },
   },
   created() {
-    document?.addEventListener("keyup", this.keyPress)
+    document?.addEventListener('keyup', this.keyPress)
   },
   beforeMount() {
     // Insert the Dialog component in the element container
-    if (this.standalone && typeof window !== "undefined") {
+    if (this.standalone && typeof window !== 'undefined') {
       this.$nextTick(() => {
         const container =
           /* document.querySelector(this.container) || */ document.body
@@ -150,8 +150,8 @@ export default {
     }
   },
   beforeDestroy() {
-    if (typeof window !== "undefined") {
-      document?.removeEventListener("keyup", this.keyPress)
+    if (typeof window !== 'undefined') {
+      document?.removeEventListener('keyup', this.keyPress)
       // reset scroll
       // document?.documentElement.classList.remove('is-clipped')
     }

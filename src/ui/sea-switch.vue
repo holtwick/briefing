@@ -22,18 +22,18 @@
 </template>
 
 <style lang="scss">
-@import "./sea-switch";
+@import './sea-switch';
 </style>
 
 <script>
 // Mix of this receipt: https://www.cssscript.com/realistic-ios-switch-pure-css/
 // And IBM Carbon: https://www.carbondesignsystem.com/components/toggle/code
 
-import SeaFormGroup from "./sea-form-group.vue"
-import SeaInputBase from "./sea-input-base.vue"
+import SeaFormGroup from './sea-form-group.vue'
+import SeaInputBase from './sea-input-base.vue'
 
 export default {
-  name: "sea-switch",
+  name: 'sea-switch',
   components: {
     SeaFormGroup,
     SeaInputBase,
@@ -41,11 +41,11 @@ export default {
   props: {
     label: {
       type: String,
-      default: "",
+      default: '',
     },
     theme: {
       type: String,
-      default: "primary",
+      default: 'primary',
     },
   },
   computed: {

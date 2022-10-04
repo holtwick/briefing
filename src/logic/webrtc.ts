@@ -1,13 +1,13 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { WebSocketConnection } from "@zerva/websocket"
-import { Emitter, Logger, uuid } from "zeed"
-import { SIGNAL_SERVER_URL } from "../config"
-import { assert } from "../lib/assert"
-import { state } from "../state"
-import { WebRTCPeer } from "./webrtc-peer"
+import { WebSocketConnection } from '@zerva/websocket'
+import { Emitter, Logger, uuid } from 'zeed'
+import { SIGNAL_SERVER_URL } from '../config'
+import { assert } from '../lib/assert'
+import { state } from '../state'
+import { WebRTCPeer } from './webrtc-peer'
 
-const log = Logger("app:webrtc")
+const log = Logger('app:webrtc')
 
 // Handles multiple connections, one to each peer
 export class WebRTC extends Emitter {
@@ -34,23 +34,23 @@ export class WebRTC extends Emitter {
 
       let channel = new WebSocketConnection(SIGNAL_SERVER_URL)
 
-      channel.on("connect", () => {
+      channel.on('connect', () => {
         channel.postMessage(
-          JSON.stringify({ name: "status", data: { ping: id } })
+          JSON.stringify({ name: 'status', data: { ping: id } })
         )
       })
 
-      channel.on("message", (event) => {
+      channel.on('message', (event) => {
         let { name, data } = JSON.parse(event.data)
-        log("check result", name, data)
-        if (name === "status") {
+        log('check result', name, data)
+        if (name === 'status') {
           data.ok = data.pong === id
           if (data.ok) {
             resolve(data)
             return
           }
         }
-        reject("error")
+        reject('error')
         channel.close()
       })
     })
@@ -70,12 +70,12 @@ export class WebRTC extends Emitter {
     peerSettings?: any
   } = {}) {
     super()
-    assert(room, "room cannot be empty")
+    assert(room, 'room cannot be empty')
 
     this.room = room
     this.peerSettings = peerSettings
 
-    log("webrtc contacts signal server")
+    log('webrtc contacts signal server')
 
     this.websocketChannel = new WebSocketConnection(SIGNAL_SERVER_URL)
 
@@ -86,12 +86,12 @@ export class WebRTC extends Emitter {
           peer.close()
           delete this.peerConnections[id]
           this.updateStatus()
-          this.emit("disconnected", { peer })
+          this.emit('disconnected', { peer })
         }
       },
 
       joined: ({ room, peers, self }) => {
-        log("joined", state, room, peers)
+        log('joined', state, room, peers)
 
         this.websocketId = self
 
@@ -130,17 +130,17 @@ export class WebRTC extends Emitter {
       },
 
       error: (info: any) => {
-        log.error("websocket error server side:", info)
+        log.error('websocket error server side:', info)
       },
     }
 
-    this.websocketChannel.on("message", (event) => {
-      log("onMessage:", event)
+    this.websocketChannel.on('message', (event) => {
+      log('onMessage:', event)
       try {
         let { name, data } = JSON.parse(event.data)
         methods[name]?.(data)
       } catch (err) {
-        log.error("onMessage error:", err)
+        log.error('onMessage error:', err)
       }
     })
 
@@ -149,15 +149,15 @@ export class WebRTC extends Emitter {
     // connected.value = false
     // })
 
-    this.websocketChannel.on("close", () => {
+    this.websocketChannel.on('close', () => {
       //   log("channel close")
       //   connected.value = false
     })
 
-    this.websocketChannel.on("connect", () => {
-      log("onConnect")
+    this.websocketChannel.on('connect', () => {
+      log('onConnect')
       // this.channelEmit("status", { hello: "world" })
-      this.channelEmit("join", { room })
+      this.channelEmit('join', { room })
     })
   }
 
@@ -177,7 +177,7 @@ export class WebRTC extends Emitter {
         peer,
       }
     })
-    this.emit("status", { status })
+    this.emit('status', { status })
   }
 
   getPeer(id: string) {
@@ -200,9 +200,9 @@ export class WebRTC extends Emitter {
 
     // We received the local signal (i.e. network location description) that
     // we will now send via web socket signaling server to the remote peer
-    peer.on("signal", (signal) => {
+    peer.on('signal', (signal) => {
       // log('received peer signal', remote)
-      this.channelEmit("signal", {
+      this.channelEmit('signal', {
         from: local,
         to: remote,
         signal,
@@ -211,28 +211,28 @@ export class WebRTC extends Emitter {
     })
 
     // The full connection is established, from now on we can exchange data
-    peer.on("connect", () => {
-      this.emit("connected", { peer })
+    peer.on('connect', () => {
+      this.emit('connected', { peer })
       this.updateStatus()
     })
 
     // A message from the remote peer
-    peer.on("data", (data) => {
+    peer.on('data', (data) => {
       // depr
       let { type, ...msg } = JSON.parse(data)
       this.emit(type, msg)
     })
 
-    peer.on("message", (data) => {
-      this.emit("message", data) // Channel compat
+    peer.on('message', (data) => {
+      this.emit('message', data) // Channel compat
     })
 
-    peer.on("stream", (_) => this.updateStatus())
-    peer.on("track", (_) => this.updateStatus())
+    peer.on('stream', (_) => this.updateStatus())
+    peer.on('track', (_) => this.updateStatus())
 
     // Listening to userInfo and emitting back with local peer info
-    this.on("userInfo", (data) => {
-      this.emit("userInfoWithPeer", { peer, data })
+    this.on('userInfo', (data) => {
+      this.emit('userInfoWithPeer', { peer, data })
     })
 
     return peer

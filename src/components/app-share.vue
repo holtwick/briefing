@@ -44,20 +44,20 @@
 </style>
 
 <script>
-import { Logger } from "zeed"
-import { qrcode } from "../lib/qrcode"
-import { createLinkForRoom, shareLink } from "../lib/share"
-import SeaButton from "../ui/sea-button.vue"
+import { Logger } from 'zeed'
+import { qrcode } from '../lib/qrcode'
+import { createLinkForRoom, shareLink } from '../lib/share'
+import SeaButton from '../ui/sea-button.vue'
 
-const log = Logger("app:app-share")
+const log = Logger('app:app-share')
 
 export default {
-  name: "app-share",
+  name: 'app-share',
   components: { SeaButton },
   data() {
     return {
-      url: "",
-      qrcode: "",
+      url: '',
+      qrcode: '',
     }
   },
   methods: {
@@ -74,7 +74,7 @@ export default {
   async mounted() {
     this.url = createLinkForRoom(this.state.room)
     const typeNumber = 0
-    const errorCorrectionLevel = "H"
+    const errorCorrectionLevel = 'H'
     const qr = qrcode(typeNumber, errorCorrectionLevel)
     qr.addData(this.url)
     qr.make()

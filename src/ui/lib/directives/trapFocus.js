@@ -1,8 +1,8 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { Logger } from "zeed"
+import { Logger } from 'zeed'
 
-const log = Logger("app:trapFocus")
+const log = Logger('app:trapFocus')
 
 const findFocusable = (element) => {
   if (!element) {
@@ -32,14 +32,14 @@ let onKeyDown
 const bind = (el, { value = true }) => {
   if (value && el) {
     onKeyDown = (event) => {
-      log("trapped")
+      log('trapped')
       const focusable = Array.from(findFocusable(el))
-      let currentFocus = document.querySelector(":focus")
+      let currentFocus = document.querySelector(':focus')
       let index = focusable.findIndex((f) => f.isSameNode(currentFocus))
       let length = focusable.length
-      log("dic", focusable, currentFocus, index)
+      log('dic', focusable, currentFocus, index)
 
-      if (event.key === "Tab") {
+      if (event.key === 'Tab') {
         event.preventDefault()
         if (!event.shiftKey) {
           ++index
@@ -48,16 +48,16 @@ const bind = (el, { value = true }) => {
           --index
           if (index <= 0) index = length - 1
         }
-        log("index", index, length)
+        log('index', index, length)
         focusable[index].focus()
       }
     }
-    el.addEventListener("keydown", onKeyDown)
+    el.addEventListener('keydown', onKeyDown)
   }
 }
 
 const unbind = (el) => {
-  el?.removeEventListener("keydown", onKeyDown)
+  el?.removeEventListener('keydown', onKeyDown)
 }
 
 const directive = {

@@ -40,7 +40,7 @@ proc-group=turnserver
 
 Docker might be an alternative, but I didn't try by myself:
 
-- https://hub.docker.com/r/instrumentisto/coturn
+- https://hub.docker.com/r/coturn/coturn
 - https://gabrieltanner.org/blog/turn-server
 
 ---

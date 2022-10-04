@@ -45,10 +45,10 @@
 </template>
 
 <script>
-import { messages } from "zeed"
+import { messages } from 'zeed'
 
 export default {
-  name: "app-chat",
+  name: 'app-chat',
   props: {
     name: {
       type: String,
@@ -65,33 +65,33 @@ export default {
       let message = event.target.value
       let name = this.nameString
       let current = new Date()
-      let ampm = current.getUTCHours() < 12 ? "AM" : "PM"
+      let ampm = current.getUTCHours() < 12 ? 'AM' : 'PM'
       let time =
         (current.getUTCHours() % 12) +
-        ":" +
+        ':' +
         current.getUTCMinutes() +
-        " " +
+        ' ' +
         ampm +
-        " (UTC)"
-      messages.emit("chatMessage", { name, message, time })
+        ' (UTC)'
+      messages.emit('chatMessage', { name, message, time })
       this.messages.push({
         name: name,
         message: message,
         from_me: true,
         time: time,
       })
-      event.target.value = ""
+      event.target.value = ''
     },
     setName() {
-      let name = document.getElementById("name").value
-      localStorage.setItem("name", name)
+      let name = document.getElementById('name').value
+      localStorage.setItem('name', name)
       this.nameString = name
-      messages.emit("userInfo", {
+      messages.emit('userInfo', {
         name: name,
       })
     },
     scrollToEnd: function () {
-      let messages = this.$el.querySelector(".messages-container")
+      let messages = this.$el.querySelector('.messages-container')
       messages.scrollTop = messages.lastElementChild.offsetTop
     },
   },
@@ -99,7 +99,7 @@ export default {
     this.$nextTick(() => this.scrollToEnd())
   },
   mounted() {
-    messages.on("newMessage", (info) => {
+    messages.on('newMessage', (info) => {
       this.messages.push({
         name: info.name,
         message: info.message,
@@ -112,5 +112,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../css/chat.scss";
+@import '../css/chat.scss';
 </style>

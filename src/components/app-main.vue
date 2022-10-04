@@ -305,24 +305,24 @@
 </template>
 
 <script>
-import { Logger, messages } from "zeed"
-import { setAllowedBugTracking } from "../bugs"
-import { ROOM_PATH } from "../config"
-import { historyAddRoom } from "../lib/history"
-import { createLinkForRoom, shareLink } from "../lib/share"
-import { setup } from "../state"
-import SeaButton from "../ui/sea-button.vue"
-import SeaLink from "../ui/sea-link.vue"
-import SeaModal from "../ui/sea-modal.vue"
-import AppChat from "./app-chat.vue"
-import AppSettings from "./app-settings.vue"
-import AppShare from "./app-share.vue"
-import AppVideo from "./app-video.vue"
+import { Logger, messages } from 'zeed'
+import { setAllowedBugTracking } from '../bugs'
+import { ROOM_PATH } from '../config'
+import { historyAddRoom } from '../lib/history'
+import { createLinkForRoom, shareLink } from '../lib/share'
+import { setup } from '../state'
+import SeaButton from '../ui/sea-button.vue'
+import SeaLink from '../ui/sea-link.vue'
+import SeaModal from '../ui/sea-modal.vue'
+import AppChat from './app-chat.vue'
+import AppSettings from './app-settings.vue'
+import AppShare from './app-share.vue'
+import AppVideo from './app-video.vue'
 
-const log = Logger("app:app-sidebar")
+const log = Logger('app:app-sidebar')
 
 export default {
-  name: "app-main",
+  name: 'app-main',
   components: {
     AppSettings,
     AppShare,
@@ -334,7 +334,7 @@ export default {
   },
   data() {
     return {
-      mode: "",
+      mode: '',
       settings: false,
       share: false,
       conn: null,
@@ -344,7 +344,7 @@ export default {
       fullscreenHandler: null,
       symbol:
         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>',
-      name: "",
+      name: '',
       unreadMessages: false,
     }
   },
@@ -357,7 +357,7 @@ export default {
     },
     videoAllowed() {
       if (window.webkit != null) {
-        return this.mode === ""
+        return this.mode === ''
       }
       return true
     },
@@ -368,14 +368,14 @@ export default {
     },
     doVideo() {
       this.state.muteVideo = !this.state.muteVideo
-      messages.emit("updateStream")
+      messages.emit('updateStream')
     },
     doAudio() {
       this.state.muteAudio = !this.state.muteAudio
-      messages.emit("updateStream")
+      messages.emit('updateStream')
     },
     doQuit() {
-      if (confirm("Really quit this session?")) {
+      if (confirm('Really quit this session?')) {
         location.assign(ROOM_PATH)
       }
     },
@@ -397,47 +397,47 @@ export default {
         }
       }
     },
-    doTogglePanel(mode = "settings") {
-      this.mode = !mode || this.mode === mode ? "" : mode
+    doTogglePanel(mode = 'settings') {
+      this.mode = !mode || this.mode === mode ? '' : mode
     },
     didChangeFullscreen(ev) {},
     toggleChat() {
-      if (this.mode === "chat") {
-        this.mode = ""
+      if (this.mode === 'chat') {
+        this.mode = ''
       } else {
         this.unreadMessages = false
-        this.mode = "chat"
+        this.mode = 'chat'
         this.focusChatInput()
       }
     },
     updateUserInfo() {
-      messages.emit("userInfo", {
+      messages.emit('userInfo', {
         name: this.name,
       })
     },
     triggerChatFunctions() {
-      messages.on("newMessage", () => {
-        if (this.mode !== "chat") {
+      messages.on('newMessage', () => {
+        if (this.mode !== 'chat') {
           this.unreadMessages = true
         }
       })
 
-      messages.on("userInfoUpdate", ({ peer, data }) => {
+      messages.on('userInfoUpdate', ({ peer, data }) => {
         this.peers[
           this.peers.findIndex((el) => el.remote === peer.local)
         ].peer.name = data.data.name
       })
 
       // Update Local Name to Remote peers every 10 seconds for new peers
-      messages.on("requestUserInfo", () => {
+      messages.on('requestUserInfo', () => {
         this.updateUserInfo()
       })
     },
     setName() {
-      let name = localStorage.getItem("name")
+      let name = localStorage.getItem('name')
       if (name) {
         this.name = name
-        messages.emit("userInfo", {
+        messages.emit('userInfo', {
           name: name,
         })
       }
@@ -447,7 +447,7 @@ export default {
         !/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)
       ) {
         setTimeout(() => {
-          document.getElementById("message-input")?.focus()
+          document.getElementById('message-input')?.focus()
         }, 100)
       }
     },
@@ -460,18 +460,18 @@ export default {
       this.conn = await setup()
     }, 50)
     if (!this.hasPeers && !window.iPhone && this.state.showInviteOnStart) {
-      this.mode = "share"
+      this.mode = 'share'
     }
     this.fullscreenHandler = (ev) => {
       this.isFullScreen = !!document.fullscreenElement
     }
-    document.addEventListener("fullscreenchange", this.fullscreenHandler)
+    document.addEventListener('fullscreenchange', this.fullscreenHandler)
 
     // Remember room name for next visits
     historyAddRoom(this.state.room)
   },
   beforeDestroy() {
-    document.removeEventListener("fullscreenchange", this.fullscreenHandler)
+    document.removeEventListener('fullscreenchange', this.fullscreenHandler)
     this.conn?.cleanup()
   },
 }

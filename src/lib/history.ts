@@ -1,7 +1,7 @@
-import { arrayRemoveElement, Logger } from "zeed"
-const log = Logger("history")
+import { arrayRemoveElement, Logger } from 'zeed'
+const log = Logger('history')
 
-const storageKeyHistory = "briefingHistory"
+const storageKeyHistory = 'briefingHistory'
 
 /** Get all previously visited rooms */
 export function historyAllRooms(): string[] {
@@ -12,7 +12,7 @@ export function historyAllRooms(): string[] {
       rooms = JSON.parse(roomsString)
     }
   } catch (err) {
-    log.warn("Failed to get room history")
+    log.warn('Failed to get room history')
   }
   return rooms
 }

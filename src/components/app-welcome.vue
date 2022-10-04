@@ -214,19 +214,19 @@
 </template>
 
 <style lang="scss">
-@import "app-welcome.scss";
+@import 'app-welcome.scss';
 </style>
 
 <script>
-import { trackSilentException } from "../bugs"
-import { DEFAULT_ROOM, ROOM_PATH } from "../config"
-import { gotoUrl } from "../external-links"
-import { historyAllRooms } from "../lib/history"
-import { generateName } from "../lib/names"
-import AppHelp from "./app-help.vue"
+import { trackSilentException } from '../bugs'
+import { DEFAULT_ROOM, ROOM_PATH } from '../config'
+import { gotoUrl } from '../external-links'
+import { historyAllRooms } from '../lib/history'
+import { generateName } from '../lib/names'
+import AppHelp from './app-help.vue'
 
 export default {
-  name: "app-welcome",
+  name: 'app-welcome',
   components: {
     AppHelp,
   },
@@ -235,7 +235,7 @@ export default {
     return {
       defaultName,
       room: defaultName,
-      url: "",
+      url: '',
       initialWidth: -1,
       currentChar: 0,
       observer: null,
@@ -260,14 +260,14 @@ export default {
       }
     },
     doEnterInputRoom() {
-      this.doEnterRoom(this.room || this.defaultName || "")
+      this.doEnterRoom(this.room || this.defaultName || '')
     },
     updateInput() {
       const input = this.$refs.input
       if (this.initialWidth < 0) this.initialWidth = input.scrollWidth
       let value = input.value.trim()
-      input.style.width = "1px"
-      input.style.width = (value ? input.scrollWidth : this.initialWidth) + "px"
+      input.style.width = '1px'
+      input.style.width = (value ? input.scrollWidth : this.initialWidth) + 'px'
       this.url = ROOM_PATH + (value || this.defaultName)
     },
     charAnimation() {
@@ -294,7 +294,7 @@ export default {
 
     const input = this.$refs.input
     if (input) {
-      input.style.width = input.scrollWidth + "px"
+      input.style.width = input.scrollWidth + 'px'
       this.updateInput()
 
       this.observer = new ResizeObserver(this.updateInput)

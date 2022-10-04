@@ -49,14 +49,14 @@
 </template>
 
 <style lang="scss">
-@import "app-help.scss";
+@import 'app-help.scss';
 </style>
 
 <script>
-import { gotoUrl } from "../external-links"
+import { gotoUrl } from '../external-links'
 
 export default {
-  name: "app-help",
+  name: 'app-help',
   data() {
     return {}
   },

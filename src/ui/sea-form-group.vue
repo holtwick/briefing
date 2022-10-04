@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import { uuid } from "zeed"
+import { uuid } from 'zeed'
 
 export default {
-  name: "sea-form-group",
+  name: 'sea-form-group',
   props: {
     label: {
       type: String,

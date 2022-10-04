@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import SeaButton from "./sea-button.vue"
+import SeaButton from './sea-button.vue'
 
 export default {
-  name: "sea-link",
+  name: 'sea-link',
   components: { SeaButton },
 }
 </script>

@@ -1,16 +1,16 @@
 // https://webrtchacks.com/limit-webrtc-bandwidth-sdp/
 
-import { Logger, messages } from "zeed"
-import { ICE_CONFIG } from "../config"
-import { cloneObject } from "../lib/base"
-import { urlBase64ToUint8Array } from "../lib/base64"
+import { Logger, messages } from 'zeed'
+import { ICE_CONFIG } from '../config'
+import { cloneObject } from '../lib/base'
+import { urlBase64ToUint8Array } from '../lib/base64'
 import {
   removeBandwidthRestriction,
   setMediaBitrate,
-} from "./sdp-manipulation.js"
-import { WebRTC } from "./webrtc"
+} from './sdp-manipulation.js'
+import { WebRTC } from './webrtc'
 
-const log = Logger("app:connection")
+const log = Logger('app:connection')
 
 export async function setupWebRTC(state) {
   if (!WebRTC.isSupported()) return null
@@ -22,13 +22,13 @@ export async function setupWebRTC(state) {
     peerSettings: {
       trickle: true,
       sdpTransform: (sdp) => {
-        log("sdpTransform", state.bandwidth) // , sdp)
+        log('sdpTransform', state.bandwidth) // , sdp)
         let newSDP = sdp
         if (state.bandwidth) {
           //   newSDP = updateBandwidthRestriction(sdp, 10)
           // log('Old SDP', newSDP)
-          newSDP = setMediaBitrate(newSDP, "video", 233)
-          newSDP = setMediaBitrate(newSDP, "audio", 80)
+          newSDP = setMediaBitrate(newSDP, 'video', 233)
+          newSDP = setMediaBitrate(newSDP, 'audio', 80)
           // log('New SDP', newSDP)
         } else {
           newSDP = removeBandwidthRestriction(sdp)
@@ -39,8 +39,8 @@ export async function setupWebRTC(state) {
     },
   })
 
-  webrtc.on("status", (info) => {
-    log("status", info.status)
+  webrtc.on('status', (info) => {
+    log('status', info.status)
     // hack somehow Vue doesn't like the real WebRtcPeer object any more
     let status = info.status.map((p) => {
       let pp = cloneObject(p)
@@ -50,53 +50,53 @@ export async function setupWebRTC(state) {
     state.status = status
   })
 
-  webrtc.on("connected", ({ peer }) => {
-    log("connected", peer)
+  webrtc.on('connected', ({ peer }) => {
+    log('connected', peer)
     if (state.stream) {
       peer.setStream(state.stream)
     }
-    messages.emit("requestUserInfo")
+    messages.emit('requestUserInfo')
   })
 
   // Getting Client's Info with Local Peer Info
-  webrtc.on("userInfoWithPeer", ({ peer, data }) => {
-    webrtc.send("userInfoUpdate", { peer, data })
+  webrtc.on('userInfoWithPeer', ({ peer, data }) => {
+    webrtc.send('userInfoUpdate', { peer, data })
   })
 
   // Listening to Remote Client's Info with its Local Peer Info and
   // emitting to Local Client
-  webrtc.on("userInfoUpdate", ({ peer, data }) => {
-    messages.emit("userInfoUpdate", { peer, data })
+  webrtc.on('userInfoUpdate', ({ peer, data }) => {
+    messages.emit('userInfoUpdate', { peer, data })
   })
 
   // Listening to new messages from Remote Client and emitting to Local client
-  webrtc.on("chatMessage", (info) => {
-    messages.emit("newMessage", info)
+  webrtc.on('chatMessage', (info) => {
+    messages.emit('newMessage', info)
   })
 
-  let onSetLocalStream = messages.on("setLocalStream", (stream) => {
+  let onSetLocalStream = messages.on('setLocalStream', (stream) => {
     webrtc.forEachPeer((peer) => {
       peer.setStream(stream)
     })
   })
 
-  let onNegotiateBandwidth = messages.on("negotiateBandwidth", (stream) => {
+  let onNegotiateBandwidth = messages.on('negotiateBandwidth', (stream) => {
     webrtc.forEachPeer((peer) => {
       peer.peer.negotiate()
     })
   })
 
   // Send a new message to all peers
-  messages.on("chatMessage", ({ name, message, time }) => {
-    webrtc.send("chatMessage", { name, message, time })
+  messages.on('chatMessage', ({ name, message, time }) => {
+    webrtc.send('chatMessage', { name, message, time })
   })
 
   // Listen to local userInfo and emit to webrtc for getting peer info
-  messages.on("userInfo", (data) => {
-    webrtc.emit("userInfo", { data })
+  messages.on('userInfo', (data) => {
+    webrtc.emit('userInfo', { data })
   })
 
-  let onSubscribePush = messages.on("subscribePush", async (on) => {
+  let onSubscribePush = messages.on('subscribePush', async (on) => {
     let add = state.subscription
     let registration = await navigator.serviceWorker.getRegistration()
     let subscription = await registration.pushManager.getSubscription()
@@ -108,7 +108,7 @@ export async function setupWebRTC(state) {
         applicationServerKey,
       })
     }
-    webrtc.io.emit("registerPush", {
+    webrtc.io.emit('registerPush', {
       add,
       room: state.room,
       subscription,
@@ -121,7 +121,7 @@ export async function setupWebRTC(state) {
     return new Promise((resolve) => {
       peer?.peer?.getStats((_, reports) => {
         reports.forEach((report) => {
-          if (report.type === "outbound-rtp") {
+          if (report.type === 'outbound-rtp') {
             if (report.isRemote) return
             bytes += report.bytesSent
             timestamp = report.timestamp

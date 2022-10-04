@@ -100,16 +100,16 @@
 </template>
 
 <script>
-import { Logger, messages } from "zeed"
-import { isAllowedBugTracking, setAllowedBugTracking } from "../bugs"
-import { ICE_CONFIG, RELEASE, SIGNAL_SERVER_URL } from "../config"
-import { WebRTC } from "../logic/webrtc"
-import SeaSwitch from "../ui/sea-switch.vue"
+import { Logger, messages } from 'zeed'
+import { isAllowedBugTracking, setAllowedBugTracking } from '../bugs'
+import { ICE_CONFIG, RELEASE, SIGNAL_SERVER_URL } from '../config'
+import { WebRTC } from '../logic/webrtc'
+import SeaSwitch from '../ui/sea-switch.vue'
 
-const log = Logger("app:app-settings")
+const log = Logger('app:app-settings')
 
 export default {
-  name: "app-settings",
+  name: 'app-settings',
   components: {
     SeaSwitch,
   },
@@ -120,7 +120,7 @@ export default {
       iPhone: window.iPhone,
       SIGNAL_SERVER_URL,
       ICE_CONFIG,
-      signalStatus: "",
+      signalStatus: '',
       showInfo: false,
     }
   },
@@ -136,13 +136,13 @@ export default {
     },
     video() {
       let videoDevices = this.state.devices.filter(
-        (d) => d.kind === "videoinput" && d.deviceId !== "default"
+        (d) => d.kind === 'videoinput' && d.deviceId !== 'default'
       )
       if (navigator?.mediaDevices?.getDisplayMedia) {
         return [
           {
-            deviceId: "desktop",
-            label: this.l.settings.desktop + "\xa0 🖥",
+            deviceId: 'desktop',
+            label: this.l.settings.desktop + '\xa0 🖥',
           },
           ...videoDevices,
         ]
@@ -151,40 +151,40 @@ export default {
     },
     audio() {
       return this.state.devices.filter(
-        (d) => d.kind === "audioinput" && d.deviceId !== "default"
+        (d) => d.kind === 'audioinput' && d.deviceId !== 'default'
       )
     },
   },
   methods: {
     async doCheckSignal() {
       let result = await WebRTC.checkStatus()
-      this.signalStatus = result.ok ? "✅" : "❌"
+      this.signalStatus = result.ok ? '✅' : '❌'
     },
   },
   watch: {
-    async "state.deviceVideo"() {
+    async 'state.deviceVideo'() {
       await this.$nextTick()
-      messages.emit("switchMedia")
+      messages.emit('switchMedia')
     },
-    async "state.deviceAudio"() {
+    async 'state.deviceAudio'() {
       await this.$nextTick()
-      messages.emit("switchMedia")
+      messages.emit('switchMedia')
     },
-    async "state.backgroundMode"(value, prevValue) {
+    async 'state.backgroundMode'(value, prevValue) {
       await this.$nextTick()
 
       // If just the background mode changes, don't restart the whole thing
       if ((value && !prevValue) || (prevValue && !value)) {
-        messages.emit("switchMedia")
+        messages.emit('switchMedia')
       }
     },
-    async "state.bandwidth"() {
+    async 'state.bandwidth'() {
       await this.$nextTick()
-      messages.emit("negotiateBandwidth")
+      messages.emit('negotiateBandwidth')
     },
-    async "state.subscribe"() {
+    async 'state.subscribe'() {
       await this.$nextTick()
-      messages.emit("subscribePush")
+      messages.emit('subscribePush')
     },
   },
   mounted() {

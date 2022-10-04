@@ -1,8 +1,8 @@
 // Thanks to Thomas Konings for this wonderful name generator
 // See https://gist.github.com/tkon99/4c98af713acc73bed74c
 
-import { deburr } from "lodash"
-import { ADJECTIVES, NOUNS } from "./names-const"
+import { deburr } from 'lodash'
+import { ADJECTIVES, NOUNS } from './names-const'
 
 // Alternative solutions https://stackoverflow.com/a/37511463/140927
 export function normalizeName(name) {
@@ -10,7 +10,7 @@ export function normalizeName(name) {
     .toLowerCase()
     .split(/[^a-z0-9]+/gim)
     .filter((s) => s.length > 0)
-    .join("-")
+    .join('-')
 }
 
 export function generateName() {
@@ -24,9 +24,9 @@ export function generateName() {
 
   return (
     ADJECTIVES[getRandomInt(0, ADJECTIVES.length + 1)] +
-    "-" +
+    '-' +
     NOUNS[getRandomInt(0, NOUNS.length + 1)] +
-    "-" +
+    '-' +
     getRandomInt(1, 99)
   )
 }
