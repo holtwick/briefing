@@ -7,7 +7,7 @@
 //  }
 //}
 
-@import "variables";
+@import 'variables';
 
 //.form-group + .form-group {
 //  margin-top: $control-spacing; // $layout-spacing;
@@ -98,7 +98,7 @@ legend {
   }
 
   // Input types
-  &[type="file"] {
+  &[type='file'] {
     height: auto;
   }
 }
@@ -315,7 +315,7 @@ textarea.form-input-autoresize {
         border: $border-width-lg solid $light-color;
         border-left-width: 0;
         border-top-width: 0;
-        content: "";
+        content: '';
         height: 9px;
         left: 50%;
         margin-left: -3px;
@@ -333,7 +333,7 @@ textarea.form-input-autoresize {
 
       &::before {
         background: $bg-color-light;
-        content: "";
+        content: '';
         height: 2px;
         left: 50%;
         margin-left: -5px;
@@ -356,7 +356,7 @@ textarea.form-input-autoresize {
       &::before {
         background: $bg-color-light;
         border-radius: 50%;
-        content: "";
+        content: '';
         height: 6px;
         left: 50%;
         position: absolute;

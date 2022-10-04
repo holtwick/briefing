@@ -1,6 +1,6 @@
 # Please read https://github.com/holtwick/briefing/blob/master/docs/docker.md for proper use of Docker
 
-version: "3"
+version: '3'
 
 services:
   briefing:

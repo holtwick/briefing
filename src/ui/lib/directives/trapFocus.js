@@ -1,13 +1,13 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { Logger } from "zeed"
+import { Logger } from 'zeed'
 
-const log = Logger("app:trapFocus")
+const log = Logger('app:trapFocus')
 
 const findFocusable = (element) => {
-  if (!element) {
+  if (!element)
     return null
-  }
+
   return element.querySelectorAll(
     `
     a[href],
@@ -21,7 +21,7 @@ const findFocusable = (element) => {
     embed,
     *[tabindex],
     *[contenteditable]
-    `.trim()
+    `.trim(),
   )
   //     .sea-button,
   //     .sea-link,
@@ -32,32 +32,35 @@ let onKeyDown
 const bind = (el, { value = true }) => {
   if (value && el) {
     onKeyDown = (event) => {
-      log("trapped")
+      log('trapped')
       const focusable = Array.from(findFocusable(el))
-      let currentFocus = document.querySelector(":focus")
-      let index = focusable.findIndex((f) => f.isSameNode(currentFocus))
-      let length = focusable.length
-      log("dic", focusable, currentFocus, index)
+      const currentFocus = document.querySelector(':focus')
+      let index = focusable.findIndex(f => f.isSameNode(currentFocus))
+      const length = focusable.length
+      log('dic', focusable, currentFocus, index)
 
-      if (event.key === "Tab") {
+      if (event.key === 'Tab') {
         event.preventDefault()
         if (!event.shiftKey) {
           ++index
-          if (index >= length) index = 0
-        } else {
-          --index
-          if (index <= 0) index = length - 1
+          if (index >= length)
+            index = 0
         }
-        log("index", index, length)
+        else {
+          --index
+          if (index <= 0)
+            index = length - 1
+        }
+        log('index', index, length)
         focusable[index].focus()
       }
     }
-    el.addEventListener("keydown", onKeyDown)
+    el.addEventListener('keydown', onKeyDown)
   }
 }
 
 const unbind = (el) => {
-  el?.removeEventListener("keydown", onKeyDown)
+  el?.removeEventListener('keydown', onKeyDown)
 }
 
 const directive = {

@@ -1,89 +1,12 @@
 <!-- Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
 
-<template>
-  <textarea
-    v-if="type === 'textarea'"
-    class="form-input"
-    v-bind="$attrs"
-    v-on="$listeners"
-    :id="uid"
-    :placeholder="placeholder"
-    :value="computedValue"
-    @input="onInput"
-    @keydown.enter=""
-    @blur=""
-    @change="$emit('action', computedValue)"
-    v-text="value"
-  />
-
-  <select
-    v-else-if="type === 'select'"
-    class="form-select"
-    v-bind="$attrs"
-    v-on="$listeners"
-    :id="uid"
-    :value="computedValue"
-    @input="onInput"
-    @change="$emit('action', computedValue)"
-  >
-    <option v-if="placeholder" value="" disabled hidden>
-      {{ placeholder }}
-    </option>
-    <option v-for="o in options" :value="o" :key="o">
-      {{ o }}
-    </option>
-    <slot></slot>
-  </select>
-
-  <input
-    v-else-if="type === 'switch'"
-    type="checkbox"
-    v-bind="$attrs"
-    v-on="$listeners"
-    :id="uid"
-    :checked="computedValue"
-    role="switch"
-    @input="onInputBool"
-    @change="$emit('action', computedValue)"
-  />
-
-  <input
-    v-else-if="type === 'number'"
-    type="number"
-    autocomplete="off"
-    class="form-input"
-    v-bind="$attrs"
-    v-on="$listeners"
-    :id="uid"
-    :value="computedValue"
-    @input="onInput"
-    :placeholder="placeholder"
-    @change="$emit('action', computedValue)"
-  />
-
-  <input
-    v-else
-    type="text"
-    class="form-input"
-    v-bind="$attrs"
-    v-on="$listeners"
-    :id="uid"
-    :value="computedValue"
-    :placeholder="placeholder"
-    autocomplete="off"
-    @input="onInput"
-    @keydown.enter.prevent=""
-    @change="$emit('action', computedValue)"
-  />
-</template>
-
 <script>
-import { Logger } from "zeed"
+import { Logger } from 'zeed'
 
-const log = Logger("app:fa-textarea")
+const log = Logger('app:fa-textarea')
 
 export default {
-  name: "sea-input-base",
+  name: 'SeaInputBase',
   inheritAttrs: false,
   props: {
     label: {
@@ -92,7 +15,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "Text",
+      default: 'Text',
     },
     value: {
       type: [String, Boolean, Number],
@@ -125,9 +48,9 @@ export default {
         return this.newValue
       },
       set(value) {
-        log("set value", value)
+        log('set value', value)
         this.newValue = value
-        this.$emit("input", value)
+        this.$emit('input', value)
         // !this.isValid && this.checkHtml5Validity()
       },
     },
@@ -141,9 +64,8 @@ export default {
     onInput(event) {
       // log('onInput', event.target.value)
       this.$nextTick(() => {
-        if (event.target) {
+        if (event.target)
           this.computedValue = event.target.value
-        }
       })
     },
     onInputBool(event) {
@@ -158,3 +80,80 @@ export default {
   },
 }
 </script>
+
+<template>
+  <textarea
+    v-if="type === 'textarea'"
+    v-bind="$attrs"
+    :id="uid"
+    class="form-input"
+    :placeholder="placeholder"
+    :value="computedValue"
+    v-on="$listeners"
+    @input="onInput"
+    @keydown.enter=""
+    @blur=""
+    @change="$emit('action', computedValue)"
+    v-text="value"
+  />
+
+  <select
+    v-else-if="type === 'select'"
+    v-bind="$attrs"
+    :id="uid"
+    class="form-select"
+    :value="computedValue"
+    v-on="$listeners"
+    @input="onInput"
+    @change="$emit('action', computedValue)"
+  >
+    <option v-if="placeholder" value="" disabled hidden>
+      {{ placeholder }}
+    </option>
+    <option v-for="o in options" :key="o" :value="o">
+      {{ o }}
+    </option>
+    <slot />
+  </select>
+
+  <input
+    v-else-if="type === 'switch'"
+    v-bind="$attrs"
+    :id="uid"
+    type="checkbox"
+    :checked="computedValue"
+    role="switch"
+    v-on="$listeners"
+    @input="onInputBool"
+    @change="$emit('action', computedValue)"
+  >
+
+  <input
+    v-else-if="type === 'number'"
+    v-bind="$attrs"
+    :id="uid"
+    type="number"
+    autocomplete="off"
+    class="form-input"
+    :value="computedValue"
+    :placeholder="placeholder"
+    v-on="$listeners"
+    @input="onInput"
+    @change="$emit('action', computedValue)"
+  >
+
+  <input
+    v-else
+    v-bind="$attrs"
+    :id="uid"
+    type="text"
+    class="form-input"
+    :value="computedValue"
+    :placeholder="placeholder"
+    autocomplete="off"
+    v-on="$listeners"
+    @input="onInput"
+    @keydown.enter.prevent=""
+    @change="$emit('action', computedValue)"
+  >
+</template>

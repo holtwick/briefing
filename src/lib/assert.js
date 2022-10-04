@@ -1,26 +1,30 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
+
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { trackSilentException } from "../bugs"
-import { Logger } from "zeed"
+import { Logger } from 'zeed'
+import { trackSilentException } from '../bugs'
 
-const log = Logger("test:assert")
+const log = Logger('test:assert')
 
 export function assert(cond, ...args) {
   if (!cond) {
-    if (typeof console !== "undefined") {
+    if (typeof console !== 'undefined') {
       if (console.assert) {
         // https://developer.mozilla.org/de/docs/Web/API/Console/assert
         console.assert(cond, ...args)
-      } else {
+      }
+      else {
         console.error(`Assert did fail with: ${cond}`, ...args)
       }
     }
     try {
-      if (typeof expect !== "undefined") {
+      if (typeof expect !== 'undefined')
         expect(cond).toBeTruthy()
-      }
-    } catch (err) {
-      console.warn("assert err", err)
+    }
+    catch (err) {
+      console.warn('assert err', err)
       trackSilentException(err)
       // console.error('Exception:', err)
     }
@@ -29,9 +33,8 @@ export function assert(cond, ...args) {
 }
 
 export function assert_equal(value, expected, ...args) {
-  if (value !== expected) {
+  if (value !== expected)
     assert(false, `Expected ${expected} got ${value}`, ...args)
-  } else {
+  else
     log(`Passed equal check with value ${value}`, ...args)
-  }
 }

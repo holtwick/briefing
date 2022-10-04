@@ -1,5 +1,5 @@
-@import "variables";
-@import "macros";
+@import 'variables';
+@import 'macros';
 
 body {
   background: #272727;
@@ -131,11 +131,11 @@ body {
     transform: translateY(-50%) translateX(-50%);
     // max-height: calc(50vh - 3rem) !important;
 
-    &[data-fit="cover"] {
+    &[data-fit='cover'] {
       object-fit: cover;
     }
 
-    &[data-fit="contain"] {
+    &[data-fit='contain'] {
       object-fit: contain;
     }
 
@@ -234,12 +234,12 @@ body {
 .video-fill {
 }
 
-[data-mode="default"] {
-  @import "layout-default";
+[data-mode='default'] {
+  @import 'layout-default';
 }
 
-[data-mode="maximized"] {
-  @import "layout-maximized";
+[data-mode='maximized'] {
+  @import 'layout-maximized';
 }
 
 .transform {

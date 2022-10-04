@@ -1,5 +1,20 @@
+<script>
+import { gotoUrl } from '../external-links'
+
+export default {
+  name: 'AppHelp',
+  data() {
+    return {}
+  },
+  async mounted() {},
+  methods: {
+    gotoUrl,
+  },
+}
+</script>
+
 <template>
-  <div class="help" id="help">
+  <div id="help" class="help">
     <div class="text links">
       <h1>Brie.fi/ng</h1>
       <p>
@@ -18,8 +33,7 @@
         The difference between Briefing and most similar projects is, that it
         does not use a central server that distributes the video streams (<a
           href="https://webrtcglossary.com/sfu/"
-          >SFU</a
-        >). The advantage of an SFU is that it saves bandwidth due to the fact
+        >SFU</a>). The advantage of an SFU is that it saves bandwidth due to the fact
         that the own video does not being uploaded to each participant but only
         once. The SFU can also do more optimizations the clients might not
         support. But then the video signal is not end-to-end encrypted any more
@@ -32,12 +46,10 @@
       <p>
         <b>
           Learn more about details at
-          <a href="https://github.com/holtwick/briefing/"
-            >github.com/holtwick/briefing</a
-          >
+          <a href="https://github.com/holtwick/briefing/">github.com/holtwick/briefing</a>
         </b>
       </p>
-      <p><br /></p>
+      <p><br></p>
       <p>
         (C)opyright 2020-2022 by
         <a :href="gotoUrl('holtwick')">Dirk Holtwick</a> |
@@ -49,20 +61,5 @@
 </template>
 
 <style lang="scss">
-@import "app-help.scss";
+@import 'app-help.scss';
 </style>
-
-<script>
-import { gotoUrl } from "../external-links"
-
-export default {
-  name: "app-help",
-  data() {
-    return {}
-  },
-  methods: {
-    gotoUrl,
-  },
-  async mounted() {},
-}
-</script>

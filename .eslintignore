@@ -1,3 +1,4 @@
+_archive
 .DS_* 
 .env.*
 .htaccess
@@ -7,6 +8,10 @@
 .rsync-ignore
 *.local
 *.log
+*.spec.*
+bg.jpg
+build
+data
 dist
 dist_electron
 docker

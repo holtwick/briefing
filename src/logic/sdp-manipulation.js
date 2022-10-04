@@ -1,8 +1,8 @@
 export function setMediaBitrate(sdp, media, bitrate) {
-  let lines = sdp.split("\n")
+  const lines = sdp.split('\n')
   let line = -1
   for (let i = 0; i < lines.length; i++) {
-    if (lines[i].indexOf("m=" + media) === 0) {
+    if (lines[i].indexOf(`m=${media}`) === 0) {
       line = i
       break
     }
@@ -17,27 +17,26 @@ export function setMediaBitrate(sdp, media, bitrate) {
   line++
 
   // Skip i and c lines
-  while (lines[line].indexOf("i=") === 0 || lines[line].indexOf("c=") === 0) {
+  while (lines[line].indexOf('i=') === 0 || lines[line].indexOf('c=') === 0)
     line++
-  }
 
   // If we're on a b line, replace it
-  if (lines[line].indexOf("b") === 0) {
+  if (lines[line].indexOf('b') === 0) {
     // log('Replaced b line at line', line)
-    lines[line] = "b=AS:" + bitrate
-    return lines.join("\n")
+    lines[line] = `b=AS:${bitrate}`
+    return lines.join('\n')
   }
 
   // Add a new b line
   // log('Adding new b line before line', line)
   let newLines = lines.slice(0, line)
-  newLines.push("b=AS:" + bitrate)
+  newLines.push(`b=AS:${bitrate}`)
   newLines = newLines.concat(lines.slice(line, lines.length))
-  return newLines.join("\n")
+  return newLines.join('\n')
 }
 
 export function removeBandwidthRestriction(sdp) {
-  return sdp.replace(/b=AS:.*\r\n/, "").replace(/b=TIAS:.*\r\n/, "")
+  return sdp.replace(/b=AS:.*\r\n/, '').replace(/b=TIAS:.*\r\n/, '')
 }
 
 // function isFirefox() {

@@ -1,21 +1,14 @@
-<template>
-  <app-embed v-if="state.embedDemo === true" class="app" />
-  <app-welcome v-else-if="!state.room && state.original" class="app" />
-  <app-whitelabel v-else-if="!state.room && !state.original" class="app" />
-  <app-main v-else />
-</template>
-
 <script>
-import { Logger } from "zeed"
-import AppWelcome from "./components/app-welcome.vue"
-import AppWhitelabel from "./components/app-whitelabel.vue"
-import AppMain from "./components/app-main.vue"
-import AppEmbed from "./components/app-embed.vue"
+import { Logger } from 'zeed'
+import AppWelcome from './components/app-welcome.vue'
+import AppWhitelabel from './components/app-whitelabel.vue'
+import AppMain from './components/app-main.vue'
+import AppEmbed from './components/app-embed.vue'
 
-const log = Logger("app:app")
+const log = Logger('app:app')
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     AppWelcome,
     AppWhitelabel,
@@ -26,13 +19,20 @@ export default {
     return {}
   },
   mounted() {
-    log("mounted")
+    log('mounted')
   },
 }
 </script>
 
+<template>
+  <AppEmbed v-if="state.embedDemo === true" class="app" />
+  <AppWelcome v-else-if="!state.room && state.original" class="app" />
+  <AppWhitelabel v-else-if="!state.room && !state.original" class="app" />
+  <AppMain v-else />
+</template>
+
 <style lang="scss">
-@import "./css/index.scss";
+@import './css/index.scss';
 
 .debug {
   position: fixed;

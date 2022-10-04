@@ -1,10 +1,11 @@
-import { assertModules, on, onInit, register } from "@zerva/core"
-import "@zerva/websocket"
-import { Channel, Logger, uname } from "zeed"
+import { assertModules, on, onInit, register } from '@zerva/core'
+import '@zerva/websocket'
+import type { Channel } from 'zeed'
+import { Logger, uname } from 'zeed'
 
-const log = Logger("room")
+const log = Logger('room')
 
-const moduleName = "room"
+const moduleName = 'room'
 
 interface RoomPeer {
   id: string
@@ -17,21 +18,21 @@ interface Room {
   peers: Map<string, RoomPeer>
 }
 
-export function useRoom(config: {} = {}) {
-  log("setup")
+export function useRoom() {
+  log('setup')
   register(moduleName)
 
   const rooms = new Map<string, Room>()
 
   onInit(() => {
-    assertModules("websocket")
+    assertModules('websocket')
   })
 
   const useConnection = (channel: Channel) => {
-    const peerId = uname("peer") // uuid()
+    const peerId = uname('peer') // uuid()
 
-    let log = Logger(`${peerId}::${moduleName}`)
-    log.info("useConnection")
+    const log = Logger(`${peerId}::${moduleName}`)
+    log.info('useConnection')
 
     let roomInfo: Room
 
@@ -41,10 +42,10 @@ export function useRoom(config: {} = {}) {
 
     const methods = {
       join: ({ room }) => {
-        log("join")
+        log('join')
 
         if (roomInfo) {
-          log.warn("Tries to connect more than once.")
+          log.warn('Tries to connect more than once.')
           return
         }
 
@@ -59,7 +60,7 @@ export function useRoom(config: {} = {}) {
         }
 
         // Existing peers (before we add self)
-        let peers = [...roomInfo.peers.keys()]
+        const peers = [...roomInfo.peers.keys()]
 
         // Add self
         roomInfo.peers.set(peerId, {
@@ -69,7 +70,7 @@ export function useRoom(config: {} = {}) {
         })
 
         // Let client know
-        channelEmit("joined", {
+        channelEmit('joined', {
           room,
           peers,
           self: peerId,
@@ -77,61 +78,63 @@ export function useRoom(config: {} = {}) {
       },
 
       signal: (data: any) => {
-        log("signal", data)
+        log('signal', data)
         const { from, to } = data
         if (from !== peerId) {
-          log.warn("Strange message that was not sent by us.")
-        } else if (to) {
-          const peer = roomInfo?.peers.get(to)
-          if (!peer) {
-            log.warn(`Cannot find peer ${to} for sending signal.`)
-          } else {
-            peer.emit("signal", data)
-          }
-        } else {
-          log.warn("Missing data for signal.")
+          log.warn('Strange message that was not sent by us.')
         }
-        log("signal")
+        else if (to) {
+          const peer = roomInfo?.peers.get(to)
+          if (!peer)
+            log.warn(`Cannot find peer ${to} for sending signal.`)
+          else
+            peer.emit('signal', data)
+        }
+        else {
+          log.warn('Missing data for signal.')
+        }
+        log('signal')
       },
 
       status: (info: any) => {
-        log("status", info)
-        channelEmit("status", {
+        log('status', info)
+        channelEmit('status', {
           api: 1,
-          pong: info?.ping || "pong",
+          pong: info?.ping || 'pong',
           config: {},
         })
       },
     }
 
-    channel.on("message", (event) => {
+    channel.on('message', (event) => {
       try {
-        let { name, data } = JSON.parse(event.data)
+        const { name, data } = JSON.parse(event.data)
         log(`onMessage "${name}":`, data)
         methods[name]?.(data)
-      } catch (err) {
-        log.error("onMessage error:", err)
+      }
+      catch (err) {
+        log.error('onMessage error:', err)
       }
     })
 
-    channel.on("close", () => {
-      log("close")
+    channel.on('close', () => {
+      log('close')
       roomInfo.peers.delete(peerId)
 
       if (roomInfo.peers.size <= 0) {
         // we can also leave it dangle around
-      } else {
-        for (let peer of roomInfo.peers.values()) {
-          peer.emit("remove", peerId)
-        }
+      }
+      else {
+        for (const peer of roomInfo.peers.values())
+          peer.emit('remove', peerId)
       }
 
       roomInfo = undefined
     })
   }
 
-  on("webSocketConnect", ({ channel }) => {
-    log("webSocketConnect")
+  on('webSocketConnect', ({ channel }) => {
+    log('webSocketConnect')
     useConnection(channel)
   })
 }

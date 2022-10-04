@@ -1,7 +1,7 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-@import "units";
-@import "macros";
+@import 'units';
+@import 'macros';
 
 // Core features
 
@@ -119,19 +119,19 @@ $control-spacing: $px-24; //  $control-size / 5 * 3;
 // Fonts
 
 // Credit: https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
-$base-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+$base-font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI',
   Roboto !default;
-$mono-font-family: "SF Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Courier,
+$mono-font-family: 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', Menlo, Courier,
   monospace !default;
-$fallback-font-family: "Helvetica Neue", sans-serif !default;
-$cjk-zh-hans-font-family: $base-font-family, "PingFang SC", "Hiragino Sans GB",
-  "Microsoft YaHei", $fallback-font-family !default;
-$cjk-zh-hant-font-family: $base-font-family, "PingFang TC", "Hiragino Sans CNS",
-  "Microsoft JhengHei", $fallback-font-family !default;
-$cjk-jp-font-family: $base-font-family, "Hiragino Sans",
-  "Hiragino Kaku Gothic Pro", "Yu Gothic", YuGothic, Meiryo,
+$fallback-font-family: 'Helvetica Neue', sans-serif !default;
+$cjk-zh-hans-font-family: $base-font-family, 'PingFang SC', 'Hiragino Sans GB',
+  'Microsoft YaHei', $fallback-font-family !default;
+$cjk-zh-hant-font-family: $base-font-family, 'PingFang TC', 'Hiragino Sans CNS',
+  'Microsoft JhengHei', $fallback-font-family !default;
+$cjk-jp-font-family: $base-font-family, 'Hiragino Sans',
+  'Hiragino Kaku Gothic Pro', 'Yu Gothic', YuGothic, Meiryo,
   $fallback-font-family !default;
-$cjk-ko-font-family: $base-font-family, "Malgun Gothic", $fallback-font-family !default;
+$cjk-ko-font-family: $base-font-family, 'Malgun Gothic', $fallback-font-family !default;
 $body-font-family: $base-font-family, $fallback-font-family !default;
 
 // Font sizes

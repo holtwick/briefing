@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 .app {
   color: var(--text-color);
@@ -14,6 +14,6 @@
     right: 0;
     height: $safe-top;
     background: var(--statusbar-color, rgba(255, 255, 255, 0.25));
-    content: "";
+    content: '';
   }
 }

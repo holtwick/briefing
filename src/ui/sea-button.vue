@@ -1,53 +1,24 @@
 <!-- Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
 
-<template>
-  <button
-    :class="classnames"
-    v-bind="$attrs"
-    :disabled="disabled"
-    :role="role"
-    @mousedown="doBeforeClick"
-    @click="doClick"
-    @contextmenu="doClick"
-  >
-    <sea-symbol
-      v-if="symbol || symbolLeft"
-      :name="symbol || symbolLeft"
-      class="sea-button-symbol-left"
-    />
-    {{ title }}
-    <slot></slot>
-    <sea-symbol
-      v-if="symbolRight"
-      :name="symbolRight"
-      class="sea-button-symbol-right"
-    />
-  </button>
-</template>
-
-<style lang="scss">
-@import "./sea-button";
-</style>
-
 <script>
-import { Logger } from "zeed"
-import { trackException } from "../bugs"
-import SeaSymbol from "./sea-symbol.vue"
+import { Logger } from 'zeed'
+import { trackException } from '../bugs'
+import SeaSymbol from './sea-symbol.vue'
 
-const log = Logger("ui:button")
+const log = Logger('ui:button')
 
 // @action, @click
 
 export default {
-  name: "sea-button",
+  name: 'SeaButton',
   components: { SeaSymbol },
   props: {
     title: {
       type: String,
-      default: "",
+      default: '',
     },
     theme: {
-      default: "primary",
+      default: 'primary',
     },
     symbol: {
       type: String,
@@ -60,9 +31,9 @@ export default {
     },
     role: {
       type: String,
-      default: "button",
+      default: 'button',
       validator(value) {
-        return ["button", "link"].includes(value)
+        return ['button', 'link'].includes(value)
       },
     },
     active: {
@@ -91,35 +62,35 @@ export default {
       return {
         [`sea-${this.role}`]: true,
         [`-${this.theme}`]: true,
-        "-active": this.active === true,
-        "-has-title": this.slotted,
+        '-active': this.active === true,
+        '-has-title': this.slotted,
       }
     },
   },
   methods: {
     async doAction(ev) {
       // this.hideTooltip()
-      if (this.disabled) return
+      if (this.disabled)
+        return
       this.disabled = true
       try {
         // ev.waitUntil = async () => null
         await this.$nextTick()
-        this.$emit("click", ev)
-        this.$emit("action", ev)
-        this.$emit("update:active", !this.active)
-        if (ev.waitUntil) {
+        this.$emit('click', ev)
+        this.$emit('action', ev)
+        this.$emit('update:active', !this.active)
+        if (ev.waitUntil)
           await ev.waitUntil
-        }
-      } catch (err) {
+      }
+      catch (err) {
         trackException(err)
       }
       this.disabled = false
-      log("click done", ev.waitUntil)
+      log('click done', ev.waitUntil)
     },
     async doClick(ev) {
-      if (!this.passive) {
+      if (!this.passive)
         await this.doAction(ev)
-      }
     },
     async doBeforeClick(ev) {
       if (this.passive) {
@@ -130,3 +101,32 @@ export default {
   },
 }
 </script>
+
+<template>
+  <button
+    :class="classnames"
+    v-bind="$attrs"
+    :disabled="disabled"
+    :role="role"
+    @mousedown="doBeforeClick"
+    @click="doClick"
+    @contextmenu="doClick"
+  >
+    <SeaSymbol
+      v-if="symbol || symbolLeft"
+      :name="symbol || symbolLeft"
+      class="sea-button-symbol-left"
+    />
+    {{ title }}
+    <slot />
+    <SeaSymbol
+      v-if="symbolRight"
+      :name="symbolRight"
+      class="sea-button-symbol-right"
+    />
+  </button>
+</template>
+
+<style lang="scss">
+@import './sea-button';
+</style>

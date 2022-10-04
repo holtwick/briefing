@@ -1,23 +1,26 @@
 {
   "name": "briefing",
-  "version": "2.0.20",
+  "type": "module",
+  "version": "2.0.21",
   "private": true,
   "description": "Secure direct video chat",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/holtwick/briefing.git"
-  },
-  "funding": {
-    "type": "GitHub Sponsors ❤",
-    "url": "https://github.com/sponsors/holtwick"
-  },
-  "license": "EUPL-1.2",
   "author": {
     "name": "Dirk Holtwick",
     "email": "dirk.holtwick@gmail.com",
     "url": "https://holtwick.de"
   },
-  "type": "module",
+  "license": "EUPL-1.2",
+  "funding": {
+    "type": "GitHub Sponsors ❤",
+    "url": "https://github.com/sponsors/holtwick"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "build": "cross-env MODE=production nr build:basis",
     "build:basis": "nr clean && zerva build src/zerva/index.ts && vite build --mode $MODE",
@@ -25,14 +28,16 @@
     "check": "vue-tsc --noEmit",
     "clean": "rm -rf dist www",
     "format": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "preview": "vite preview",
     "reset": "rm -rf node_modules pnpm-lock.yaml dist dist_www www",
     "serve": "cross-env ZEED=* LEVEL=i node dist/main.cjs",
     "start": "cross-env ZEED=* LEVEL=a zerva src/zerva/index.ts",
     "test": "cross-env ZEED=* LEVEL=i vitest -r src --globals",
+    "upload:dockerhub": "nr build:docker && cd docker && docker buildx build --platform linux/arm64,linux/amd64,linux/s390x,linux/arm/v7,linux/arm/v6 -t holtwick/briefing:$npm_package_version -t holtwick/briefing:latest --push .",
     "upload:production": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-dev:briefing",
-    "upload:stage": "cross-env MODE=stage nr build:basis && rsync -rvz --exclude-from=.rsyncignore * docker-pro:briefing",
-    "upload:dockerhub": "nr build:docker && cd docker && docker buildx build --platform linux/arm64,linux/amd64,linux/s390x,linux/arm/v7,linux/arm/v6 -t holtwick/briefing:$npm_package_version -t holtwick/briefing:latest --push ."
+    "upload:stage": "cross-env MODE=stage nr build:basis && rsync -rvz --exclude-from=.rsyncignore * docker-pro:briefing"
   },
   "dependencies": {
     "@sentry/browser": "^7.14.0",
@@ -46,12 +51,14 @@
     "zeed": "^0.8.31"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.27.0",
     "@antfu/ni": "^0.18.2",
     "@types/node": "^18.7.23",
     "@vitejs/plugin-vue2": "^2.0.0",
     "@zerva/bin": "^0.14.2",
     "@zerva/vite": "^0.14.2",
     "cross-env": "^7.0.3",
+    "eslint": "^8.24.0",
     "prettier": "^2.7.1",
     "sass": "^1.55.0",
     "tsc": "^2.0.4",
@@ -59,8 +66,5 @@
     "vite": "^3.1.4",
     "vitest": "^0.23.4",
     "vue-tsc": "^0.40.13"
-  },
-  "engines": {
-    "node": ">=16.0.0"
   }
 }
