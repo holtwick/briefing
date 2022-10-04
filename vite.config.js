@@ -1,7 +1,7 @@
 import vue from '@vitejs/plugin-vue2'
 import { defineConfig } from 'vite'
 
-let env = process.env
+const env = process.env
 
 env.BRIEFING_NAME = env.npm_package_name
 env.BRIEFING_VERSION = env.npm_package_version

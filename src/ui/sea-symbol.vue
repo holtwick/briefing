@@ -1,18 +1,18 @@
 <!-- Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
 
-<template>
-  <i class="f7" :data-f7-icon="name" aria-hidden="true" />
-</template>
-
 <script>
 export default {
-  name: 'sea-symbol',
+  name: 'SeaSymbol',
   props: {
     name: {
       type: String,
-      default: 0,
+      default: '',
       required: true,
     },
   },
 }
 </script>
+
+<template>
+  <i class="f7" :data-f7-icon="name" aria-hidden="true" />
+</template>

@@ -5,9 +5,9 @@ import { Logger } from 'zeed'
 const log = Logger('app:trapFocus')
 
 const findFocusable = (element) => {
-  if (!element) {
+  if (!element)
     return null
-  }
+
   return element.querySelectorAll(
     `
     a[href],
@@ -21,7 +21,7 @@ const findFocusable = (element) => {
     embed,
     *[tabindex],
     *[contenteditable]
-    `.trim()
+    `.trim(),
   )
   //     .sea-button,
   //     .sea-link,
@@ -34,19 +34,22 @@ const bind = (el, { value = true }) => {
     onKeyDown = (event) => {
       log('trapped')
       const focusable = Array.from(findFocusable(el))
-      let currentFocus = document.querySelector(':focus')
-      let index = focusable.findIndex((f) => f.isSameNode(currentFocus))
-      let length = focusable.length
+      const currentFocus = document.querySelector(':focus')
+      let index = focusable.findIndex(f => f.isSameNode(currentFocus))
+      const length = focusable.length
       log('dic', focusable, currentFocus, index)
 
       if (event.key === 'Tab') {
         event.preventDefault()
         if (!event.shiftKey) {
           ++index
-          if (index >= length) index = 0
-        } else {
+          if (index >= length)
+            index = 0
+        }
+        else {
           --index
-          if (index <= 0) index = length - 1
+          if (index <= 0)
+            index = length - 1
         }
         log('index', index, length)
         focusable[index].focus()

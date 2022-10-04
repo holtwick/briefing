@@ -5,11 +5,11 @@ export function prepareLocaleStrings({
   locales = { en: {} },
   defaultLang = 'en',
 } = {}) {
-  if (localStorage.briefingLang) {
+  if (localStorage.briefingLang)
     lang = localStorage.briefingLang
-  } else {
+  else
     lang = lang || navigator?.language?.slice(0, 2)
-  }
+
   return mergeDeep(mergeDeep({}, locales[defaultLang]), locales[lang] || {})
 }
 

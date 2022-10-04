@@ -1,7 +1,6 @@
 import { on } from '@zerva/core'
-import { Logger } from 'zeed'
 
-const log = Logger('apple')
+// const log = Logger('apple')
 
 const json = {
   applinks: {
@@ -11,11 +10,11 @@ const json = {
         components: [
           {
             '/': '/ng/*',
-            comment: 'Enter a room https://brie.fi/ng/example-room-name',
+            'comment': 'Enter a room https://brie.fi/ng/example-room-name',
           },
           {
             '/': '/',
-            comment: 'Open Briefing app',
+            'comment': 'Open Briefing app',
           },
         ],
       },

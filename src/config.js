@@ -16,16 +16,16 @@ const log = Logger('config')
 function getConfig(name, defaultValue) {
   name = name.toUpperCase().replace(/[-\ .]/gim, '_')
   return (
-    window.briefingConfig?.[name] ??
-    import.meta.env[`BRIEFING_${name}`] ??
-    defaultValue
+    window.briefingConfig?.[name]
+    ?? import.meta.env[`BRIEFING_${name}`]
+    ?? defaultValue
   )
 }
 
 // See https://github.com/holtwick/briefing-signal
 export const SIGNAL_SERVER_URL = getConfig(
   'SIGNAL_URL',
-  getWebsocketUrlFromLocation()
+  getWebsocketUrlFromLocation(),
 )
 
 // See https://github.com/feross/simple-peer#peer--new-peeropts
@@ -54,14 +54,14 @@ export const ROOM_PATH = getConfig('ROOM_PATH', '/')
 
 export const ROOM_URL = getConfig(
   'ROOM_URL',
-  `${location.protocol}//${location.host}${ROOM_PATH}`
+  `${location.protocol}//${location.host}${ROOM_PATH}`,
 )
 
 export const SHOW_FULLSCREEN = isTrue(getConfig('SHOW_FULLSCREEN'), true)
 export const SHOW_INVITATION = isTrue(getConfig('SHOW_INVITATION'), true)
 export const SHOW_INVITATION_HINT = isTrue(
   getConfig('SHOW_INVITATION_HINT'),
-  true
+  true,
 )
 export const SHOW_SETTINGS = isTrue(getConfig('SHOW_SETTINGS'), true)
 export const SHOW_SHARE = isTrue(getConfig('SHOW_SHARE'), true)
@@ -87,6 +87,6 @@ log.info(
       SHOW_SHARE,
     },
     null,
-    2
-  )}`
+    2,
+  )}`,
 )

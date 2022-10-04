@@ -1,6 +1,7 @@
 import { assertModules, on, onInit, register } from '@zerva/core'
 import '@zerva/websocket'
-import { Channel, Logger, uname } from 'zeed'
+import type { Channel } from 'zeed'
+import { Logger, uname } from 'zeed'
 
 const log = Logger('room')
 
@@ -17,7 +18,7 @@ interface Room {
   peers: Map<string, RoomPeer>
 }
 
-export function useRoom(config: {} = {}) {
+export function useRoom() {
   log('setup')
   register(moduleName)
 
@@ -30,7 +31,7 @@ export function useRoom(config: {} = {}) {
   const useConnection = (channel: Channel) => {
     const peerId = uname('peer') // uuid()
 
-    let log = Logger(`${peerId}::${moduleName}`)
+    const log = Logger(`${peerId}::${moduleName}`)
     log.info('useConnection')
 
     let roomInfo: Room
@@ -59,7 +60,7 @@ export function useRoom(config: {} = {}) {
         }
 
         // Existing peers (before we add self)
-        let peers = [...roomInfo.peers.keys()]
+        const peers = [...roomInfo.peers.keys()]
 
         // Add self
         roomInfo.peers.set(peerId, {
@@ -81,14 +82,15 @@ export function useRoom(config: {} = {}) {
         const { from, to } = data
         if (from !== peerId) {
           log.warn('Strange message that was not sent by us.')
-        } else if (to) {
+        }
+        else if (to) {
           const peer = roomInfo?.peers.get(to)
-          if (!peer) {
+          if (!peer)
             log.warn(`Cannot find peer ${to} for sending signal.`)
-          } else {
+          else
             peer.emit('signal', data)
-          }
-        } else {
+        }
+        else {
           log.warn('Missing data for signal.')
         }
         log('signal')
@@ -106,10 +108,11 @@ export function useRoom(config: {} = {}) {
 
     channel.on('message', (event) => {
       try {
-        let { name, data } = JSON.parse(event.data)
+        const { name, data } = JSON.parse(event.data)
         log(`onMessage "${name}":`, data)
         methods[name]?.(data)
-      } catch (err) {
+      }
+      catch (err) {
         log.error('onMessage error:', err)
       }
     })
@@ -120,10 +123,10 @@ export function useRoom(config: {} = {}) {
 
       if (roomInfo.peers.size <= 0) {
         // we can also leave it dangle around
-      } else {
-        for (let peer of roomInfo.peers.values()) {
+      }
+      else {
+        for (const peer of roomInfo.peers.values())
           peer.emit('remove', peerId)
-        }
       }
 
       roomInfo = undefined

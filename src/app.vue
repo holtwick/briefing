@@ -1,10 +1,3 @@
-<template>
-  <app-embed v-if="state.embedDemo === true" class="app" />
-  <app-welcome v-else-if="!state.room && state.original" class="app" />
-  <app-whitelabel v-else-if="!state.room && !state.original" class="app" />
-  <app-main v-else />
-</template>
-
 <script>
 import { Logger } from 'zeed'
 import AppWelcome from './components/app-welcome.vue'
@@ -30,6 +23,13 @@ export default {
   },
 }
 </script>
+
+<template>
+  <AppEmbed v-if="state.embedDemo === true" class="app" />
+  <AppWelcome v-else-if="!state.room && state.original" class="app" />
+  <AppWhitelabel v-else-if="!state.room && !state.original" class="app" />
+  <AppMain v-else />
+</template>
 
 <style lang="scss">
 @import './css/index.scss';

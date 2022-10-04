@@ -7,8 +7,8 @@ const log = Logger('config')
 export function useConfig() {
   log('setup')
 
-  let options = {}
-  for (let [key, value] of Object.entries(process.env)) {
+  const options = {}
+  for (const [key, value] of Object.entries(process.env)) {
     if (key.startsWith('BRIEFING_')) {
       log.debug(`${key} = "${value}"`)
       options[key.slice(9)] = value
@@ -18,7 +18,7 @@ export function useConfig() {
   const configText = `window.briefingConfig = ${JSON.stringify(
     options,
     null,
-    2
+    2,
   )}`
 
   log.info(`Dynamic config for the frontend:\n\n${configText}`)

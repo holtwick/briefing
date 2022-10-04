@@ -1,4 +1,4 @@
-import { arrayRemoveElement, Logger } from 'zeed'
+import { Logger, arrayRemoveElement } from 'zeed'
 const log = Logger('history')
 
 const storageKeyHistory = 'briefingHistory'
@@ -8,10 +8,10 @@ export function historyAllRooms(): string[] {
   let rooms = []
   try {
     const roomsString = localStorage.getItem(storageKeyHistory)
-    if (roomsString) {
+    if (roomsString)
       rooms = JSON.parse(roomsString)
-    }
-  } catch (err) {
+  }
+  catch (err) {
     log.warn('Failed to get room history')
   }
   return rooms

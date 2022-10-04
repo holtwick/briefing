@@ -14,14 +14,15 @@ export function setupBugTracker(done) {
         Vue,
       })
       console.log('Did init Sentry bug tracking')
-      if (done) done()
+      if (done)
+        done()
     })
   }
 }
 
 // Send bugs if user allowed to do so
 
-let collectedErrors = []
+const collectedErrors = []
 
 export function isAllowedBugTracking() {
   return localStorage?.allowSentry === '1'
@@ -29,7 +30,7 @@ export function isAllowedBugTracking() {
 
 export function setAllowedBugTracking(
   allowed = true,
-  reloadMessage = 'Reload to activate changes'
+  reloadMessage = 'Reload to activate changes',
 ) {
   log('setAllowedBugTracking', allowed)
   if (allowed) {
@@ -42,22 +43,23 @@ export function setAllowedBugTracking(
         trackException(err)
       }
     })
-  } else {
+  }
+  else {
     localStorage.allowSentry = '0'
-    if (confirm(reloadMessage)) {
+    if (confirm(reloadMessage))
       location.reload()
-    }
   }
 }
 
 export function trackException(e, silent = false) {
-  if (!silent) {
+  if (!silent)
     log.error('Exception:', e)
-  }
+
   if (window.sentry) {
     log('sentry exception', e)
     window.sentry.captureException(e)
-  } else {
+  }
+  else {
     collectedErrors.push(e)
     messages.emit('requestBugTracking')
   }

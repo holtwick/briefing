@@ -16,7 +16,7 @@ export async function shareLink(
   {
     title = 'Briefing URL',
     text = 'Please open the link in your browser to join the video conference',
-  } = {}
+  } = {},
 ) {
   if (navigator.share) {
     try {
@@ -26,26 +26,31 @@ export async function shareLink(
         url,
       })
       return true
-    } catch (err) {
+    }
+    catch (err) {
       log.warn(err)
       // trackException(err)
     }
-  } else if (window.electron) {
+  }
+  else if (window.electron) {
     try {
       // https://electronjs.org/docs/api/clipboard
       await window.electron.clipboard.writeText(url)
       // alert('The URL has been copied to your clipboard.')
       return true
-    } catch (err) {
+    }
+    catch (err) {
       log.warn(err)
       // trackException(err)
     }
-  } else {
+  }
+  else {
     try {
       await clipboardCopy(url)
       // alert('The URL has been copied to your clipboard.')
       return true
-    } catch (err) {
+    }
+    catch (err) {
       alert(`Cannot copy ${url}. Please do by hand.`)
       // trackException(err)
     }

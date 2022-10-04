@@ -30,18 +30,18 @@ export class WebRTC extends Emitter {
 
   static async checkStatus() {
     return new Promise((resolve, reject) => {
-      let id = uuid()
+      const id = uuid()
 
-      let channel = new WebSocketConnection(SIGNAL_SERVER_URL)
+      const channel = new WebSocketConnection(SIGNAL_SERVER_URL)
 
       channel.on('connect', () => {
         channel.postMessage(
-          JSON.stringify({ name: 'status', data: { ping: id } })
+          JSON.stringify({ name: 'status', data: { ping: id } }),
         )
       })
 
       channel.on('message', (event) => {
-        let { name, data } = JSON.parse(event.data)
+        const { name, data } = JSON.parse(event.data)
         log('check result', name, data)
         if (name === 'status') {
           data.ok = data.pong === id
@@ -50,7 +50,7 @@ export class WebRTC extends Emitter {
             return
           }
         }
-        reject('error')
+        reject(new Error('Did not connect to Websocket Server'))
         channel.close()
       })
     })
@@ -81,7 +81,7 @@ export class WebRTC extends Emitter {
 
     const methods = {
       remove: (id: string) => {
-        let peer = this.peerConnections[id]
+        const peer = this.peerConnections[id]
         if (peer) {
           peer.close()
           delete this.peerConnections[id]
@@ -108,7 +108,7 @@ export class WebRTC extends Emitter {
         this.updateStatus()
       },
 
-      signal: ({ from, to, signal, initiator }) => {
+      signal: ({ from, signal }) => { // to, initiator
         // log('received signal', from, to === local, initiator)
         // If we are not already connected, do it now
         let peer = this.peerConnections[from]
@@ -137,9 +137,10 @@ export class WebRTC extends Emitter {
     this.websocketChannel.on('message', (event) => {
       log('onMessage:', event)
       try {
-        let { name, data } = JSON.parse(event.data)
+        const { name, data } = JSON.parse(event.data)
         methods[name]?.(data)
-      } catch (err) {
+      }
+      catch (err) {
         log.error('onMessage error:', err)
       }
     })
@@ -166,8 +167,8 @@ export class WebRTC extends Emitter {
   }
 
   updateStatus() {
-    let status = Object.values(this.peerConnections).map((peer) => {
-      let { active, initiator, local, remote, error } = peer as any
+    const status = Object.values(this.peerConnections).map((peer) => {
+      const { active, initiator, local, remote, error } = peer as any
       return {
         active,
         initiator,
@@ -184,12 +185,12 @@ export class WebRTC extends Emitter {
     return this.peerConnections[id] || null
   }
 
-  // @ts-ignore
+  // @ts-expect-error xxx
   handlePeer({ remote, wrtc, local, initiator = false } = {}) {
-    let peer = new WebRTCPeer({
+    const peer = new WebRTCPeer({
       local,
       remote,
-      // @ts-ignore
+      // @ts-expect-error xxx
       initiator,
       wrtc,
       room: this.room,
@@ -219,7 +220,7 @@ export class WebRTC extends Emitter {
     // A message from the remote peer
     peer.on('data', (data) => {
       // depr
-      let { type, ...msg } = JSON.parse(data)
+      const { type, ...msg } = JSON.parse(data)
       this.emit(type, msg)
     })
 
@@ -227,8 +228,8 @@ export class WebRTC extends Emitter {
       this.emit('message', data) // Channel compat
     })
 
-    peer.on('stream', (_) => this.updateStatus())
-    peer.on('track', (_) => this.updateStatus())
+    peer.on('stream', _ => this.updateStatus())
+    peer.on('track', _ => this.updateStatus())
 
     // Listening to userInfo and emitting back with local peer info
     this.on('userInfo', (data) => {
@@ -251,7 +252,7 @@ export class WebRTC extends Emitter {
   }
 
   close() {
-    this.forEachPeer((peer) => peer.close())
+    this.forEachPeer(peer => peer.close())
     this.peerConnections = {}
     this.websocketChannel.close()
   }

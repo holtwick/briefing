@@ -1,6 +1,6 @@
 // Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import { Emitter, encodeBase32, Logger } from 'zeed'
+import { Emitter, Logger, encodeBase32 } from 'zeed'
 import { trackException } from '../bugs'
 import { cloneObject } from '../lib/base'
 import {
@@ -26,7 +26,7 @@ export class WebRTCPeer extends Emitter {
     this.local = local
     this.initiator = opt.initiator
     this.room = opt.room || ''
-    this.id = 'webrtc-peer' + ctr++
+    this.id = `webrtc-peer${ctr++}`
     this.fingerprint = ''
     this.name = ''
 
@@ -39,7 +39,7 @@ export class WebRTCPeer extends Emitter {
     this.active = false
     this.stream = null
 
-    let opts = cloneObject({
+    const opts = cloneObject({
       ...opt,
       // Allow the peer to receive video, even if it's not sending stream:
       // https://github.com/feross/simple-peer/issues/95
@@ -54,7 +54,7 @@ export class WebRTCPeer extends Emitter {
     // https://github.com/feross/simple-peer/blob/master/README.md
     this.peer = new Peer(opts)
 
-    this.peer.on('close', (_) => this.close())
+    this.peer.on('close', _ => this.close())
 
     // We receive a connection error
     this.peer.on('error', (err) => {
@@ -76,15 +76,16 @@ export class WebRTCPeer extends Emitter {
     })
 
     this.peer.on('signalingStateChange', async (_) => {
-      const fpl =
-        getFingerprintString(this.peer?._pc?.currentLocalDescription?.sdp) || ''
-      const fpr =
-        getFingerprintString(this.peer?._pc?.currentRemoteDescription?.sdp) ||
-        ''
+      const fpl
+        = getFingerprintString(this.peer?._pc?.currentLocalDescription?.sdp) || ''
+      const fpr
+        = getFingerprintString(this.peer?._pc?.currentRemoteDescription?.sdp)
+        || ''
       if (fpl && fpr) {
         const digest = await sha256Messages(this.room, fpl, fpr)
         this.fingerprint = splitByNChars(encodeBase32(digest), 4)
-      } else {
+      }
+      else {
         this.fingerprint = ''
       }
     })
@@ -117,17 +118,20 @@ export class WebRTCPeer extends Emitter {
         this.peer.streams.forEach((s) => {
           try {
             this.peer.removeStream(s)
-          } catch (err) {
+          }
+          catch (err) {
             trackException(err)
           }
         })
-      } catch (err) {
+      }
+      catch (err) {
         trackException(err)
       }
       if (stream) {
         try {
           this.peer.addStream(stream)
-        } catch (err) {
+        }
+        catch (err) {
           trackException(err)
         }
       }
@@ -142,7 +146,8 @@ export class WebRTCPeer extends Emitter {
       //   data.sdp = data.sdp.replace(/(fingerprint:.*?):(\w\w):/, '$1:00:')
       // }
       this.peer.signal(data)
-    } else {
+    }
+    else {
       log('Tried to set signal on destroyed peer', this.peer, data)
     }
   }

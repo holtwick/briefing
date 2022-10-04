@@ -9,7 +9,7 @@ export function normalizeName(name) {
   return deburr(name)
     .toLowerCase()
     .split(/[^a-z0-9]+/gim)
-    .filter((s) => s.length > 0)
+    .filter(s => s.length > 0)
     .join('-')
 }
 
@@ -23,10 +23,10 @@ export function generateName() {
   }
 
   return (
-    ADJECTIVES[getRandomInt(0, ADJECTIVES.length + 1)] +
-    '-' +
-    NOUNS[getRandomInt(0, NOUNS.length + 1)] +
-    '-' +
-    getRandomInt(1, 99)
+    `${ADJECTIVES[getRandomInt(0, ADJECTIVES.length + 1)]
+    }-${
+    NOUNS[getRandomInt(0, NOUNS.length + 1)]
+    }-${
+    getRandomInt(1, 99)}`
   )
 }

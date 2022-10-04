@@ -25,12 +25,12 @@ log(`env = ${JSON.stringify(import.meta.env, null, 2)}`)
 // Force removal of 1.0 service-workers
 try {
   log('try removal of service workers')
-  navigator.serviceWorker.getRegistrations().then(function (registrations) {
-    for (let registration of registrations) {
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    for (const registration of registrations)
       registration.unregister()
-    }
   })
-} catch (err) {
+}
+catch (err) {
   log.error('Unregistering failed', err)
 }
 
@@ -49,9 +49,8 @@ setupBugTracker()
 
 window.iOS = navigator?.platform?.match(/(iPhone|iPod|iPad)/i) != null
 window.iPhone = navigator?.platform?.match(/(iPhone|iPod)/i) != null
-if (window.iPhone) {
+if (window.iPhone)
   log('Identified Phone of a native app')
-}
 
 Vue.config.productionTip = false
 
@@ -73,17 +72,18 @@ Vue.mixin({
         let href
         if (typeof event === 'string') {
           href = event
-        } else {
+        }
+        else {
           let target = event?.target
-          while (target && target?.href == null) {
+          while (target && target?.href == null)
             target = target.parentElement
-          }
+
           href = target?.href
         }
         log.info('Open external link', event.target)
-        if (href) {
+        if (href)
           window.electron.shell.openExternal(href)
-        }
+
         event.preventDefault()
         return false
       }
@@ -109,12 +109,12 @@ Vue.use(locale, {
 })
 
 new Vue({
-  render: (h) => h(App),
+  render: h => h(App),
 }).$mount('#app')
 
 // Do some tests on the actual browser
 // localStorage.test = true
 
-if (localStorage?.test) {
+if (localStorage?.test)
   import('./in-browser-test.js').then()
-}
+

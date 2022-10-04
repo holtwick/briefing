@@ -36,8 +36,10 @@ function getRoomByCurrentLocation() {
   if (isOriginalBriefing) {
     const m = /^\/ngs?\/(.*?)$/gi.exec(pathname)
     return m && m[1]
-  } else {
-    if (pathname.startsWith(ROOM_PATH)) return pathname.substr(ROOM_PATH.length)
+  }
+  else {
+    if (pathname.startsWith(ROOM_PATH))
+      return pathname.substr(ROOM_PATH.length)
   }
 }
 
@@ -48,21 +50,23 @@ log.info('Room =', room)
 try {
   const pathname = location.pathname
   if (
-    pathname === '/' ||
-    room === '' ||
-    room === null ||
-    (isOriginalBriefing && room === '/ng')
+    pathname === '/'
+    || room === ''
+    || room === null
+    || (isOriginalBriefing && room === '/ng')
   ) {
     room = null
     history.pushState(null, null, isOriginalBriefing ? '/ng' : '/')
-  } else {
+  }
+  else {
     const newRoom = normalizeName(room)
     if (room !== newRoom) {
       room = newRoom
       history.pushState(null, null, ROOM_PATH + newRoom)
     }
   }
-} catch (err) {
+}
+catch (err) {
   trackSilentException(err)
 }
 
@@ -74,7 +78,8 @@ window.addEventListener('popstate', (event) => {
 
 // Hack to avoid more complex routing for now ;)
 const embedDemo = room === 'embed-demo'
-if (embedDemo) room = null
+if (embedDemo)
+  room = null
 
 log.info('Room =', room, 'Embed Demo =', embedDemo)
 
@@ -133,7 +138,7 @@ export const state = {
   original: isOriginalBriefing,
 }
 
-messages.on('requestBugTracking', (_) => (state.requestBugTracking = true))
+messages.on('requestBugTracking', _ => (state.requestBugTracking = true))
 
 messages.on('updateStream', updateStream)
 
@@ -142,12 +147,13 @@ function updateStream() {
     if (state.stream) {
       state.stream
         ?.getVideoTracks()
-        .forEach((t) => (t.enabled = !state?.muteVideo))
+        .forEach(t => (t.enabled = !state?.muteVideo))
       state.stream
         ?.getAudioTracks()
-        .forEach((t) => (t.enabled = !state?.muteAudio))
+        .forEach(t => (t.enabled = !state?.muteAudio))
     }
-  } catch (err) {
+  }
+  catch (err) {
     trackException(err)
   }
 }
@@ -159,13 +165,15 @@ async function switchMedia() {
     ...defaultAudioConstraints,
   }
 
-  if (state.deviceAudio) audio.deviceId = state.deviceAudio
+  if (state.deviceAudio)
+    audio.deviceId = state.deviceAudio
 
   const video = {
     ...defaultVideoConstraints,
   }
 
-  if (state.deviceVideo) video.deviceId = state.deviceVideo
+  if (state.deviceVideo)
+    video.deviceId = state.deviceVideo
 
   const constraints = {
     audio,
@@ -210,8 +218,10 @@ async function switchMedia() {
     }
 
     // Reset to defaults
-    if (!success) await switchMedia()
-  } else {
+    if (!success)
+      await switchMedia()
+  }
+  else {
     log.error('Media error:', media.error)
   }
 
@@ -229,7 +239,7 @@ export async function setup() {
     if (!rtc) {
       // eslint-disable-next-line no-alert
       alert(
-        'Your browser does not support the required WebRTC technologies.\n\nPlease reconnect using an up to date web browser.\n\nThanks for your understanding.'
+        'Your browser does not support the required WebRTC technologies.\n\nPlease reconnect using an up to date web browser.\n\nThanks for your understanding.',
       )
       location.assign(ROOM_PATH)
       return
@@ -247,7 +257,8 @@ export async function setup() {
           label: d.label || 'Unknown name',
         }
       })
-    } else {
+    }
+    else {
       log.error('Media error', error)
     }
 
@@ -255,8 +266,10 @@ export async function setup() {
     updateStream()
     messages.emit('setLocalStream', state.stream)
 
-    if (!state.backgroundMode) setTimeout(switchMedia, 250)
-  } catch (err) {
+    if (!state.backgroundMode)
+      setTimeout(switchMedia, 250)
+  }
+  catch (err) {
     trackException(err)
   }
 
@@ -278,7 +291,7 @@ export function postUpdateToIframeParent() {
       const update = {
         room: state.room,
         error: state.error,
-        peers: Array.from(state.status || []).map((info) => ({
+        peers: Array.from(state.status || []).map(info => ({
           id: info.id,
           active: info.active,
           initiator: info.initiator,
@@ -297,7 +310,8 @@ export function postUpdateToIframeParent() {
         update.counter = counter++
         postMessageToParent('status', update)
       }
-    } catch (err) {
+    }
+    catch (err) {
       log.error(err)
     }
   }, 0)

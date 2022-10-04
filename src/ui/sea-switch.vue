@@ -1,41 +1,14 @@
 <!-- Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
 
-<template>
-  <div
-    class="sea-switch-container"
-    :class="{ '-inline': !slotted, 'form-group': slotted }"
-  >
-    <label :for="uid" class="sea-switch" :class="`-${theme}`" ref="labelSwitch">
-      <sea-input-base
-        :uid="uid"
-        v-bind="$attrs"
-        v-on="$listeners"
-        type="switch"
-      />
-      <i></i>
-      <span class="sea-switch-label" v-if="slotted">
-        {{ label }}
-        <slot></slot>
-      </span>
-    </label>
-  </div>
-</template>
-
-<style lang="scss">
-@import './sea-switch';
-</style>
-
 <script>
 // Mix of this receipt: https://www.cssscript.com/realistic-ios-switch-pure-css/
 // And IBM Carbon: https://www.carbondesignsystem.com/components/toggle/code
 
-import SeaFormGroup from './sea-form-group.vue'
 import SeaInputBase from './sea-input-base.vue'
 
 export default {
-  name: 'sea-switch',
+  name: 'SeaSwitch',
   components: {
-    SeaFormGroup,
     SeaInputBase,
   },
   props: {
@@ -48,15 +21,40 @@ export default {
       default: 'primary',
     },
   },
-  computed: {
-    slotted() {
-      return this.label || this.$slots?.default?.[0] != null
-    },
-  },
   data() {
     return {
       uid: Math.random().toString(),
     }
   },
+  computed: {
+    slotted() {
+      return this.label || this.$slots?.default?.[0] != null
+    },
+  },
 }
 </script>
+
+<template>
+  <div
+    class="sea-switch-container"
+    :class="{ '-inline': !slotted, 'form-group': slotted }"
+  >
+    <label ref="labelSwitch" :for="uid" class="sea-switch" :class="`-${theme}`">
+      <SeaInputBase
+        :uid="uid"
+        v-bind="$attrs"
+        type="switch"
+        v-on="$listeners"
+      />
+      <i />
+      <span v-if="slotted" class="sea-switch-label">
+        {{ label }}
+        <slot />
+      </span>
+    </label>
+  </div>
+</template>
+
+<style lang="scss">
+@import './sea-switch';
+</style>
