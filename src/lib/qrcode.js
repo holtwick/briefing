@@ -1,3 +1,6 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+
 // ---------------------------------------------------------------------
 //
 // QR Code Generator for JavaScript

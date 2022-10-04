@@ -70,13 +70,12 @@ export default {
       // document?.documentElement.classList.remove('is-clipped')
   },
   methods: {
-    doCancel() {
+    doCancel(...args) {
       log('do cancel')
       this.$emit('cancel')
       const onCancel = this?.$parent?.onCancel || this?.onCancel
       if (onCancel)
-        onCancel.apply(null, arguments)
-
+        onCancel(...args)
       this.doClose()
     },
     doClose() {

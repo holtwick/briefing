@@ -1,4 +1,7 @@
+import { Logger } from 'zeed'
 import { trackSilentException } from '../bugs'
+
+const log = Logger('base')
 
 const replacer = (key, value) =>
   value instanceof Object && !(Array.isArray(value))

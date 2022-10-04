@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
+
 import { Logger, messages } from 'zeed'
 import { trackException, trackSilentException } from './bugs'
 import {

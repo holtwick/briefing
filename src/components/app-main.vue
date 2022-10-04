@@ -5,7 +5,6 @@ import { ROOM_PATH } from '../config'
 import { historyAddRoom } from '../lib/history'
 import { createLinkForRoom, shareLink } from '../lib/share'
 import { setup } from '../state'
-import SeaButton from '../ui/sea-button.vue'
 import SeaLink from '../ui/sea-link.vue'
 import SeaModal from '../ui/sea-modal.vue'
 import AppChat from './app-chat.vue'
@@ -23,7 +22,6 @@ export default {
     AppChat,
     SeaLink,
     SeaModal,
-    SeaButton,
     AppVideo,
   },
   data() {
@@ -91,6 +89,7 @@ export default {
       messages.emit('updateStream')
     },
     doQuit() {
+      // eslint-disable-next-line no-alert
       if (confirm('Really quit this session?'))
         location.assign(ROOM_PATH)
     },
@@ -374,8 +373,8 @@ export default {
           @action="doToggleFullScreen"
         >
           <svg
-            xmlns="http://www.w3.org/2000/svg"
             v-if="!isFullScreen"
+            xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -390,8 +389,8 @@ export default {
             />
           </svg>
           <svg
-            xmlns="http://www.w3.org/2000/svg"
             v-if="isFullScreen"
+            xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"

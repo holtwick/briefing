@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import Vue from 'vue'
 import { Logger, messages } from 'zeed'
 import { SENTRY_DSN } from '../config'
@@ -38,6 +40,7 @@ export function setAllowedBugTracking(
     setupBugTracker((_) => {
       log('setupBugTracker', collectedErrors)
       let err
+      // eslint-disable-next-line no-cond-assign
       while ((err = collectedErrors.pop())) {
         log('send error', err)
         trackException(err)
@@ -46,6 +49,7 @@ export function setAllowedBugTracking(
   }
   else {
     localStorage.allowSentry = '0'
+    // eslint-disable-next-line no-alert
     if (confirm(reloadMessage))
       location.reload()
   }

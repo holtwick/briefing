@@ -6,7 +6,7 @@ import {
   splitByNChars,
 } from './logic/fingerprint'
 
-console.log('test')
+// console.log('test')
 
 // import { Logger } from "zeed"
 // const log = Logger("test:browser")

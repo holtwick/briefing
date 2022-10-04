@@ -30,7 +30,7 @@ const json = {
 
 export function useApple() {
   on('httpInit', ({ get }) => {
-    get(/(^|\/)apple-app-site-association/gim, ({ res }) => {
+    get(/(^|\/)apple-app-site-association/gim, () => {
       // res.set("Content-Type", "application/pkcs7-mime")
       return json
     })

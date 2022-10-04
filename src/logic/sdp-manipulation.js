@@ -17,9 +17,8 @@ export function setMediaBitrate(sdp, media, bitrate) {
   line++
 
   // Skip i and c lines
-  while (lines[line].indexOf('i=') === 0 || lines[line].indexOf('c=') === 0) {
+  while (lines[line].indexOf('i=') === 0 || lines[line].indexOf('c=') === 0)
     line++
-  }
 
   // If we're on a b line, replace it
   if (lines[line].indexOf('b') === 0) {

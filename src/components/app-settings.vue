@@ -1,3 +1,5 @@
+<!-- eslint-disable vue/no-constant-condition -->
+
 <script>
 import { Logger, messages } from 'zeed'
 import { isAllowedBugTracking, setAllowedBugTracking } from '../bugs'

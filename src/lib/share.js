@@ -51,6 +51,7 @@ export async function shareLink(
       return true
     }
     catch (err) {
+      // eslint-disable-next-line no-alert
       alert(`Cannot copy ${url}. Please do by hand.`)
       // trackException(err)
     }

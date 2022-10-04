@@ -10,7 +10,7 @@ export default {
   name: 'AppVideo',
   props: {
     stream: {
-      type: MediaStream | Object,
+      type: MediaStream,
       default: null,
     },
     active: {

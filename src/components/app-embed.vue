@@ -3,7 +3,6 @@ import { Logger } from 'zeed'
 import { ROOM_URL } from '../config'
 import { onMessageFromFrame } from '../lib/iframe'
 import { generateName } from '../lib/names'
-import SeaInputBase from '../ui/sea-input-base.vue'
 import SeaSwitch from '../ui/sea-switch.vue'
 
 const log = Logger('app-embed')
@@ -11,7 +10,6 @@ const log = Logger('app-embed')
 export default {
   components: {
     SeaSwitch,
-    SeaInputBase,
   },
   data() {
     const defaultName = generateName()

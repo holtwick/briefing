@@ -82,7 +82,7 @@ export async function setupWebRTC(state) {
     })
   })
 
-  const onNegotiateBandwidth = messages.on('negotiateBandwidth', (stream) => {
+  const onNegotiateBandwidth = messages.on('negotiateBandwidth', (_stream) => {
     webrtc.forEachPeer((peer) => {
       peer.peer.negotiate()
     })
@@ -98,7 +98,7 @@ export async function setupWebRTC(state) {
     webrtc.emit('userInfo', { data })
   })
 
-  const onSubscribePush = messages.on('subscribePush', async (on) => {
+  const onSubscribePush = messages.on('subscribePush', async (_on) => {
     const add = state.subscription
     const registration = await navigator.serviceWorker.getRegistration()
     let subscription = await registration.pushManager.getSubscription()
@@ -117,24 +117,24 @@ export async function setupWebRTC(state) {
     })
   })
 
-  async function getStats(peer) {
-    let bytes = 0
-    let timestamp = 0
-    return new Promise((resolve) => {
-      peer?.peer?.getStats((_, reports) => {
-        reports.forEach((report) => {
-          if (report.type === 'outbound-rtp') {
-            if (report.isRemote)
-              return
-            bytes += report.bytesSent
-            timestamp = report.timestamp
-            // log('bb', bytes, prevBytes, timestamp, prevTimestamp)
-            resolve({ bytes, timestamp })
-          }
-        })
-      })
-    })
-  }
+  // async function getStats(peer) {
+  //   let bytes = 0
+  //   let timestamp = 0
+  //   return new Promise((resolve) => {
+  //     peer?.peer?.getStats((_, reports) => {
+  //       reports.forEach((report) => {
+  //         if (report.type === 'outbound-rtp') {
+  //           if (report.isRemote)
+  //             return
+  //           bytes += report.bytesSent
+  //           timestamp = report.timestamp
+  //           // log('bb', bytes, prevBytes, timestamp, prevTimestamp)
+  //           resolve({ bytes, timestamp })
+  //         }
+  //       })
+  //     })
+  //   })
+  // }
 
   // // https://github.com/webrtc/samples/blob/gh-pages/src/content/peerconnection/bandwidth/js/main.js#L253
   // let prevTimestamp = 0
