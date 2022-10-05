@@ -136,11 +136,9 @@ export default {
               {{ l.welcome.history }}
             </div>
             <div class="history-list">
-              <template v-for="name in history" :key="name">
-                <a :href="roomPath + name" @click.prevent="doEnterRoom(name)">{{
-                  name
-                }}</a>
-              </template>
+              <a v-for="name in history" :key="name" :href="roomPath + name" @click.prevent="doEnterRoom(name)">{{
+                name
+              }}</a>
             </div>
           </div>
         </div>

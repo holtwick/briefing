@@ -20,7 +20,7 @@ npm run start
 Es gibt aber auch die Möglichkeit, die App in eigenen Projekte zu verwenden. Folgende Optionen stehen zur Verfügung:
 
 1. Erstelle über [Brie.fi/ng](https://brie.fi/ng) einen Raum und kopiere den Link in deine Website.
-2. Bette Briefing per `iframe` in deine eigene Seite ein. Verwende dazu den [praktischen Konfigurator](https://brie.fi/ng/embed).
+2. Bette Briefing per `iframe` in deine eigene Seite ein. Verwende dazu den [praktischen Konfigurator](https://brie.fi/ng/embed-demo).
 3. Starte Briefing auf deinem eigenen Server z.B. [via Docker](docs/docker.md)
 4. Passe den Source Code nach deinen Bedürfnissen. Details dazu in der [Dokumentation](docs/README.md).
 
