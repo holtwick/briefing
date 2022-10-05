@@ -20,7 +20,7 @@ npm run start
 However, there is also an option to use the app in your own projects. The following options are available:
 
 1. create a room via [Brie.fi/ng](https://brie.fi/ng) and copy the link into your website.
-2. embed Briefing via 'frame' into your own site. Use the [handy configurator](https://brie.fi/ng/embed).
+2. embed Briefing via 'frame' into your own site. Use the [handy configurator](https://brie.fi/ng/embed-demo).
 3. start Briefing on your own server e.g. [via Docker](docs/docker.md) or use a service like [fly.io](docs/fly.io.md), [render.com](docs/render.com.md), Google Cloud, AWS, Azure ... you name it.
 4. customize the source code according to your needs. See the [documentation](docs/README.md) for details.
 
