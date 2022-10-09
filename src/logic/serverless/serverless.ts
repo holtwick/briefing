@@ -1,6 +1,6 @@
-import { joinRoom } from 'trystero'
 import { Logger, messages } from 'zeed'
 import { SERVERLESS_API_ID } from '../../config'
+import { joinRoom, selfId } from './torrent'
 
 const log = Logger('serverless')
 
@@ -24,6 +24,8 @@ export function useServerless(state: State) {
   }, roomName)
 
   // Remote messages
+
+  // const local = selfId
 
   function publishLocalStream(stream: MediaStream) {
     serverlessRoom.addStream(stream)

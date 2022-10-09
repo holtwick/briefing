@@ -4,7 +4,7 @@ import {
   digestMessages,
   getFingerprintString,
   splitByNChars,
-} from './logic/fingerprint'
+} from './logic/webrtc/fingerprint'
 
 // console.log('test')
 

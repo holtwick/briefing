@@ -42,8 +42,7 @@
     "@zerva/http": "^0.14.2",
     "@zerva/websocket": "^0.14.2",
     "clipboard-copy": "^4.0.1",
-    "lodash": "^4.17.21",
-    "trystero": "^0.11.4",
+    "lodash": "^4.17.21",    
     "vue": "^2.7.10",
     "zeed": "^0.8.31"
   },
