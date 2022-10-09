@@ -31,17 +31,17 @@ export function useServerless(state: State) {
     serverlessRoom.addStream(stream)
   }
 
-  serverlessRoom.onPeerJoin((peerId) => {
+  serverlessRoom.onPeerJoin((peerId: string) => {
     log(`joined ${peerId}}`)
     if (state.stream)
       publishLocalStream(state.stream)
   })
 
-  serverlessRoom.onPeerLeave((peerId) => {
+  serverlessRoom.onPeerLeave((peerId: string) => {
     log(`leave ${peerId}}`)
   })
 
-  serverlessRoom.onPeerStream((stream, peerId) => {
+  serverlessRoom.onPeerStream((stream: MediaStream, peerId: string) => {
     log('stream', peerId, stream)
     state.status = [...state.status, {
       remote: peerId,

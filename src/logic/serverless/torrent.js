@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
+import { Logger } from 'zeed'
 import room from './room.js'
 import {
   encodeBytes,
@@ -15,6 +16,8 @@ import {
   values,
 } from './utils.js'
 import { decrypt, encrypt, genKey } from './crypto.js'
+
+const log = Logger('torrent')
 
 const occupiedRooms = {}
 const sockets = {}
@@ -249,7 +252,7 @@ export const joinRoom = initGuard(occupiedRooms, (config, ns) => {
     f => (onPeerConnect = f),
     async () => {
       const infoHash = await infoHashP
-
+      log('trackerUrls', trackerUrls)
       trackerUrls.forEach(url => delete socketListeners[url][infoHash])
       delete occupiedRooms[ns]
       clearInterval(announceInterval)

@@ -1,5 +1,5 @@
-// import Peer from 'simple-peer-light'
-import { Peer } from '../webrtc/simple-peer'
+import Peer from 'simple-peer-light'
+// import { Peer } from '../webrtc/simple-peer'
 
 const charSet = '0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz'
 
