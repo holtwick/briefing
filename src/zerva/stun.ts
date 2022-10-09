@@ -6,10 +6,10 @@ const log = Logger('stun')
 
 const config = {
   udp4: true,
-  upd6: true,
+  udp6: true,
   port: 3478,
-  log: null,
-  err: null,
+  log: log.debug,
+  err: log.error,
   sw: true,
 }
 

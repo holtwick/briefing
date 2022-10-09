@@ -29,6 +29,15 @@ export const SIGNAL_SERVER_URL = getConfig(
 )
 
 // getConfig('STUN_URL', 'stun:turn01.brie.fi:5349')
+// iceServers: [
+//   {
+//     urls: [
+//       'stun:stun.l.google.com:19302',
+//       'stun:global.stun.twilio.com:3478'
+//     ]
+//   }
+// ],
+// sdpSemantics: 'unified-plan'
 const stun = getConfig('STUN_URL', `stun:${location.hostname}:3478`)
 
 const iceServers = [{ urls: stun }]
