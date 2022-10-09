@@ -42,11 +42,11 @@ const stun = getConfig('STUN_URL', `stun:${location.hostname}:3478`)
 
 const iceServers = [{ urls: stun }]
 
-iceServers.push({
-  urls: getConfig('TURN_URL', 'turn:turn01.brie.fi:5349'),
-  username: getConfig('TURN_USER', 'brie'),
-  credential: getConfig('TURN_PASSWORD', 'fi'),
-})
+// iceServers.push({
+//   urls: getConfig('TURN_URL', 'turn:turn01.brie.fi:5349'),
+//   username: getConfig('TURN_USER', 'brie'),
+//   credential: getConfig('TURN_PASSWORD', 'fi'),
+// })
 
 // See https://github.com/feross/simple-peer#peer--new-peeropts
 export const ICE_CONFIG = {
