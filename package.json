@@ -55,6 +55,7 @@
     "@zerva/vite": "^0.14.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.24.0",
+    "ministun": "^1.0.4",
     "sass": "^1.55.0",
     "tsc": "^2.0.4",
     "typescript": "^4.8.4",

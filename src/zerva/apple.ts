@@ -1,6 +1,7 @@
 import { on } from '@zerva/core'
+import { Logger } from 'zeed'
 
-// const log = Logger('apple')
+const log = Logger('apple')
 
 const json = {
   applinks: {
@@ -29,6 +30,8 @@ const json = {
 }
 
 export function useApple() {
+  log('setup')
+
   on('httpInit', ({ get }) => {
     get(/(^|\/)apple-app-site-association/gim, () => {
       // res.set("Content-Type", "application/pkcs7-mime")

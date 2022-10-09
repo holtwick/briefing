@@ -6,6 +6,7 @@ import { toPath } from 'zeed'
 import { useApple } from './apple'
 import { useConfig } from './config'
 import { useRoom } from './room'
+import { useStun } from './stun'
 
 useHttp({
   port: +(process.env.PORT || 8080),
@@ -19,6 +20,8 @@ useApple()
 useWebSocket()
 
 useRoom()
+
+useStun()
 
 useVite({
   root: toPath('.'),

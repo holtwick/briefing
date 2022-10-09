@@ -28,22 +28,24 @@ export const SIGNAL_SERVER_URL = getConfig(
   getWebsocketUrlFromLocation(),
 )
 
+// getConfig('STUN_URL', 'stun:turn01.brie.fi:5349')
+const stun = getConfig('STUN_URL', `stun:${location.hostname}:3478`)
+
+const iceServers = [{ urls: stun }]
+
+iceServers.push({
+  urls: getConfig('TURN_URL', 'turn:turn01.brie.fi:5349'),
+  username: getConfig('TURN_USER', 'brie'),
+  credential: getConfig('TURN_PASSWORD', 'fi'),
+})
+
 // See https://github.com/feross/simple-peer#peer--new-peeropts
 export const ICE_CONFIG = {
   iceTransportPolicy: 'all',
   reconnectTimer: 3000,
 
   // These settings are no secret, since they are readable from the client side anyway
-  iceServers: [
-    {
-      urls: getConfig('STUN_URL', 'stun:turn01.brie.fi:5349'),
-    },
-    {
-      urls: getConfig('TURN_URL', 'turn:turn01.brie.fi:5349'),
-      username: getConfig('TURN_USER', 'brie'),
-      credential: getConfig('TURN_PASSWORD', 'fi'),
-    },
-  ],
+  iceServers,
 }
 
 export const RELEASE = import.meta.env.BRIEFING_RELEASE
