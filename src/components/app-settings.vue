@@ -4,7 +4,7 @@
 import { Logger, messages } from 'zeed'
 import { isAllowedBugTracking, setAllowedBugTracking } from '../bugs'
 import { ICE_CONFIG, RELEASE, SIGNAL_SERVER_URL } from '../config'
-import { WebRTC } from '../logic/webrtc'
+import { WebRTC } from '../logic/webrtc/webrtc'
 import SeaSwitch from '../ui/sea-switch.vue'
 
 const log = Logger('app:app-settings')

@@ -2,9 +2,9 @@
 
 import { WebSocketConnection } from '@zerva/websocket'
 import { Emitter, Logger, uuid } from 'zeed'
-import { SIGNAL_SERVER_URL } from '../config'
-import { assert } from '../lib/assert'
-import { state } from '../state'
+import { SIGNAL_SERVER_URL } from '../../config'
+import { assert } from '../../lib/assert'
+import { state } from '../../state'
 import { WebRTCPeer } from './webrtc-peer'
 
 const log = Logger('app:webrtc')
@@ -76,6 +76,26 @@ export class WebRTC extends Emitter {
     this.peerSettings = peerSettings
 
     log('webrtc contacts signal server')
+
+    // if (SERVERLESS) {
+    //   const appId = SERVERLESS_API_ID
+    //   const troom = joinRoom({
+    //     appId,
+
+    //     // this is no real protection, but it avoid clear text transfer
+    //     // of SDP data, see https://github.com/dmotz/trystero#encryption
+    //     password: `${appId}|${room}`,
+    //   }, room)
+
+    //   troom.onPeerJoin((peerId) => {
+    //     log(`trystero joined ${peerId}}`)
+    //   })
+
+    //   troom.onPeerLeave((peerId) => {
+    //     log(`trystero leave ${peerId}}`)
+    //   })
+    // }
+    // return
 
     this.websocketChannel = new WebSocketConnection(SIGNAL_SERVER_URL)
 

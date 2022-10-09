@@ -69,6 +69,10 @@ export const SHOW_CHAT = isTrue(getConfig('SHOW_CHAT'), true)
 
 export const DEFAULT_ROOM = getConfig('DEFAULT_ROOM')
 
+// Experimental serverless, based on https://github.com/dmotz/trystero
+export const SERVERLESS = isTrue(getConfig('SERVERLESS'))
+export const SERVERLESS_API_ID = getConfig('SERVERLESS_API_ID')
+
 log.info(
   `Config: ${JSON.stringify(
     {
@@ -85,6 +89,7 @@ log.info(
       SHOW_INVITATION_HINT,
       SHOW_SETTINGS,
       SHOW_SHARE,
+
     },
     null,
     2,

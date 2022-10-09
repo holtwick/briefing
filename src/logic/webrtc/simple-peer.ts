@@ -1,4 +1,5 @@
 // Original source: https://github.com/feross/simple-peer - MIT License
+// Removed 3rd party dependencies and integrated zeed's emitter and logging
 
 import { Emitter, Logger } from 'zeed'
 

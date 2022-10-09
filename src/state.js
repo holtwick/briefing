@@ -14,7 +14,6 @@ import {
 import { isTrue, objectSnapshot } from './lib/base.js'
 import { postMessageToParent } from './lib/iframe.js'
 import { normalizeName } from './lib/names'
-import { setupWebRTC } from './logic/connection'
 import {
   defaultAudioConstraints,
   defaultVideoConstraints,
@@ -22,7 +21,8 @@ import {
   getDisplayMedia,
   getUserMedia,
   setAudioTracks,
-} from './logic/stream'
+} from './logic/media-stream'
+import { useServerless } from './logic/serverless/serverless'
 
 const log = Logger('app:state')
 
@@ -97,7 +97,7 @@ export const state = {
   stream: null,
 
   // WebRTC connection status, containing peer info
-  status: {},
+  status: [],
 
   bandwidth: false,
   fill: true,
@@ -236,16 +236,17 @@ export async function setup() {
   log('Setup state')
   let rtc
   try {
-    rtc = await setupWebRTC(state)
+    useServerless(state)
+    // rtc = await setupWebRTC(state)
 
-    if (!rtc) {
-      // eslint-disable-next-line no-alert
-      alert(
-        'Your browser does not support the required WebRTC technologies.\n\nPlease reconnect using an up to date web browser.\n\nThanks for your understanding.',
-      )
-      location.assign(ROOM_PATH)
-      return
-    }
+    // if (!rtc) {
+    //   // eslint-disable-next-line no-alert
+    //   alert(
+    //     'Your browser does not support the required WebRTC technologies.\n\nPlease reconnect using an up to date web browser.\n\nThanks for your understanding.',
+    //   )
+    //   location.assign(ROOM_PATH)
+    //   return
+    // }
 
     const { stream, error } = await getUserMedia()
     state.error = error

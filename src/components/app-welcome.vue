@@ -74,12 +74,14 @@ export default {
     },
     updateInput() {
       const input = this.$refs.input
-      if (this.initialWidth < 0)
-        this.initialWidth = input.scrollWidth
-      const value = input.value.trim()
-      input.style.width = '1px'
-      input.style.width = `${value ? input.scrollWidth : this.initialWidth}px`
-      this.url = ROOM_PATH + (value || this.defaultName)
+      if (input) {
+        if (this.initialWidth < 0)
+          this.initialWidth = input.scrollWidth
+        const value = input.value.trim()
+        input.style.width = '1px'
+        input.style.width = `${value ? input.scrollWidth : this.initialWidth}px`
+        this.url = ROOM_PATH + (value || this.defaultName)
+      }
     },
     charAnimation() {
       setTimeout(() => {

@@ -1,9 +1,9 @@
 // https://webrtchacks.com/limit-webrtc-bandwidth-sdp/
 
 import { Logger, messages } from 'zeed'
-import { ICE_CONFIG } from '../config'
-import { cloneObject } from '../lib/base'
-import { urlBase64ToUint8Array } from '../lib/base64'
+import { ICE_CONFIG } from '../../config'
+import { cloneObject } from '../../lib/base'
+import { urlBase64ToUint8Array } from '../../lib/base64'
 import {
   removeBandwidthRestriction,
   setMediaBitrate,
@@ -12,7 +12,7 @@ import { WebRTC } from './webrtc'
 
 const log = Logger('app:connection')
 
-export async function setupWebRTC(state) {
+export async function useWebRTC(state) {
   if (!WebRTC.isSupported())
     return null
 
