@@ -48,25 +48,35 @@ function getRoomByCurrentLocation() {
 }
 
 let room = getRoomByCurrentLocation()
+
+const hash = location.hash.slice(1)
+if (hash)
+  room = normalizeName(hash)
+
 log.info('Room =', room)
 
 // Normalize URL matching to room
 try {
-  const pathname = location.pathname
-  if (
-    pathname === '/'
+  if (hash) {
+    history.pushState(null, null, ROOM_PATH + room)
+  }
+  else {
+    const pathname = location.pathname
+    if (
+      pathname === '/'
     || room === ''
     || room === null
     || (isOriginalBriefing && room === '/ng')
-  ) {
-    room = null
-    history.pushState(null, null, isOriginalBriefing ? '/ng' : '/')
-  }
-  else {
-    const newRoom = normalizeName(room)
-    if (room !== newRoom) {
-      room = newRoom
-      history.pushState(null, null, ROOM_PATH + newRoom)
+    ) {
+      room = null
+      history.pushState(null, null, isOriginalBriefing ? '/ng' : '/')
+    }
+    else {
+      const newRoom = normalizeName(room)
+      if (room !== newRoom) {
+        room = newRoom
+        history.pushState(null, null, ROOM_PATH + newRoom)
+      }
     }
   }
 }

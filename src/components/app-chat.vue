@@ -114,5 +114,5 @@ export default {
 </template>
 
 <style lang="scss">
-@import '../css/chat.scss';
+@import 'app-chat.scss';
 </style>
