@@ -32,14 +32,14 @@ export async function digestMessage(message) {
 }
 
 export async function digestMessages(...messages) {
-  log('messages', messages)
+  // log('messages', messages)
   messages = messages.map(m => m.toString().toLowerCase().trim())
   messages.sort()
   return digestMessage(messages.join('\n'))
 }
 
 export async function sha256Messages(...messages) {
-  log('messages', messages)
+  // log('messages', messages)
   messages = messages.map(m => m.toString().toLowerCase().trim())
   messages.sort()
   const message = messages.join('\n')

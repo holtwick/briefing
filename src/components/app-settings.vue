@@ -190,12 +190,10 @@ export default {
         </div>
       </div>
       <div class="form-group settings-group">
-        <label class="form-labelx"><b>STUN Server</b></label>
-        <div>{{ ICE_CONFIG.iceServers[0].urls }}</div>
-      </div>
-      <div class="form-group settings-group">
-        <label class="form-labelx"><b>TURN Server</b></label>
-        <div>{{ ICE_CONFIG.iceServers[1].urls }}</div>
+        <label class="form-labelx"><b>STUN / TURN Servers</b></label>
+        <div v-for="server in ICE_CONFIG.iceServers" :key="server">
+          {{ server.urls }}
+        </div>
       </div>
     </div>
   </div>

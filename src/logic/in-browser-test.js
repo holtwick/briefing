@@ -1,10 +1,10 @@
-import { assert_equal } from './lib/assert'
+import { assert_equal } from '../lib/assert'
 import {
   digestMessage,
   digestMessages,
   getFingerprintString,
   splitByNChars,
-} from './logic/fingerprint'
+} from './fingerprint'
 
 // console.log('test')
 

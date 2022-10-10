@@ -1,5 +1,5 @@
 <script>
-import { gotoUrl } from '../external-links'
+import { gotoUrl } from './external-links'
 
 export default {
   name: 'AppHelp',

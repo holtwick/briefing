@@ -3,6 +3,8 @@
 import { Logger, messages } from 'zeed'
 import { trackException, trackSilentException } from './bugs'
 import {
+  MUTE_AUDIO,
+  MUTE_VIDEO,
   ROOM_PATH,
   SHOW_CHAT,
   SHOW_FULLSCREEN,
@@ -46,25 +48,35 @@ function getRoomByCurrentLocation() {
 }
 
 let room = getRoomByCurrentLocation()
+
+const hash = location.hash.slice(1)
+if (hash)
+  room = normalizeName(hash)
+
 log.info('Room =', room)
 
 // Normalize URL matching to room
 try {
-  const pathname = location.pathname
-  if (
-    pathname === '/'
+  if (hash) {
+    history.pushState(null, null, ROOM_PATH + room)
+  }
+  else {
+    const pathname = location.pathname
+    if (
+      pathname === '/'
     || room === ''
     || room === null
     || (isOriginalBriefing && room === '/ng')
-  ) {
-    room = null
-    history.pushState(null, null, isOriginalBriefing ? '/ng' : '/')
-  }
-  else {
-    const newRoom = normalizeName(room)
-    if (room !== newRoom) {
-      room = newRoom
-      history.pushState(null, null, ROOM_PATH + newRoom)
+    ) {
+      room = null
+      history.pushState(null, null, isOriginalBriefing ? '/ng' : '/')
+    }
+    else {
+      const newRoom = normalizeName(room)
+      if (room !== newRoom) {
+        room = newRoom
+        history.pushState(null, null, ROOM_PATH + newRoom)
+      }
     }
   }
 }
@@ -107,8 +119,8 @@ export const state = {
   backgroundAuthor: '',
   backgroundURL: '',
 
-  muteVideo: !isTrue(urlParams.get('video'), true),
-  muteAudio: !isTrue(urlParams.get('audio'), true),
+  muteVideo: !isTrue(urlParams.get('video') ?? !MUTE_VIDEO, true),
+  muteAudio: !isTrue(urlParams.get('audio') ?? !MUTE_AUDIO, true),
 
   deviceVideo: null,
   deviceAudio: null,

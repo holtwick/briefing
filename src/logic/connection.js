@@ -4,11 +4,12 @@ import { Logger, messages } from 'zeed'
 import { ICE_CONFIG } from '../config'
 import { cloneObject } from '../lib/base'
 import { urlBase64ToUint8Array } from '../lib/base64'
-import {
-  removeBandwidthRestriction,
-  setMediaBitrate,
-} from './sdp-manipulation.js'
 import { WebRTC } from './webrtc'
+
+// import {
+//   removeBandwidthRestriction,
+//   setMediaBitrate,
+// } from './sdp-manipulation.js'
 
 const log = Logger('app:connection')
 
@@ -22,21 +23,21 @@ export async function setupWebRTC(state) {
     room: state.room,
     peerSettings: {
       trickle: true,
-      sdpTransform: (sdp) => {
-        log('sdpTransform', state.bandwidth) // , sdp)
-        let newSDP = sdp
-        if (state.bandwidth) {
-          //   newSDP = updateBandwidthRestriction(sdp, 10)
-          // log('Old SDP', newSDP)
-          newSDP = setMediaBitrate(newSDP, 'video', 233)
-          newSDP = setMediaBitrate(newSDP, 'audio', 80)
-          // log('New SDP', newSDP)
-        }
-        else {
-          newSDP = removeBandwidthRestriction(sdp)
-        }
-        return newSDP
-      },
+      // sdpTransform: (sdp) => {
+      //   log('sdpTransform', state.bandwidth) // , sdp)
+      //   let newSDP = sdp
+      //   if (state.bandwidth) {
+      //     //   newSDP = updateBandwidthRestriction(sdp, 10)
+      //     // log('Old SDP', newSDP)
+      //     newSDP = setMediaBitrate(newSDP, 'video', 233)
+      //     newSDP = setMediaBitrate(newSDP, 'audio', 80)
+      //     // log('New SDP', newSDP)
+      //   }
+      //   else {
+      //     newSDP = removeBandwidthRestriction(sdp)
+      //   }
+      //   return newSDP
+      // },
       config,
     },
   })

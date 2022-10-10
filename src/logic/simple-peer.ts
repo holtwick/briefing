@@ -91,7 +91,6 @@ export class Peer extends Emitter<{
   offerOptions: any
   answerOptions: any
   sdpTransform: any
-  streams: any
   trickle: any
   allowHalfTrickle: any
   iceCompleteTimeout: any
@@ -126,7 +125,9 @@ export class Peer extends Emitter<{
   _pc: any
   _isReactNativeWebrtc = false
   _connecting: any
+
   static WEBRTC_SUPPORT: boolean
+
   constructor(opts: any = {}) {
     super()
     this._id = toHexString(randombytes(4)).slice(0, 7)
@@ -159,7 +160,6 @@ export class Peer extends Emitter<{
     this.offerOptions = opts.offerOptions || {}
     this.answerOptions = opts.answerOptions || {}
     this.sdpTransform = opts.sdpTransform || ((sdp: any) => sdp)
-    this.streams = opts.streams || (opts.stream ? [opts.stream] : []) // support old "stream" option
     this.trickle = opts.trickle !== undefined ? opts.trickle : true
     this.allowHalfTrickle
       = opts.allowHalfTrickle !== undefined ? opts.allowHalfTrickle : false
@@ -267,8 +267,9 @@ export class Peer extends Emitter<{
       }
     }
 
-    if (this.streams) {
-      this.streams.forEach((stream: any) => {
+    const streams = opts.streams || (opts.stream ? [opts.stream] : []) // support old "stream" option
+    if (streams) {
+      streams.forEach((stream: any) => {
         this.addStream(stream)
       })
     }
@@ -409,15 +410,36 @@ export class Peer extends Emitter<{
     }
   }
 
+  activeStreams: Record<string, MediaStream | null> = {}
+
+  get streams(): MediaStream[] {
+    return Object.values(this.activeStreams).filter(v => v != null)
+  }
+
+  hasStream(stream: MediaStream) {
+    return this.activeStreams[stream.id] != null
+  }
+
   /**
    * Add a MediaStream to the connection.
    */
   addStream(stream: MediaStream) {
-    log('addStream()')
+    if (!this.hasStream(stream)) {
+      this.activeStreams[stream.id] = stream
+      stream.getTracks().forEach((track: any) => {
+        this.addTrack(track, stream)
+      })
+    }
+  }
 
-    stream.getTracks().forEach((track: any) => {
-      this.addTrack(track, stream)
-    })
+  setStream(stream: MediaStream) {
+    for (const activeStream of this.streams) {
+      if (activeStream.id !== stream.id)
+        this.removeStream(activeStream)
+    }
+
+    if (!this.hasStream(stream))
+      this.addStream(stream)
   }
 
   /**
@@ -516,8 +538,9 @@ export class Peer extends Emitter<{
    */
   removeStream(stream: MediaStream) {
     log('removeSenders()')
-
-    stream.getTracks().forEach((track: any) => {
+    this.activeStreams[stream.id] = null
+    const tracks = [...stream.getTracks()]
+    tracks.forEach((track: any) => {
       this.removeTrack(track, stream)
     })
   }
