@@ -13,10 +13,10 @@ const json = {
             '/': '/ng/*',
             'comment': 'Enter a room https://brie.fi/ng/example-room-name',
           },
-          {
-            '/': '/',
-            'comment': 'Open Briefing app',
-          },
+          // {
+          //   '/': '/',
+          //   'comment': 'Open Briefing app',
+          // },
         ],
       },
     ],
