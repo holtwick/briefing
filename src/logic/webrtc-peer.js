@@ -92,14 +92,14 @@ export class WebRTCPeer extends Emitter {
 
     // We received data from the peer
     this.peer.on('data', (data) => {
-      log(`${this.id} | data`, data)
+      log(`${this.id} | data`)
       this.emit('data', data)
       this.emit('message', { data }) // Channel compat
     })
 
     // Connection succeeded
     this.peer.on('connect', (event) => {
-      log(`${this.id} | connect`, event)
+      log(`${this.id} | connect`)
       this.active = true
       // p.send('whatever' + Math.random())
       this.emit('connect', event)

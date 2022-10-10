@@ -8,7 +8,7 @@ const config = {
   udp4: true,
   udp6: true,
   port: 3478,
-  log: log.debug,
+  log: null, // log.debug,
   err: log.error,
   sw: true,
 }

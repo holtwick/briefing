@@ -78,8 +78,8 @@ export function useRoom() {
       },
 
       signal: (data: any) => {
-        log('signal', data)
         const { from, to } = data
+        log('signal', data.length, 'to', to)
         if (from !== peerId) {
           log.warn('Strange message that was not sent by us.')
         }
@@ -93,7 +93,7 @@ export function useRoom() {
         else {
           log.warn('Missing data for signal.')
         }
-        log('signal')
+        // log('signal')
       },
 
       status: (info: any) => {
@@ -109,7 +109,7 @@ export function useRoom() {
     channel.on('message', (event) => {
       try {
         const { name, data } = JSON.parse(event.data)
-        log(`onMessage "${name}":`, data)
+        // log(`onMessage "${name}":`, data)
         methods[name]?.(data)
       }
       catch (err) {
@@ -118,7 +118,7 @@ export function useRoom() {
     })
 
     channel.on('close', () => {
-      log('close')
+      // log('close')
       roomInfo.peers.delete(peerId)
 
       if (roomInfo.peers.size <= 0) {
@@ -134,7 +134,7 @@ export function useRoom() {
   }
 
   on('webSocketConnect', ({ channel }) => {
-    log('webSocketConnect')
+    // log('webSocketConnect')
     useConnection(channel)
   })
 }

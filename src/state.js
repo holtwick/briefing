@@ -3,6 +3,8 @@
 import { Logger, messages } from 'zeed'
 import { trackException, trackSilentException } from './bugs'
 import {
+  MUTE_AUDIO,
+  MUTE_VIDEO,
   ROOM_PATH,
   SHOW_CHAT,
   SHOW_FULLSCREEN,
@@ -107,8 +109,8 @@ export const state = {
   backgroundAuthor: '',
   backgroundURL: '',
 
-  muteVideo: !isTrue(urlParams.get('video'), true),
-  muteAudio: !isTrue(urlParams.get('audio'), true),
+  muteVideo: !isTrue(urlParams.get('video') ?? !MUTE_VIDEO, true),
+  muteAudio: !isTrue(urlParams.get('audio') ?? !MUTE_AUDIO, true),
 
   deviceVideo: null,
   deviceAudio: null,
