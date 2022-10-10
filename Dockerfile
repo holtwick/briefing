@@ -6,3 +6,6 @@ WORKDIR /app
 RUN cd /app; npm install --production
 CMD ["node", "dist/main.cjs"]
 EXPOSE 8080
+
+# STUN
+EXPOSE 3478

@@ -135,9 +135,9 @@ export class WebRTC extends Emitter {
     }
 
     this.websocketChannel.on('message', (event) => {
-      log('onMessage:', event)
       try {
         const { name, data } = JSON.parse(event.data)
+        log(`onMessage: ${name}`)
         methods[name]?.(data)
       }
       catch (err) {

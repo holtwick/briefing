@@ -65,24 +65,5 @@ export default {
 </template>
 
 <style lang="scss">
-.share-container {
-  p,
-  .p {
-    margin-bottom: 1rem;
-  }
-
-  .input {
-    border: 1px solid gray;
-    background: white;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    width: 100%;
-    color: #1e89f6;
-    margin-right: 0.5rem;
-  }
-
-  .qrcode {
-    max-width: 50vh;
-  }
-}
+@import 'app-share.scss';
 </style>

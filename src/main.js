@@ -115,6 +115,6 @@ new Vue({
 // Do some tests on the actual browser
 // localStorage.test = true
 
-if (localStorage?.test)
-  import('./in-browser-test.js').then()
+// if (localStorage?.test)
+//   import('./logic/in-browser-test.js').then()
 

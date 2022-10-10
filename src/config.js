@@ -28,22 +28,36 @@ export const SIGNAL_SERVER_URL = getConfig(
   getWebsocketUrlFromLocation(),
 )
 
+// getConfig('STUN_URL', 'stun:turn01.brie.fi:5349')
+// iceServers: [
+//   {
+//     urls: [
+//       'stun:stun.l.google.com:19302',
+//       'stun:global.stun.twilio.com:3478'
+//     ]
+//   }
+// ],
+// sdpSemantics: 'unified-plan'
+const stun = getConfig('STUN_URL', `stun:${location.hostname}:3478`)
+
+const iceServers = [{ urls: stun }]
+
+const turn = getConfig('TURN_URL') // , 'turn:turn01.brie.fi:5349')
+if (turn) {
+  iceServers.push({
+    urls: turn,
+    username: getConfig('TURN_USER', 'brie'),
+    credential: getConfig('TURN_PASSWORD', 'fi'),
+  })
+}
+
 // See https://github.com/feross/simple-peer#peer--new-peeropts
 export const ICE_CONFIG = {
   iceTransportPolicy: 'all',
   reconnectTimer: 3000,
 
   // These settings are no secret, since they are readable from the client side anyway
-  iceServers: [
-    {
-      urls: getConfig('STUN_URL', 'stun:turn01.brie.fi:5349'),
-    },
-    {
-      urls: getConfig('TURN_URL', 'turn:turn01.brie.fi:5349'),
-      username: getConfig('TURN_USER', 'brie'),
-      credential: getConfig('TURN_PASSWORD', 'fi'),
-    },
-  ],
+  iceServers,
 }
 
 export const RELEASE = import.meta.env.BRIEFING_RELEASE
@@ -66,6 +80,9 @@ export const SHOW_INVITATION_HINT = isTrue(
 export const SHOW_SETTINGS = isTrue(getConfig('SHOW_SETTINGS'), true)
 export const SHOW_SHARE = isTrue(getConfig('SHOW_SHARE'), true)
 export const SHOW_CHAT = isTrue(getConfig('SHOW_CHAT'), true)
+
+export const MUTE_AUDIO = isTrue(getConfig('MUTE_AUDIO'), false)
+export const MUTE_VIDEO = isTrue(getConfig('MUTE_VIDEO'), false)
 
 export const DEFAULT_ROOM = getConfig('DEFAULT_ROOM')
 

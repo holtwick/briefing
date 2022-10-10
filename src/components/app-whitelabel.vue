@@ -136,5 +136,5 @@ export default {
 </template>
 
 <style lang="scss">
-@import 'app-welcome.scss';
+@import 'app-whitelabel.scss';
 </style>
