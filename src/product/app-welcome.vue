@@ -1,9 +1,9 @@
 <script>
 import { trackSilentException } from '../bugs'
 import { DEFAULT_ROOM, ROOM_PATH } from '../config'
-import { gotoUrl } from '../external-links'
 import { historyAllRooms } from '../lib/history'
 import { generateName } from '../lib/names'
+import { gotoUrl } from './external-links'
 import AppHelp from './app-help.vue'
 
 export default {

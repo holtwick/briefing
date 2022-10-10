@@ -13,6 +13,7 @@ const config = {
   sw: true,
 }
 
+/** See https://www.npmjs.com/package/ministun */
 export function useStun() {
   log('setup', config)
 
