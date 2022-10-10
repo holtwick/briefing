@@ -6,6 +6,7 @@ import { Logger, uname } from 'zeed'
 const log = Logger('room')
 
 const moduleName = 'room'
+const start = new Date().getTime()
 
 interface RoomPeer {
   id: string
@@ -14,6 +15,7 @@ interface RoomPeer {
 }
 
 interface Room {
+  domain: string
   name: string
   peers: Map<string, RoomPeer>
 }
@@ -22,7 +24,7 @@ export function useRoom() {
   log('setup')
   register(moduleName)
 
-  const rooms = new Map<string, Room>()
+  const domains: Record<string, Record<string, Room>> = {}
 
   onInit(() => {
     assertModules('websocket')
@@ -41,22 +43,37 @@ export function useRoom() {
     }
 
     const methods = {
-      join: ({ room }) => {
-        log('join')
+      join: (data: any) => {
+        const { room, domain = 'default' } = data
+
+        if (!room) {
+          log.warn('join without room')
+          return
+        }
+
+        log(`join domain=${domain}, room=${room}`)
 
         if (roomInfo) {
           log.warn('Tries to connect more than once.')
           return
         }
 
+        // Get / create domain for rooms
+        let rooms = domains[domain]
+        if (rooms == null) {
+          rooms = {}
+          domains[domain] = rooms
+        }
+
         // Get / create room
-        roomInfo = rooms.get(room)
+        roomInfo = rooms[room]
         if (roomInfo == null) {
           roomInfo = {
+            domain,
             name: room,
             peers: new Map(),
           }
-          rooms.set(room, roomInfo)
+          rooms[room] = roomInfo
         }
 
         // Existing peers (before we add self)
@@ -122,7 +139,12 @@ export function useRoom() {
       roomInfo.peers.delete(peerId)
 
       if (roomInfo.peers.size <= 0) {
-        // we can also leave it dangle around
+        try {
+          delete domains[roomInfo.domain][roomInfo.name]
+        }
+        catch (error) {
+          log.warn('Remove room failed', error, roomInfo)
+        }
       }
       else {
         for (const peer of roomInfo.peers.values())
@@ -137,4 +159,35 @@ export function useRoom() {
     // log('webSocketConnect')
     useConnection(channel)
   })
+
+  // DEBUG
+
+  const TOKEN = process.env.ROOMS_STATUS_TOKEN
+  if (TOKEN) {
+    on('httpInit', ({ get }) => {
+      get('_/rooms.json', ({ req }) => {
+        const token = req.query.token
+        log('token', token, TOKEN, domains)
+        if (token !== TOKEN)
+          return 404
+
+        const outDomains = {}
+        for (const [domain, rooms] of Object.entries(domains)) {
+          const outRooms = {}
+          for (const [name, room] of Object.entries(rooms)) {
+            outRooms[name] = {
+              peers: room.peers.size,
+            }
+          }
+          outDomains[domain] = outRooms
+        }
+
+        return {
+          api: 1,
+          start,
+          domains: outDomains,
+        }
+      })
+    })
+  }
 }
