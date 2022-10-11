@@ -416,14 +416,16 @@ export class Peer extends Emitter<{
     return Object.values(this.activeStreams).filter(v => v != null)
   }
 
-  hasStream(stream: MediaStream) {
-    return this.activeStreams[stream.id] != null
+  hasStream(stream: MediaStream): boolean {
+    return stream && this.activeStreams[stream.id] != null
   }
 
   /**
    * Add a MediaStream to the connection.
    */
   addStream(stream: MediaStream) {
+    if (stream == null)
+      return
     if (!this.hasStream(stream)) {
       this.activeStreams[stream.id] = stream
       stream.getTracks().forEach((track: any) => {
@@ -433,6 +435,8 @@ export class Peer extends Emitter<{
   }
 
   setStream(stream: MediaStream) {
+    if (stream == null)
+      return
     for (const activeStream of this.streams) {
       if (activeStream.id !== stream.id)
         this.removeStream(activeStream)
