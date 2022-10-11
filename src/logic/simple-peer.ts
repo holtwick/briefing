@@ -451,6 +451,8 @@ export class Peer extends Emitter<{
    */
   addTrack(track: MediaStreamTrack, stream: MediaStream) {
     log('addTrack()')
+    if (track == null)
+      return
 
     const submap = this._senderMap.get(track) || new Map() // nested Maps map [track, stream] to sender
     let sender = submap.get(stream)
@@ -519,11 +521,14 @@ export class Peer extends Emitter<{
     const submap = this._senderMap.get(track)
     const sender = submap ? submap.get(stream) : null
     if (!sender) {
-      throw errCode(
-        new Error('Cannot remove track that was never added.'),
-        'ERR_TRACK_NOT_ADDED',
-      )
+      log.warn('Cannot remove track that was never added.')
+      // throw errCode(
+      //   new Error('Cannot remove track that was never added.'),
+      //   'ERR_TRACK_NOT_ADDED',
+      // )
+      return
     }
+
     try {
       sender.removed = true
       this._pc.removeTrack(sender)
