@@ -8,21 +8,35 @@
     "isolatedModules": true,
     "jsx": "preserve",
     // "noImplicitAny": false,
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "moduleResolution": "Node",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": false,
     "target": "ESNext",
-    "types": ["vite/client", "vitest/globals", "node"],
+    "types": [
+      "vite/client",
+      "vitest/globals",
+      "node"
+    ],
     "useDefineForClassFields": true
   },
-  "exclude": ["node_modules/**", "**/_archive/**", "_archive/**"],
+  "exclude": [
+    "node_modules/**",
+    "**/_archive/**",
+    "_archive/**"
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
