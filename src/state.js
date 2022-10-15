@@ -175,6 +175,10 @@ function updateStream() {
 messages.on('switchMedia', switchMedia)
 
 async function switchMedia() {
+  // See following links for detail:
+  // https://github.com/holtwick/briefing/pull/131
+  // https://stackoverflow.com/questions/55953038/why-is-the-ended-event-not-firing-for-this-mediastreamtrack/55960232#55960232
+
   state.stream?.getTracks().forEach((track) => {
     if (typeof track.stop === 'function' && track.readyState !== 'ended') {
       track.stop()
