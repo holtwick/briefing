@@ -3,6 +3,7 @@
 - [Installation via Docker](docker.md)
 - [Installation on fly.io](fly.io.md)
 - [Installation on render.com](render.com.md)
+- [Installation on repl.it](https://replit.com/@holtwick/briefing?v=1)
 - [Development and White Label](development.md)
 - [STUN / TURN via coturn](coturn.md)
 
