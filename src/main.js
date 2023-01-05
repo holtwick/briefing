@@ -10,6 +10,7 @@ import fr from './locales/fr.json'
 import id from './locales/id.json'
 import it from './locales/it.json'
 import pt from './locales/pt.json'
+import pl from './locales/pl.json'
 import ro from './locales/ro.json'
 import ru from './locales/ru.json'
 import tr from './locales/tr.json'
@@ -104,6 +105,7 @@ Vue.use(locale, {
     ro, // Thanks to radumalica via poeditor
     tr, // Thanks to volkankoc via poeditor
     es,
+    pl, // Thanks
     pt,
   },
 })
