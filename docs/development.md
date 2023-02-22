@@ -23,8 +23,9 @@ localStorage.zeed = '*'
 
 ## Technology stack
 
-- [Vue2](https://v2.vuejs.org/)
-- [Vite](https://vitejs.dev/)
-- [Zerva](https://www.npmjs.com/package/@zerva/core)
-- [Zeed](https://www.npmjs.com/package/zeed)
+- [vite](https://vitejs.dev/)
+- [vue3](https://vuejs.org/)
+- [vue-i18n](https://vue-i18n.intlify.dev/)
+- [zerva](https://www.npmjs.com/package/@zerva/core)
+- [zeed](https://www.npmjs.com/package/zeed)
 - [Feather Icons](https://feathericons.com)

@@ -1,11 +1,28 @@
 # Brie.fi/ng Docs
 
+## Installation
+
+You can clone Briefing locally and run it with:
+
+```
+npm install
+npm start
+```
+
+To adopt the look and feel to your needs, follow this guide. Please consider purchasing a [commercial license to support the project](/README.md#commercial-license). Thanks.
+
+- [**Development, Customization and White Label**](development.md)
+
+To get it running on a server, you can do the same or use one of the following services:
+
 - [Installation via Docker](docker.md)
 - [Installation on fly.io](fly.io.md)
 - [Installation on render.com](render.com.md)
 - [Installation on repl.it](https://replit.com/@holtwick/briefing?v=1)
-- [Development and White Label](development.md)
-- [STUN / TURN via coturn](coturn.md)
+
+For full access behind firewalls you will also need to run a TURN server:
+
+- [TURN via coturn](coturn.md)
 
 ## Posts
 

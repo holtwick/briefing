@@ -1,69 +1,72 @@
 {
   "name": "briefing",
+  "type": "module",
   "version": "2.1.8",
   "private": true,
   "description": "Secure direct video chat",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/holtwick/briefing.git"
-  },
-  "funding": {
-    "type": "GitHub Sponsors ❤",
-    "url": "https://github.com/sponsors/holtwick"
-  },
-  "license": "EUPL-1.2",
   "author": {
     "name": "Dirk Holtwick",
     "email": "dirk.holtwick@gmail.com",
     "url": "https://holtwick.de"
   },
-  "type": "module",
+  "license": "EUPL-1.2",
+  "funding": {
+    "type": "GitHub Sponsors ❤",
+    "url": "https://github.com/sponsors/holtwick"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "cross-env MODE=production nr build:basis",
     "build:basis": "nr clean && zerva build src/zerva/index.ts && vite build --mode $MODE",
     "build:docker": "cross-env MODE=production-docker nr build:basis && ./scripts/make-docker.sh",
-    "check": "vue-tsc --noEmit",
+    "check": "vue-tsc --noEmit -p ./tsconfig.json",
     "clean": "rm -rf dist www",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
     "reset": "rm -rf node_modules pnpm-lock.yaml dist dist_www www",
     "serve": "cross-env ZEED=* LEVEL=i node dist/main.cjs",
-    "start": "cross-env ZEED=* LEVEL=a zerva src/zerva/index.ts",
+    "start": "cross-env DEBUG=1 ZEED=* LEVEL=a zerva src/zerva/index.ts",
     "test": "cross-env ZEED=* LEVEL=i vitest -r src --globals",
+    "upload:public": "cross-env rsync -rvz --exclude-from=.rsync-public . ~/work/github-briefing && COMPARE_FOLDERS=DIFF code . ~/work/github-briefing",
     "upload:dockerhub": "nr build:docker && cd docker && docker login -u holtwick && docker buildx build --platform linux/arm64,linux/amd64,linux/s390x,linux/arm/v7,linux/arm/v6 -t holtwick/briefing:$npm_package_version -t holtwick/briefing:latest --push .",
     "upload:production": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-dev:briefing",
     "upload:stage": "cross-env MODE=stage nr build:basis && rsync -rvz --exclude-from=.rsyncignore * docker-pro:briefing"
   },
   "dependencies": {
-    "@sentry/browser": "^7.15.0",
-    "@sentry/tracing": "^7.15.0",
-    "@zerva/core": "^0.14.2",
-    "@zerva/http": "^0.14.2",
-    "@zerva/websocket": "^0.14.2",
+    "@sentry/browser": "^7.38.0",
+    "@sentry/tracing": "^7.38.0",
+    "@vueuse/core": "^9.13.0",
+    "@zerva/core": "^0.17.2",
+    "@zerva/http": "^0.17.2",
+    "@zerva/websocket": "^0.17.2",
     "clipboard-copy": "^4.0.1",
     "lodash": "^4.17.21",
-    "vue": "^2.7.10",
-    "zeed": "^0.8.32"
+    "vue": "^3.2.47",
+    "vue-i18n": "^9.2.2",
+    "zeed": "^0.9.21"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.27.0",
-    "@antfu/ni": "^0.18.2",
-    "@types/node": "^18.11.0",
-    "@vitejs/plugin-vue2": "^2.0.0",
-    "@zerva/bin": "^0.14.2",
-    "@zerva/vite": "^0.14.2",
+    "@antfu/eslint-config": "^0.35.2",
+    "@antfu/ni": "^0.20.0",
+    "@types/node": "^18.14.0",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@zerva/bin": "^0.17.4",
+    "@zerva/vite": "^0.17.2",
     "cross-env": "^7.0.3",
-    "eslint": "^8.25.0",
-    "ministun": "^1.0.4",
-    "sass": "^1.55.0",
+    "eslint": "^8.34.0",
+    "ministun": "^1.0.6",
+    "sass": "^1.58.3",
     "tsc": "^2.0.4",
-    "typescript": "^4.8.4",
-    "vite": "^3.1.8",
-    "vitest": "^0.24.3",
-    "vue-tsc": "^1.0.8"
-  },
-  "engines": {
-    "node": ">=16.0.0"
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4",
+    "vitest": "^0.28.5",
+    "vue-tsc": "^1.1.7"
   }
 }

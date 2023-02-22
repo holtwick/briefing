@@ -29,4 +29,4 @@ npm run upload:production
 
 ## Build modes
 
-Vite allows different _modes_, see [Vite documentation] for details.
+Vite allows different _modes_, see [Vite documentation](https://vitejs.dev/guide/env-and-mode.html#modes) for details.

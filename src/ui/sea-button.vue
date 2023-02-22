@@ -1,9 +1,11 @@
-<!-- Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
+<!-- Copyright (c) 2020-2023 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
 
 <script>
 import { Logger } from 'zeed'
 import { trackException } from '../bugs'
 import SeaSymbol from './sea-symbol.vue'
+
+import './sea-button.scss'
 
 const log = Logger('ui:button')
 
@@ -56,7 +58,7 @@ export default {
   },
   computed: {
     slotted() {
-      return this.title || this.$slots?.default?.[0] != null
+      return this.title || this.$slots?.default != null
     },
     classnames() {
       return {
@@ -126,7 +128,3 @@ export default {
     />
   </button>
 </template>
-
-<style lang="scss">
-@import './sea-button';
-</style>

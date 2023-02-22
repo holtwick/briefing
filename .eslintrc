@@ -1,3 +1,14 @@
 {
-  "extends": "@antfu"
+  "extends": "@antfu",
+  "rules": {
+    "unused-imports/no-unused-vars": 0,
+    "@typescript-eslint/no-unsafe-argument": 0,
+    "@typescript-eslint/no-unsafe-assignment": 0,
+    "@typescript-eslint/no-unsafe-call": 0,
+    "@typescript-eslint/no-unsafe-member-access": 0,
+    "@typescript-eslint/no-unsafe-return": 0,
+    "@typescript-eslint/require-await": 0,
+    "@typescript-eslint/restrict-template-expressions": 0,
+    "@typescript-eslint/no-misused-promises": 0
+  }
 }

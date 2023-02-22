@@ -1,10 +1,9 @@
-<script>
+<script lang="ts">
 import { Logger } from 'zeed'
 import { trackSilentException } from '../bugs'
+import { state } from '../state'
 
 const log = Logger('app:app-peer')
-
-window.screenshotNumber = 0
 
 export default {
   name: 'AppVideo',
@@ -40,9 +39,10 @@ export default {
   },
   data() {
     return {
-      screenshotNumber: ++window.screenshotNumber,
+      screenshotNumber: ++state.screenshotsNumber,
       showCode: false,
       showPlayButton: false,
+      state,
     }
   },
   watch: {
@@ -93,8 +93,8 @@ export default {
             // Keep in mind https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
             // But if the user allows to access camera it should be fine
             // https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide
-            video.onloadedmetadata = e => this.playVideo(video)
-            video.onloadeddata = e => this.playVideo(video)
+            video.onloadedmetadata = () => this.playVideo(video)
+            video.onloadeddata = () => this.playVideo(video)
           }
         }
         catch (err) {
@@ -105,12 +105,12 @@ export default {
     handleClick() {
       if (this.showPlayButton)
         this.doPlay()
-      else if (this.state.maximized === this.id)
-        this.state.maximized = ''
+      else if (state.maximized === this.id)
+        state.maximized = ''
       else
-        this.state.maximized = this.id
+        state.maximized = this.id
     },
-    doToggleShow(ev) {
+    doToggleShow() {
       this.showCode = !this.showCode
     },
     async doPlay() {
@@ -204,7 +204,7 @@ export default {
         If the person you see here confirms to see the same ID, you are securely
         connected:
         <br>
-        <tt>{{ fingerprint }}</tt>
+        <code>{{ fingerprint }}</code>
       </label>
       <label
         v-if="String(name).trim().length"

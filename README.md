@@ -1,6 +1,8 @@
 # Brie.fi/ng
 
-<img src="public/sample.jpg" height="200" align="right" style="padding-left: 2rem;"> Privacy is the central idea behind this project. Only open technologies (such as [WebRTC](https://webrtc-security.github.io/)) are used, which work with all modern browsers. Thus, no installation of additional software is required and the approach remains future-proof.
+> Choose your language: [en](README.md) | [de](README-de.md)
+
+<img src="public/sample.jpg" height="200" align="right" style="padding-left: 2rem;"> Privacy is the central idea behind this project. Only open technologies (such as [WebRTC](https://webrtc-security.github.io/)) are used, which work with all modern browsers. Thus, no installation of additional software is required, and the approach remains future-proof.
 
 A conversation can be started immediately for free via [Brie.fi/ng](https://brie.fi/ng). A [free iOS app](https://apps.apple.com/app/briefing-video-chat/id1510803601) is also available.
 
@@ -8,7 +10,7 @@ Features such as desktop sharing, text chat and simple invitation links are avai
 
 ## Quick start for developers
 
-Download or clone the project to your local machine and you are ready to go:
+Download or clone the project to your local machine, and you are ready to go:
 
 ```sh
 npm install
@@ -17,7 +19,7 @@ npm run start
 
 ## Use in your own projects
 
-However, there is also an option to use the app in your own projects. The following options are available:
+However, there is also the possibility to use the app in your own projects. The following options are available:
 
 1. create a room via [Brie.fi/ng](https://brie.fi/ng) and copy the link into your website.
 2. embed Briefing via 'frame' into your own site. Use the [handy configurator](https://brie.fi/ng/embed-demo).
@@ -26,11 +28,11 @@ However, there is also an option to use the app in your own projects. The follow
 
 ## Licenses
 
-In general Briefing is free, however a [commercial license](#commercial-license) is also available, which I ask you to purchase, especially for "white labeling" applications. Otherwise, I appreciate support for the project through [sponsorship via GitHub](https://github.com/sponsors/holtwick) to support further development. Thanks.
+In general Briefing is free, however a **[commercial license](#commercial-license) is also available**, which I ask you to purchase, especially for "white labeling" applications. Otherwise, I appreciate support for the project through [sponsorship via GitHub](https://github.com/sponsors/holtwick) to support further development. Thanks.
 
 ### Public License
 
-The terms of the EUPL (European Union Public License 1.2) must be followed, which are similar to those of the GPL. Modifications must also be free and made available to the public under the same license. For a quick overview of the license, see <https://choosealicense.com/licenses/eupl-1.2/>. This license is also available in the [European Community languages](https://eupl.eu/).
+The terms of the EUPL (European Union Public License 1.2) must be followed, which are similar to those of the AGPL. Modifications must also be free and made available to the public under the same license. For a quick overview of the license, see <https://choosealicense.com/licenses/eupl-1.2/>. This license is also available in the [European Community languages](https://eupl.eu/).
 
 ### Commercial license
 
@@ -48,11 +50,22 @@ My name is Dirk Holtwick. I am an independent software developer based in German
 
 Contributions are always welcome. The best place to start is to add or respond to [Issues](https://github.com/holtwick/briefing/issues).
 
-To add or correct translations, start here: [src/locales](src/locales/).
+To add or correct translations, start here: [/locales](locales/).
 
-## Previous version
+## Major Releases
 
-Version 1.0 was based on Webpack and had examples for iOS, Android, Windows, and Electron, as well as a separate signal server. It also offered background blur and image backgrounds via Unsplash. All of these implementations were deprecated. However, the code is still accessible via the [legacy branch](https://github.com/holtwick/briefing/tree/legacy), but is no longer maintained or supported.
+### Version 3.0
+
+Full migration to Vue3 and Typescript. Localization using vue-i18n standard library. Modernization of many parts of the project. See [blog post](docs/version3-en.md) ([de](docs/version3-de.md))
+
+### Version 2.0
+
+Introduced Typescript support. Migration to Vite. Replacing socket.io with reliable [Zerva](https://github.com/holtwick/zerva). Docker images. Reduction to the essential parts of the project. See [blog post](docs/version2-en.md) 
+([de](docs/version2-de.md))
+
+### Version 1.0
+
+Based on Webpack and had examples for iOS, Android, Windows, and Electron, as well as a separate signal server. It also offered background blur and image backgrounds via Unsplash. All of these implementations were deprecated. However, the code is still accessible via the [legacy branch](https://github.com/holtwick/briefing/tree/legacy), but is no longer maintained or supported.
 
 ---
 

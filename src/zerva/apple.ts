@@ -5,20 +5,18 @@ const log = Logger('apple')
 
 const json = {
   applinks: {
-    details: [
-      {
-        appIDs: ['8SS3YPUJH9.de.holtwick.Briefing'],
-        components: [
-          {
-            '/': '/ng/*',
-            'comment': 'Enter a room https://brie.fi/ng/example-room-name',
-          },
-          // {
-          //   '/': '/',
-          //   'comment': 'Open Briefing app',
-          // },
-        ],
+    details: [{
+      appIDs: ['8SS3YPUJH9.de.holtwick.Briefing'],
+      components: [{
+        '/': '/ng/*',
+        'comment': 'Enter a room https://brie.fi/ng/example-room-name',
       },
+        // {
+        //   '/': '/',
+        //   'comment': 'Open Briefing app',
+        // },
+      ],
+    },
     ],
   },
   webcredentials: {

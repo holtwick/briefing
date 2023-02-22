@@ -1,27 +1,11 @@
-<script>
-import { Logger } from 'zeed'
+<script lang="ts" setup>
 import AppMain from './components/app-main.vue'
 import AppWhitelabel from './components/app-whitelabel.vue'
 import AppEmbed from './product/app-embed.vue'
 import AppWelcome from './product/app-welcome.vue'
+import { state } from './state'
 
-const log = Logger('app:app')
-
-export default {
-  name: 'App',
-  components: {
-    AppWelcome,
-    AppWhitelabel,
-    AppMain,
-    AppEmbed,
-  },
-  data() {
-    return {}
-  },
-  mounted() {
-    log('mounted')
-  },
-}
+import './css/index.scss'
 </script>
 
 <template>
@@ -30,7 +14,3 @@ export default {
   <AppWhitelabel v-else-if="!state.room && !state.original" class="app" />
   <AppMain v-else />
 </template>
-
-<style lang="scss">
-@import './css/index.scss';
-</style>

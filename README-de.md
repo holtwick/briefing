@@ -1,5 +1,7 @@
 # Brie.fi/ng
 
+> Wähle deine Sprache: [en](README.md) | [de](README-de.md)
+
 <img src="public/sample.jpg" height="200" align="right" style="padding-left: 2rem;"> Der Datenschutz ist die zentrale Idee hinter diesem Projekt. Es werden ausschließlich offene Technologien (wie [WebRTC](https://webrtc-security.github.io/)) verwendet, die in allen modernen Browsern funktionieren. Somit ist keine Installation von zusätzlicher Software notwendig und der Ansatz bleibt zukunftssicher.
 
 Über [Brie.fi/ng](https://brie.fi/ng) kann sofort gratis eine Unterhaltung begonnen werden. Eine [kostenlose iOS-App](https://apps.apple.com/app/briefing-video-chat/id1510803601) steht ebenfalls zur Verfügung.
@@ -50,6 +52,20 @@ Beiträge sind immer willkommen. Am besten fängst du an [Issues](https://github
 
 Um Übersetzungen hinzuzufügen oder zu korrigieren, starte hier: [src/locales](src/locales/).
 
-## Vorgänger Version
 
-Version 1.0 basierte auf Webpack und hatte Beispiele für iOS, Android, Windows und Electron sowie einen separaten Signal-Server. Sie bot auch Hintergrundunschärfe und Bildhintergründe über Unsplash. Alle diese Implementierungen waren veraltet. Der Code ist aber immer noch über den [legacy branch](https://github.com/holtwick/briefing/tree/legacy) zugänglich, wird aber nicht mehr gepflegt und unterstützt.
+## Hauptversionen
+
+### Version 3.0
+
+Vollständige Migration auf Vue3 und Typescript. Lokalisierung mit vue-i18n Standardbibliothek. Modernisierung von vielen Teilen des Projekts. Siehe [Artikel](docs/version3-de.md) ([en](docs/version3-en.md))
+
+### Version 2.0
+
+Einführung von Typescript-Unterstützung. Umstellung auf Vite. Ersetzen von socket.io durch zuverlässiges [Zerva](https://github.com/holtwick/zerva). Docker-Images. Reduktion auf die wesentlichen Teile des Projekts. Siehe [Artikel](docs/version2-de.md) 
+([en](docs/version2-en.md))
+
+### Version 1.0
+
+Basierte auf Webpack und hatte Beispiele für iOS, Android, Windows und Electron sowie einen separaten Signal-Server. Sie bot auch Hintergrundunschärfe und Bildhintergründe über Unsplash. Alle diese Implementierungen wurden veraltet. Der Code ist jedoch weiterhin über den [legacy branch](https://github.com/holtwick/briefing/tree/legacy) zugänglich, wird aber nicht mehr gepflegt oder unterstützt.
+
+ 

@@ -1,10 +1,12 @@
-<!-- Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
+<!-- Copyright (c) 2020-2023 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
 
 <script>
 import { Logger } from 'zeed'
 import trapFocus from './lib/directives/trapFocus'
 import { removeElement } from './lib/helpers'
 import SeaLink from './sea-link.vue'
+
+import './sea-modal.scss'
 
 const log = Logger('ui:sea-modal')
 
@@ -152,7 +154,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style lang="scss">
-@import './sea-modal';
-</style>

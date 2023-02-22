@@ -1,10 +1,10 @@
-<script>
-import { Logger } from 'zeed'
+<script lang="ts">
 import { qrcode } from '../lib/qrcode'
 import { createLinkForRoom, shareLink } from '../lib/share'
+import { state } from '../state'
 import SeaButton from '../ui/sea-button.vue'
 
-const log = Logger('app:app-share')
+import './app-share.scss'
 
 export default {
   name: 'AppShare',
@@ -13,13 +13,14 @@ export default {
     return {
       url: '',
       qrcode: '',
+      link: '<a href="mailto:support@holtwick.de?subject=Briefing">support@holtwick.de</a>',
     }
   },
   async mounted() {
-    this.url = createLinkForRoom(this.state.room)
+    this.url = createLinkForRoom(state.room)
     const typeNumber = 0
     const errorCorrectionLevel = 'H'
-    const qr = qrcode(typeNumber, errorCorrectionLevel)
+    const qr = qrcode(typeNumber, errorCorrectionLevel) as any
     qr.addData(this.url)
     qr.make()
     this.qrcode = qr.createSvgTag({
@@ -34,7 +35,7 @@ export default {
       }, 0)
     },
     doShare() {
-      shareLink(createLinkForRoom(this.state.room))
+      shareLink(createLinkForRoom(state.room))
     },
   },
 }
@@ -43,7 +44,7 @@ export default {
 <template>
   <div class="share-container -scrollable text">
     <p>
-      {{ l.share.link_info }}
+      {{ $t('share.link_info') }}
     </p>
     <div class="p hstack">
       <input
@@ -55,15 +56,11 @@ export default {
         @click="selectAll"
       >
       <SeaButton @action="doShare">
-        {{ l.share.button_copy }}
+        {{ $t('share.button_copy') }}
       </SeaButton>
     </div>
-    <p>{{ l.share.qr_info }}</p>
+    <p>{{ $t('share.qr_info') }}</p>
     <p class="qrcode" v-html="qrcode" />
-    <p v-html="l.share.feedback" />
+    <a v-html="$t('share.feedback', { link })" />
   </div>
 </template>
-
-<style lang="scss">
-@import 'app-share.scss';
-</style>

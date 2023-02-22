@@ -1,6 +1,8 @@
 <script>
 import { gotoUrl } from './external-links'
 
+import './app-help.scss'
+
 export default {
   name: 'AppHelp',
   data() {
@@ -51,7 +53,7 @@ export default {
       </p>
       <p><br></p>
       <p>
-        (C)opyright 2020-2022 by
+        (C)opyright 2020-2023 by
         <a :href="gotoUrl('holtwick')">Dirk Holtwick</a> |
         <a :href="gotoUrl('privacy')">Privacy Policy</a> |
         <a :href="gotoUrl('imprint')">Imprint</a>
@@ -59,7 +61,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style lang="scss">
-@import 'app-help.scss';
-</style>

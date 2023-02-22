@@ -2,7 +2,7 @@
 
 A public docker image is available via [hub.docker.com/r/holtwick/briefing](https://hub.docker.com/r/holtwick/briefing).
 
-Use it like this:
+With a [Docker Engine installed](https://docs.docker.com/engine/install/) use it like this:
 
 ```sh
 docker run -d -p 8080:8080 holtwick/briefing

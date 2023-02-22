@@ -1,4 +1,4 @@
-<!-- Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
+<!-- Copyright (c) 2020-2023 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
 
 <script>
 import SeaButton from './sea-button.vue'

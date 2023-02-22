@@ -1,18 +1,16 @@
-<script>
-import { Logger, messages } from 'zeed'
+<script lang="ts">
+import { messages } from 'zeed'
 import { setAllowedBugTracking } from '../bugs'
 import { ROOM_PATH } from '../config'
 import { historyAddRoom } from '../lib/history'
 import { createLinkForRoom, shareLink } from '../lib/share'
-import { setup } from '../state'
+import { setup, state } from '../state'
 import SeaLink from '../ui/sea-link.vue'
 import SeaModal from '../ui/sea-modal.vue'
 import AppChat from './app-chat.vue'
 import AppSettings from './app-settings.vue'
 import AppShare from './app-share.vue'
 import AppVideo from './app-video.vue'
-
-const log = Logger('app:app-sidebar')
 
 export default {
   name: 'AppMain',
@@ -38,19 +36,19 @@ export default {
         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>',
       name: '',
       unreadMessages: false,
+      state,
     }
   },
   computed: {
     hasPeers() {
-      return Object.keys(this.state.status).length > 0
+      return Object.keys(state.status).length > 0
     },
     peers() {
-      return this.state.screenshots ? [2, 3] : this.state.status
+      return state.screenshots ? [2, 3] : state.status
     },
     videoAllowed() {
       if (window.webkit != null)
         return this.mode === ''
-
       return true
     },
   },
@@ -61,16 +59,16 @@ export default {
     setTimeout(async () => {
       this.conn = await setup()
     }, 50)
-    if (!this.hasPeers && !window.iPhone && this.state.showInviteOnStart)
+    if (!this.hasPeers && !window.iPhone && state.showInviteOnStart)
       this.mode = 'share'
 
-    this.fullscreenHandler = (ev) => {
+    this.fullscreenHandler = () => {
       this.isFullScreen = !!document.fullscreenElement
     }
     document.addEventListener('fullscreenchange', this.fullscreenHandler)
 
     // Remember room name for next visits
-    historyAddRoom(this.state.room)
+    historyAddRoom(state.room)
   },
   beforeUnmount() {
     document.removeEventListener('fullscreenchange', this.fullscreenHandler)
@@ -78,14 +76,14 @@ export default {
   },
   methods: {
     doShare() {
-      shareLink(createLinkForRoom(this.state.room))
+      shareLink(createLinkForRoom(state.room))
     },
     doVideo() {
-      this.state.muteVideo = !this.state.muteVideo
+      state.muteVideo = !state.muteVideo
       messages.emit('updateStream')
     },
     doAudio() {
-      this.state.muteAudio = !this.state.muteAudio
+      state.muteAudio = !state.muteAudio
       messages.emit('updateStream')
     },
     doQuit() {
@@ -100,7 +98,7 @@ export default {
       if (allow)
         setAllowedBugTracking(allow)
 
-      this.state.requestBugTracking = false
+      state.requestBugTracking = false
     },
     doToggleFullScreen() {
       if (!document.fullscreenElement) {
@@ -112,9 +110,9 @@ export default {
       }
     },
     doTogglePanel(mode = 'settings') {
-      this.mode = !mode || this.mode === mode ? '' : mode
+      this.mode = (!mode || this.mode === mode) ? '' : mode
     },
-    didChangeFullscreen(ev) {},
+    didChangeFullscreen() {},
     toggleChat() {
       if (this.mode === 'chat') {
         this.mode = ''
@@ -174,7 +172,7 @@ export default {
     <SeaModal
       xclass="panel -left panel-settings"
       :active="mode === 'settings'"
-      :title="l.settings.title"
+      :title="$t('settings.title')"
       @close="mode = ''"
     >
       <AppSettings />
@@ -234,7 +232,7 @@ export default {
         >
           <div
             class="message"
-            v-html="l.share.message.replace('$symbol$', symbol)"
+            v-html="$t('share.message', symbol)"
           />
         </div>
       </div>
@@ -457,7 +455,7 @@ export default {
     <SeaModal
       xclass="panel -left panel-share"
       :active="mode === 'share'"
-      :title="l.share.title"
+      :title="$t('share.title')"
       @close="mode = ''"
     >
       <AppShare />

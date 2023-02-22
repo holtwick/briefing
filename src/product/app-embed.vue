@@ -5,6 +5,8 @@ import { onMessageFromFrame } from '../lib/iframe'
 import { generateName } from '../lib/names'
 import SeaSwitch from '../ui/sea-switch.vue'
 
+import './app-embed.scss'
+
 const log = Logger('app-embed')
 
 export default {
@@ -107,55 +109,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style lang="scss">
-.app-welcome {
-  margin: 2rem;
-  padding-bottom: 4rem;
-  text-align: center;
-
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  a {
-    color: rgba(43, 184, 255, 1);
-    user-select: text;
-  }
-
-  .url {
-    margin-bottom: 1rem;
-  }
-
-  .options {
-    display: inline-block;
-    margin-bottom: 1rem;
-
-    .form-group {
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  .code {
-    display: inline-block;
-    text-align: left;
-    user-select: text;
-    width: 75vw;
-
-    background: #ccc;
-    color: black;
-    padding: 1rem;
-    border-radius: 0.25rem;
-  }
-}
-</style>
-
-<style>
-.iframe {
-  border: 1px solid #ccc;
-  width: Min(90vh, 90vw);
-  height: Calc(0.75 * Min(90vh, 90vw));
-  margin-bottom: 1rem;
-}
-</style>

@@ -1,10 +1,12 @@
-<!-- Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
+<!-- Copyright (c) 2020-2023 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
 
 <script>
 // Mix of this receipt: https://www.cssscript.com/realistic-ios-switch-pure-css/
 // And IBM Carbon: https://www.carbondesignsystem.com/components/toggle/code
 
 import SeaInputBase from './sea-input-base.vue'
+
+import './sea-switch.scss'
 
 export default {
   name: 'SeaSwitch',
@@ -28,7 +30,7 @@ export default {
   },
   computed: {
     slotted() {
-      return this.label || this.$slots?.default?.[0] != null
+      return this.label || this.$slots?.default != null
     },
   },
 }
@@ -54,7 +56,3 @@ export default {
     </label>
   </div>
 </template>
-
-<style lang="scss">
-@import './sea-switch';
-</style>
