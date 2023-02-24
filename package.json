@@ -1,26 +1,23 @@
 {
   "name": "briefing",
-  "type": "module",
   "version": "3.0.8",
   "private": true,
   "description": "Secure direct video chat",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
+  "funding": {
+    "type": "GitHub Sponsors ❤",
+    "url": "https://github.com/sponsors/holtwick"
+  },
+  "license": "EUPL-1.2",
   "author": {
     "name": "Dirk Holtwick",
     "email": "dirk.holtwick@gmail.com",
     "url": "https://holtwick.de"
   },
-  "license": "EUPL-1.2",
-  "funding": {
-    "type": "GitHub Sponsors ❤",
-    "url": "https://github.com/sponsors/holtwick"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/holtwick/briefing.git"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
+  "type": "module",
   "scripts": {
     "build": "cross-env MODE=production nr build:basis",
     "build:basis": "nr clean && zerva build src/zerva/index.ts && vite build --mode $MODE",
@@ -34,10 +31,7 @@
     "serve": "cross-env ZEED=* LEVEL=i node dist/main.cjs",
     "start": "cross-env DEBUG=1 ZEED=* LEVEL=a zerva src/zerva/index.ts",
     "test": "vitest",
-    "upload:public": "cross-env rsync -rvz --exclude-from=.rsync-public . ~/work/github-briefing && COMPARE_FOLDERS=DIFF code . ~/work/github-briefing",
-    "upload:dockerhub": "nr build:docker && cd docker && docker login -u holtwick && docker buildx build --platform linux/arm64,linux/amd64,linux/s390x,linux/arm/v7,linux/arm/v6 -t holtwick/briefing:$npm_package_version -t holtwick/briefing:latest --push .",
-    "upload:production": "nr build && rsync -rvz --exclude-from=.rsyncignore * docker-dev:briefing",
-    "upload:stage": "cross-env MODE=stage nr build:basis && rsync -rvz --exclude-from=.rsyncignore * docker-pro:briefing"
+    "upload:dockerhub": "nr build:docker && cd docker && docker login -u holtwick && docker buildx build --platform linux/arm64,linux/amd64,linux/s390x,linux/arm/v7,linux/arm/v6 -t holtwick/briefing:$npm_package_version -t holtwick/briefing:latest --push ."
   },
   "dependencies": {
     "@sentry/browser": "^7.38.0",
@@ -68,5 +62,8 @@
     "vite": "^4.1.4",
     "vitest": "^0.28.5",
     "vue-tsc": "^1.1.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
