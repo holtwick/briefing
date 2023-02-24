@@ -17,14 +17,24 @@ npm install
 npm run start
 ```
 
-## Use in your own projects
+## Batteries included
 
-However, there is also the possibility to use the app in your own projects. The following options are available:
+A WebRTC video chat application requires multiple components to work properly. Briefing includes everything you need to get started: User Interface, Signaling and STUN. 
 
-1. create a room via [Brie.fi/ng](https://brie.fi/ng) and copy the link into your website.
-2. embed Briefing via 'frame' into your own site. Use the [handy configurator](https://brie.fi/ng/embed-demo).
-3. start Briefing on your own server e.g. [via Docker](docs/docker.md) or use a service like [fly.io](docs/fly.io.md), [render.com](docs/render.com.md), Google Cloud, AWS, Azure ... you name it.
-4. customize the source code according to your needs. See the [documentation](docs/README.md) for details.
+Learn more about it in the [**→ documentation**](./docs/README.md).
+
+![connection](./docs/assets/connection.svg)
+
+## Customization / Whitelabeling
+
+To use Briefing for your own project, the following options for all levels of experience are available:
+
+1. **create a room** via [Brie.fi/ng](https://brie.fi/ng) and copy the link into your website.
+2. **embed** Briefing via 'frame' into your own site. Use the [handy configurator](https://brie.fi/ng/embed-demo).
+3. start Briefing on your **own server** e.g. [via Docker](docs/installation/docker.md) or use a service like [fly.io](docs/fly.io.md), [render.com](docs/render.com.md), Google Cloud, AWS, Azure ... you name it.
+4. **customize** the source code according to your needs. See the [documentation](docs/README.md) for details.
+
+Learn more at [**→ installation**](./docs/installation/README.md).
 
 ## Licenses
 
@@ -50,18 +60,17 @@ My name is Dirk Holtwick. I am an independent software developer based in German
 
 Contributions are always welcome. The best place to start is to add or respond to [Issues](https://github.com/holtwick/briefing/issues).
 
-To add or correct translations, start here: [/locales](locales/).
+To add or correct translations, start here: [→ locales](locales/).
 
 ## Major Releases
 
 ### Version 3.0
 
-Full migration to Vue3 and Typescript. Localization using vue-i18n standard library. Modernization of many parts of the project. See [blog post](docs/version3-en.md) ([de](docs/version3-de.md))
+Full migration to Vue3 and Typescript. Localization using vue-i18n standard library. Modernization of many parts of the project. See [→ blog post](docs/blog/version3-en.md) ([de](docs/blog/version3-de.md))
 
 ### Version 2.0
 
-Introduced Typescript support. Migration to Vite. Replacing socket.io with reliable [Zerva](https://github.com/holtwick/zerva). Docker images. Reduction to the essential parts of the project. See [blog post](docs/version2-en.md) 
-([de](docs/version2-de.md))
+Introduced Typescript support. Migration to Vite. Replacing socket.io with reliable [Zerva](https://github.com/holtwick/zerva). Docker images. Reduction to the essential parts of the project. See [→ blog post](docs/blog/version2-en.md) ([de](docs/blog/version2-de.md))
 
 ### Version 1.0
 

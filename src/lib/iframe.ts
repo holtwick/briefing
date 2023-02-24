@@ -4,7 +4,7 @@ const log = Logger('app:iframe')
 
 const source = 'briefing'
 
-export function postMessageToParent(name, data = {}) {
+export function postMessageToParent(name: string, data = {}) {
   try {
     const info = {
       source,
@@ -19,7 +19,7 @@ export function postMessageToParent(name, data = {}) {
   }
 }
 
-export function onMessageFromFrame(name, fn) {
+export function onMessageFromFrame(name: string, fn: (data: any) => void) {
   window.addEventListener('message', (e) => {
     const info = e.data
     log('onMessageFromFrame', info)

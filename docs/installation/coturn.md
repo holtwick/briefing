@@ -1,4 +1,4 @@
-# coturn for STUN / TURN
+# Installation of STUN / TURN server: "coturn"
 
 > This is only required if you want to set up your own COTURN server.
 > Briefing already is connected to an instance of such a server, which is located in Germany at [Hetzner](https://hetzner.cloud/?ref=thK9VpOJK5Sg).

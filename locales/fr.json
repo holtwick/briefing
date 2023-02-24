@@ -12,7 +12,7 @@
     "button_copy": "Partager",
     "qr_info": "Vous pouvez également scanner ce QR Code avec un appareil photo mobile :",
     "feedback": "Pour tout commentaire, écrivez à {link}",
-    "message": "Inviter en envoyant le lien en appuyant sur le bouton $symbol$ symbole."
+    "message": "Inviter en envoyant le lien en appuyant sur le bouton {symbol} symbole."
   },
   "settings": {
     "title": "Paramètres",

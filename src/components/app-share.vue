@@ -1,43 +1,50 @@
-<script lang="ts">
+<script lang="ts" setup>
+import { useFullscreen } from '@vueuse/core'
+import { ref } from 'vue'
+import type { LoggerInterface } from 'zeed'
+import { Logger } from 'zeed'
 import { qrcode } from '../lib/qrcode'
 import { createLinkForRoom, shareLink } from '../lib/share'
 import { state } from '../state'
-import SeaButton from '../ui/sea-button.vue'
 
 import './app-share.scss'
 
-export default {
-  name: 'AppShare',
-  components: { SeaButton },
-  data() {
-    return {
-      url: '',
-      qrcode: '',
-      link: '<a href="mailto:support@holtwick.de?subject=Briefing">support@holtwick.de</a>',
-    }
-  },
-  async mounted() {
-    this.url = createLinkForRoom(state.room)
-    const typeNumber = 0
-    const errorCorrectionLevel = 'H'
-    const qr = qrcode(typeNumber, errorCorrectionLevel) as any
-    qr.addData(this.url)
-    qr.make()
-    this.qrcode = qr.createSvgTag({
-      scalable: true,
-    })
-  },
-  methods: {
-    selectAll() {
-      setTimeout(() => {
-        const el = this.$refs.input
-        el.select()
-      }, 0)
-    },
-    doShare() {
-      shareLink(createLinkForRoom(state.room))
-    },
-  },
+const log: LoggerInterface = Logger('app-share')
+
+const link = '<a href="mailto:support@holtwick.de?subject=Briefing">support@holtwick.de</a>'
+
+const url = createLinkForRoom(state.room)
+const qr = qrcode(0, 'H') as any
+qr.addData(url)
+qr.make()
+const qrCodeSvg = qr.createSvgTag({
+  scalable: true,
+})
+
+function selectAll() {
+  setTimeout(() => {
+    const el = this.$refs.input
+    el.select()
+  }, 0)
+}
+
+function doShare() {
+  shareLink(createLinkForRoom(state.room))
+}
+
+const qrCodeElement = ref()
+const { toggle } = useFullscreen(qrCodeElement)
+
+function doToggleFullScreen(element: any) {
+  log('toggle', element)
+  if (!document.fullscreenElement) {
+    if (element)
+      element.requestFullscreen()
+  }
+  else {
+    if (document.exitFullscreen)
+      document.exitFullscreen()
+  }
 }
 </script>
 
@@ -55,12 +62,12 @@ export default {
         readonly
         @click="selectAll"
       >
-      <SeaButton @action="doShare">
+      <button class="sea-button -primary -has-title" @click="doShare">
         {{ $t('share.button_copy') }}
-      </SeaButton>
+      </button>
     </div>
     <p>{{ $t('share.qr_info') }}</p>
-    <p class="qrcode" v-html="qrcode" />
+    <div ref="qrCodeElement" class="qrcode" @click="toggle" v-html="qrCodeSvg" />
     <a v-html="$t('share.feedback', { link })" />
   </div>
 </template>

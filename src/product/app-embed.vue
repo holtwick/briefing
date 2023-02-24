@@ -3,7 +3,6 @@ import { Logger } from 'zeed'
 import { ROOM_URL } from '../config'
 import { onMessageFromFrame } from '../lib/iframe'
 import { generateName } from '../lib/names'
-import SeaSwitch from '../ui/sea-switch.vue'
 
 import './app-embed.scss'
 
@@ -11,7 +10,6 @@ const log = Logger('app-embed')
 
 export default {
   components: {
-    SeaSwitch,
   },
   data() {
     const defaultName = generateName()
@@ -79,28 +77,34 @@ export default {
         Room: <input v-model="room" type="text" :placeholder="defaultName">
       </div>
       <div class="options">
-        <SeaSwitch v-model="presetAudio">
+        <label>
+          <input v-model="presetAudio" type="checkbox" class="form-switch">
           Audio
-        </SeaSwitch>
-        <SeaSwitch v-model="presetVideo">
+        </label>
+        <label>
+          <input v-model="presetVideo" type="checkbox" class="form-switch">
           Video
-        </SeaSwitch>
-        <SeaSwitch v-model="presetFullscreen">
+        </label>
+        <label>
+          <input v-model="presetFullscreen" type="checkbox" class="form-switch">
           Fullscreen Button
-        </SeaSwitch>
-        <SeaSwitch v-model="presetPrefs">
+        </label>
+        <label>
+          <input v-model="presetPrefs" type="checkbox" class="form-switch">
           Setting Button
-        </SeaSwitch>
-        <SeaSwitch v-model="presetShare">
+        </label>
+        <label>
+          <input v-model="presetShare" type="checkbox" class="form-switch">
           Share Button
-        </SeaSwitch>
-        <SeaSwitch v-model="presetChat">
+        </label>
+        <label>
+          <input v-model="presetChat" type="checkbox" class="form-switch">
           Share Chat
-        </SeaSwitch>
-        <br>
-        <SeaSwitch v-model="presetInvite">
+        </label>
+        <label>
+          <input v-model="presetInvite" type="checkbox" class="form-switch">
           Invite on Start
-        </SeaSwitch>
+        </label>
       </div>
       <div><br>HTML code to be used in client</div>
       <pre class="code">{{ code }}</pre>

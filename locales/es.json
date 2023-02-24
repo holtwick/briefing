@@ -12,7 +12,7 @@
     "button_copy": "Compartir",
     "qr_info": "También puede escanear este código QR con la cámara de un dispositivo móvil:",
     "feedback": "Si desea recibir comentarios, escriba a {link}",
-    "message": "Invite enviando el enlace mediante la pulsación del símbolo $symbol$."
+    "message": "Invite enviando el enlace mediante la pulsación del símbolo {symbol}."
   },
   "settings": {
     "title": "Ajustes",

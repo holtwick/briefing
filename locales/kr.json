@@ -11,7 +11,7 @@
     "button_copy": "공유하기",
     "qr_info": "모바일 기기의 카메라를 이용해 QR 코드를 스캔할 수도 있습니다:",
     "feedback": "피드백 {link}",
-    "message": "$symbol$ 아이콘을 클릭하여 링크를 보내 초대해보세요."
+    "message": "{symbol} 아이콘을 클릭하여 링크를 보내 초대해보세요."
   },
   "settings": {
     "title": "설정",

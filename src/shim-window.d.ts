@@ -7,6 +7,8 @@ declare global {
     webkit?: any
     iOS?: any 
     iPhone?: any
+    briefingConfig?: any
+    
   }
 
   namespace globalThis {
@@ -15,6 +17,7 @@ declare global {
     let webkit: any
     let iOS: any 
     let iPhone: any
+    let briefingConfig: any
 
     const TEST: boolean
     const DEBUG: boolean

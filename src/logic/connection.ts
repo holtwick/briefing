@@ -5,10 +5,7 @@ import { ICE_CONFIG } from '../config'
 import { cloneObject } from '../lib/base'
 import { WebRTC } from './webrtc'
 
-// import {
-//   removeBandwidthRestriction,
-//   setMediaBitrate,
-// } from './sdp-manipulation.js'
+// import { removeBandwidthRestriction, setMediaBitrate } from './sdp-manipulation'
 
 const log = Logger('app:connection')
 
@@ -16,7 +13,7 @@ export async function setupWebRTC(state) {
   if (!WebRTC.isSupported())
     return null
 
-  const dispose = useDispose()
+  const dispose = useDispose(log)
 
   const config = ICE_CONFIG
 

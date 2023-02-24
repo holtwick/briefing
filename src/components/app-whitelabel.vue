@@ -1,6 +1,6 @@
 <script lang="ts">
 import { trackSilentException } from '../bugs'
-import { DEFAULT_ROOM, ROOM_PATH, ROOM_URL } from '../config'
+import { DEFAULT_ROOM, LICENSE, ROOM_PATH, ROOM_URL } from '../config'
 import { generateName } from '../lib/names'
 import { state } from '../state'
 
@@ -13,6 +13,7 @@ export default {
     const defaultName = DEFAULT_ROOM ?? generateName()
     return {
       defaultName,
+      LICENSE,
       room: defaultName,
       url: '',
       initialWidth: -1,
@@ -127,7 +128,10 @@ export default {
         </div>
       </div>
       <div class="footer links">
-        <p>
+        <p v-if="LICENSE">
+          {{ LICENSE }}
+        </p>
+        <p v-else>
           FOR WHITELABEL USE WE ASK YOU TO PURCHASE A
           <a href="https://github.com/holtwick/briefing/#commercial-license">
             COMMERCIAL LICENSE

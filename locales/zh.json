@@ -12,7 +12,7 @@
     "button_copy": "分享",
     "qr_info": "您也可以使用移动设备摄像头扫描此二维码：",
     "feedback": "有问题请反馈到{link}",
-    "message": "通过按下 $symbol$ 来发送邀请朋友加入群聊"
+    "message": "通过按下 {symbol} 来发送邀请朋友加入群聊"
   },
   "settings": {
     "title": "设置",

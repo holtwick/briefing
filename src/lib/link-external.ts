@@ -1,6 +1,6 @@
-export function openExternalLink(event) {
+export function openExternalLink(event: any) {
   if (window.electron) {
-    let href
+    let href: string
     if (typeof event === 'string') {
       href = event
     }

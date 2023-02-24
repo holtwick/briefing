@@ -12,7 +12,7 @@
     "button_copy": "Share",
     "qr_info": "You can also scan this QR Code with a mobile device camera:",
     "feedback": "For feedback write to {link}",
-    "message": "Invite by sending the link via pressing on the $symbol$ symbol."
+    "message": "Invite by sending the link via pressing on the {symbol} symbol."
   },
   "settings": {
     "title": "Settings",

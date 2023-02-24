@@ -11,7 +11,7 @@
     "button_copy": "Bagikan",
     "qr_info": "Anda juga dapat memindai Kode QR dengan ponsel pintar:",
     "feedback": "Beri masukan dengan menulis ke {link}",
-    "message": "Undang melalui tautan dengan memencet pada $symbol$ symbol."
+    "message": "Undang melalui tautan dengan memencet pada {symbol} symbol."
   },
   "settings": {
     "title": "Pengaturan",

@@ -12,7 +12,7 @@
     "button_copy": "Partajeaza",
     "qr_info": "Puteti deasemenea scana acest cod QR cu un telefon mobil:",
     "feedback": "Pentru sugestii scrieti la {link}",
-    "message": "Invita prin trimiterea link-ului apasand pe simbolul $symbol$."
+    "message": "Invita prin trimiterea link-ului apasand pe simbolul {symbol}."
   },
   "settings": {
     "title": "Setari",

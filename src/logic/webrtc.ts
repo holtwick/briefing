@@ -3,7 +3,7 @@
 import { WebSocketConnection } from '@zerva/websocket'
 import type { LoggerInterface } from 'zeed'
 import { Emitter, Logger, uuid } from 'zeed'
-import { SIGNAL_SERVER_URL } from '../config'
+import { ROOM_DOMAIN, SIGNAL_SERVER_URL } from '../config'
 import { state } from '../state'
 import { WebRTCPeer } from './webrtc-peer'
 
@@ -159,8 +159,10 @@ export class WebRTC extends Emitter {
 
     this.websocketChannel.on('connect', () => {
       log('onConnect')
-      // this.channelEmit("status", { hello: "world" })
-      this.channelEmit('join', { room })
+      this.channelEmit('join', {
+        room,
+        domain: ROOM_DOMAIN,
+      })
     })
   }
 

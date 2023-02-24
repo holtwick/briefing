@@ -12,7 +12,7 @@
     "button_copy": "Teilen",
     "qr_info": "Oder scanne diesen QR-Code mit einer Kamera:",
     "feedback": "Feedback bitte an {link}",
-    "message": "Einladungs-Link verschicken durch Klick auf das $symbol$-Symbol."
+    "message": "Einladungs-Link verschicken durch Klick auf das {symbol}-Symbol."
   },
   "settings": {
     "title": "Einstellungen",

@@ -20,7 +20,7 @@ Video with a quick walkthrough:
 
 ## Configuration
 
-Further configuration is currently not required ;)
+Fine tuning by setting environment variables. See [**→ configuration**](../configuration.md)
 
 ## Alternative: Build locally
 

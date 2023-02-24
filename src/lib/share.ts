@@ -1,6 +1,6 @@
 import clipboardCopy from 'clipboard-copy'
 import { Logger } from 'zeed'
-import { ROOM_URL } from '../config.js'
+import { ROOM_URL } from '../config'
 
 const log = Logger('share')
 
@@ -12,13 +12,14 @@ export const canShare = navigator.share != null
 export const canCopy = !canShare
 
 export async function shareLink(
-  url,
+  url: string,
   {
     title = 'Briefing URL',
     text = 'Please open the link in your browser to join the video conference',
   } = {},
 ) {
   if (navigator.share) {
+    log('nav share')
     try {
       await navigator.share({
         title,
@@ -33,10 +34,12 @@ export async function shareLink(
     }
   }
   else if (window.electron) {
+    log('electron')
     try {
       // https://electronjs.org/docs/api/clipboard
       await window.electron.clipboard.writeText(url)
-      // alert('The URL has been copied to your clipboard.')
+      // eslint-disable-next-line no-alert
+      alert('The URL has been copied to your clipboard.')
       return true
     }
     catch (err) {
@@ -45,9 +48,11 @@ export async function shareLink(
     }
   }
   else {
+    log('copy clipboard')
     try {
       await clipboardCopy(url)
-      // alert('The URL has been copied to your clipboard.')
+      // eslint-disable-next-line no-alert
+      alert('The URL has been copied to your clipboard.')
       return true
     }
     catch (err) {

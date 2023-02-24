@@ -5,13 +5,9 @@ import { ICE_CONFIG, RELEASE, SIGNAL_SERVER_URL } from '../config'
 import { t } from '../i18n'
 import { WebRTC } from '../logic/webrtc'
 import { state } from '../state'
-import SeaSwitch from '../ui/sea-switch.vue'
 
 export default {
   name: 'AppSettings',
-  components: {
-    SeaSwitch,
-  },
   data() {
     return {
       enableSubscribe: false,
@@ -121,48 +117,55 @@ export default {
       </label>
     </div>
     <div class="form-group settings-group">
-      <SeaSwitch v-model="state.fill">
+      <label>
+        <input v-model="state.fill" type="checkbox" class="form-switch">
         {{ $t('settings.fill') }}
-      </SeaSwitch>
+      </label>
       <div class="settings-info">
         {{ $t('settings.fill_info') }}
       </div>
     </div>
     <div v-if="false" class="form-group settings-group">
-      <SeaSwitch v-model="state.bandwidth">
+      <label>
+        <input v-model="state.bandwidth" type="checkbox" class="form-switch">
         {{ $t('settings.bandwidth') }}
-      </SeaSwitch>
+      </label>
       <div class="settings-info">
         {{ $t('settings.bandwidth_info') }}
       </div>
     </div>
     <div v-if="false" class="form-group settings-group">
-      <SeaSwitch v-model="state.blur">
+      <label>
+        <input v-model="state.blur" type="checkbox" class="form-switch">
         {{ $t('settings.blur') }}
-      </SeaSwitch>
+      </label>
       <div class="settings-info">
         {{ $t('settings.blur_info') }}
       </div>
     </div>
     <div v-if="enableSubscribe" class="form-group settings-group">
-      <SeaSwitch v-model="state.subscribe">
+      <label>
+        <input v-model="state.subscribe" type="checkbox" class="form-switch">
         {{ $t('settings.subscribe') }}
-      </SeaSwitch>
+      </label>
       <div class="settings-info">
         {{ $t('settings.subscribe_info') }}
       </div>
     </div>
     <div v-if="false" class="form-group settings-group">
-      <SeaSwitch v-model="sentry">
+      <label>
+        <input v-model="sentry" type="checkbox" class="form-switch">
         {{ $t('settings.sentry') }}
-      </SeaSwitch>
+      </label>
       <div class="settings-info" v-html="$t('settings.sentry_info')" />
     </div>
     <div v-if="false" class="form-group settings-group">
-      <SeaSwitch v-model="sentry">
+      <label>
+        <input v-model="sentry" type="checkbox" class="form-switch">
         {{ $t('settings.persist_settings') }}
-      </SeaSwitch>
+      </label>
     </div>
+    <!-- <pre>{{ state }}</pre> -->
     <div class="release-info">
       <a href="#" @click.prevent="showInfo = !showInfo">Server Info</a>
       |

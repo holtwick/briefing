@@ -1,8 +1,4 @@
-import {
-  digestMessage,
-  getCompactChecksum,
-  getFingerprint,
-} from './fingerprint'
+import { getCompactChecksum, getFingerprint} from './fingerprint'
 
 describe('Fingerprint', () => {
   const sample =

@@ -14,7 +14,20 @@
     margin-right: 0.5rem;
   }
 
-  .qrcode {
-    max-width: 50vh;
+  
+}
+
+.qrcode {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  margin: 0;  
+  background-color: white;
+  cursor: pointer;
+
+  svg {
+    display: flex;
+    max-height: 100vh;
   }
 }
+

@@ -15,11 +15,7 @@ export function useConfig() {
     }
   }
 
-  const configText = `window.briefingConfig = ${JSON.stringify(
-    options,
-    null,
-    2,
-  )}`
+  const configText = `window.briefingConfig = ${JSON.stringify(options, null, 2)}`
 
   log.info(`Dynamic config for the frontend:\n\n${configText}`)
 

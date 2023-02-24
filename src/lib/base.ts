@@ -16,11 +16,11 @@ const replacer = (key, value) =>
     : value
 
 // https://gist.github.com/davidfurlong/463a83a33b70a3b6618e97ec9679e490
-export function JSONSortedStringify(obj, indent = 2) {
+export function JSONSortedStringify(obj: any, indent = 2) {
   return JSON.stringify(obj, replacer, indent)
 }
 
-export function objectSnapshot(obj) {
+export function objectSnapshot(obj: any) {
   return JSON.stringify(obj, replacer)
 }
 
@@ -38,7 +38,7 @@ export function cloneObject(obj) {
   return null
 }
 
-export function mergeDeep(target, source) {
+export function mergeDeep(target: any, source: any) {
   const isObject = obj => obj && typeof obj === 'object'
 
   if (!isObject(target) || !isObject(source))
@@ -59,7 +59,7 @@ export function mergeDeep(target, source) {
   return target
 }
 
-export function isTrue(value, dflt = false) {
+export function isTrue(value: any, dflt = false) {
   if (value == null)
     return dflt
   return ['1', 'true', 'yes'].includes(value.toString().toLocaleLowerCase())

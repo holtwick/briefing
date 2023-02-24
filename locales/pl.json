@@ -11,7 +11,7 @@
     "button_copy": "Udostępnij",
     "qr_info": "Możesz także zeskanować ten kod QR aparatem telefonu:",
     "feedback": "Napisz opinię do {link}",
-    "message": "Zaproś, wysyłając link, naciskając przycisk $symbol$."
+    "message": "Zaproś, wysyłając link, naciskając przycisk {symbol}."
   },
   "settings": {
     "title": "Ustawienia",

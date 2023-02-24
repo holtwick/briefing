@@ -12,7 +12,7 @@
     "button_copy": "Condividi",
     "qr_info": "Puoi anche scansionare questo codice QR con una fotocamera del dispositivo mobile:",
     "feedback": "Per feedback scrivere a {link}",
-    "message": "Invita inviando il link premendo sul tasto $symbol$ symbol."
+    "message": "Invita inviando il link premendo sul tasto {symbol} symbol."
   },
   "settings": {
     "title": "Impostazioni",
