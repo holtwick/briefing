@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
+// Copyright (c) 2020-2023 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
 // Forms
 //.form-group {
@@ -603,6 +603,133 @@ input {
       color: black;
       display: block;
       cursor: default !important;
+    }
+  }
+}
+
+// --switch-bg: rgba(141, 141, 141, 1);
+// --switch-bg-active: var(--primary-color, #007ed9);
+// --switch-knob-color: #ffffff;
+
+.form-switch {  
+  $control-boolean-height: px(16);
+  $control-boolean-width: px(32);
+  $control-boolean-margin: px(1);
+
+  --control-inner:  rgba(141, 141, 141, 1);
+  --control-color: var(--primary-color, #007ed9);
+  --control-hover: var(--primary-color, #007ed9);
+  --control-active: var(--primary-color, #007ed9);
+  --control-radius: -border-radius-base;
+  --control-border: none;
+  --active: var(--control-color);
+  --active-inner: var(--control-inner);
+  --border: var(--control-color);
+  --border-hover: var(--control-hover);
+  --background: var(--control-inner);
+  --disabled: gray;
+  --disabled-inner: gray;
+
+  height: $control-boolean-height;
+  width: $control-boolean-height;
+  outline: none;
+  display: inline-block;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  // vertical-align baseline
+  position: relative;
+  margin: 0;
+  margin-bottom: px(-2); // Align better
+  cursor: pointer;
+  border: 1px solid transparent; // var(--bc, var(--border));
+  background: var(--b, var(--background));
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+
+  &:after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+  }
+
+  &:checked {
+    --b: var(--active);
+    --bc: var(--active);
+    --d-o: 0.3s;
+    --d-t: 0.6s;
+    --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
+  }
+
+  &:disabled {
+    --b: var(--disabled);
+    cursor: not-allowed;
+    opacity: 0.9;
+
+    &:checked {
+      --b: var(--disabled-inner);
+      --bc: var(--border);
+    }
+
+    & + label {
+      cursor: not-allowed;
+    }
+  }
+
+  &:hover {
+    &:not(:checked) {
+      &:not(:disabled) {
+        --bc: var(--border-hover);
+      }
+    }
+  }
+
+  &:focus {
+    box-shadow: var(--input-focus-shadow);
+    border-color: var(--input-focus-border);
+
+    /* Workaround for :focus that otherwise stays after mouse click */
+    &:not(:focus-visible, :active) {
+      box-shadow: unquote("inherit");
+      border-color: unquote("inherit");
+    }
+  }
+
+  & + label {
+    line-height: $control-boolean-height;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+  }
+
+  height: $control-boolean-height;  
+  width: $control-boolean-width;
+  border-radius: 999px;
+
+  &:after { // knob
+    left: $control-boolean-margin;
+    top: $control-boolean-margin;
+    border-radius: 50%;
+    width: ($control-boolean-height - $control-boolean-margin * 2 - px(2));
+    height: ($control-boolean-height - $control-boolean-margin * 2 - px(2));
+    background: var(--ab, var(--border));
+    transform: translateX(var(--x, 0));
+  }
+
+  --ab: white; 
+  
+  &:checked {
+    // --ab: var(--active-inner);
+    --x: #{ $control-boolean-width - $control-boolean-height - $control-boolean-margin };
+  }
+ 
+  &:disabled {
+    &:not(:checked) {
+      &:after {
+        opacity: 0.6;
+      }
     }
   }
 }

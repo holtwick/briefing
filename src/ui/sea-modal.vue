@@ -1,18 +1,14 @@
-<!-- Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
-
 <script>
 import { Logger } from 'zeed'
-import trapFocus from './lib/directives/trapFocus'
-import { removeElement } from './lib/helpers'
-import SeaLink from './sea-link.vue'
+import trapFocus from './trapFocus'
+import { removeElement } from './helpers'
+
+import './sea-modal.scss'
 
 const log = Logger('ui:sea-modal')
 
 export default {
   name: 'SeaModal',
-  components: {
-    SeaLink,
-  },
   directives: {
     trapFocus,
   },
@@ -120,7 +116,7 @@ export default {
               {{ title }}
             </slot>
           </div>
-          <SeaLink
+          <button
             v-if="close"
             xtooltip="Close"
             class="-fix icon"
@@ -140,7 +136,7 @@ export default {
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
-          </SeaLink>
+          </button>
         </div>
       </header>
       <section
@@ -152,7 +148,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style lang="scss">
-@import './sea-modal';
-</style>

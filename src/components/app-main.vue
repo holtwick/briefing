@@ -1,18 +1,15 @@
-<script>
-import { Logger, messages } from 'zeed'
+<script lang="ts">
+import { messages } from 'zeed'
 import { setAllowedBugTracking } from '../bugs'
 import { ROOM_PATH } from '../config'
 import { historyAddRoom } from '../lib/history'
 import { createLinkForRoom, shareLink } from '../lib/share'
-import { setup } from '../state'
-import SeaLink from '../ui/sea-link.vue'
+import { setup, state } from '../state'
 import SeaModal from '../ui/sea-modal.vue'
 import AppChat from './app-chat.vue'
 import AppSettings from './app-settings.vue'
 import AppShare from './app-share.vue'
 import AppVideo from './app-video.vue'
-
-const log = Logger('app:app-sidebar')
 
 export default {
   name: 'AppMain',
@@ -20,7 +17,6 @@ export default {
     AppSettings,
     AppShare,
     AppChat,
-    SeaLink,
     SeaModal,
     AppVideo,
   },
@@ -38,19 +34,19 @@ export default {
         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>',
       name: '',
       unreadMessages: false,
+      state,
     }
   },
   computed: {
     hasPeers() {
-      return Object.keys(this.state.status).length > 0
+      return Object.keys(state.status).length > 0
     },
     peers() {
-      return this.state.screenshots ? [2, 3] : this.state.status
+      return state.screenshots ? [2, 3] : state.status
     },
     videoAllowed() {
       if (window.webkit != null)
         return this.mode === ''
-
       return true
     },
   },
@@ -61,16 +57,16 @@ export default {
     setTimeout(async () => {
       this.conn = await setup()
     }, 50)
-    if (!this.hasPeers && !window.iPhone && this.state.showInviteOnStart)
+    if (!this.hasPeers && !window.iPhone && state.showInviteOnStart)
       this.mode = 'share'
 
-    this.fullscreenHandler = (ev) => {
+    this.fullscreenHandler = () => {
       this.isFullScreen = !!document.fullscreenElement
     }
     document.addEventListener('fullscreenchange', this.fullscreenHandler)
 
     // Remember room name for next visits
-    historyAddRoom(this.state.room)
+    historyAddRoom(state.room)
   },
   beforeUnmount() {
     document.removeEventListener('fullscreenchange', this.fullscreenHandler)
@@ -78,14 +74,14 @@ export default {
   },
   methods: {
     doShare() {
-      shareLink(createLinkForRoom(this.state.room))
+      shareLink(createLinkForRoom(state.room))
     },
     doVideo() {
-      this.state.muteVideo = !this.state.muteVideo
+      state.muteVideo = !state.muteVideo
       messages.emit('updateStream')
     },
     doAudio() {
-      this.state.muteAudio = !this.state.muteAudio
+      state.muteAudio = !state.muteAudio
       messages.emit('updateStream')
     },
     doQuit() {
@@ -100,7 +96,7 @@ export default {
       if (allow)
         setAllowedBugTracking(allow)
 
-      this.state.requestBugTracking = false
+      state.requestBugTracking = false
     },
     doToggleFullScreen() {
       if (!document.fullscreenElement) {
@@ -112,9 +108,9 @@ export default {
       }
     },
     doTogglePanel(mode = 'settings') {
-      this.mode = !mode || this.mode === mode ? '' : mode
+      this.mode = (!mode || this.mode === mode) ? '' : mode
     },
-    didChangeFullscreen(ev) {},
+    didChangeFullscreen() {},
     toggleChat() {
       if (this.mode === 'chat') {
         this.mode = ''
@@ -174,7 +170,7 @@ export default {
     <SeaModal
       xclass="panel -left panel-settings"
       :active="mode === 'settings'"
-      :title="l.settings.title"
+      :title="$t('settings.title')"
       @close="mode = ''"
     >
       <AppSettings />
@@ -234,17 +230,17 @@ export default {
         >
           <div
             class="message"
-            v-html="l.share.message.replace('$symbol$', symbol)"
+            v-html="$t('share.message', { symbol })"
           />
         </div>
       </div>
 
       <div class="tools hstack">
-        <SeaLink
+        <button
           v-if="state.showSettings"
           class="tool"
           :class="{ '-active': mode === 'settings' }"
-          @action="doTogglePanel('settings')"
+          @click="doTogglePanel('settings')"
         >
           <!--        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> -->
           <svg
@@ -267,12 +263,12 @@ export default {
             <line x1="9" y1="8" x2="15" y2="8" />
             <line x1="17" y1="16" x2="23" y2="16" />
           </svg>
-        </SeaLink>
+        </button>
         <div class="-fit">
-          <SeaLink
+          <button
             class="tool"
             :class="{ '-off': state.muteVideo }"
-            @action="doVideo"
+            @click="doVideo"
           >
             <svg
               v-if="state.muteVideo"
@@ -304,8 +300,8 @@ export default {
               <polygon points="23 7 16 12 23 17 23 7" />
               <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
             </svg>
-          </SeaLink>
-          <SeaLink class="tool tool-close" @action="doQuit">
+          </button>
+          <button class="tool tool-close" @click="doQuit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -320,11 +316,11 @@ export default {
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
             <!--          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path><line x1="23" y1="1" x2="1" y2="23"></line></svg> -->
-          </SeaLink>
-          <SeaLink
+          </button>
+          <button
             class="tool"
             :class="{ '-off': state.muteAudio }"
-            @action="doAudio"
+            @click="doAudio"
           >
             <svg
               v-if="state.muteAudio"
@@ -365,12 +361,12 @@ export default {
               <line x1="12" y1="19" x2="12" y2="23" />
               <line x1="8" y1="23" x2="16" y2="23" />
             </svg>
-          </SeaLink>
+          </button>
         </div>
-        <SeaLink
+        <button
           v-if="state.showFullscreen && supportsFullscreen"
           class="tool"
-          @action="doToggleFullScreen"
+          @click="doToggleFullScreen"
         >
           <svg
             v-if="!isFullScreen"
@@ -404,13 +400,13 @@ export default {
               d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"
             />
           </svg>
-        </SeaLink>
+        </button>
 
-        <SeaLink
+        <button
           v-if="state.showChat"
           class="tool messageBtn"
           :class="{ '-active': mode === 'chat' }"
-          @action="toggleChat()"
+          @click="toggleChat()"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -428,13 +424,13 @@ export default {
             />
           </svg>
           <div v-if="unreadMessages" class="unread-msg" />
-        </SeaLink>
+        </button>
 
-        <SeaLink
+        <button
           v-if="state.showShare"
           class="tool"
           :class="{ '-active': mode === 'share' }"
-          @action="doTogglePanel('share')"
+          @click="doTogglePanel('share')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -450,14 +446,14 @@ export default {
             <polyline points="16 6 12 2 8 6" />
             <line x1="12" y1="2" x2="12" y2="15" />
           </svg>
-        </SeaLink>
+        </button>
       </div>
     </div>
 
     <SeaModal
       xclass="panel -left panel-share"
       :active="mode === 'share'"
-      :title="l.share.title"
+      :title="$t('share.title')"
       @close="mode = ''"
     >
       <AppShare />

@@ -1,6 +1,6 @@
-import { on } from '@zerva/core'
+import { once } from '@zerva/core'
 import Ministun from 'ministun'
-import { Logger } from 'zeed'
+import { Logger, uname } from 'zeed'
 
 const log = Logger('stun')
 
@@ -15,15 +15,17 @@ const config = {
 
 /** See https://www.npmjs.com/package/ministun */
 export function useStun() {
+  const id = uname('stun')
   log('setup', config)
 
   const server = new Ministun(config)
 
-  on('serveInit', async () => {
+  once('serveInit', async () => {
     await server.start()
   })
 
-  on('serveStop', async () => {
+  once('serveStop', async () => {
+    log('stun stop', id)
     await server.stop()
   })
 }

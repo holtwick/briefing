@@ -3,5 +3,11 @@
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "i18n-ally.localesPaths": [
+    "locales",
+    "legacy/app/src/locales",
+    "legacy/electron/dist_electron/win-unpacked/locales",
+    "legacy/internal/briefing-internal/src/locales"
+  ]
 }

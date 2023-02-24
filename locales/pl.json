@@ -1,0 +1,40 @@
+{
+  "welcome": {
+    "start": "Rozpocznij",
+    "abstract": "Bezpieczny chat grupowy",
+    "help": "Zobacz więcej",
+    "created": "Stworzone przez"
+  },
+  "share": {
+    "title": "Zaproś",
+    "link_info": "Proszę podziel się tym linkiem ze wszystkimi, których chcesz zaprosić do tej sesji:",
+    "button_copy": "Udostępnij",
+    "qr_info": "Możesz także zeskanować ten kod QR aparatem telefonu:",
+    "feedback": "Napisz opinię do {link}",
+    "message": "Zaproś, wysyłając link, naciskając przycisk {symbol}."
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "video": "Źródło wideo",
+    "audio": "Źródło dźwięku",
+    "desktop": "Udostępnij ekran lub okno",
+    "blur": "Rozmycie tła",
+    "blur_info": "Eksperymentalny: inteligentny algorytm sztucznej inteligencji jest w stanie zidentyfikować kształty osób i rozmyć pozostałe tło. To dodaje wizualnej prywatności do twojego połączenia. Ale uwaga, jest to bardzo energochłonna funkcja i najprawdopodobniej nie będzie działać na urządzeniach mobilnych! ",
+    "bandwidth": "Zastosuj optymalizacje przepustowości",
+    "bandwidth_info": "Eksperymentalne: przy tym ustawieniu Briefing próbuje zmniejszyć przepustowość, zmniejszając ilość danych wideo i audio.",
+    "fill": "Skaluj wideo",
+    "fill_info": "Briefing stara się maksymalnie wykorzystać dostępną przestrzeń ekranu, skalując wideo w taki sposób, aby mieściło się w ramce wizualnej. Po wyłączeniu zamiast tego zobaczysz cały film, ale z ramkami wokół niego.",
+    "subscribe": "Zapisz się do tego pokoju",
+    "subscribe_info": "Eksperymentalne: Subskrybując będziesz otrzymywać powiadomienia, gdy ktoś inny wejdzie do tego pokoju. Następnie możesz dołączyć do rozmowy jednym kliknięciem. Powiadomienia będą wyświetlane tylko wtedy, gdy przeglądarka jest uruchomiona.",
+    "sentry": "Zezwól na śledzenie błędów",
+    "sentry_info": "W przypadku napotkania błędu programistycznego lub innych istotnych informacji, które są przydatne do ulepszenia aplikacji, wyślemy dane debugowania do usługi o nazwie <a href=\"https://sentry.io\">sentry.io</a>.",
+    "sentry_confirm": "Dziękujemy za umożliwienie śledzenia błędów. Potwierdź teraz ponowne załadowanie strony.",
+    "background": "Tło",
+    "persist_settings": "Utrwal ustawienia",
+    "original_background": "Oryginalne tło",
+    "blurred_background": "Rozmazane tło",
+    "image_background": "Obraz tła",
+    "image_tip": "Możesz przesłać własne tło, przeciągając plik obrazu w tym oknie.",
+    "random_image": "Kliknij, aby uzyskać inny losowy obraz."
+  }
+}

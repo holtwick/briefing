@@ -1,7 +1,10 @@
-<script>
+<script lang="ts">
 import { trackSilentException } from '../bugs'
-import { DEFAULT_ROOM, ROOM_PATH, ROOM_URL } from '../config'
+import { DEFAULT_ROOM, LICENSE, ROOM_PATH, ROOM_URL } from '../config'
 import { generateName } from '../lib/names'
+import { state } from '../state'
+
+import './app-whitelabel.scss'
 
 export default {
   name: 'AppWhitelabel',
@@ -10,6 +13,7 @@ export default {
     const defaultName = DEFAULT_ROOM ?? generateName()
     return {
       defaultName,
+      LICENSE,
       room: defaultName,
       url: '',
       initialWidth: -1,
@@ -51,7 +55,7 @@ export default {
   methods: {
     doEnterRoom() {
       const room = this.room || this.defaultName || ''
-      this.state.room = room
+      state.room = room
       try {
         window.history.pushState(
           null, // { room },
@@ -120,11 +124,14 @@ export default {
             :href="url"
             class="button start-button"
             @click.prevent="doEnterRoom"
-          >{{ l.welcome.start }}</a>
+          >{{ $t('welcome.start') }}</a>
         </div>
       </div>
       <div class="footer links">
-        <p>
+        <p v-if="LICENSE">
+          {{ LICENSE }}
+        </p>
+        <p v-else>
           FOR WHITELABEL USE WE ASK YOU TO PURCHASE A
           <a href="https://github.com/holtwick/briefing/#commercial-license">
             COMMERCIAL LICENSE
@@ -134,7 +141,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style lang="scss">
-@import 'app-whitelabel.scss';
-</style>

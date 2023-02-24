@@ -1,19 +1,13 @@
-<!-- eslint-disable vue/no-constant-condition -->
-
-<script>
-import { Logger, messages } from 'zeed'
+<script lang="ts">
+import { messages } from 'zeed'
 import { isAllowedBugTracking, setAllowedBugTracking } from '../bugs'
 import { ICE_CONFIG, RELEASE, SIGNAL_SERVER_URL } from '../config'
+import { t } from '../i18n'
 import { WebRTC } from '../logic/webrtc'
-import SeaSwitch from '../ui/sea-switch.vue'
-
-const log = Logger('app:app-settings')
+import { state } from '../state'
 
 export default {
   name: 'AppSettings',
-  components: {
-    SeaSwitch,
-  },
   data() {
     return {
       enableSubscribe: false,
@@ -23,27 +17,28 @@ export default {
       ICE_CONFIG,
       signalStatus: '',
       showInfo: false,
+      state,
     }
   },
   computed: {
     release: _ => RELEASE,
     sentry: {
       set(v) {
-        setAllowedBugTracking(v, this.l.settings.sentry_confirm)
+        setAllowedBugTracking(v, t('settings.sentry_confirm'))
       },
       get() {
         return isAllowedBugTracking()
       },
     },
     video() {
-      const videoDevices = this.state.devices.filter(
+      const videoDevices = state.devices.filter(
         d => d.kind === 'videoinput' && d.deviceId !== 'default',
       )
       if (navigator?.mediaDevices?.getDisplayMedia) {
         return [
           {
             deviceId: 'desktop',
-            label: `${this.l.settings.desktop}\xA0 🖥`,
+            label: `${t('settings.desktop')}\xA0 🖥`,
           },
           ...videoDevices,
         ]
@@ -51,7 +46,7 @@ export default {
       return videoDevices
     },
     audio() {
-      return this.state.devices.filter(
+      return state.devices.filter(
         d => d.kind === 'audioinput' && d.deviceId !== 'default',
       )
     },
@@ -86,7 +81,7 @@ export default {
   },
   methods: {
     async doCheckSignal() {
-      const result = await WebRTC.checkStatus()
+      const result = await WebRTC.checkStatus() as any
       this.signalStatus = result.ok ? '✅' : '❌'
     },
   },
@@ -96,7 +91,7 @@ export default {
 <template>
   <div class="text">
     <div v-if="video.length" class="form-group settings-group">
-      <label class="form-labelx"><b>{{ l.settings.video }}</b></label>
+      <label class="form-labelx"><b>{{ $t('settings.video') }}</b></label>
       <label v-for="d in video" :key="d.deviceId" class="form-radio">
         <input
           :id="d.deviceId"
@@ -109,7 +104,7 @@ export default {
       </label>
     </div>
     <div v-if="audio.length" class="form-group settings-group">
-      <label class="form-labelx"><b>{{ l.settings.audio }}</b></label>
+      <label class="form-labelx"><b>{{ $t('settings.audio') }}</b></label>
       <label v-for="d in audio" :key="d.deviceId" class="form-radio">
         <input
           :id="d.deviceId"
@@ -122,55 +117,55 @@ export default {
       </label>
     </div>
     <div class="form-group settings-group">
-      <SeaSwitch v-model="state.fill">
-        {{ l.settings.fill }}
-      </SeaSwitch>
+      <label>
+        <input v-model="state.fill" type="checkbox" class="form-switch">
+        {{ $t('settings.fill') }}
+      </label>
       <div class="settings-info">
-        {{ l.settings.fill_info }}
+        {{ $t('settings.fill_info') }}
       </div>
     </div>
     <div v-if="false" class="form-group settings-group">
-      <SeaSwitch v-model="state.bandwidth">
-        {{
-          l.settings.bandwidth
-        }}
-      </SeaSwitch>
+      <label>
+        <input v-model="state.bandwidth" type="checkbox" class="form-switch">
+        {{ $t('settings.bandwidth') }}
+      </label>
       <div class="settings-info">
-        {{ l.settings.bandwidth_info }}
+        {{ $t('settings.bandwidth_info') }}
       </div>
     </div>
     <div v-if="false" class="form-group settings-group">
-      <SeaSwitch v-model="state.blur">
-        {{ l.settings.blur }}
-      </SeaSwitch>
+      <label>
+        <input v-model="state.blur" type="checkbox" class="form-switch">
+        {{ $t('settings.blur') }}
+      </label>
       <div class="settings-info">
-        {{ l.settings.blur_info }}
+        {{ $t('settings.blur_info') }}
       </div>
     </div>
     <div v-if="enableSubscribe" class="form-group settings-group">
-      <SeaSwitch v-model="state.subscribe">
-        {{
-          l.settings.subscribe
-        }}
-      </SeaSwitch>
+      <label>
+        <input v-model="state.subscribe" type="checkbox" class="form-switch">
+        {{ $t('settings.subscribe') }}
+      </label>
       <div class="settings-info">
-        {{ l.settings.subscribe_info }}
+        {{ $t('settings.subscribe_info') }}
       </div>
     </div>
     <div v-if="false" class="form-group settings-group">
-      <SeaSwitch v-model="sentry">
-        {{ l.settings.sentry }}
-      </SeaSwitch>
-      <div class="settings-info" v-html="l.settings.sentry_info" />
+      <label>
+        <input v-model="sentry" type="checkbox" class="form-switch">
+        {{ $t('settings.sentry') }}
+      </label>
+      <div class="settings-info" v-html="$t('settings.sentry_info')" />
     </div>
     <div v-if="false" class="form-group settings-group">
-      <SeaSwitch v-model="sentry">
-        {{
-          l.settings.persist_settings
-        }}
-      </SeaSwitch>
-      <!--      <div class="settings-info" v-html="l.settings.sentry_info"></div> -->
+      <label>
+        <input v-model="sentry" type="checkbox" class="form-switch">
+        {{ $t('settings.persist_settings') }}
+      </label>
     </div>
+    <!-- <pre>{{ state }}</pre> -->
     <div class="release-info">
       <a href="#" @click.prevent="showInfo = !showInfo">Server Info</a>
       |

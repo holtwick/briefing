@@ -1,7 +1,7 @@
 import { assertModules, on, onInit, register } from '@zerva/core'
 import '@zerva/websocket'
 import type { Channel } from 'zeed'
-import { Logger, uname } from 'zeed'
+import { Logger, size, uname } from 'zeed'
 
 const log = Logger('room')
 
@@ -17,7 +17,7 @@ interface RoomPeer {
 interface Room {
   domain: string
   name: string
-  peers: Map<string, RoomPeer>
+  peers: Record<string, RoomPeer>
 }
 
 export function useRoom() {
@@ -25,6 +25,24 @@ export function useRoom() {
   register(moduleName)
 
   const domains: Record<string, Record<string, Room>> = {}
+
+  // const roomsFileName = 'data/rooms.json'
+  // if (existsSync(roomsFileName)) {
+  //   const content = readFileSync(roomsFileName, 'utf-8')
+  //   if (content)
+  //     Object.assign(domains, JSON.parse(content))
+  // }
+
+  // onStop(async () => {
+  //   try {
+  //     log(`save rooms to ${roomsFileName}`)
+  //     const content = JSON.stringify(domains, null, 2)
+  //     writeFileSync(roomsFileName, content, 'utf-8')
+  //   }
+  //   catch (err) {
+  //     log.warn(`writing rooms to ${roomsFileName} failed!`, err)
+  //   }
+  // })
 
   onInit(() => {
     assertModules('websocket')
@@ -71,20 +89,20 @@ export function useRoom() {
           roomInfo = {
             domain,
             name: room,
-            peers: new Map(),
+            peers: {},
           }
           rooms[room] = roomInfo
         }
 
         // Existing peers (before we add self)
-        const peers = [...roomInfo.peers.keys()]
+        const peers = [...Object.keys(roomInfo.peers)]
 
         // Add self
-        roomInfo.peers.set(peerId, {
+        roomInfo.peers[peerId] = {
           id: peerId,
           channel,
           emit: channelEmit,
-        })
+        }
 
         // Let client know
         channelEmit('joined', {
@@ -101,7 +119,7 @@ export function useRoom() {
           log.warn('Strange message that was not sent by us.')
         }
         else if (to) {
-          const peer = roomInfo?.peers.get(to)
+          const peer = roomInfo?.peers[to]
           if (!peer)
             log.warn(`Cannot find peer ${to} for sending signal.`)
           else
@@ -136,9 +154,9 @@ export function useRoom() {
 
     channel.on('close', () => {
       // log('close')
-      roomInfo.peers.delete(peerId)
+      delete roomInfo.peers[peerId]
 
-      if (roomInfo.peers.size <= 0) {
+      if (size(roomInfo.peers) <= 0) {
         try {
           delete domains[roomInfo.domain][roomInfo.name]
         }
@@ -147,7 +165,7 @@ export function useRoom() {
         }
       }
       else {
-        for (const peer of roomInfo.peers.values())
+        for (const peer of Object.values(roomInfo.peers))
           peer.emit('remove', peerId)
       }
 
@@ -176,7 +194,7 @@ export function useRoom() {
           const outRooms = {}
           for (const [name, room] of Object.entries(rooms)) {
             outRooms[name] = {
-              peers: room.peers.size,
+              peers: size(room.peers),
             }
           }
           outDomains[domain] = outRooms
