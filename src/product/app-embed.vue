@@ -3,13 +3,13 @@ import { Logger } from 'zeed'
 import { ROOM_URL } from '../config'
 import { onMessageFromFrame } from '../lib/iframe'
 import { generateName } from '../lib/names'
-import SeaSwitch from '../ui/sea-switch.vue'
+
+import './app-embed.scss'
 
 const log = Logger('app-embed')
 
 export default {
   components: {
-    SeaSwitch,
   },
   data() {
     const defaultName = generateName()
@@ -77,28 +77,34 @@ export default {
         Room: <input v-model="room" type="text" :placeholder="defaultName">
       </div>
       <div class="options">
-        <SeaSwitch v-model="presetAudio">
+        <label>
+          <input v-model="presetAudio" type="checkbox" class="form-switch">
           Audio
-        </SeaSwitch>
-        <SeaSwitch v-model="presetVideo">
+        </label>
+        <label>
+          <input v-model="presetVideo" type="checkbox" class="form-switch">
           Video
-        </SeaSwitch>
-        <SeaSwitch v-model="presetFullscreen">
+        </label>
+        <label>
+          <input v-model="presetFullscreen" type="checkbox" class="form-switch">
           Fullscreen Button
-        </SeaSwitch>
-        <SeaSwitch v-model="presetPrefs">
+        </label>
+        <label>
+          <input v-model="presetPrefs" type="checkbox" class="form-switch">
           Setting Button
-        </SeaSwitch>
-        <SeaSwitch v-model="presetShare">
+        </label>
+        <label>
+          <input v-model="presetShare" type="checkbox" class="form-switch">
           Share Button
-        </SeaSwitch>
-        <SeaSwitch v-model="presetChat">
+        </label>
+        <label>
+          <input v-model="presetChat" type="checkbox" class="form-switch">
           Share Chat
-        </SeaSwitch>
-        <br>
-        <SeaSwitch v-model="presetInvite">
+        </label>
+        <label>
+          <input v-model="presetInvite" type="checkbox" class="form-switch">
           Invite on Start
-        </SeaSwitch>
+        </label>
       </div>
       <div><br>HTML code to be used in client</div>
       <pre class="code">{{ code }}</pre>
@@ -107,55 +113,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style lang="scss">
-.app-welcome {
-  margin: 2rem;
-  padding-bottom: 4rem;
-  text-align: center;
-
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  a {
-    color: rgba(43, 184, 255, 1);
-    user-select: text;
-  }
-
-  .url {
-    margin-bottom: 1rem;
-  }
-
-  .options {
-    display: inline-block;
-    margin-bottom: 1rem;
-
-    .form-group {
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  .code {
-    display: inline-block;
-    text-align: left;
-    user-select: text;
-    width: 75vw;
-
-    background: #ccc;
-    color: black;
-    padding: 1rem;
-    border-radius: 0.25rem;
-  }
-}
-</style>
-
-<style>
-.iframe {
-  border: 1px solid #ccc;
-  width: Min(90vh, 90vw);
-  height: Calc(0.75 * Min(90vh, 90vw));
-  margin-bottom: 1rem;
-}
-</style>

@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
+// Copyright (c) 2020-2023 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
 // units, macros
 @import 'variables';
@@ -11,8 +11,13 @@
 @import 'text';
 @import 'forms';
 
+@import 'sea-button';
+
 @import 'briefing';
 
+#app {
+  height: 100%;  
+}
 
 .debug {
   position: fixed;

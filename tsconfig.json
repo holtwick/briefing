@@ -7,7 +7,6 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    // "noImplicitAny": false,
     "lib": [
       "ESNext",
       "DOM",

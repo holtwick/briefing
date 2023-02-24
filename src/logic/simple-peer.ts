@@ -2,10 +2,6 @@
 
 import { Emitter, Logger } from 'zeed'
 
-function queueMicrotask(task: Function) {
-  setTimeout(task, 0)
-}
-
 const log = Logger('simple-peer')
 // log.level = LogLevel.info
 
@@ -13,20 +9,19 @@ const MAX_BUFFERED_AMOUNT = 64 * 1024
 const ICECOMPLETE_TIMEOUT = 5 * 1000
 const CHANNEL_CLOSING_TIMEOUT = 5 * 1000
 
+function queueMicrotask(task: Function) {
+  setTimeout(task, 0)
+}
+
 function randombytes(size: number): Uint8Array {
   const array = new Uint8Array(size)
   for (let i = 0; i < size; i++)
     array[i] = (Math.random() * 256) | 0
-
   return array
 }
 
 function toHexString(byteArray: Uint8Array): string {
-  return Array.prototype.map
-    .call(byteArray, (byte: number) => {
-      return (`0${(byte & 0xFF).toString(16)}`).slice(-2)
-    })
-    .join('')
+  return Array.prototype.map.call(byteArray, (byte: number) => (`0${(byte & 0xFF).toString(16)}`).slice(-2)).join('')
 }
 
 function getBrowserRTC() {
@@ -136,7 +131,7 @@ export class Peer extends Emitter<{
     log('new peer %o', opts)
 
     this.channelName = opts.initiator
-      ? opts.channelName || toHexString(randombytes(20))
+      ? (opts.channelName || toHexString(randombytes(20)))
       : null
 
     this.initiator = opts.initiator || false
@@ -161,8 +156,7 @@ export class Peer extends Emitter<{
     this.answerOptions = opts.answerOptions || {}
     this.sdpTransform = opts.sdpTransform || ((sdp: any) => sdp)
     this.trickle = opts.trickle !== undefined ? opts.trickle : true
-    this.allowHalfTrickle
-      = opts.allowHalfTrickle !== undefined ? opts.allowHalfTrickle : false
+    this.allowHalfTrickle = opts.allowHalfTrickle !== undefined ? opts.allowHalfTrickle : false
     this.iceCompleteTimeout = opts.iceCompleteTimeout || ICECOMPLETE_TIMEOUT
 
     this.destroyed = false
@@ -176,24 +170,13 @@ export class Peer extends Emitter<{
     this.localFamily = undefined
     this.localPort = undefined
 
-    this._wrtc
-      = opts.wrtc && typeof opts.wrtc === 'object' ? opts.wrtc : getBrowserRTC()
+    this._wrtc = (opts.wrtc && typeof opts.wrtc === 'object') ? opts.wrtc : getBrowserRTC()
 
     if (!this._wrtc) {
-      if (typeof window === 'undefined') {
-        throw errCode(
-          new Error(
-            'No WebRTC support: Specify `opts.wrtc` option in this environment',
-          ),
-          'ERR_WEBRTC_SUPPORT',
-        )
-      }
-      else {
-        throw errCode(
-          new Error('No WebRTC support: Not a supported browser'),
-          'ERR_WEBRTC_SUPPORT',
-        )
-      }
+      if (typeof window === 'undefined')
+        throw errCode(new Error('No WebRTC support: Specify `opts.wrtc` option in this environment'), 'ERR_WEBRTC_SUPPORT')
+      else
+        throw errCode(new Error('No WebRTC support: Not a supported browser'), 'ERR_WEBRTC_SUPPORT')
     }
 
     this._pcReady = false
@@ -369,10 +352,7 @@ export class Peer extends Emitter<{
   _addIceCandidate(candidate: any) {
     const iceCandidateObj = new this._wrtc.RTCIceCandidate(candidate)
     this._pc.addIceCandidate(iceCandidateObj).catch((err: any) => {
-      if (
-        !iceCandidateObj.address
-        || iceCandidateObj.address.endsWith('.local')
-      )
+      if (!iceCandidateObj.address || iceCandidateObj.address.endsWith('.local'))
         log.warn('Ignoring unsupported ICE candidate.', iceCandidateObj)
       else
         this.destroy(errCode(err, 'ERR_ADD_ICE_CANDIDATE'))
@@ -674,10 +654,7 @@ export class Peer extends Emitter<{
       // which is invalid behavior. Handle it gracefully.
       // See: https://github.com/feross/simple-peer/issues/163
       return this.destroy(
-        errCode(
-          new Error('Data channel event is missing `channel` property'),
-          'ERR_DATA_CHANNEL',
-        ),
+        errCode(new Error('Data channel event is missing `channel` property'), 'ERR_DATA_CHANNEL'),
       )
     }
 
@@ -876,10 +853,7 @@ export class Peer extends Emitter<{
     )
     this.emit('iceStateChange', iceConnectionState, iceGatheringState)
 
-    if (
-      iceConnectionState === 'connected'
-      || iceConnectionState === 'completed'
-    ) {
+    if (iceConnectionState === 'connected' || iceConnectionState === 'completed') {
       this._pcReady = true
       this._maybeReady()
     }
@@ -889,18 +863,12 @@ export class Peer extends Emitter<{
 
     if (iceConnectionState === 'failed') {
       this.destroy(
-        errCode(
-          new Error('Ice connection failed.'),
-          'ERR_ICE_CONNECTION_FAILURE',
-        ),
+        errCode(new Error('Ice connection failed.'), 'ERR_ICE_CONNECTION_FAILURE'),
       )
     }
     if (iceConnectionState === 'closed') {
       this.destroy(
-        errCode(
-          new Error('Ice connection closed.'),
-          'ERR_ICE_CONNECTION_CLOSED',
-        ),
+        errCode(new Error('Ice connection closed.'), 'ERR_ICE_CONNECTION_CLOSED'),
       )
     }
   }
@@ -1267,13 +1235,9 @@ export class Peer extends Emitter<{
         stream: eventStream,
       })
 
-      if (
-        this._remoteStreams.some((remoteStream) => {
-          return remoteStream.id === eventStream.id
-        })
-      )
-        return
       // Only fire one 'stream' event, even though there may be multiple tracks per stream
+      if (this._remoteStreams.some(remoteStream => remoteStream.id === eventStream.id))
+        return
 
       this._remoteStreams.push(eventStream)
       queueMicrotask(() => {

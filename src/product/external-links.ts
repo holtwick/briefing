@@ -2,6 +2,7 @@ const links = {
   'twitter': 'https://twitter.com/holtwick',
   'twitter2': 'https://twitter.com/apperdeck',
   'twitter3': 'https://twitter.com/dirkholtwick',
+  'mastodon': 'https://mastodon.social/@holtwick',
   'youtube': 'https://www.youtube.com/user/dirkholtwick',
   'linkedin': 'https://www.linkedin.com/in/holtwick/',
   'xing': 'https://www.xing.com/profile/Dirk_Holtwick/cv',

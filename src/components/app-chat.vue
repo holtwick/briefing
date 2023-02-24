@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
 import { messages } from 'zeed'
+
+import './app-chat.scss'
 
 export default {
   name: 'AppChat',
@@ -50,7 +52,8 @@ export default {
       event.target.value = ''
     },
     setName() {
-      const name = document.getElementById('name').value
+      const input = document.getElementById('name') as HTMLInputElement
+      const name = input.value
       localStorage.setItem('name', name)
       this.nameString = name
       messages.emit('userInfo', {
@@ -84,14 +87,7 @@ export default {
         <div
           v-for="message in messages"
           :key="message.name + message.time + message.message"
-          :style="
-            ['display: flex;']
-              + [
-                message.from_me
-                  ? 'flex-direction: row-reverse'
-                  : 'flex-direction: row',
-              ]
-          "
+          :style="`display: flex; ${message.from_me ? 'flex-direction: row-reverse' : 'flex-direction: row'}`"
         >
           <p :class="message.from_me ? 'bg-light' : 'bg-dark'">
             <span style="font-weight: 500">{{ message.message }}</span>
@@ -112,7 +108,3 @@ export default {
     </template>
   </div>
 </template>
-
-<style lang="scss">
-@import 'app-chat.scss';
-</style>

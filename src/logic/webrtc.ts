@@ -1,13 +1,13 @@
-// Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
+// Copyright (c) 2020-2023 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
 import { WebSocketConnection } from '@zerva/websocket'
+import type { LoggerInterface } from 'zeed'
 import { Emitter, Logger, uuid } from 'zeed'
-import { SIGNAL_SERVER_URL } from '../config'
-import { assert } from '../lib/assert'
+import { ROOM_DOMAIN, SIGNAL_SERVER_URL } from '../config'
 import { state } from '../state'
 import { WebRTCPeer } from './webrtc-peer'
 
-const log = Logger('app:webrtc')
+const log: LoggerInterface = Logger('app:webrtc')
 
 // Handles multiple connections, one to each peer
 export class WebRTC extends Emitter {
@@ -70,7 +70,9 @@ export class WebRTC extends Emitter {
     peerSettings?: any
   } = {}) {
     super()
-    assert(room, 'room cannot be empty')
+    log.assert(room, 'room cannot be empty')
+
+    this.dispose.add(() => this.close())
 
     this.room = room
     this.peerSettings = peerSettings
@@ -157,8 +159,10 @@ export class WebRTC extends Emitter {
 
     this.websocketChannel.on('connect', () => {
       log('onConnect')
-      // this.channelEmit("status", { hello: "world" })
-      this.channelEmit('join', { room })
+      this.channelEmit('join', {
+        room,
+        domain: ROOM_DOMAIN,
+      })
     })
   }
 
@@ -190,7 +194,6 @@ export class WebRTC extends Emitter {
     const peer = new WebRTCPeer({
       local,
       remote,
-      // @ts-expect-error xxx
       initiator,
       wrtc,
       room: this.room,
@@ -255,10 +258,5 @@ export class WebRTC extends Emitter {
     this.forEachPeer(peer => peer.close())
     this.peerConnections = {}
     this.websocketChannel.close()
-  }
-
-  async cleanup() {
-    // await super.cleanup()
-    this.close()
   }
 }

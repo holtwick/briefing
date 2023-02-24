@@ -1,17 +1,24 @@
 # Brie.fi/ng Docs
 
-- [Installation via Docker](docker.md)
-- [Installation on fly.io](fly.io.md)
-- [Installation on render.com](render.com.md)
-- [Installation on repl.it](https://replit.com/@holtwick/briefing?v=1)
-- [Development and White Label](development.md)
-- [STUN / TURN via coturn](coturn.md)
+## Installation
+
+You can clone Briefing locally and run it with:
+
+```
+npm install
+npm start
+```
+
+To adopt the look and feel to your needs, follow this guide:
+
+- [**Development, Installation, Customization and White-Label**](installation/README.md)
 
 ## Posts
 
-- [Briefing 2.0](version2-en.md) ([de](version2-de.md))
+- [Briefing 3.0](blog/version3-en.md) ([de](blog/version3-de.md))
+- [Briefing 2.0](blog/version2-en.md) ([de](blog/version2-de.md))
 
 ## Other Resources for Maintainers
 
-- [Marketing](marketing-en.md) ([de](marketing-de.md)) - Describes Briefing in a few words
-- [Internal](internal.md) - Details for repository maintainers
+- [Marketing](internal/marketing-en.md) ([de](internal/marketing-de.md)) - Describes Briefing in a few words.
+- [Internal](internal/internal.md) - Details for repository maintainers.

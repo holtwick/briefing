@@ -1,5 +1,3 @@
-<!-- Copyright (c) 2020-2022 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright -->
-
 <script>
 export default {
   name: 'SeaSymbol',
