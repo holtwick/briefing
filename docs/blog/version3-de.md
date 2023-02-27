@@ -1,11 +1,12 @@
 ---
-date: 2023-02-22
+date: 2023-02-27
 title: Briefing 3.0
+lang: de
 ---
 
 # Briefing 3.0
 
-Mit diesem neuen Major-Release wird die Code Basis auf den aktuellen Stand gehoben und die Weichen für weitere Features gestellt.
+Mit diesem neuen Major-Release wird die Code Basis auf den aktuellen Stand der Technik gehoben und die Weichen für weitere Features gestellt.
 
 ## Vue3 und Typescript
 
@@ -18,6 +19,8 @@ Für die Übersetzungen wird nun die Standardbibliothek [vue-i18n](https://vue-i
 ## Sonstiges
 
 - Die Docker Images wurden auf node 18 aktualisiert.
+- Überarbeitung der Dokumentation
+- QRCode Fullscreen durch Klick
 
 ## Ausblick
 

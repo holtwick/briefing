@@ -1,6 +1,6 @@
 {
   "name": "briefing",
-  "version": "3.0.8",
+  "version": "3.1.0",
   "private": true,
   "description": "Secure direct video chat",
   "repository": {
@@ -47,21 +47,21 @@
     "zeed": "^0.9.22"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.35.2",
+    "@antfu/eslint-config": "^0.35.3",
     "@antfu/ni": "^0.20.0",
-    "@types/node": "^18.14.1",
+    "@types/node": "^18.14.2",
     "@vitejs/plugin-vue": "^4.0.0",
     "@zerva/bin": "^0.18.0",
     "@zerva/vite": "^0.18.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.34.0",
+    "eslint": "^8.35.0",
     "ministun": "^1.0.6",
     "sass": "^1.58.3",
     "tsc": "^2.0.4",
     "typescript": "^4.9.5",
     "vite": "^4.1.4",
-    "vitest": "^0.28.5",
-    "vue-tsc": "^1.1.7"
+    "vitest": "^0.29.1",
+    "vue-tsc": "^1.2.0"
   },
   "engines": {
     "node": ">=18.0.0"
