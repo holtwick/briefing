@@ -18,15 +18,16 @@
 }
 
 .qrcode {
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;  
-  margin: 0;  
+  margin: auto;  
   background-color: white;
   cursor: pointer;
-
+  text-align: center;
+  
   svg {
-    display: flex;
+    display: inline-block;
     max-height: 100vh;
   }
 }
