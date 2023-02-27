@@ -168,8 +168,10 @@ export default {
 <template>
   <div class="app hstack">
     <SeaModal
+      v-if="mode === 'settings'"
       xclass="panel -left panel-settings"
-      :active="mode === 'settings'"
+      active
+      :xactive="mode === 'settings'"
       :title="$t('settings.title')"
       @close="mode = ''"
     >
@@ -451,8 +453,10 @@ export default {
     </div>
 
     <SeaModal
+      v-if="mode === 'share'"
       xclass="panel -left panel-share"
-      :active="mode === 'share'"
+      active
+      :xactive="mode === 'share'"
       :title="$t('share.title')"
       @close="mode = ''"
     >
@@ -460,8 +464,10 @@ export default {
     </SeaModal>
 
     <SeaModal
+      v-if="mode === 'chat'"
       xclass="panel -left panel-share"
-      :active="mode === 'chat'"
+      active
+      :xactive="mode === 'chat'"
       title="Chat with others"
       :scrollable="false"
       @close="mode = ''"

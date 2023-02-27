@@ -53,12 +53,14 @@ export default {
     },
     setName() {
       const input = document.getElementById('name') as HTMLInputElement
-      const name = input.value
-      localStorage.setItem('name', name)
-      this.nameString = name
-      messages.emit('userInfo', {
-        name,
-      })
+      const name = input?.value
+      if (name) {
+        localStorage.setItem('name', name)
+        this.nameString = name
+        messages.emit('userInfo', {
+          name,
+        })
+      }
     },
     scrollToEnd() {
       const messages = this.$el.querySelector('.messages-container')
