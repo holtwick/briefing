@@ -1,8 +1,8 @@
 <script lang="ts">
-import { messages } from 'zeed'
 import { isAllowedBugTracking, setAllowedBugTracking } from '../bugs'
 import { ICE_CONFIG, RELEASE, SIGNAL_SERVER_URL } from '../config'
 import { t } from '../i18n'
+import { messages } from '../lib/messages'
 import { WebRTC } from '../logic/webrtc'
 import { state } from '../state'
 

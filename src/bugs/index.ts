@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 
-import { Logger, messages } from 'zeed'
+import { Logger } from 'zeed'
 import { SENTRY_DSN } from '../config'
+import { messages } from '../lib/messages'
 
 const log = Logger('app:bugs')
 

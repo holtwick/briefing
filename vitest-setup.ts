@@ -1,7 +1,7 @@
-import { Logger, MemStorage, setupEnv } from 'zeed'
+import { MemStorage, getGlobalLogger, setupEnv } from 'zeed'
 
 // Someone else also sets the logger?!
-Logger.setLock(true)
+getGlobalLogger().setLock(true)
 
 // eslint-disable-next-line no-console
 console.info('vitest setup performed!')
