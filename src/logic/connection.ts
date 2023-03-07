@@ -1,8 +1,9 @@
 // https://webrtchacks.com/limit-webrtc-bandwidth-sdp/
 
-import { Logger, messages, useDispose } from 'zeed'
+import { Logger, useDispose } from 'zeed'
 import { ICE_CONFIG } from '../config'
 import { cloneObject } from '../lib/base'
+import { messages } from '../lib/messages'
 import { WebRTC } from './webrtc'
 
 // import { removeBandwidthRestriction, setMediaBitrate } from './sdp-manipulation'

@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 
 import { reactive } from 'vue'
-import { Logger, messages } from 'zeed'
+import { Logger } from 'zeed'
 import { trackException, trackSilentException } from './bugs'
 import { MUTE_AUDIO, MUTE_VIDEO, ROOM_PATH, SHOW_CHAT, SHOW_FULLSCREEN, SHOW_INVITATION, SHOW_INVITATION_HINT, SHOW_SETTINGS, SHOW_SHARE } from './config'
 import { isTrue, objectSnapshot } from './lib/base'
 import { postMessageToParent } from './lib/iframe'
+import { messages } from './lib/messages'
 import { normalizeName } from './lib/names'
 import { setupWebRTC } from './logic/connection'
 import { defaultAudioConstraints, defaultVideoConstraints, getDevices, getDisplayMedia, getUserMedia, setAudioTracks } from './logic/stream'

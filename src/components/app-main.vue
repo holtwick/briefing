@@ -1,8 +1,8 @@
 <script lang="ts">
-import { messages } from 'zeed'
 import { setAllowedBugTracking } from '../bugs'
 import { ROOM_PATH } from '../config'
 import { historyAddRoom } from '../lib/history'
+import { messages } from '../lib/messages'
 import { createLinkForRoom, shareLink } from '../lib/share'
 import { setup, state } from '../state'
 import SeaModal from '../ui/sea-modal.vue'

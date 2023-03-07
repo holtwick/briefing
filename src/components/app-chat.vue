@@ -1,5 +1,5 @@
 <script lang="ts">
-import { messages } from 'zeed'
+import { messages } from '../lib/messages'
 
 import './app-chat.scss'
 
