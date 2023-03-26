@@ -47,7 +47,7 @@ We recommend using a proxy to easily support safe `https`, which is required to 
 
 A good proxy is [nginxproxymanager.com](https://nginxproxymanager.com/).
 
-You can find the required `docker-compose.yml` files in the [examples](examples) folder.
+You can find the required `docker-compose.yml` files in the [examples](../examples) folder.
 
 See this video for details step by step:
 
