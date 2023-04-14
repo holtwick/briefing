@@ -95,6 +95,8 @@ export default {
             // https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide
             video.onloadedmetadata = () => this.playVideo(video)
             video.onloadeddata = () => this.playVideo(video)
+            video.onpause = () => this.playVideo(video)
+            video.oncanplay = () => this.playVideo(video)
           }
         }
         catch (err) {
@@ -145,7 +147,7 @@ export default {
       >
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
       </svg>
-      <label>Waiting for connection</label>
+      <label>{{ $t("main.connection_wait") }}</label>
     </div>
     <div
       v-if="fingerprint" v-show="!state.maximized"
@@ -162,8 +164,7 @@ export default {
         {{ fingerprint.substr(fingerprint.length - 4, 4) }}
       </label>
       <label v-show="showCode" title="Verification code" class="-long" @click.stop.prevent="doToggleShow">
-        If the person you see here confirms to see the same ID, you are securely
-        connected:
+        {{ $t("main.security_info") }}
         <br>
         <code>{{ fingerprint }}</code>
       </label>
@@ -179,7 +180,7 @@ export default {
         <path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10" />
         <line x1="1" y1="1" x2="23" y2="23" />
       </svg>
-      <label>You turned the video off</label>
+      <label>{{ $t("main.video_muted") }}</label>
     </div>
     <div v-if="stream && showPlayButton" class="video video-placeholder -content-placeholder -overlay">
       <svg
@@ -189,7 +190,7 @@ export default {
         <circle cx="12" cy="12" r="10" />
         <polygon points="10 8 16 12 10 16 10 8" />
       </svg>
-      <label>Click to start video</label>
+      <label>{{ $t("main.action_restart_video") }}</label>
     </div>
   </div>
 </template>

@@ -206,11 +206,9 @@ export default {
           class="message-container -error"
         >
           <div class="message">
-            An error occurred. Please help us fixing it by allowing to send the
-            details to us. This option is also available in the settings.
-            Thanks!
-            <u @click="doAllow(true)">Allow</u> |
-            <u @click="doAllow(false)">Deny</u>
+            {{ $t("error.ask_to_send_error") }}
+            <u @click="doAllow(true)">{{ $t("error.send_allow") }}</u> |
+            <u @click="doAllow(false)">{{ $t("error.send_deny") }}</u>
           </div>
         </div>
 
