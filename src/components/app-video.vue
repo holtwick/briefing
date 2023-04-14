@@ -128,131 +128,63 @@ export default {
 </script>
 
 <template>
-  <div
-    class="peer item"
-    :class="{ '-maximized': state.maximized === id }"
-    @click="handleClick"
-  >
+  <div class="peer item" :class="{ '-maximized': state.maximized === id }" @click="handleClick">
     <div
       v-if="state.screenshots"
       :style="`background:url(/faces/${screenshotNumber}.jpg); background-size: cover; background-position: center;`"
-      alt=""
-      class="video"
-      :class="{ '-mirrored': mirrored }"
+      alt="" class="video" :class="{ '-mirrored': mirrored }"
     />
     <video
-      v-else-if="stream"
-      ref="video"
-      class="video"
-      :class="{ '-mirrored': mirrored }"
-      autoplay
-      playsinline
-      :muted="muted"
-      :data-fit="state.fill ? 'cover' : 'contain'"
-      autoPictureInPicture="true"
+      v-else-if="stream" ref="video" class="video" :class="{ '-mirrored': mirrored }" autoplay playsinline
+      :muted="muted" :data-fit="state.fill ? 'cover' : 'contain'" autoPictureInPicture="true"
     />
     <div v-else class="video video-placeholder -content-placeholder">
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="-icon-placeholder"
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="-icon-placeholder"
       >
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
       </svg>
       <label>Waiting for connection</label>
     </div>
     <div
-      v-if="fingerprint"
-      v-show="!state.maximized"
+      v-if="fingerprint" v-show="!state.maximized"
       class="video video-placeholder video-fingerprint -content-placeholder -overlay -info"
     >
-      <label
-        v-show="!showCode"
-        title="Verification code"
-        class="-short"
-        @click.stop.prevent="doToggleShow"
-      >
+      <label v-show="!showCode" title="Verification code" class="-short" @click.stop.prevent="doToggleShow">
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           class="feather feather-shield"
         >
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
         </svg>
         {{ fingerprint.substr(fingerprint.length - 4, 4) }}
       </label>
-      <label
-        v-show="showCode"
-        title="Verification code"
-        class="-long"
-        @click.stop.prevent="doToggleShow"
-      >
+      <label v-show="showCode" title="Verification code" class="-long" @click.stop.prevent="doToggleShow">
         If the person you see here confirms to see the same ID, you are securely
         connected:
         <br>
         <code>{{ fingerprint }}</code>
       </label>
-      <label
-        v-if="String(name).trim().length"
-        title="Name"
-        class="-short"
-        style="right: 5rem"
-      >
+      <label v-if="String(name).trim().length" title="Name" class="-short" style="right: 5rem">
         {{ name }}
       </label>
     </div>
-    <div
-      v-if="state.muteVideo && id === 'self'"
-      class="video video-placeholder -content-placeholder"
-    >
+    <div v-if="state.muteVideo && id === 'self'" class="video video-placeholder -content-placeholder">
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="-icon-placeholder"
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="-icon-placeholder"
       >
-        <path
-          d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"
-        />
+        <path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10" />
         <line x1="1" y1="1" x2="23" y2="23" />
       </svg>
       <label>You turned the video off</label>
     </div>
-    <div
-      v-if="stream && showPlayButton"
-      class="video video-placeholder -content-placeholder -overlay"
-    >
+    <div v-if="stream && showPlayButton" class="video video-placeholder -content-placeholder -overlay">
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="-icon-placeholder"
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="-icon-placeholder"
       >
         <circle cx="12" cy="12" r="10" />
         <polygon points="10 8 16 12 10 16 10 8" />

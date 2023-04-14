@@ -3,11 +3,7 @@
 import { Emitter, Logger, encodeBase32 } from 'zeed'
 import { trackException } from '../bugs'
 import { cloneObject } from '../lib/base'
-import {
-  getFingerprintString,
-  sha256Messages,
-  splitByNChars,
-} from './fingerprint'
+import { getFingerprintString, sha256Messages, splitByNChars } from './fingerprint'
 import { Peer } from './simple-peer'
 
 const log = Logger('app:webrtc-peer')

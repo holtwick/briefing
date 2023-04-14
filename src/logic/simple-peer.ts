@@ -3,7 +3,6 @@
 import { Emitter, Logger } from 'zeed'
 
 const log = Logger('simple-peer')
-// log.level = LogLevel.info
 
 const MAX_BUFFERED_AMOUNT = 64 * 1024
 const ICECOMPLETE_TIMEOUT = 5 * 1000

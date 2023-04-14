@@ -7,8 +7,7 @@ declare global {
     webkit?: any
     iOS?: any 
     iPhone?: any
-    briefingConfig?: any
-    
+    briefingConfig?: any    
   }
 
   namespace globalThis {
