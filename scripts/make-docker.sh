@@ -9,7 +9,7 @@ cp -a Dockerfile docker
 cp -a docker-package.json docker/package.json
 cp -a dist docker
 cp -a www docker
-cp docs/docker.md docker/README.md
+cp docs/installation/docker.md docker/README.md
 cp scripts/app.js docker
 
 echo ""

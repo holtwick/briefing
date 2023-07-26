@@ -4,8 +4,8 @@ import { ROOM_URL } from '../config'
 
 const log = Logger('share')
 
-export function createLinkForRoom(room) {
-  return `${ROOM_URL + room}#${room}`
+export function createLinkForRoom(room: string) {
+  return `${ROOM_URL}${room}#${room}`
 }
 
 export const canShare = navigator.share != null
