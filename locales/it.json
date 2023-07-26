@@ -13,7 +13,7 @@
     "image_background": "Sfondo dell'immagine",
     "image_tip": "Puoi caricare il tuo sfondo trascinando un file immagine in questa finestra.",
     "original_background": "Sfondo originale",
-    "persist_settings": "Impostazioni Persistenti",
+    "persist_settings": "Impostazioni persistenti",
     "random_image": "Fare clic per ottenere un'altra immagine casuale.",
     "sentry": "Consenti rilevamento bug",
     "sentry_confirm": "Grazie per aver permesso il tracciamento dei bug. Conferma per ricaricare la pagina ora.",
@@ -29,7 +29,7 @@
     "link_info": "Si prega di inviare questo link a tutti i partecipanti:",
     "message": "Invita inviando il link premendo sul tasto {symbol} symbol.",
     "qr_info": "Puoi anche scansionare questo codice QR con una fotocamera del dispositivo mobile:",
-    "title": "Condivi"
+    "title": "Condividi"
   },
   "welcome": {
     "abstract": "Video chat di gruppo sicura e diretta",
