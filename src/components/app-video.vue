@@ -84,18 +84,16 @@ export default {
 
           const video = this.$refs.video
           log('connectStreamToVideoElement', stream, video)
-          if (stream) {
-            if ('srcObject' in video)
-              video.srcObject = stream
-            else
-              video.src = window.URL.createObjectURL(stream) // for older browsers
+          if ('srcObject' in video)
+            video.srcObject = stream
+          else
+            video.src = window.URL.createObjectURL(stream) // for older browsers
 
-            // Keep in mind https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
-            // But if the user allows to access camera it should be fine
-            // https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide
-            video.onloadedmetadata = () => this.playVideo(video)
-            video.onloadeddata = () => this.playVideo(video)
-          }
+          // Keep in mind https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
+          // But if the user allows to access camera it should be fine
+          // https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide
+          video.onloadedmetadata = () => this.playVideo(video)
+          video.onloadeddata = () => this.playVideo(video)
         }
         catch (err) {
           trackSilentException(err)
