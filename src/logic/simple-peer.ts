@@ -8,10 +8,6 @@ const MAX_BUFFERED_AMOUNT = 64 * 1024
 const ICECOMPLETE_TIMEOUT = 5 * 1000
 const CHANNEL_CLOSING_TIMEOUT = 5 * 1000
 
-function queueMicrotask(task: Function) {
-  setTimeout(task, 0)
-}
-
 function randombytes(size: number): Uint8Array {
   const array = new Uint8Array(size)
   for (let i = 0; i < size; i++)
