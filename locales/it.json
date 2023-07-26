@@ -7,7 +7,7 @@
     "history": "Stanze visitate in precedenza"
   },
   "share": {
-    "title": "Condivi",
+    "title": "Condividi",
     "link_info": "Si prega di inviare questo link a tutti i partecipanti:",
     "button_copy": "Condividi",
     "qr_info": "Puoi anche scansionare questo codice QR con una fotocamera del dispositivo mobile:",
@@ -31,7 +31,7 @@
     "sentry_info": "Quando riscontriamo un errore di programmazione o altre informazioni utili utili per migliorare l'app,invieremo i dati di debug a una chiamata di servizio <a href=https://sentry.io>sentry.io</a>.",
     "sentry_confirm": "Grazie per aver permesso il tracciamento dei bug. Conferma per ricaricare la pagina ora.",
     "background": "Sfondo",
-    "persist_settings": "Impostazioni Persistenti",
+    "persist_settings": "Impostazioni persistenti",
     "original_background": "Sfondo originale",
     "blurred_background": "Sfondo sfocato",
     "image_background": "Sfondo dell'immagine",
