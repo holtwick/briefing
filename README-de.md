@@ -42,7 +42,7 @@ Generell ist Briefing frei, allerdings steht auch eine [kommerzielle Lizenz](#co
 
 ### Öffentliche Lizenz
 
-Die Bedingungen der EUPL (European Union Public License 1.2) müssen beachtet werden, die denen der GPL ähneln. Änderungen müssen ebenfalls frei sein und der Öffentlichkeit unter derselben Lizenz zugänglich gemacht werden. Einen schnellen Überblick über die Lizenz erhältst du unter <https://choosealicense.com/licenses/eupl-1.2/>. Diese Lizenz ist auch in den [Sprachen der Europäischen Gemeinschaft](https://eupl.eu/) verfügbar.
+Es gelten die Bedingungen der AGPL 3.0 oder später (GNU Affero General Public License v3.0): "Die Erlaubnis dieser stärksten Copyleft-Lizenz ist an die Bedingung geknüpft, dass der vollständige Quellcode der lizenzierten Werke und Modifikationen, die größere Werke unter Verwendung eines lizenzierten Werks umfassen, unter derselben Lizenz zur Verfügung gestellt werden. Copyright- und Lizenzvermerke müssen erhalten bleiben. Die Mitwirkenden gewähren ausdrücklich die Patentrechte. Wenn eine modifizierte Version verwendet wird, um einen Dienst über ein Netzwerk anzubieten, muss der vollständige Quellcode der modifizierten Version zur Verfügung gestellt werden." <https://choosealicense.com/licenses/agpl-3.0/>.
 
 ### Kommerzielle Lizenz
 

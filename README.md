@@ -42,7 +42,7 @@ In general Briefing is free, however a **[commercial license](#commercial-licens
 
 ### Public License
 
-The terms of the EUPL (European Union Public License 1.2) must be followed, which are similar to those of the AGPL. Modifications must also be free and made available to the public under the same license. For a quick overview of the license, see <https://choosealicense.com/licenses/eupl-1.2/>. This license is also available in the [European Community languages](https://eupl.eu/).
+The terms of the AGPL 3.0 or later (GNU Affero General Public License v3.0) apply: "Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available." <https://choosealicense.com/licenses/agpl-3.0/>.
 
 ### Commercial license
 
