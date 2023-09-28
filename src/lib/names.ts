@@ -22,11 +22,5 @@ export function generateName() {
     return Math.floor(Math.random() * (max - min)) + min
   }
 
-  return (
-    `${ADJECTIVES[getRandomInt(0, ADJECTIVES.length + 1)]
-    }-${
-    NOUNS[getRandomInt(0, NOUNS.length + 1)]
-    }-${
-    getRandomInt(1, 99)}`
-  )
+  return (`${ADJECTIVES[getRandomInt(0, ADJECTIVES.length - 1)]}-${NOUNS[getRandomInt(0, NOUNS.length - 1)]}-${getRandomInt(1, 99)}`)
 }
