@@ -24,3 +24,5 @@ yarn-error.log
 production
 data
 _archive
+upload-free.sh
+scripts/add-plausible.tsx
