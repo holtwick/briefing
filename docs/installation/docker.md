@@ -1,6 +1,7 @@
 # Docker
 
-A public docker image is available via [hub.docker.com/r/holtwick/briefing](https://hub.docker.com/r/holtwick/briefing).
+> [!NOTE] Docker Image
+> A public docker image is available at [hub.docker.com/r/holtwick/briefing](https://hub.docker.com/r/holtwick/briefing).
 
 With a [Docker Engine installed](https://docs.docker.com/engine/install/) use it like this:
 
