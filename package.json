@@ -31,7 +31,7 @@
     "serve": "cross-env ZEED=* LEVEL=i node dist/main.cjs",
     "start": "cross-env DEBUG=1 ZEED=* LEVEL=a zerva src/zerva/index.ts",
     "test": "vitest",
-    "upload:dockerhub": "nr build:docker && cd docker && docker login -u holtwick && docker buildx build --platform linux/arm64,linux/amd64,linux/s390x,linux/arm/v7,linux/arm/v6 -t holtwick/briefing:$npm_package_version -t holtwick/briefing:latest --push ."
+    "upload:dockerhub": "nr build:docker && (cd docker && docker login -u holtwick && docker buildx build --platform linux/arm64,linux/amd64,linux/s390x,linux/arm/v7,linux/arm/v6 -t holtwick/briefing:$npm_package_version -t holtwick/briefing:latest --push .)"
   },
   "dependencies": {
     "@sentry/browser": "^7.60.0",
