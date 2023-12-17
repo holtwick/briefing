@@ -1,5 +1,7 @@
 # Brie.fi/ng
 
+**Secure direct video group chat**
+
 > Choose your language: [en](README.md) | [de](README-de.md)
 
 <img src="public/sample.jpg" height="200" align="right" style="padding-left: 2rem;"> Privacy is the central idea behind this project. Only open technologies (such as [WebRTC](https://webrtc-security.github.io/)) are used, which work with all modern browsers. Thus, no installation of additional software is required, and the approach remains future-proof.
