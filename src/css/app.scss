@@ -17,3 +17,29 @@
     content: '';
   }
 }
+
+.banner {
+  position: absolute;
+  z-index: 9999;
+  background: rgba(10, 124, 179, 1);
+  top: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  font-weight: 600;
+  line-height: 2;
+
+  a {
+    display: inline-block;
+    padding: 4px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &-close {
+    cursor: pointer;
+    padding-top: 8px;
+    padding-right: 8px;
+    float: right;
+  }
+}
