@@ -1,23 +1,26 @@
 {
   "name": "briefing",
+  "type": "module",
   "version": "3.1.11",
   "private": true,
   "description": "Secure direct video chat",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/holtwick/briefing.git"
-  },
-  "funding": {
-    "type": "GitHub Sponsors ❤",
-    "url": "https://github.com/sponsors/holtwick"
-  },
-  "license": "AGPL-3.0-or-later",
   "author": {
     "name": "Dirk Holtwick",
     "email": "dirk.holtwick@gmail.com",
     "url": "https://holtwick.de"
   },
-  "type": "module",
+  "license": "AGPL-3.0-or-later",
+  "funding": {
+    "type": "GitHub Sponsors ❤",
+    "url": "https://github.com/sponsors/holtwick"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holtwick/briefing.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "cross-env MODE=production nr build:basis",
     "build:basis": "nr clean && zerva build src/zerva/index.ts && vite build --mode $MODE",
@@ -63,8 +66,5 @@
     "vitest": "^0.33.0",
     "vue-tsc": "^1.8.6",
     "zeed-dom": "^0.12.5"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   }
 }
