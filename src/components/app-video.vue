@@ -60,7 +60,9 @@ export default {
   },
   methods: {
     playVideo(video) {
-      const startPlayPromise = video.play()
+      const startPlayPromise = video.play().catch((err) => {
+        log('VideoPlayError', err)
+      })
       log('play', startPlayPromise)
       if (startPlayPromise !== undefined) {
         startPlayPromise
