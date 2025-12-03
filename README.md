@@ -52,7 +52,7 @@ For commercial use or closed source projects / "white labeling" I offer a licens
 
 > Worldwide, non-exclusive, non-transferable, non-sublicensable license of Briefing, as found at https:// github.com/holtwick/briefing/, for use in purchaser's products, as long as the resulting software is not in competition with Briefing itself. Any liability is excluded. The law of the Federal Republic of Germany applies exclusively.
 
-The one-time fee is 499 EUR net. Please contact [license@holtwick.de](mailto:license@holtwick.de) or [buy directly via Paddle](https://buy.paddle.com/product/650756).
+Please contact [license@holtwick.de](mailto:license@holtwick.de).
 
 ## Author
 
