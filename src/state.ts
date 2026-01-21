@@ -207,8 +207,13 @@ async function switchMedia() {
       delete constraints.video
     }
   }
-
-  const media = await getUserMedia(constraints)
+  let media = await getUserMedia(constraints)
+  if (media.error) {
+    const audioOnly: MediaStreamConstraints = {
+      audio,
+    }
+    media = await getUserMedia(audioOnly)
+  }
   state.error = media.error
   stream = media.stream
 
