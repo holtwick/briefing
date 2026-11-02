@@ -1,4 +1,4 @@
-.DS_* 
+.DS_*
 .env.*
 .htaccess
 .htaccess*
@@ -26,3 +26,4 @@ data
 _archive
 upload-free.sh
 scripts/add-plausible.tsx
+Icon?

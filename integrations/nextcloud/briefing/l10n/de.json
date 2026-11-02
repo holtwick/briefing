@@ -1,0 +1,30 @@
+{
+  "translations": {
+    "Audio, video, chat and files are end-to-end encrypted and go directly between the participants. Rooms open on %s.": "Ton, Bild, Chat und Dateien sind Ende-zu-Ende-verschlüsselt und gehen direkt zwischen den Teilnehmenden. Räume öffnen auf %s.",
+    "Briefing": "Briefing",
+    "Briefing instance": "Briefing-Instanz",
+    "Briefing video rooms": "Briefing-Videoräume",
+    "Chat": "Chat",
+    "Copied": "Kopiert",
+    "Copy link for guests": "Link für Gäste kopieren",
+    "Create room": "Raum anlegen",
+    "Delete": "Löschen",
+    "Delete \"%s\"? Its links stop working.": "\"%s\" löschen? Seine Links funktionieren dann nicht mehr.",
+    "Group: %s": "Gruppe: %s",
+    "Join": "Betreten",
+    "Join as moderator": "Als Moderation betreten",
+    "Moderated": "Moderiert",
+    "Moderated: you give roles, mute and remove participants": "Moderiert: Sie vergeben Rollen, schalten stumm und entfernen Teilnehmende",
+    "Name": "Name",
+    "No rooms yet.": "Noch keine Räume.",
+    "Nobody (only links)": "Niemandem (nur Links)",
+    "Not saved: the instance must be an https URL without query or fragment.": "Nicht gespeichert: Die Instanz muss eine https-URL ohne Query und Fragment sein.",
+    "Save": "Speichern",
+    "Share with group": "Mit Gruppe teilen",
+    "Start as": "Start als",
+    "URL of the Briefing installation the rooms open on, including its room path. Empty: the official instance %s. Rooms already created keep working only on the instance they were made for.": "URL der Briefing-Installation, auf der die Räume öffnen, einschließlich Raumpfad. Leer: die offizielle Instanz %s. Bereits angelegte Räume funktionieren nur auf der Instanz, für die sie angelegt wurden.",
+    "Video call": "Videoanruf",
+    "Video room": "Videoraum"
+  },
+  "pluralForm": "nplurals=2; plural=(n != 1);"
+}

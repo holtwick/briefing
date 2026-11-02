@@ -1,0 +1,65 @@
+/**
+ * SPDX-FileCopyrightText: 2026 Dirk Holtwick
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+.briefing__page {
+	max-width: 48rem;
+	padding: calc(var(--default-grid-baseline) * 4) calc(var(--default-grid-baseline) * 6);
+}
+
+.briefing__intro,
+.briefing__empty {
+	color: var(--color-text-maxcontrast);
+	margin-bottom: calc(var(--default-grid-baseline) * 4);
+}
+
+.briefing__create {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: calc(var(--default-grid-baseline) * 2) calc(var(--default-grid-baseline) * 3);
+	align-items: center;
+	margin-bottom: calc(var(--default-grid-baseline) * 6);
+}
+
+.briefing__check,
+.briefing__create button {
+	grid-column: 2;
+	justify-self: start;
+}
+
+.briefing__rooms {
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--default-grid-baseline) * 2);
+}
+
+.briefing__room {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: calc(var(--default-grid-baseline) * 2);
+	padding: calc(var(--default-grid-baseline) * 3);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius-large);
+}
+
+.briefing__room-title {
+	display: flex;
+	flex-direction: column;
+}
+
+.briefing__meta {
+	color: var(--color-text-maxcontrast);
+}
+
+.briefing__room-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: calc(var(--default-grid-baseline) * 2);
+}
+
+.briefing__room-actions form {
+	margin: 0;
+}

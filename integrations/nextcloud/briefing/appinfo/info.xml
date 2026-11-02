@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+  - SPDX-FileCopyrightText: 2026 Dirk Holtwick
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>briefing</id>
+    <name>Briefing</name>
+    <summary>End-to-end encrypted video rooms for your groups, straight from Nextcloud</summary>
+    <summary lang="de">Ende-zu-Ende-verschlüsselte Videoräume für Ihre Gruppen, direkt aus Nextcloud</summary>
+    <description><![CDATA[**Video rooms for your teams in two clicks - without a call server of your own.**
+
+Briefing brings secure video calls into Nextcloud. Create a room, share it with a group, and everyone finds it in their Briefing list. Guests without an account join with a link in the browser - no app, no sign-up.
+
+### Why Briefing
+
+- **End-to-end encrypted**: audio, video, chat and files go directly between the participants. The room key stays in the browsers; the server only brokers the connection and cannot read anything.
+- **Nothing is recorded**: there is no recording and no storage of calls on any server.
+- **Moderated rooms**: as owner you join as moderator, give roles, mute and remove participants. Roles are signed in your browser, not granted by a server.
+- **No call backend to run**: no TURN or media server setup in Nextcloud. Rooms open on the official instance brie.fi or on your own Briefing installation.
+- **Chat rooms too**: start a room as video call or as chat only.
+
+### How it works
+
+1. Open **Briefing** in the app menu and create a room - moderated by default, optionally shared with one of your groups.
+2. Join as moderator, or copy the link for guests.
+3. Members of the group see the room in their list and join as participants.
+
+### Your data
+
+The app stores per room only its name, owner, group and the link parts. It sends nothing about your users to Briefing - the link simply opens in the browser. Rooms of a deleted user are deleted with them.
+
+### For administrators
+
+Under *Administration settings > Additional settings > Briefing* you choose the Briefing instance: empty for the official one, or the URL of your own installation including its room path.
+]]></description>
+    <description lang="de"><![CDATA[**Videoräume für Ihre Teams mit zwei Klicks - ohne eigenen Call-Server.**
+
+Briefing bringt sichere Videoanrufe in Nextcloud. Raum anlegen, mit einer Gruppe teilen, und alle finden ihn in ihrer Briefing-Liste. Gäste ohne Konto kommen per Link im Browser dazu - ohne App, ohne Registrierung.
+
+### Warum Briefing
+
+- **Ende-zu-Ende-verschlüsselt**: Ton, Bild, Chat und Dateien gehen direkt zwischen den Teilnehmenden. Der Raumschlüssel bleibt in den Browsern; der Server vermittelt nur die Verbindung und kann nichts mitlesen.
+- **Keine Aufzeichnung**: Gespräche werden auf keinem Server aufgezeichnet oder gespeichert.
+- **Moderierte Räume**: Als Besitzer betreten Sie den Raum als Moderation, vergeben Rollen, schalten stumm und entfernen Teilnehmende. Rollen werden in Ihrem Browser signiert, nicht von einem Server vergeben.
+- **Kein Call-Backend nötig**: kein TURN- oder Medienserver in Nextcloud einzurichten. Räume öffnen auf der offiziellen Instanz brie.fi oder auf Ihrer eigenen Briefing-Installation.
+- **Auch als Chat**: Räume starten als Videoanruf oder nur als Chat.
+
+### So geht's
+
+1. **Briefing** im App-Menü öffnen und einen Raum anlegen - standardmäßig moderiert, optional mit einer Ihrer Gruppen geteilt.
+2. Als Moderation betreten oder den Link für Gäste kopieren.
+3. Mitglieder der Gruppe sehen den Raum in ihrer Liste und treten als Teilnehmende bei.
+
+### Ihre Daten
+
+Die App speichert pro Raum nur Name, Besitzer, Gruppe und die Teile des Links. Sie schickt nichts über Ihre Nutzer an Briefing - der Link öffnet einfach im Browser. Räume eines gelöschten Nutzers werden mit ihm gelöscht.
+
+### Für Administratoren
+
+Unter *Verwaltungseinstellungen > Zusätzliche Einstellungen > Briefing* wählen Sie die Briefing-Instanz: leer für die offizielle, sonst die URL Ihrer eigenen Installation inklusive Raumpfad.
+]]></description>
+    <version>0.1.0</version>
+    <licence>AGPL-3.0-or-later</licence>
+    <author mail="dirk.holtwick@gmail.com" homepage="https://about.brie.fi">Dirk Holtwick</author>
+    <namespace>Briefing</namespace>
+    <category>social</category>
+    <website>https://about.brie.fi</website>
+    <bugs>https://github.com/holtwick/briefing/issues</bugs>
+    <dependencies>
+        <php min-version="8.1"/>
+        <lib>openssl</lib>
+        <nextcloud min-version="30" max-version="34"/>
+    </dependencies>
+    <settings>
+        <admin>OCA\Briefing\Settings\Admin</admin>
+    </settings>
+    <navigations>
+        <navigation>
+            <name>Briefing</name>
+            <route>briefing.page.index</route>
+            <icon>app.svg</icon>
+        </navigation>
+    </navigations>
+</info>

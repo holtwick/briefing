@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/briefing/db" VERSION="20261031" COMMENT="XMLDB file for Moodle mod/briefing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="briefing" COMMENT="Briefing rooms, one per activity">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="moderated" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="1 = moderated room with a moderator key"/>
+        <FIELD NAME="roommode" TYPE="char" LENGTH="10" NOTNULL="true" DEFAULT="video" SEQUENCE="false" COMMENT="video or chat"/>
+        <FIELD NAME="room" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Room name, the path of the link"/>
+        <FIELD NAME="secret" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Room secret, the fragment of the link"/>
+        <FIELD NAME="moderatorkey" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Exported moderator key, only in moderated rooms"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="course" TYPE="foreign" FIELDS="course" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
