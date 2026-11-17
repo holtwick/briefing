@@ -29,11 +29,11 @@ This is a public interface. Changing it breaks every link the plugins have store
 <instance><room>#<secret>[&mk=<moderator key>][&m=chat]
 ```
 
-- `instance`: base URL including the room path, ending in `/` (Briefing's `APP__ROOM_PATH`, default `/`), e.g. `https://brie.fi/ng/` or `https://meet.example.org/room/`. `https` only, `http` only for `localhost`.
+- `instance`: base URL including the room path, ending in `/` (Briefing's `APP__ROOM_PATH`, default `/`), e.g. `https://brie.fi/ng/` or `https://meet.example.org/room/`. `https` only, `http` only for `localhost` and `127.0.0.1`.
 - `room`: the room name, URL-encoded, must not start with `_`.
 - `secret`: URL-encoded. Generated as 16 random bytes in base64url (no padding). A moderated room appends `.m<key hash>`.
 - `key hash`: `base64url(SHA-256("briefing:moderation:1\nkey\n" || publicRaw))`, first 22 characters, where `publicRaw` is the uncompressed P-256 public key (`0x04 || x || y`, 65 bytes).
-- `moderator key`: `base64url(d || x || y)`, each 32 bytes big-endian (128 characters). Only in the moderator link; Briefing takes it out of the address bar at once and keeps it in the browser.
+- `moderator key`: `base64url(d || x || y)`, each 32 bytes big-endian (128 characters). Only in the moderator link; Briefing takes it out of the address bar at once and keeps it in the browser. Moderator rights need Briefing's `moderation` plugin; on an instance without it (e.g. a self-hosted basic edition) the moderator link opens the room as a plain participant, and the room works as an ordinary room with a secret.
 - `&m=chat`: room starts as chat only; nothing for a video room.
 
 Reference implementation: Briefing's moderation plugin and its room link parser. Test vector (also pinned in Briefing's own tests and in both plugins' tests; public, never use it as a real moderator key):

@@ -1,8 +1,13 @@
 # Changelog
 
-All notable changes to the Briefing app for Nextcloud. The format follows
-[Keep a Changelog](https://keepachangelog.com/en/1.1.0/); the version heading must match
-`appinfo/info.xml`.
+All notable changes to the Briefing app for Nextcloud. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); the version heading must match `appinfo/info.xml`.
+
+## 1.0.0
+
+### Changed
+
+- First stable release; no functional change since 0.1.0.
+- App store listing with screenshots; the links to the project site carry `?ref=nextcloud`.
 
 ## 0.1.0
 

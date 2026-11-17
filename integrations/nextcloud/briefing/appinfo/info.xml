@@ -61,13 +61,16 @@ Die App speichert pro Raum nur Name, Besitzer, Gruppe und die Teile des Links. S
 
 Unter *Verwaltungseinstellungen > Zusätzliche Einstellungen > Briefing* wählen Sie die Briefing-Instanz: leer für die offizielle, sonst die URL Ihrer eigenen Installation inklusive Raumpfad.
 ]]></description>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
     <licence>AGPL-3.0-or-later</licence>
-    <author mail="dirk.holtwick@gmail.com" homepage="https://about.brie.fi">Dirk Holtwick</author>
+    <author mail="dirk.holtwick@gmail.com" homepage="https://about.brie.fi/?ref=nextcloud">Dirk Holtwick</author>
     <namespace>Briefing</namespace>
     <category>social</category>
-    <website>https://about.brie.fi</website>
+    <website>https://about.brie.fi/?ref=nextcloud</website>
     <bugs>https://github.com/holtwick/briefing/issues</bugs>
+    <screenshot>https://raw.githubusercontent.com/holtwick/briefing/master/integrations/nextcloud/screenshots/1-hero.png</screenshot>
+    <screenshot>https://raw.githubusercontent.com/holtwick/briefing/master/integrations/nextcloud/screenshots/2-call.png</screenshot>
+    <screenshot>https://raw.githubusercontent.com/holtwick/briefing/master/integrations/nextcloud/screenshots/3-nextcloud.png</screenshot>
     <dependencies>
         <php min-version="8.1"/>
         <lib>openssl</lib>
