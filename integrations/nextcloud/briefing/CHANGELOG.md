@@ -2,6 +2,14 @@
 
 All notable changes to the Briefing app for Nextcloud. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); the version heading must match `appinfo/info.xml`.
 
+## 1.0.1
+
+### Changed
+
+- Supports Nextcloud 35.
+- The admin setting points to `https://group.brie.fi/` for calls with many participants.
+- Room links carry `?ref=nextcloud` before the `#`, so Briefing can count how many join through Nextcloud - per day only, without room or person. The secret stays in the part after the `#`, which never reaches a server. Rooms created before get it too.
+
 ## 1.0.0
 
 ### Changed

@@ -57,7 +57,7 @@ class PageController extends Controller {
 		foreach ($this->rooms->findVisible($uid, array_keys($groups)) as $room) {
 			$own = $room->getOwnerUid() === $uid;
 			$key = $room->getModeratorKey();
-			$participant = BriefingLink::url($instance, $room->getRoom(), $room->getSecret(), null, $room->getMode());
+			$participant = BriefingLink::url($instance, $room->getRoom(), $room->getSecret(), null, $room->getMode(), BriefingLink::REF);
 			$list[] = [
 				'id' => $room->getId(),
 				'title' => $room->getTitle(),
@@ -65,7 +65,7 @@ class PageController extends Controller {
 				'moderated' => (bool)$key,
 				'group' => $room->getGroupId() ? ($groups[$room->getGroupId()] ?? $room->getGroupId()) : null,
 				'join' => $own && $key
-					? BriefingLink::url($instance, $room->getRoom(), $room->getSecret(), $key, $room->getMode())
+					? BriefingLink::url($instance, $room->getRoom(), $room->getSecret(), $key, $room->getMode(), BriefingLink::REF)
 					: $participant,
 				// Only the owner hands out links; group members find the room here
 				'guest' => $own ? $participant : null,

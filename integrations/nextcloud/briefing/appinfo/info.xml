@@ -29,7 +29,7 @@ Briefing brings secure video calls into Nextcloud. Create a room, share it with 
 
 ### Your data
 
-The app stores per room only its name, owner, group and the link parts. It sends nothing about your users to Briefing - the link simply opens in the browser. Rooms of a deleted user are deleted with them.
+The app stores per room only its name, owner, group and the link parts. It sends nothing about your users to Briefing - the link simply opens in the browser. The links only name Nextcloud as their source (`?ref=nextcloud`), which Briefing counts per day without room or person. Rooms of a deleted user are deleted with them.
 
 ### For administrators
 
@@ -55,13 +55,13 @@ Briefing bringt sichere Videoanrufe in Nextcloud. Raum anlegen, mit einer Gruppe
 
 ### Ihre Daten
 
-Die App speichert pro Raum nur Name, Besitzer, Gruppe und die Teile des Links. Sie schickt nichts über Ihre Nutzer an Briefing - der Link öffnet einfach im Browser. Räume eines gelöschten Nutzers werden mit ihm gelöscht.
+Die App speichert pro Raum nur Name, Besitzer, Gruppe und die Teile des Links. Sie schickt nichts über Ihre Nutzer an Briefing - der Link öffnet einfach im Browser. Die Links nennen nur Nextcloud als Herkunft (`?ref=nextcloud`), die Briefing pro Tag zählt, ohne Raum oder Person. Räume eines gelöschten Nutzers werden mit ihm gelöscht.
 
 ### Für Administratoren
 
 Unter *Verwaltungseinstellungen > Zusätzliche Einstellungen > Briefing* wählen Sie die Briefing-Instanz: leer für die offizielle, sonst die URL Ihrer eigenen Installation inklusive Raumpfad.
 ]]></description>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <licence>AGPL-3.0-or-later</licence>
     <author mail="dirk.holtwick@gmail.com" homepage="https://about.brie.fi/?ref=nextcloud">Dirk Holtwick</author>
     <namespace>Briefing</namespace>
@@ -74,7 +74,7 @@ Unter *Verwaltungseinstellungen > Zusätzliche Einstellungen > Briefing* wählen
     <dependencies>
         <php min-version="8.1"/>
         <lib>openssl</lib>
-        <nextcloud min-version="30" max-version="34"/>
+        <nextcloud min-version="30" max-version="35"/>
     </dependencies>
     <settings>
         <admin>OCA\Briefing\Settings\Admin</admin>

@@ -53,6 +53,7 @@ final class link_test extends \basic_testcase {
         $this->assertSame('http://localhost:5173/', link::instance('http://localhost:5173'));
         $this->assertSame('https://brie.fi/ng/a-b#s.mH', link::url('https://brie.fi/ng/', 'a-b', 's.mH'));
         $this->assertSame('https://brie.fi/ng/a#s.mH&mk=K&m=chat', link::url('https://brie.fi/ng/', 'a', 's.mH', 'K', 'chat'));
+        $this->assertSame('https://brie.fi/ng/a?ref=moodle#s.mH', link::url('https://brie.fi/ng/', 'a', 's.mH', null, 'video', link::REF));
     }
 
     public function test_insecure_instance_is_refused(): void {

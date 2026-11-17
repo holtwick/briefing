@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_briefing';
-$plugin->version = 2026103100;
+$plugin->version = 2026111700;
 $plugin->requires = 2022112800; // Moodle 4.1.
 $plugin->maturity = MATURITY_ALPHA;
-$plugin->release = '0.1.0';
+$plugin->release = '0.2.0';

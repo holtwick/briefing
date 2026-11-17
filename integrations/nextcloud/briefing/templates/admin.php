@@ -10,6 +10,7 @@
 <div id="briefing" class="section">
 	<h2><?php p($l->t('Briefing')); ?></h2>
 	<p class="settings-hint"><?php p($l->t('URL of the Briefing installation the rooms open on, including its room path. Empty: the official instance %s. Rooms already created keep working only on the instance they were made for.', [$_['default']])); ?></p>
+	<p class="settings-hint"><?php p($l->t('For calls with many participants there is %s: every room runs through a media server, so larger groups stay smooth. Audio, video and chat stay end-to-end encrypted.', [$_['group']])); ?></p>
 	<?php if ($_['error']): ?>
 		<p class="warning"><?php p($l->t('Not saved: the instance must be an https URL without query or fragment.')); ?></p>
 	<?php endif; ?>

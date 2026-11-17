@@ -10,6 +10,7 @@
     "Create room": "Raum anlegen",
     "Delete": "Löschen",
     "Delete \"%s\"? Its links stop working.": "\"%s\" löschen? Seine Links funktionieren dann nicht mehr.",
+    "For calls with many participants there is %s: every room runs through a media server, so larger groups stay smooth. Audio, video and chat stay end-to-end encrypted.": "Für Gespräche mit vielen Teilnehmenden gibt es %s: Dort läuft jeder Raum über einen Medienserver, damit auch größere Gruppen flüssig bleiben. Ton, Bild und Chat bleiben Ende-zu-Ende-verschlüsselt.",
     "Group: %s": "Gruppe: %s",
     "Join": "Betreten",
     "Join as moderator": "Als Moderation betreten",

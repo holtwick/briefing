@@ -46,6 +46,10 @@ check('secret shape', preg_match('/^[\w-]{22}\.mLtx21BCggP2KiOZAsv4RFs$/', $secr
 check('same url', link::url(link::instance(''), 'a', $secret, VECTOR_KEY, 'chat')
     === BriefingLink::url(BriefingLink::instance(''), 'a', $secret, VECTOR_KEY, 'chat'));
 check('url format', link::url('https://brie.fi/ng/', 'a', 's.mH', 'K', 'chat') === 'https://brie.fi/ng/a#s.mH&mk=K&m=chat');
+check('url with ref', link::url('https://brie.fi/ng/', 'a', 's', null, 'video', link::REF) === 'https://brie.fi/ng/a?ref=moodle#s');
+check('same url with ref', BriefingLink::url('https://brie.fi/ng/', 'a', 's', 'K', 'chat', 'x')
+    === link::url('https://brie.fi/ng/', 'a', 's', 'K', 'chat', 'x'));
+check('refs', link::REF === 'moodle' && BriefingLink::REF === 'nextcloud');
 check('instance with path', link::instance('https://meet.example.org/room') === 'https://meet.example.org/room/');
 check('localhost over http', BriefingLink::instance('http://localhost:5173') === 'http://localhost:5173/');
 foreach (['http://meet.example.org/', 'https://x/?a=1', 'ftp://x/', 'meet.example.org'] as $bad) {
@@ -61,7 +65,7 @@ check('room name', preg_match('/^mathe-10b-fruehjahr-[a-z0-9]{6}$/', BriefingLin
 // A link made here opens in Briefing: print one to try by hand
 $key = link::new_moderator_key();
 $secret = link::new_secret($key['hash']);
-echo "\nmoderator link:   " . link::url('https://brie.fi/ng/', 'php-check', $secret, $key['key']) . "\n";
-echo "participant link: " . link::url('https://brie.fi/ng/', 'php-check', $secret) . "\n";
+echo "\nmoderator link:   " . link::url('https://brie.fi/ng/', 'php-check', $secret, $key['key'], 'video', BriefingLink::REF) . "\n";
+echo "participant link: " . link::url('https://brie.fi/ng/', 'php-check', $secret, null, 'video', BriefingLink::REF) . "\n";
 
 exit($failed ? 1 : 0);
