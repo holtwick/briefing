@@ -29,7 +29,7 @@ Briefing brings secure video calls into Nextcloud. Create a room, share it with 
 
 ### Your data
 
-The app stores per room only its name, owner, group and the link parts. It sends nothing about your users to Briefing - the link simply opens in the browser. The links only name Nextcloud as their source (`?ref=nextcloud`), which Briefing counts per day without room or person. Rooms of a deleted user are deleted with them.
+The app stores per room only its name, owner, group and the link parts. It sends nothing about your users to Briefing - the link simply opens in the browser. Rooms of a deleted user are deleted with them.
 
 ### For administrators
 
@@ -55,7 +55,7 @@ Briefing bringt sichere Videoanrufe in Nextcloud. Raum anlegen, mit einer Gruppe
 
 ### Ihre Daten
 
-Die App speichert pro Raum nur Name, Besitzer, Gruppe und die Teile des Links. Sie schickt nichts über Ihre Nutzer an Briefing - der Link öffnet einfach im Browser. Die Links nennen nur Nextcloud als Herkunft (`?ref=nextcloud`), die Briefing pro Tag zählt, ohne Raum oder Person. Räume eines gelöschten Nutzers werden mit ihm gelöscht.
+Die App speichert pro Raum nur Name, Besitzer, Gruppe und die Teile des Links. Sie schickt nichts über Ihre Nutzer an Briefing - der Link öffnet einfach im Browser. Räume eines gelöschten Nutzers werden mit ihm gelöscht.
 
 ### Für Administratoren
 
