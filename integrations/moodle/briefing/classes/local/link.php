@@ -36,6 +36,9 @@ final class link {
     /** The official instance */
     public const DEFAULT_INSTANCE = 'https://brie.fi/ng/';
 
+    /** `ref` of this plugin's links: Briefing counts joins per source and day, nothing else */
+    public const REF = 'moodle';
+
     /**
      * base64url without padding.
      *
@@ -180,10 +183,11 @@ final class link {
      * @param string $secret
      * @param string|null $moderatorkey only for the moderator link
      * @param string $mode 'video' or 'chat'
+     * @param string|null $ref where the link comes from, `?ref=` before the fragment (Briefing counts it per day)
      * @return string
      */
     public static function url(string $instance, string $room, string $secret, ?string $moderatorkey = null,
-            string $mode = 'video'): string {
+            string $mode = 'video', ?string $ref = null): string {
         $fragment = rawurlencode($secret);
         if ($moderatorkey) {
             $fragment .= '&mk=' . $moderatorkey;
@@ -191,6 +195,7 @@ final class link {
         if ($mode === 'chat') {
             $fragment .= '&m=chat';
         }
-        return $instance . rawurlencode($room) . '#' . $fragment;
+        $query = $ref ? '?ref=' . rawurlencode($ref) : '';
+        return $instance . rawurlencode($room) . $query . '#' . $fragment;
     }
 }

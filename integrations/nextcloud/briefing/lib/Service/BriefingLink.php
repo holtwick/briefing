@@ -25,6 +25,12 @@ final class BriefingLink {
 	/** The official instance */
 	public const DEFAULT_INSTANCE = 'https://brie.fi/ng/';
 
+	/** The official instance for larger groups: every room through a media server (LiveKit), still end-to-end encrypted */
+	public const GROUP_INSTANCE = 'https://group.brie.fi/';
+
+	/** `ref` of this plugin's links: Briefing counts joins per source and day, nothing else */
+	public const REF = 'nextcloud';
+
 	/**
 	 * base64url without padding.
 	 *
@@ -169,10 +175,11 @@ final class BriefingLink {
 	 * @param string $secret
 	 * @param string|null $moderatorKey only for the moderator link
 	 * @param string $mode 'video' or 'chat'
+	 * @param string|null $ref where the link comes from, `?ref=` before the fragment (Briefing counts it per day)
 	 * @return string
 	 */
 	public static function url(string $instance, string $room, string $secret, ?string $moderatorKey = null,
-			string $mode = 'video'): string {
+			string $mode = 'video', ?string $ref = null): string {
 		$fragment = rawurlencode($secret);
 		if ($moderatorKey) {
 			$fragment .= '&mk=' . $moderatorKey;
@@ -180,6 +187,7 @@ final class BriefingLink {
 		if ($mode === 'chat') {
 			$fragment .= '&m=chat';
 		}
-		return $instance . rawurlencode($room) . '#' . $fragment;
+		$query = $ref ? '?ref=' . rawurlencode($ref) : '';
+		return $instance . rawurlencode($room) . $query . '#' . $fragment;
 	}
 }

@@ -52,9 +52,9 @@ $PAGE->set_context($context);
 
 $instance = link::instance(get_config('mod_briefing', 'instance'));
 $moderator = !empty($briefing->moderatorkey) && has_capability('mod/briefing:moderate', $context);
-$participanturl = link::url($instance, $briefing->room, $briefing->secret, null, $briefing->roommode);
+$participanturl = link::url($instance, $briefing->room, $briefing->secret, null, $briefing->roommode, link::REF);
 $joinurl = $moderator
-    ? link::url($instance, $briefing->room, $briefing->secret, $briefing->moderatorkey, $briefing->roommode)
+    ? link::url($instance, $briefing->room, $briefing->secret, $briefing->moderatorkey, $briefing->roommode, link::REF)
     : $participanturl;
 
 echo $OUTPUT->header();

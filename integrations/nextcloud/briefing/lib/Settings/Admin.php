@@ -32,6 +32,7 @@ class Admin implements ISettings {
 		return new TemplateResponse(Application::APP_ID, 'admin', [
 			'instance' => $this->config->getValueString(Application::APP_ID, Application::CONFIG_INSTANCE),
 			'default' => BriefingLink::DEFAULT_INSTANCE,
+			'group' => BriefingLink::GROUP_INSTANCE,
 			'error' => $this->request->getParam('briefing_error') === '1',
 			'saveUrl' => $this->urls->linkToRoute('briefing.settings.save'),
 		], 'blank');
