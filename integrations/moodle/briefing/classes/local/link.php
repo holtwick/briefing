@@ -36,6 +36,9 @@ final class link {
     /** The official instance */
     public const DEFAULT_INSTANCE = 'https://brie.fi/ng/';
 
+    /** The official instance for larger groups: every room through a media server, still end-to-end encrypted */
+    public const GROUP_INSTANCE = 'https://group.brie.fi/';
+
     /** `ref` of this plugin's links: Briefing counts joins per source and day, nothing else */
     public const REF = 'moodle';
 

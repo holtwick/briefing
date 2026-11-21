@@ -28,7 +28,7 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configtext(
         'mod_briefing/instance',
         get_string('instance', 'mod_briefing'),
-        get_string('instance_desc', 'mod_briefing'),
+        get_string('instance_desc', 'mod_briefing', \mod_briefing\local\link::GROUP_INSTANCE),
         \mod_briefing\local\link::DEFAULT_INSTANCE,
         PARAM_URL
     ));

@@ -16,3 +16,11 @@ The plugin ships English only, as the old Moodle plugins directory required (sti
 
 - [x] 2026-11-21 Run it on a live Moodle (4.5 on the test instance, `infra/stacks/moodle`; 4.1 only in CI): add the activity as teacher and student, moderator and participant link, guest link, new room, duplicate, course backup and restore.
 - [ ] Archive validation and moodle-plugin-ci green on the Marketplace upload.
+
+## Screenshots
+
+PNGs of 1600x900 in [screenshots/](screenshots/), outside `briefing/` so they stay out of the zip (the Marketplace only limits files to 10 MB):
+
+- `1-hero.png`: title image, the Nextcloud one with Moodle wording, rendered from [hero.html](screenshots/hero.html) by `node screenshots/shot.cjs` (needs the briefing app's Playwright installed).
+- `2-call.png`: the moderated room with demo participants, a copy of the Nextcloud shot (how it is made: [../nextcloud/README.md](../nextcloud/README.md#screenshots)). Rerender `1-hero.png` when it changes, it embeds it.
+- `3-activity.png` and `4-settings.png`: the activity page as teacher and the site setting on the test Moodle, taken by hand and scaled to 1600x900.
