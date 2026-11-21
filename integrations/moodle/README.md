@@ -1,26 +1,18 @@
-# Briefing for Moodle (`mod_briefing`)
+# Briefing for Moodle - maintainer notes
 
-An activity that puts a Briefing video room into a course. Teachers add it like any other activity; everybody in the course joins with one click from the activity page.
+The plugin itself lives in [briefing/](briefing/README.md); its README goes into the zip. The source is public as part of the Briefing repo ([holtwick/briefing](https://github.com/holtwick/briefing/tree/master/integrations/moodle/briefing), mirrored by `../publish.sh`); there is no repo of its own, Moodle Marketplace checks every upload itself. How the links work and why: [../README.md](../README.md).
 
-- **Moderated rooms** (default): teachers (`mod/briefing:moderate`) open the room with the moderator link and give roles, mute and remove participants in Briefing. Students (`mod/briefing:join`) join as participants.
-- **Link for guests**: teachers see the participant link to hand to people outside the course.
-- **New room**: the activity settings replace the room, e.g. for a new term; old links stop leading into it.
-- **Instance**: Site administration > Plugins > Activity modules > Briefing. Default `https://brie.fi/ng/`, or the URL of an own Briefing installation including its room path.
+## Translations
 
-The plugin stores per activity only the room name, secret and moderator key, and talks to no Briefing server; the link opens in the user's browser. How and why: [../README.md](../README.md).
+The plugin ships English only, as the old Moodle plugins directory required (still to be checked for Moodle Marketplace, which replaced it in July 2026). Other languages go through [AMOS](https://lang.moodle.org) once the plugin is approved: [translations/de/briefing.php](translations/de/briefing.php) holds the German strings to enter there. A new or changed string in `briefing/lang/en/briefing.php` gets its German line there in the same change.
 
-## Install
+## Release
 
-Copy the folder `briefing/` to `<moodle>/mod/briefing` (or zip it as `briefing.zip` and upload it under Site administration > Plugins > Install plugins), then finish the upgrade. Requires Moodle 4.1 or newer and PHP's `openssl` extension.
+1. Raise `$plugin->version` (date + 2 digits) and `$plugin->release` in `briefing/version.php`.
+2. `release.sh` packs `dist/mod_briefing-<release>.zip` (`../publish.sh` calls it too, along with mirroring the source into the public Briefing repo; commit and push there).
+3. First release: on [Moodle Marketplace](https://marketplace.moodle.com/) (replaced the read-only plugins directory on 2026-07-20; sign up at <https://login.moodle.org/if/flow/default-enrollment-flow/>), "Submit a plugin", listing type free, upload the zip, add details, documentation, setup instructions and screenshots, source URL `https://github.com/holtwick/briefing/tree/master/integrations/moodle/briefing`, bug tracker `https://github.com/holtwick/briefing/issues` and the supported Moodle versions. The Marketplace runs archive validation and moodle-plugin-ci itself (it requires `db/upgrade.php` even without upgrade steps), then the plugin goes into the review queue (a Jira Service Management ticket). Steps per the [Plugins FAQ](https://docs.moodle.org/500/en/Plugins_FAQ).
 
-## Tests
+## Before the first submission
 
-`tests/link_test.php` is a regular Moodle PHPUnit test (`vendor/bin/phpunit --filter mod_briefing`). Without a Moodle: `php ../tests/link_check.php`.
-
-## Not yet
-
-- Backup and restore (`FEATURE_BACKUP_MOODLE2`); a restored course needs the activity added again.
-- Group mode (one room per course group).
-- Personal tickets with confirmed names and an attendance list, see [../README.md](../README.md#next-personal-tickets).
-
-License: GPL-3.0-or-later, like Moodle.
+- [x] 2026-11-21 Run it on a live Moodle (4.5 on the test instance, `infra/stacks/moodle`; 4.1 only in CI): add the activity as teacher and student, moderator and participant link, guest link, new room, duplicate, course backup and restore.
+- [ ] Archive validation and moodle-plugin-ci green on the Marketplace upload.
