@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Briefing for Moodle - Marketplace title image</title>
+    <!--
+  First screenshot of the Moodle Marketplace listing, rendered to 1-hero.png
+  by `node shot.cjs` (see ../README.md). Same look as the Nextcloud title image
+  (../../nextcloud/screenshots/hero.html). Uses the locally installed Inter;
+  the PNG is committed, only regenerating needs it. The claim is our statement,
+  kept apart from the faces on purpose (the Unsplash License forbids implying
+  that the people shown endorse anything).
+-->
+    <style>
+      :root {
+        --ink: #282828;
+        --light: #f2f2f2;
+        --muted: #b5b5b5;
+        --accent: #5ca5ff;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1600px;
+        height: 900px;
+        overflow: hidden;
+        background: var(--ink);
+        color: var(--light);
+        font-family:
+          'Inter',
+          'InterVariable',
+          -apple-system,
+          sans-serif;
+      }
+
+      .hero {
+        position: relative;
+        width: 1600px;
+        height: 900px;
+        padding: 96px 0 88px 104px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero .mark {
+        width: 80px;
+        height: 80px;
+      }
+
+      .hero .eyebrow {
+        margin-top: auto;
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--accent);
+      }
+
+      .hero .claim {
+        margin-top: 16px;
+        font-size: 100px;
+        line-height: 1.04;
+        font-weight: 700;
+        letter-spacing: -0.035em;
+      }
+
+      .hero .sub {
+        margin-top: 32px;
+        width: 560px;
+        font-size: 30px;
+        line-height: 1.35;
+        color: var(--muted);
+      }
+
+      .hero .a {
+        color: var(--accent);
+      }
+
+      .hero .foot {
+        margin-top: auto;
+        font-size: 36px;
+        font-weight: 500;
+      }
+
+      .hero .shot {
+        position: absolute;
+        top: 190px;
+        left: 760px;
+        width: 960px;
+        height: 540px;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.08),
+          0 30px 80px rgba(0, 0, 0, 0.55);
+      }
+
+      .hero .shot img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero .chip {
+        position: absolute;
+        top: 152px;
+        left: 720px;
+        padding: 14px 22px;
+        border-radius: 14px;
+        background: #fff;
+        color: var(--ink);
+        font-size: 26px;
+        font-weight: 600;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <!-- Logo mark, vector redraw of public/logo.svg -->
+      <svg class="mark" viewBox="260 190 500 640" aria-hidden="true">
+        <circle cx="354" cy="674" r="68" fill="#5ca5ff" />
+        <polygon points="624,214 738,214 578,808 465,808" fill="#5ca5ff" />
+      </svg>
+
+      <div class="eyebrow">Video rooms for Moodle courses</div>
+      <div class="claim">Just<br />between us<span class="a">.</span></div>
+      <div class="sub">End-to-end encrypted, nothing recorded. One click from the course, guests by link, no&nbsp;account, no&nbsp;app.</div>
+
+      <div class="foot">Briefing <span class="a">for</span> Moodle</div>
+
+      <div class="shot"><img src="2-call.png" alt="" /></div>
+      <div class="chip">🛡️ Moderated room · you decide who speaks</div>
+    </div>
+  </body>
+</html>

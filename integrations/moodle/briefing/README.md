@@ -6,7 +6,7 @@ An activity that puts a [Briefing](https://brie.fi/ng/) video room into a course
 - **Link for guests**: teachers see the participant link to hand to people outside the course.
 - **New room**: the activity settings replace the room, e.g. for a new term; old links stop leading into it.
 - **Backup, restore, duplicate**: the settings are kept, the room is not. A restored, copied or duplicated activity always gets a new room, so a backup file never carries a moderator key.
-- **Instance**: Site administration > Plugins > Activity modules > Briefing. Default `https://brie.fi/ng/`, or the URL of an own Briefing installation including its room path.
+- **Instance**: Site administration > Plugins > Activity modules > Briefing. Default `https://brie.fi/ng/`, `https://group.brie.fi/` for larger groups (every room through a media server), or the URL of an own Briefing installation including its room path.
 
 ## Privacy
 
@@ -18,7 +18,7 @@ From [Moodle Marketplace](https://marketplace.moodle.com/), or copy this folder 
 
 ## Tests
 
-`vendor/bin/phpunit --testsuite mod_briefing_testsuite` in a Moodle with PHPUnit set up. The GitHub workflow runs Moodle's own checks (moodle-plugin-ci) on Moodle 4.1, 4.5 and 5.1.
+`vendor/bin/phpunit --testsuite mod_briefing_testsuite` in a Moodle with PHPUnit set up. Moodle Marketplace runs Moodle's own checks (moodle-plugin-ci) on every upload.
 
 ## Not yet
 
