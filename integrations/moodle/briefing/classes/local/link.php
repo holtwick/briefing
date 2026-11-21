@@ -169,7 +169,8 @@ final class link {
         $scheme = strtolower($parts['scheme'] ?? '');
         $host = strtolower($parts['host'] ?? '');
         $local = $host === 'localhost' || $host === '127.0.0.1';
-        if (!$host || !($scheme === 'https' || ($scheme === 'http' && $local)) || isset($parts['query']) || isset($parts['fragment'])) {
+        $secure = $scheme === 'https' || ($scheme === 'http' && $local);
+        if (!$host || !$secure || isset($parts['query']) || isset($parts['fragment'])) {
             throw new \InvalidArgumentException('Briefing instance must be an https URL without query or fragment');
         }
         return rtrim($url, '/') . '/';

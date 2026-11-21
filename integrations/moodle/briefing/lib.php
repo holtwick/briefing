@@ -40,8 +40,8 @@ function briefing_supports($feature) {
         case FEATURE_MOD_INTRO:
         case FEATURE_SHOW_DESCRIPTION:
         case FEATURE_COMPLETION_TRACKS_VIEWS:
-            return true;
         case FEATURE_BACKUP_MOODLE2:
+            return true;
         case FEATURE_GRADE_HAS_GRADE:
         case FEATURE_GROUPS:
             return false;
