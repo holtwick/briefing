@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.holtwick/briefing",
+  "title": "Briefing",
+  "description": "Create end-to-end encrypted Briefing video rooms and invitations; moderator links stay local.",
+  "websiteUrl": "https://brie.fi",
+  "repository": {
+    "url": "https://github.com/holtwick/briefing",
+    "source": "github",
+    "subfolder": "integrations/mcp"
+  },
+  "version": "1.0.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "briefing-video-chat-mcp",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "BRIEFING_INSTANCE",
+          "description": "Briefing instance, default https://brie.fi/ng/",
+          "isRequired": false,
+          "format": "string"
+        },
+        {
+          "name": "BRIEFING_SHARE_LINKS",
+          "description": "\"false\" keeps even the participant link out of the assistant",
+          "isRequired": false,
+          "format": "boolean"
+        }
+      ]
+    }
+  ]
+}

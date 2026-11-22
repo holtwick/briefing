@@ -1,0 +1,51 @@
+{
+  "name": "briefing-video-chat-mcp",
+  "type": "module",
+  "version": "1.0.0",
+  "mcpName": "io.github.holtwick/briefing",
+  "description": "Create Briefing video rooms from Claude and other AI assistants: a local MCP server that makes end-to-end encrypted room links on your computer",
+  "author": {
+    "name": "Dirk Holtwick",
+    "url": "https://holtwick.de"
+  },
+  "license": "MIT",
+  "homepage": "https://brie.fi",
+  "keywords": [
+    "briefing",
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "video-chat",
+    "webrtc",
+    "end-to-end-encryption"
+  ],
+  "private": true,
+  "bin": {
+    "briefing-video-chat-mcp": "dist/index.mjs"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "start": "node dist/index.mjs",
+    "release": "./release.sh",
+    "test:unit": "vitest run",
+    "type-check": "tsgo --noEmit"
+  },
+  "devDependencies": {
+    "@briefing/sdk": "workspace:*",
+    "@types/node": "^26.6.6",
+    "@zeed/tsconfig": "workspace:*",
+    "@zeed/vitest-config": "workspace:*",
+    "@zeed/zeed": "workspace:*",
+    "tsdown": "^0.23.7",
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.1"
+  }
+}
