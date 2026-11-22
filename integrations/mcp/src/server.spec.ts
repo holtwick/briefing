@@ -69,6 +69,11 @@ describe('mcp server', () => {
     expect(registry.name).toBe(pkg.mcpName)
     expect(registry.packages[0].identifier).toBe(pkg.name)
     expect(registry.description.length).toBeLessThanOrEqual(100)
+    // The Claude plugin runs exactly this version from npm
+    const plugin = JSON.parse(readFileSync(new URL('../plugin/.claude-plugin/plugin.json', import.meta.url), 'utf8'))
+    const pluginMcp = JSON.parse(readFileSync(new URL('../plugin/.mcp.json', import.meta.url), 'utf8'))
+    expect(plugin.version).toBe(pkg.version)
+    expect(pluginMcp.mcpServers.briefing.args).toContain(`${pkg.name}@${pkg.version}`)
   })
 
   it('lists the same tools in manifest.json', async () => {

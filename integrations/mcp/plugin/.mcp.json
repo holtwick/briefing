@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "briefing": {
+      "command": "npx",
+      "args": ["-y", "briefing-video-chat-mcp@1.0.0"],
+      "env": {
+        "BRIEFING_INSTANCE": "${user_config.instance}",
+        "BRIEFING_SHARE_LINKS": "${user_config.share_links}"
+      }
+    }
+  }
+}
