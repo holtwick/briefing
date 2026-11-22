@@ -1,0 +1,32 @@
+{
+  "name": "briefing-video-chat",
+  "displayName": "Briefing",
+  "version": "1.0.0",
+  "description": "Create end-to-end encrypted Briefing video and chat rooms and put the invitation link into emails and calendar events. Rooms are made on your computer; the moderator link never goes to Claude.",
+  "author": {
+    "name": "Dirk Holtwick",
+    "url": "https://holtwick.de"
+  },
+  "homepage": "https://brie.fi",
+  "repository": "https://github.com/holtwick/briefing",
+  "license": "MIT",
+  "keywords": ["video", "meeting", "video-chat", "end-to-end-encryption", "privacy"],
+  "icon": "./icon.png",
+  "documentationUrl": "https://github.com/holtwick/briefing/tree/master/integrations/mcp",
+  "supportUrl": "https://github.com/holtwick/briefing/issues",
+  "privacyPolicyUrl": "https://brie.fi/ng/_privacy",
+  "userConfig": {
+    "instance": {
+      "type": "string",
+      "title": "Briefing server",
+      "description": "Address of the Briefing instance, e.g. your own server. The official one is https://brie.fi/ng/.",
+      "default": "https://brie.fi/ng/"
+    },
+    "share_links": {
+      "type": "boolean",
+      "title": "Let Claude see the participant link",
+      "description": "On: Claude can put the link into emails and calendar events. Off: links only go to your clipboard and your browser. The moderator link never goes to Claude.",
+      "default": true
+    }
+  }
+}

@@ -6,7 +6,7 @@ Plugins that bring Briefing rooms into platforms that already know their users:
 | -------------------------- | -------------------------------- | ---------- | ----------- |
 | [moodle/](moodle/)         | Moodle 4.1+, activity `mod_briefing` | GPL-3.0+ | runs on Moodle 4.5, ready for Moodle Marketplace ([release](moodle/README.md)) |
 | [nextcloud/](nextcloud/)   | Nextcloud 30-35, app `briefing`  | AGPL-3.0+  | in the Nextcloud app store, runs on Nextcloud 34 and 35 |
-| [mcp/](mcp/)               | Claude and other AI assistants, MCP server `briefing-video-chat-mcp` | MIT | not yet released ([README](mcp/README.md)) |
+| [mcp/](mcp/)               | Claude and other AI assistants, MCP server `briefing-video-chat-mcp` | MIT | on npm and in the MCP Registry, Claude directory submission pending ([README](mcp/README.md)) |
 | [matrix/](matrix/)         | Matrix (Element Web and Desktop), room widget | -  | no code, the widget is the room link; needs `HTTP__FRAME_ANCESTORS` on the instance ([README](matrix/README.md)) |
 
 Both work with the official instance (`https://brie.fi/ng/`, the default) and with any self-hosted one: the operator of the platform enters the instance URL once in the admin settings, so an organization can run its own Briefing and its own Moodle/Nextcloud together.

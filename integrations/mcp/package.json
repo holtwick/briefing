@@ -19,7 +19,6 @@
     "webrtc",
     "end-to-end-encryption"
   ],
-  "private": true,
   "bin": {
     "briefing-video-chat-mcp": "dist/index.mjs"
   },
