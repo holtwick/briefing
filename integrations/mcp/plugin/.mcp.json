@@ -2,10 +2,13 @@
   "mcpServers": {
     "briefing": {
       "command": "npx",
-      "args": ["-y", "briefing-video-chat-mcp@1.0.0"],
+      "args": [
+        "-y",
+        "briefing-video-chat-mcp@1.0.1"
+      ],
       "env": {
-        "BRIEFING_INSTANCE": "${user_config.instance}",
-        "BRIEFING_SHARE_LINKS": "${user_config.share_links}"
+        "CLAUDE_PLUGIN_OPTION_INSTANCE": "${user_config.instance}",
+        "CLAUDE_PLUGIN_OPTION_SHARE_LINKS": "${user_config.share_links}"
       }
     }
   }

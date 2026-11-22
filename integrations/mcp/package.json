@@ -1,7 +1,7 @@
 {
   "name": "briefing-video-chat-mcp",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "mcpName": "io.github.holtwick/briefing",
   "description": "Create Briefing video rooms from Claude and other AI assistants: a local MCP server that makes end-to-end encrypted room links on your computer",
   "author": {

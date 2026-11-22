@@ -13,7 +13,7 @@ export const PROTOCOL_VERSIONS = ['2025-11-25', '2025-06-18', '2025-03-26', '202
 export const SERVER_INFO = {
   name: 'briefing',
   title: 'Briefing',
-  version: '1.0.0',
+  version: '1.0.1',
 }
 
 const INSTRUCTIONS = [

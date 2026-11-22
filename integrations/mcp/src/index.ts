@@ -15,6 +15,10 @@ import { createTools } from './tools'
  *   BRIEFING_INSTANCE     Briefing instance, default https://brie.fi/ng/
  *   BRIEFING_SHARE_LINKS  "false" keeps even the participant link out of the assistant
  *   BRIEFING_MCP_DATA     folder for rooms.json, default the platform's app data folder
+ *
+ * As a Claude plugin the options arrive as CLAUDE_PLUGIN_OPTION_INSTANCE and
+ * CLAUDE_PLUGIN_OPTION_SHARE_LINKS, the names the Claude directory accepts
+ * for plugin options; the BRIEFING_ names win when both are set.
  */
 
 function warn(message: string) {
@@ -34,17 +38,17 @@ function setting(value: string | undefined): string | undefined {
 
 let instance: string
 try {
-  instance = normalizeInstance(setting(process.env.BRIEFING_INSTANCE))
+  instance = normalizeInstance(setting(process.env.BRIEFING_INSTANCE) ?? setting(process.env.CLAUDE_PLUGIN_OPTION_INSTANCE))
 }
 catch (err) {
-  warn(`${(err as Error).message}: ${process.env.BRIEFING_INSTANCE}`)
+  warn(`${(err as Error).message}: ${process.env.BRIEFING_INSTANCE ?? process.env.CLAUDE_PLUGIN_OPTION_INSTANCE}`)
   process.exit(1)
 }
 
 const store = createRoomStore(defaultStorePath())
 const tools = createTools({
   instance,
-  shareLinks: flag(process.env.BRIEFING_SHARE_LINKS, true),
+  shareLinks: flag(setting(process.env.BRIEFING_SHARE_LINKS) ?? process.env.CLAUDE_PLUGIN_OPTION_SHARE_LINKS, true),
   store,
   system: createSystemActions(),
 })
