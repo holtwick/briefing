@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "briefing",
   "display_name": "Briefing",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create end-to-end encrypted Briefing video rooms and invite people, right from the conversation.",
   "long_description": "Briefing is a secure video chat from Germany: end-to-end encrypted, no accounts, no tracking. This extension lets Claude create Briefing rooms on your computer and put the invitation link into emails, calendar events or messages.\n\nThe room is made locally - nothing is registered anywhere. The participant link (the one meant for invitations) goes to Claude, unless you switch that off; the moderator link never does: you join as moderator through your own browser. Works with the official instance brie.fi and with your own Briefing server.",
   "author": {

@@ -1,8 +1,6 @@
-# Briefing for Claude
+# Briefing Video Chat for Claude
 
 Create end-to-end encrypted [Briefing](https://brie.fi) video rooms (or chat rooms) from the conversation and invite people: Claude makes the room, puts the participant link into the email, calendar event or message it writes for you, and you join as moderator in your own browser.
-
-![Briefing for AI assistants](screenshot.png)
 
 ## What it does
 
@@ -17,7 +15,7 @@ The plugin starts a local MCP server on your computer with six tools: `create_ro
 
 ## What it runs
 
-The plugin runs `npx -y briefing-video-chat-mcp@1.0.0`, a package pinned to an exact version that npx downloads from the npm registry once. The package is one file without runtime dependencies; its source is in [integrations/mcp](https://github.com/holtwick/briefing/tree/master/integrations/mcp). To open a link it runs your system's opener (`open`, `xdg-open` or `rundll32 url.dll,FileProtocolHandler`), to copy one your clipboard tool (`pbcopy`, `clip`, `wl-copy`, `xclip` or `xsel`). Needs Node.js 20 or later.
+The plugin runs `npx -y briefing-video-chat-mcp@1.0.1`, a package pinned to an exact version that npx downloads from the npm registry once. The package is one file without runtime dependencies; its source is in [integrations/mcp](https://github.com/holtwick/briefing/tree/master/integrations/mcp). To open a link it runs your system's opener (`open`, `xdg-open` or `rundll32 url.dll,FileProtocolHandler`), to copy one your clipboard tool (`pbcopy`, `clip`, `wl-copy`, `xclip` or `xsel`). Needs Node.js 20 or later.
 
 Local MCP servers run in Claude Code and in Cowork sessions on your computer, not in claude.ai chat. For Claude Desktop there is also an extension file (`.mcpb`), see the [source folder](https://github.com/holtwick/briefing/tree/master/integrations/mcp).
 
