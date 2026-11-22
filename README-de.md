@@ -27,6 +27,13 @@ Erfahre mehr darüber in der [**→ Dokumentation**](./docs/README.md).
 
 ![Verbindung](./docs/assets/connection.svg)
 
+## Integrationen
+
+Fertige Anbindungen, die Briefing-Räume aus anderer Software heraus anlegen, liegen in [integrations/](integrations/README.md):
+
+- **MCP-Server für KI-Assistenten** ([integrations/mcp](integrations/mcp/README.md)): ein [Model-Context-Protocol](https://modelcontextprotocol.io)-Server (stdio, TypeScript, ohne Laufzeit-Abhängigkeiten), mit dem Claude und andere MCP-Clients Ende-zu-Ende-verschlüsselte Briefing-Räume anlegen und den Teilnehmerlink in Einladungen, E-Mails oder Kalendertermine schreiben. Werkzeuge: `create_room`, `list_rooms`, `get_room_link`, `open_room`, `copy_room_link` und `forget_room`; die Räume entstehen auf dem eigenen Rechner, Moderatorlinks erreichen den Assistenten nie. Installation mit `npx -y briefing-video-chat-mcp` ([npm](https://www.npmjs.com/package/briefing-video-chat-mcp), Name in der MCP Registry `io.github.holtwick/briefing`). Der Code liegt in [integrations/mcp/src](integrations/mcp/src).
+- **Nextcloud-App** ([integrations/nextcloud](integrations/nextcloud/README.md)) und **Moodle-Aktivität** ([integrations/moodle](integrations/moodle/README.md)).
+
 ## Anpassung / Whitelabeling
 
 Um Briefing für Ihr eigenes Projekt zu nutzen, stehen Ihnen die folgenden Optionen für alle Erfahrungsstufen zur Verfügung:
