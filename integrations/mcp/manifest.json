@@ -1,0 +1,97 @@
+{
+  "manifest_version": "0.3",
+  "name": "briefing",
+  "display_name": "Briefing",
+  "version": "1.0.0",
+  "description": "Create end-to-end encrypted Briefing video rooms and invite people, right from the conversation.",
+  "long_description": "Briefing is a secure video chat from Germany: end-to-end encrypted, no accounts, no tracking. This extension lets Claude create Briefing rooms on your computer and put the invitation link into emails, calendar events or messages.\n\nThe room is made locally - nothing is registered anywhere. The participant link (the one meant for invitations) goes to Claude, unless you switch that off; the moderator link never does: you join as moderator through your own browser. Works with the official instance brie.fi and with your own Briefing server.",
+  "author": {
+    "name": "Dirk Holtwick",
+    "url": "https://holtwick.de"
+  },
+  "homepage": "https://brie.fi",
+  "documentation": "https://brie.fi",
+  "support": "https://brie.fi",
+  "icon": "icon.png",
+  "screenshots": [
+    "screenshots/1-hero.png",
+    "screenshots/2-call.png"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.mjs",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/server/index.mjs"
+      ],
+      "env": {
+        "BRIEFING_INSTANCE": "${user_config.instance}",
+        "BRIEFING_SHARE_LINKS": "${user_config.share_links}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "create_room",
+      "description": "Create a new end-to-end encrypted video or chat room"
+    },
+    {
+      "name": "list_rooms",
+      "description": "List the rooms made on this computer"
+    },
+    {
+      "name": "get_room_link",
+      "description": "The participant link of a room, for invitations"
+    },
+    {
+      "name": "open_room",
+      "description": "Join a room in your browser, as moderator or participant"
+    },
+    {
+      "name": "copy_room_link",
+      "description": "Put a room link on the clipboard without showing it"
+    },
+    {
+      "name": "forget_room",
+      "description": "Remove a room from this computer's list"
+    }
+  ],
+  "user_config": {
+    "instance": {
+      "type": "string",
+      "title": "Briefing server",
+      "description": "Address of the Briefing instance, e.g. your own server. Leave empty for the official one, https://brie.fi/ng/.",
+      "default": "https://brie.fi/ng/",
+      "required": false
+    },
+    "share_links": {
+      "type": "boolean",
+      "title": "Let Claude see the participant link",
+      "description": "On: Claude can put the link into emails and calendar events. Off: links only go to your clipboard and your browser. The moderator link never goes to Claude.",
+      "default": true,
+      "required": false
+    }
+  },
+  "keywords": [
+    "video",
+    "meeting",
+    "video-chat",
+    "end-to-end-encryption",
+    "privacy"
+  ],
+  "license": "MIT",
+  "privacy_policies": [
+    "https://brie.fi/ng/_privacy"
+  ],
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=20.0.0"
+    }
+  }
+}

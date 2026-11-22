@@ -1,0 +1,17 @@
+{
+  "extends": "@zeed/tsconfig/base.json",
+  "compilerOptions": {
+    "lib": [
+      "ES2023",
+      "DOM"
+    ],
+    "types": [
+      "node",
+      "vitest/globals"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    "*.ts"
+  ]
+}
