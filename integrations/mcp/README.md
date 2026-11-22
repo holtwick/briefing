@@ -94,7 +94,7 @@ Nothing here publishes by itself.
 3. npm (first time: remove `"private": true`): `pnpm --filter briefing-video-chat-mcp build`, `npm publish` from this folder.
 4. [MCP Registry](https://registry.modelcontextprotocol.io), after npm, since it only holds `server.json` and checks `mcpName` in the published package: `mcp-publisher login github` (as holtwick, the name is `io.github.holtwick/briefing`), then `mcp-publisher publish` from this folder.
 5. Claude directory, after npm and after the public repo has `integrations/mcp/plugin/` (`pnpm briefing:integrations:publish`, push): in the [developer portal](https://claude.ai/directory/manage) "Submit new", "Plugin bundle", repository `holtwick/briefing`, folder `integrations/mcp/plugin`, "Validate", then submit. The pinned `npx` package is always held for a person to review. Later versions: bump, publish to npm, push; the directory picks up the commit. The `.mcpb` stays for installing by hand in Claude Desktop.
-6. Smithery and Glama; check each one's current requirements first.
+6. [Glama](https://glama.ai/mcp/servers) lists servers from GitHub and the MCP Registry by itself. [glama.json](glama.json) (maintainer `holtwick`) claims the entry; `publish.sh` puts it at the root of the public repo, the only place Glama reads it. After the push, find Briefing on Glama and claim it, signed in with GitHub. Smithery is left out on purpose: it centers on servers it hosts, while this one keeps moderator links on the user's computer.
 
 ## License
 
