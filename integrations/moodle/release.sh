@@ -16,6 +16,11 @@ if [ -d "$here/briefing/lang" ] && [ "$(ls "$here/briefing/lang")" != "en" ]; th
   exit 1
 fi
 
+if [ ! -f "$here/briefing/LICENSE" ]; then
+  echo "briefing/LICENSE (GPL-3.0 text) is missing, the Marketplace review requires it" >&2
+  exit 1
+fi
+
 mkdir -p "$here/dist"
 zipfile="$here/dist/mod_briefing-$release.zip"
 rm -f "$zipfile"

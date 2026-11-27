@@ -27,6 +27,13 @@ Learn more about it in the [**→ documentation**](./docs/README.md).
 
 ![connection](./docs/assets/connection.svg)
 
+## Integrations
+
+Ready-made integrations that create Briefing rooms from other software live in [integrations/](integrations/README.md):
+
+- **MCP server for AI assistants** ([integrations/mcp](integrations/mcp/README.md)): a [Model Context Protocol](https://modelcontextprotocol.io) server (stdio, TypeScript, no runtime dependencies) that lets Claude and other MCP clients create end-to-end encrypted Briefing rooms and put the participant link into invitations, emails or calendar events. Its tools are `create_room`, `list_rooms`, `get_room_link`, `open_room`, `copy_room_link` and `forget_room`; rooms are made on the user's computer and moderator links never reach the assistant. Install with `npx -y briefing-video-chat-mcp` ([npm](https://www.npmjs.com/package/briefing-video-chat-mcp), MCP Registry name `io.github.holtwick/briefing`). The implementation is in [integrations/mcp/src](integrations/mcp/src).
+- **Nextcloud app** ([integrations/nextcloud](integrations/nextcloud/README.md)) and **Moodle activity** ([integrations/moodle](integrations/moodle/README.md)).
+
 ## Customization / Whitelabeling
 
 To use Briefing for your own project, the following options for all levels of experience are available:
