@@ -25,4 +25,4 @@ From [Moodle Marketplace](https://marketplace.moodle.com/), or copy this folder 
 - Group mode (one room per course group).
 - Personal tickets with confirmed names and an attendance list.
 
-License: GPL-3.0-or-later, like Moodle.
+License: GPL-3.0-or-later, like Moodle; full text in [LICENSE](LICENSE) (the Marketplace review requires it in the plugin root).
